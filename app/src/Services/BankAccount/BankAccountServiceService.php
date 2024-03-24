@@ -4,6 +4,7 @@ namespace App\src\Services\BankAccount;
 
 use App\src\Models\BankAccount\BankAccount;
 use App\src\Repositories\BankAccount\BankAccountRepository;
+use Illuminate\Database\Eloquent\Model;
 
 readonly class BankAccountServiceService implements BankAccountServiceInterface
 {
@@ -17,9 +18,9 @@ readonly class BankAccountServiceService implements BankAccountServiceInterface
         return $this->accountRepository->find($value, $columnName);
     }
 
-    public function update(string $id, array $attributes): bool
+    public function update(BankAccount|Model $model, array $attributes): bool
     {
-        return $this->accountRepository->update($id, $attributes);
+        return $this->accountRepository->update($model->getId(), $attributes);
     }
 
     public function create(array $attributes): BankAccount
@@ -28,8 +29,8 @@ readonly class BankAccountServiceService implements BankAccountServiceInterface
         return $this->accountRepository->create($attributes);
     }
 
-    public function delete(string $value, string $columnName = 'id'): bool
+    public function delete(BankAccount|Model $model, string $columnName = 'id'): bool
     {
-        return $this->accountRepository->delete($value, $columnName);
+        return $this->accountRepository->delete($model->getId(), $columnName);
     }
 }

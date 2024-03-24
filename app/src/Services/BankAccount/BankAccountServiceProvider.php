@@ -10,7 +10,10 @@ class BankAccountServiceProvider extends ServiceProvider implements DeferrablePr
 {
     public function register(): void
     {
-        $this->app->register(BankAccountServiceInterface::class, fn() => new BankAccountServiceService(new BankAccountRepository()));
+        $this->app->bind(
+            BankAccountServiceInterface::class,
+            fn() => new BankAccountServiceService(new BankAccountRepository())
+        );
     }
 
     public function provides(): array

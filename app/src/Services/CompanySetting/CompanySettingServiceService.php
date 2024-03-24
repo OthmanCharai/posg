@@ -2,14 +2,20 @@
 
 namespace App\src\Services\CompanySetting;
 
+use App\src\Domain\Media\Exceptions\FileDeleteFromS3FailedException;
+use App\src\Domain\Media\Exceptions\FileUploadToS3FailedException;
+use App\src\Domain\Media\MediaService;
 use App\src\Models\CompanySetting\CompanySetting;
 use App\src\Repositories\CompanySetting\CompanySettingRepository;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
 
 readonly class CompanySettingServiceService implements CompanySettingServiceInterface
 {
-    public function __construct(private CompanySettingRepository $companySettingRepository)
-    {
+    public function __construct(
+        private CompanySettingRepository $companySettingRepository,
+        private readonly MediaService $mediaService
+    ) {
     }
 
     public function find(string $value, string $columnName = 'id'): ?CompanySetting
@@ -18,19 +24,46 @@ readonly class CompanySettingServiceService implements CompanySettingServiceInte
         return $this->companySettingRepository->find($value, $columnName);
     }
 
-    public function update(string $id, array $attributes): bool
+    /**
+     * @throws FileDeleteFromS3FailedException
+     * @throws FileUploadToS3FailedException
+     */
+    public function update(CompanySetting|Model $model, array $attributes): bool
     {
-        return $this->companySettingRepository->update($id, $attributes);
+        $this->mediaService->delete($model->getPath());
+        $path = $this->mediaService->save($model->getId(), Arr::get($attributes, CompanySetting::PATH_COLUMN));
+
+        return $this->companySettingRepository->update(
+            $model->getId(),
+            array_merge(
+                $attributes,
+                [
+                    CompanySetting::PATH_COLUMN => $path,
+                ]
+            )
+        );
     }
 
-    public function create(array $attributes): Model
+    /**
+     * @throws FileUploadToS3FailedException
+     */
+    public function create(array $attributes): CompanySetting
     {
+        $path = $this->mediaService->save('company-id', Arr::get($attributes, CompanySetting::PATH_COLUMN));
+
         /* @var CompanySetting */
-        return $this->companySettingRepository->create($attributes);
+        return $this->companySettingRepository->create(
+            array_merge($attributes, [CompanySetting::PATH_COLUMN => $path])
+        );
     }
 
-    public function delete(string $value, string $columnName = 'id'): bool
+    /**
+     * @throws FileDeleteFromS3FailedException
+     */
+    public function delete(CompanySetting|Model $model, string $columnName = 'id'): bool
     {
-        return $this->companySettingRepository->delete($value, $columnName);
+        $this->mediaService->delete($model->getPath());
+
+        return $this->companySettingRepository->delete($model->getId(), $columnName);
     }
 }

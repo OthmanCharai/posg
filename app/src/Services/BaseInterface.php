@@ -8,9 +8,9 @@ interface BaseInterface
 {
     public function find(string $value, string $columnName = 'id'): ?Model;
 
-    public function update(string $id, array $attributes): bool;
+    public function update(Model $model, array $attributes): bool;
 
     public function create(array $attributes): Model;
 
-    public function delete(string $value, string $columnName = 'id'): bool;
+    public function delete(Model $model, string $columnName = 'id'): bool;
 }

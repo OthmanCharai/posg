@@ -4,6 +4,7 @@ namespace App\src\Services\TaxVariant;
 
 use App\src\Models\TaxVariant\TaxVariant;
 use App\src\Repositories\TaxVariant\TaxVariantRepository;
+use Illuminate\Database\Eloquent\Model;
 
 class TaxVariantService implements TaxVariantServiceInterface
 {
@@ -17,9 +18,9 @@ class TaxVariantService implements TaxVariantServiceInterface
         return $this->taxVariantRepository->find($value, $columnName);
     }
 
-    public function update(string $id, array $attributes): bool
+    public function update(TaxVariant|Model $model, array $attributes): bool
     {
-        return $this->taxVariantRepository->update($id, $attributes);
+        return $this->taxVariantRepository->update($model->getId(), $attributes);
     }
 
     public function create(array $attributes): TaxVariant
@@ -28,8 +29,8 @@ class TaxVariantService implements TaxVariantServiceInterface
         return $this->taxVariantRepository->create($attributes);
     }
 
-    public function delete(string $value, string $columnName = 'id'): bool
+    public function delete(TaxVariant|Model $model, string $columnName = 'id'): bool
     {
-        return $this->taxVariantRepository->delete($value, $columnName);
+        return $this->taxVariantRepository->delete($model->getId(), $columnName);
     }
 }

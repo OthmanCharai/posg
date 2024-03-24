@@ -10,7 +10,10 @@ class AdminRoleServiceProvider extends ServiceProvider implements DeferrableProv
 {
     public function register()
     {
-        return $this->app->register(AdminRoleServiceInterface::class, fn() => new AdminRoleServiceService(new AdminRoleRepository()));
+        return $this->app->bind(
+            AdminRoleServiceInterface::class,
+            fn() => new AdminRoleServiceService(new AdminRoleRepository())
+        );
     }
 
     public function provides(): array

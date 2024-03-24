@@ -4,6 +4,9 @@ namespace App\src\Models\Tax;
 
 use App\src\Models\UuidModel;
 
+/**
+ * @property mixed $taxVariants
+ */
 class Tax extends UuidModel
 {
     use HasRelations;

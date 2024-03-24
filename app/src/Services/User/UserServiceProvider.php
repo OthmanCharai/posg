@@ -10,7 +10,7 @@ class UserServiceProvider extends ServiceProvider implements DeferrableProvider
 {
     public function register(): void
     {
-        $this->app->register(UserServiceInterface::class, fn() => new UserService(new UserRepository()));
+        $this->app->bind(UserServiceInterface::class, fn() => new UserService(new UserRepository()));
     }
 
     public function provides(): array
