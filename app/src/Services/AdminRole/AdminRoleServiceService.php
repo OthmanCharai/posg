@@ -4,6 +4,8 @@ namespace App\src\Services\AdminRole;
 
 use App\src\Models\AdminRole\AdminRole;
 use App\src\Repositories\AdminRole\AdminRoleRepository;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 readonly class AdminRoleServiceService implements AdminRoleServiceInterface
 {
@@ -17,9 +19,9 @@ readonly class AdminRoleServiceService implements AdminRoleServiceInterface
         return $this->adminRoleRepository->find($value, $columnName);
     }
 
-    public function update(string $id, array $attributes): bool
+    public function update(AdminRole|Model $model, array $attributes): bool
     {
-        return $this->adminRoleRepository->update($id, $attributes);
+        return $this->adminRoleRepository->update($model->getId(), $attributes);
     }
 
     public function create(array $attributes): AdminRole
@@ -28,8 +30,18 @@ readonly class AdminRoleServiceService implements AdminRoleServiceInterface
         return $this->adminRoleRepository->create($attributes);
     }
 
-    public function delete(string $value, string $columnName = 'id'): bool
+    public function delete(AdminRole|Model $model, string $columnName = 'id'): bool
     {
-        return $this->adminRoleRepository->delete($value, $columnName);
+        return $this->adminRoleRepository->delete($model->getId(), $columnName);
+    }
+
+    public function checkPermissionExistenceInRoles(int $permissions, ?AdminRole $role = null): bool
+    {
+        return $this->adminRoleRepository->checkPermissionExistenceInRoles($permissions, $role);
+    }
+
+    public function getPaginated(): LengthAwarePaginator
+    {
+        return $this->adminRoleRepository->getPaginated();
     }
 }

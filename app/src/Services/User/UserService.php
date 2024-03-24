@@ -4,6 +4,8 @@ namespace App\src\Services\User;
 
 use App\src\Models\User\User;
 use App\src\Repositories\User\UserRepository;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 readonly class UserService implements UserServiceInterface
 {
@@ -17,9 +19,9 @@ readonly class UserService implements UserServiceInterface
         return $this->userRepository->find($value, $columnName);
     }
 
-    public function update(string $id, array $attributes): bool
+    public function update(User|Model $model, array $attributes): bool
     {
-        return $this->userRepository->update($id, $attributes);
+        return $this->userRepository->update($model->getId(), $attributes);
     }
 
     public function create(array $attributes): User
@@ -28,8 +30,13 @@ readonly class UserService implements UserServiceInterface
         return $this->userRepository->create($attributes);
     }
 
-    public function delete(string $value, string $columnName = 'id'): bool
+    public function delete(User|Model $model, string $columnName = 'id'): bool
     {
-        return $this->userRepository->delete($value, $columnName);
+        return $this->userRepository->delete($model->getId(), $columnName);
+    }
+
+    public function getPaginated(): LengthAwarePaginator
+    {
+        return $this->userRepository->getPaginated();
     }
 }

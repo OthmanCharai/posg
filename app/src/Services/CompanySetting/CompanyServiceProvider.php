@@ -10,7 +10,7 @@ class CompanyServiceProvider extends ServiceProvider implements DeferrableProvid
 {
     public function register(): void
     {
-        $this->app->register(
+        $this->app->bind(
             CompanySettingServiceInterface::class,
             fn() => new CompanySettingServiceService(new CompanySettingRepository())
         );

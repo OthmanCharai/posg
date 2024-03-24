@@ -10,7 +10,7 @@ class TaxServiceProvider extends ServiceProvider implements DeferrableProvider
 {
     public function register(): void
     {
-        $this->app->register(TaxServiceInterface::class, fn() => new TaxService(new TaxRepository()));
+        $this->app->bind(TaxServiceInterface::class, fn() => new TaxService(new TaxRepository()));
     }
 
     public function provides(): array

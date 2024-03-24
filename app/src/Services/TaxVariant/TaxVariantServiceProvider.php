@@ -10,7 +10,7 @@ class TaxVariantServiceProvider extends ServiceProvider implements DeferrablePro
 {
     public function register(): void
     {
-        $this->app->register(
+        $this->app->bind(
             TaxVariantServiceInterface::class,
             fn() => new TaxVariantService(new TaxVariantRepository())
         );
