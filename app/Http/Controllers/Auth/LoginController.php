@@ -11,7 +11,7 @@ class LoginController extends Controller
 {
     public function __invoke(LoginRequest $request): \Illuminate\Http\JsonResponse
     {
-        $token = $this->adminAuth->guard('api')->attempt(
+        $token = auth()->attempt(
             Arr::only(
                 $request->validated(),
                 [
@@ -25,7 +25,8 @@ class LoginController extends Controller
             return $this->response->withError('Unauthorized');
         }
 
-        $user = $this->adminAuth->user();
+        $user = auth()->user();
+
         if (!$user instanceof User) {
             return $this->response->withError('user not found');
         }

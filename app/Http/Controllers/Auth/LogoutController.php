@@ -8,7 +8,7 @@ class LogoutController extends Controller
 {
     public function __invoke(): \Illuminate\Http\JsonResponse
     {
-        $this->adminAuth->logout();
+        auth()->logout();
 
         return $this->response->withSuccess('admin logged out with success');
     }

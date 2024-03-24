@@ -4,12 +4,12 @@ namespace App\src\Models\User;
 
 use App\src\Models\UuidModel;
 use Illuminate\Auth\Authenticatable;
-use Illuminate\Contracts\Auth\Authenticatable as AdminAuthenticated;
-use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Contracts\Auth\Authenticatable as Authenticated;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends UuidModel implements JWTSubject
+class User extends UuidModel implements JWTSubject, Authenticated
 {
-    use HasRelations;
+    use HasRelations, Authenticatable;
 
     public const FIRST_NAME_COLUMN = "first_name";
     public const LAST_NAME_COLUMN = "last_name";
