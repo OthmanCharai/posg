@@ -11,7 +11,7 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('bank_accounts', static function (Blueprint $table) {
-            $table->string('id');
+            $table->string('id')->primary();
             $table->string('bank_name');
             $table->string('account_number');
             $table->decimal('balance', 20, 2);

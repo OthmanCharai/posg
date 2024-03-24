@@ -12,7 +12,7 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('tax_variants', static function (Blueprint $table) {
-            $table->string('id');
+            $table->string('id')->primary();
             $table->string('tax_id');
             $table->foreign('tax_id')->references(Tax::ID_COLUMN)
                 ->on(
@@ -30,6 +30,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('taxe_variants');
+        Schema::dropIfExists('tax_variants');
     }
 };
