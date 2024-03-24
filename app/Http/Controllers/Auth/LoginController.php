@@ -11,24 +11,25 @@ class LoginController extends Controller
 {
     public function __invoke(LoginRequest $request): \Illuminate\Http\JsonResponse
     {
-        $token = $this->adminAuth->attempt(
+        $token = $this->adminAuth->guard('api')->attempt(
             Arr::only(
                 $request->validated(),
                 [
                     User::EMAIL_COLUMN,
                     User::PASSWORD_COLUMN,
                 ]
-            )
+            ),
+            true
         );
         if (!$token) {
             return $this->response->withError('Unauthorized');
         }
 
         $user = $this->adminAuth->user();
-        if ($user instanceof User) {
+        if (!$user instanceof User) {
             return $this->response->withError('user not found');
         }
 
-        return $this->response->withArray($user->toArray());
+        return $this->response->withArray(array_merge($user->toArray(), ['access_token' => $token]));
     }
 }

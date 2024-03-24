@@ -3,22 +3,22 @@
 namespace App\Http\Controllers\TaxVariant;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreTaxVariantRequest;
-use App\src\Models\Tax\Tax;
+use App\Http\Requests\UpdateTaxVariantRequest;
 use App\src\Models\TaxVariant\TaxVariant;
 use App\src\Services\TaxVariant\TaxVariantServiceInterface;
 
-class StoreTaxVariantController extends Controller
+class UpdateTaxVariantController extends Controller
 {
     public function __construct(private readonly TaxVariantServiceInterface $taxVariantService)
     {
         parent::__construct();
     }
 
-    public function __invoke(Tax $tax, StoreTaxVariantRequest $request): \Illuminate\Http\JsonResponse
+    public function __invoke(TaxVariant $taxVariant, UpdateTaxVariantRequest $request): \Illuminate\Http\JsonResponse
     {
-        $taxVariant = $this->taxVariantService->create(
-            array_merge($request->validated(), [TaxVariant::TAX_ID_COLUMN => $tax->getId()])
+        $this->taxVariantService->update(
+            $taxVariant,
+            $request->validated()
         );
 
         return $this->response->withArray($taxVariant->toArray());
