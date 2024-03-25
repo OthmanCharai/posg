@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\src\Models\AdminRole\AdminRole;
 use App\src\Models\User\User;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
@@ -30,10 +31,11 @@ class UpdateUserRequest extends FormRequest
             User::LAST_NAME_COLUMN    => ['nullable', 'string', 'max:255'],
             User::ADDRESS_COLUMN      => ['nullable', 'string', 'max:255'],
             User::PHONE_NUMBER_COLUMN => ['nullable', 'string', 'max:255'],
-            USER::PASSWORD_COLUMN     => [
+            User::PASSWORD_COLUMN     => [
                 'required',
                 Password::min(8)->mixedCase()->numbers()->symbols()->uncompromised(),
             ],
+            User::ROLE_ID_COLUMN      => ['required', 'string', sprintf('exists:%s', AdminRole::TABLE_NAME)],
         ];
     }
 }

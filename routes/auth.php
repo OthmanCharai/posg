@@ -10,7 +10,7 @@ Route::prefix('auth')
     ->group(function () {
         Route::middleware(['guest:' . AdminAuth::GUARD_NAME])
             ->group(function () {
-                Route::get('/login', LoginController::class)
+                Route::post('/login', LoginController::class)
                     ->name('login.submit');
             });
 

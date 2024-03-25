@@ -11,7 +11,7 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('admin_roles', static function (Blueprint $table) {
-            $table->string('id', 255);
+            $table->string('id', 255)->primary();
             $table->string('name', 255);
             $table->string('description', 255);
             $table->unsignedBigInteger('permissions')->unique();

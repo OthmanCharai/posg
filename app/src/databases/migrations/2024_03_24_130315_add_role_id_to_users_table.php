@@ -10,10 +10,9 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('taxes', static function (Blueprint $table) {
-            $table->string('id')->primary();
-            $table->text('name');
-            $table->timestamps();
+        Schema::table('users', static function (Blueprint $table) {
+            $table->string('role_id');
+            $table->foreign('role_id')->references('id')->on('admin_roles');
         });
     }
 
@@ -22,6 +21,8 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('taxes');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropForeign('users_role_id_foreign');
+        });
     }
 };

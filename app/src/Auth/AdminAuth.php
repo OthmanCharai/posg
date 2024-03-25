@@ -10,7 +10,7 @@ use Illuminate\Contracts\Foundation\Application;
 
 class AdminAuth extends AuthManager
 {
-    public const GUARD_NAME = 'admins';
+    public const GUARD_NAME = 'api';
 
     public function __construct(Application $app, private readonly UserServiceInterface $userService)
     {
@@ -26,10 +26,5 @@ class AdminAuth extends AuthManager
 
         /* @var User|null */
         return $this->userService->find($admin->getId());
-    }
-
-    public function guard($name = null): SessionGuard
-    {
-        return parent::guard(self::GUARD_NAME);
     }
 }

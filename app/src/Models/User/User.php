@@ -3,18 +3,21 @@
 namespace App\src\Models\User;
 
 use App\src\Models\UuidModel;
+use Illuminate\Auth\Authenticatable;
+use Illuminate\Contracts\Auth\Authenticatable as Authenticated;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends UuidModel implements JWTSubject
+class User extends UuidModel implements JWTSubject, Authenticated
 {
-    use HasRelations;
+    use HasRelations, Authenticatable;
 
     public const FIRST_NAME_COLUMN = "first_name";
     public const LAST_NAME_COLUMN = "last_name";
     public const EMAIL_COLUMN = "email";
     public const PHONE_NUMBER_COLUMN = "phone_number";
-    public const ADDRESS_COLUMN = "address_column";
+    public const ADDRESS_COLUMN = "address";
     public const PASSWORD_COLUMN = 'password';
+    public const ROLE_ID_COLUMN = 'role_id';
 
     public const TABLE_NAME = "users";
     private const ID_PREFIX = 'usr_';

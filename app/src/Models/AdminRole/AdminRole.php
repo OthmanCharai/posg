@@ -11,6 +11,7 @@ class AdminRole extends UuidModel
     public const NAME_COLUMN = "name";
     public const DESCRIPTION_COLUMN = "description";
     public const PERMISSIONS_COLUMN = "permissions";
+    public const TABLE_NAME = 'admin_roles';
 
     protected $guarded = [];
 
