@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Tax;
 
 use App\Http\Controllers\Controller;
 use App\src\Services\Tax\TaxServiceInterface;
+use Illuminate\Http\Request;
+use YouCanShop\QueryOption\QueryOptionFactory;
 
 class ListTaxController extends Controller
 {
@@ -12,9 +14,9 @@ class ListTaxController extends Controller
         parent::__construct();
     }
 
-    public function __invoke(): \Illuminate\Http\JsonResponse
+    public function __invoke(Request $request): \Illuminate\Http\JsonResponse
     {
-        $taxes = $this->taxService->getPaginated();
+        $taxes = $this->taxService->getPaginated(QueryOptionFactory::createFromIlluminateRequest($request));
 
         return $this->response->withArray($taxes->toArray());
     }

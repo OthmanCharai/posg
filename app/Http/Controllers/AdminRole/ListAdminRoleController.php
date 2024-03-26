@@ -5,6 +5,8 @@ namespace App\Http\Controllers\AdminRole;
 use App\Http\Controllers\Controller;
 use App\src\Services\AdminRole\AdminRoleServiceInterface;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use YouCanShop\QueryOption\QueryOptionFactory;
 
 class ListAdminRoleController extends Controller
 {
@@ -13,8 +15,12 @@ class ListAdminRoleController extends Controller
         parent::__construct();
     }
 
-    public function __invoke(): JsonResponse
+    public function __invoke(Request $request): JsonResponse
     {
-        return $this->response->withArray($this->adminRoleService->getPaginated()->toArray());
+        return $this->response->withArray(
+            $this->adminRoleService->getPaginated(
+                QueryOptionFactory::createFromIlluminateRequest($request)
+            )->toArray()
+        );
     }
 }

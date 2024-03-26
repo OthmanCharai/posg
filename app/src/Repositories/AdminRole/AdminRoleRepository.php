@@ -5,9 +5,13 @@ namespace App\src\Repositories\AdminRole;
 use App\src\Models\AdminRole\AdminRole;
 use App\src\Repositories\BaseRepository;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use YouCanShop\QueryOption\Laravel\UsesQueryOption;
+use YouCanShop\QueryOption\QueryOption;
 
 class AdminRoleRepository extends BaseRepository
 {
+    use UsesQueryOption;
+
     /**
      * @inheritDoc
      */
@@ -27,8 +31,27 @@ class AdminRoleRepository extends BaseRepository
         return $query->count() > 0;
     }
 
-    public function getPaginated(): LengthAwarePaginator
+    public function getPaginated(QueryOption $queryOption): LengthAwarePaginator
     {
-        return $this->getQueryBuilder()->paginate(10);
+        $query = $this->getQueryBuilder();
+
+        [$query, $queryOption] = $this->pipeThroughCriterias($query, $queryOption);
+
+        $query->select(
+            sprintf("%s.*", AdminRole::TABLE_NAME)
+        );
+
+        return $query->paginate(
+            $queryOption->getLimit(),
+            '*',
+            'page',
+            $queryOption->getPage()
+        );
+    }
+
+    protected function getQueryOptionCriterias(): array
+    {
+        return [
+        ];
     }
 }

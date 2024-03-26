@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admins;
 
 use App\Http\Controllers\Controller;
 use App\src\Services\User\UserServiceInterface;
+use Illuminate\Http\Request;
+use YouCanShop\QueryOption\QueryOptionFactory;
 
 class ListAdminsController extends Controller
 {
@@ -12,8 +14,10 @@ class ListAdminsController extends Controller
         parent::__construct();
     }
 
-    public function __invoke(): \Illuminate\Http\JsonResponse
+    public function __invoke(Request $request): \Illuminate\Http\JsonResponse
     {
-        return $this->response->withArray($this->userService->getPaginated()->toArray());
+        return $this->response->withArray(
+            $this->userService->getPaginated(QueryOptionFactory::createFromIlluminateRequest($request))->toArray()
+        );
     }
 }
