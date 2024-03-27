@@ -17,3 +17,7 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+.pnpm-store
+pnpm-lock.yaml
+/resources/src/auto-imports.d.ts
+vite.config.ts.timestamp-*.mjs
