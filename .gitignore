@@ -18,3 +18,5 @@ yarn-error.log
 /.idea
 /.vscode
 .pnpm-store
+/resources/src/auto-imports.d.ts
+vite.config.ts.timestamp-*.mjs
