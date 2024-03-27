@@ -45,7 +45,6 @@ abstract class CommonException extends Exception
         }
 
         $this->message = $message;
-        $this->originalException = $originalException;
 
         // Each exception is logged, even if not thrown
         $logMessage = "$code : $message";

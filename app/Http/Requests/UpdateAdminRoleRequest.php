@@ -23,10 +23,10 @@ class UpdateAdminRoleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            AdminRole::NAME_COLUMN               => ['nullable', 'string', 'max:255'],
-            AdminRole::DESCRIPTION_COLUMN        => ['nullable', 'string', 'max:255'],
-            AdminRole::PERMISSIONS_COLUMN        => ['nullable', 'array'],
-            AdminRole::PERMISSIONS_COLUMN . ".*" => ['nullable', 'numeric'],
+            AdminRole::NAME_COLUMN               => ['required', 'string', 'max:255'],
+            AdminRole::DESCRIPTION_COLUMN        => ['required', 'string', 'max:255'],
+            AdminRole::PERMISSIONS_COLUMN        => ['required', 'array'],
+            AdminRole::PERMISSIONS_COLUMN . ".*" => ['required', 'numeric'],
         ];
     }
 }

@@ -17,11 +17,11 @@ Route::prefix('admins')
         Route::post('/create', CreateAdminController::class)
             ->name('create.submit');
 
-        Route::get('/{admin}', ShowAdminController::class)
+        Route::get('/{user}', ShowAdminController::class)
             ->name('show');
 
-        Route::put('/{admin}/update', UpdateAdminController::class)
+        Route::put('/{user}/update', UpdateAdminController::class)
             ->name('update');
-        Route::delete('/{admin}', \App\Http\Controllers\Admins\DeleteAdminController::class)
+        Route::delete('/{user}', \App\Http\Controllers\Admins\DeleteAdminController::class)
             ->name('delete');
     });

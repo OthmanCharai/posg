@@ -36,7 +36,11 @@ class StoreUserRequest extends FormRequest
                 'required',
                 Password::min(8)->mixedCase()->numbers()->symbols()->uncompromised(),
             ],
-            User::ROLE_ID_COLUMN      => ['required', 'string', sprintf('exists:%s', AdminRole::TABLE_NAME)],
+            User::ROLE_ID_COLUMN      => [
+                'required',
+                'string',
+                sprintf('exists:%s,%s', AdminRole::TABLE_NAME, AdminRole::ID_COLUMN),
+            ],
         ];
     }
 }

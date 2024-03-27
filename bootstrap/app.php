@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\AuthorizeAdmin;
 use App\src\Exceptions\CommonException;
 use Exception as BaseException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -20,7 +21,7 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up'
     )
     ->withMiddleware(function (Middleware $middleware) {
-        //
+        $middleware->alias(['permissions' => AuthorizeAdmin::class]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         $exceptions->render(

@@ -18,6 +18,9 @@ class UpdateAdminController extends Controller
     {
         $this->userService->update($user, $request->validated());
 
-        return $this->response->withSuccess('user updated with success');
+        $admin = $this->userService->find($user->getId());
+
+        /* @var User $admin */
+        return $this->response->withArray($admin?->toArray());
     }
 }

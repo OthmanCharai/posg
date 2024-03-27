@@ -42,7 +42,9 @@ class UpdateAdminRoleController extends Controller
                 ]
             )
         );
+        /* @var AdminRole $adminRole */
+        $adminRole = $this->adminRoleService->find($adminRole->getId());
 
-        return $this->response->withSuccess('admin role was updated');
+        return $this->response->withArray($adminRole->toArray());
     }
 }

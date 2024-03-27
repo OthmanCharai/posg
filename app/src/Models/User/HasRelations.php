@@ -6,9 +6,9 @@ use App\src\Models\AdminRole\AdminRole;
 
 trait HasRelations
 {
-    public function role(): \Illuminate\Database\Eloquent\Relations\HasOne
+    public function role(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->hasOne(AdminRole::class);
+        return $this->belongsTo(AdminRole::class);
     }
 
     public function getRole(): ?AdminRole

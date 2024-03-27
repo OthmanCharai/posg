@@ -26,7 +26,6 @@ class StoreAdminRoleController extends Controller
     {
         $attributes = $request->validated();
         $permissions = $this->compute(...Arr::get($attributes, AdminRole::PERMISSIONS_COLUMN));
-
         throw_if(
             $this->adminRoleService->checkPermissionExistenceInRoles($permissions),
             new DuplicateRolePermissionException($permissions)
