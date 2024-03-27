@@ -11,7 +11,7 @@ export default defineConfig({
         '@': path.resolve(__dirname, './resources/'),
         "@utils": path.resolve(__dirname, './resources/src/utils/'),
         "@pages": path.resolve(__dirname, './resources/src/pages/'),
-        "@types": path.resolve(__dirname, './resources/src/types/')
+        "@common": path.resolve(__dirname, './resources/src/common/')
     },
   },
 

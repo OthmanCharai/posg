@@ -22,7 +22,7 @@
       "@/*": ["./resources/*"],
       "@utils/*": ["./resources/src/utils/*"],
       "@pages/*": ["./resources/src/pages/*"],
-      "@types/*": ["./resources/src/types/*"]
+      "@common/*": ["./resources/src/common/*"]
     }
   },
   "include": ["./resources/src/**/*.ts", "./resources/src/**/*.vue", "./resources/src/*.d.ts", "ziggy.d.ts"],

@@ -2,6 +2,7 @@
 <script>
 import { Form, Field } from "vee-validate";
 import * as Yup from "yup";
+import { Toast } from "@/src/utils/toast";
 
 export default {
   components: {
@@ -55,6 +56,7 @@ export default {
           router.push("/dashboard");
         } else {
           document.getElementById("password").innerHTML = "Incorrect password";
+          Toast.error('password incorrect');
         }
       } else {
         document.getElementById("email").innerHTML = "Email is not valid";
