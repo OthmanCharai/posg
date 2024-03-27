@@ -4,18 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title inertia>{{ config('app.name', 'Laravel') }}</title>
-    <!-- Fonts -->
-    <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
+    <title>{{ config('app.name') }}</title>
+    @vite('resources/src/assets/scss/main.scss')
 
-    @vite('resources/css/app.css')
+    @routes
   </head>
   <body>
+
     <div id="app">
-      <h1>hello world</h1>
-      {{-- <router-view></router-view> --}}
     </div>
 
-    @vite('resources/js/app.js')
+    @vite('resources/src/main.ts')
   </body>
 </html>

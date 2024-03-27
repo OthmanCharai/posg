@@ -3,11 +3,21 @@ import laravel from 'laravel-vite-plugin';
 import Vue from '@vitejs/plugin-vue';
 import AutoImport from 'unplugin-auto-import/vite';
 import Components from 'unplugin-vue-components/vite';
+import path from 'path';
 
 export default defineConfig({
+  resolve: {
+    alias: {
+        '@': path.resolve(__dirname, './resources/'),
+        "@utils": path.resolve(__dirname, './resources/src/utils/'),
+        "@pages": path.resolve(__dirname, './resources/src/pages/'),
+        "@types": path.resolve(__dirname, './resources/src/types/')
+    },
+  },
+
   plugins: [
     laravel({
-        input: ['resources/css/app.css', 'resources/js/app.js'],
+        input: ['resources/src/assets/scss/main.scss', 'resources/src/main.ts'],
         refresh: true,
     }),
 
