@@ -13,6 +13,7 @@ class BankAccount extends UuidModel
     public const ACCOUNT_HOLDER_PHONE_COLUMN = 'account_holder_phone';
     public const ACCOUNT_HOLDER_EMAIL_COLUMN = 'account_holder_email';
     private const ID_PREFIX = "bnc_";
+    public final const  TABLE_NAME = "bank_accounts";
 
     protected $guarded = [];
 

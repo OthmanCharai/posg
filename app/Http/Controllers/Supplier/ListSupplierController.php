@@ -19,7 +19,7 @@ class ListSupplierController extends Controller
     {
         $suppliers = $this->supplierService->getPaginated(QueryOptionFactory::createFromIlluminateRequest($request));
 
-        $suppliers = map_paginator($suppliers, SupplierResource::class);
+        $suppliers = transform_paginator($suppliers,SupplierResource::class);
 
         return $this->response->withArray($suppliers->toArray());
     }

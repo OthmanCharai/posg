@@ -5,9 +5,12 @@ namespace App\src\Repositories;
 use App\src\Models\BaseModel;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use YouCanShop\QueryOption\Laravel\UsesQueryOption;
 
 abstract class BaseRepository
 {
+    use UsesQueryOption;
+
     private ?BaseModel $baseModel = null;
 
     /**

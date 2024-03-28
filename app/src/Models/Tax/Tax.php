@@ -15,6 +15,7 @@ class Tax extends UuidModel
 
     public const TABLE_NAME = 'taxes';
     public const NAME_COLUMN = 'name';
+    protected $guarded = [];
 
     public static function getPrefix(): string
     {

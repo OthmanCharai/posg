@@ -5,6 +5,8 @@ namespace App\src\Services\BankAccount;
 use App\src\Models\BankAccount\BankAccount;
 use App\src\Repositories\BankAccount\BankAccountRepository;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Pagination\LengthAwarePaginator;
+use YouCanShop\QueryOption\QueryOption;
 
 readonly class BankAccountServiceService implements BankAccountServiceInterface
 {
@@ -32,5 +34,10 @@ readonly class BankAccountServiceService implements BankAccountServiceInterface
     public function delete(BankAccount|Model $model, string $columnName = 'id'): bool
     {
         return $this->accountRepository->delete($model->getId(), $columnName);
+    }
+
+    public function getPaginated(QueryOption $queryOption): LengthAwarePaginator
+    {
+        return $this->accountRepository->getPaginated($queryOption);
     }
 }

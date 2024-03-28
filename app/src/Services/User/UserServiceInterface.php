@@ -5,10 +5,11 @@ namespace App\src\Services\User;
 use App\src\Models\User\User;
 use App\src\Services\BaseInterface;
 use Illuminate\Pagination\LengthAwarePaginator;
+use YouCanShop\QueryOption\QueryOption;
 
 interface UserServiceInterface extends BaseInterface
 {
-    public function getPaginated(): LengthAwarePaginator;
+    public function getPaginated(QueryOption $queryOption): LengthAwarePaginator;
 
     public function findByEmail(string $email): ?User;
 }

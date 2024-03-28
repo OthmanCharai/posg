@@ -23,7 +23,6 @@ class UpdateSupplierRequest extends FormRequest
     public function rules(): array
     {
         return [
-            Supplier::ID_COLUMN             => ['nullable', 'integer'],
             Supplier::EMAIL_COLUMN          => ['nullable', 'email'],
             Supplier::PHONE_NUMBER_COLUMN   => ['nullable', 'string', 'max:255'],
             Supplier::FIRST_NAME_COLUMN     => ['nullable', 'string', 'max:255'],

@@ -3,7 +3,9 @@
 namespace App\src\Repositories\Supplier;
 
 use App\src\Models\Supplier\Supplier;
+use App\src\Models\Tax\Tax;
 use App\src\Repositories\BaseRepository;
+use YouCanShop\QueryOption\QueryOption;
 
 class SupplierRepository extends BaseRepository
 {
@@ -16,8 +18,28 @@ class SupplierRepository extends BaseRepository
         return Supplier::class;
     }
 
-    public function getPaginated(): \Illuminate\Contracts\Pagination\LengthAwarePaginator
+    public function getPaginated(QueryOption $queryOption): \Illuminate\Contracts\Pagination\LengthAwarePaginator
     {
-        return $this->getQueryBuilder()->paginate(10);
+        $query = $this->getQueryBuilder();
+
+        [$query, $queryOption] = $this->pipeThroughCriterias($query, $queryOption);
+
+        $query->select(
+            sprintf('%s.*', Supplier::TABLE_NAME)
+        );
+
+        return $query->paginate(
+            $queryOption->getLimit(),
+            '*',
+            'page',
+            $queryOption->getPage()
+        );
+    }
+
+    protected function getQueryOptionCriterias(): array
+    {
+        return [
+
+        ];
     }
 }

@@ -12,7 +12,7 @@ class StoreSupplierRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,7 +23,6 @@ class StoreSupplierRequest extends FormRequest
     public function rules(): array
     {
         return [
-            Supplier::ID_COLUMN             => ['required', 'integer'],
             Supplier::EMAIL_COLUMN          => ['required', 'email'],
             Supplier::PHONE_NUMBER_COLUMN   => ['required', 'string', 'max:255'],
             Supplier::FIRST_NAME_COLUMN     => ['required', 'string', 'max:255'],

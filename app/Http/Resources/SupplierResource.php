@@ -3,21 +3,13 @@
 namespace App\Http\Resources;
 
 use App\src\Models\Supplier\Supplier;
-use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class SupplierResource extends JsonResource
 {
-    /**
-     * Transform the resource into an array.
-     *
-     * @return array<string, mixed>
-     */
-    public function toArray(Request $request): array
+    public static function staticToArray($supplier): array
     {
-        /* @var Supplier $supplier */
-        $supplier = $this;
-
+        // Assuming $supplier is an instance of Supplier
         return [
             Supplier::ID_COLUMN             => $supplier->getId(),
             Supplier::EMAIL_COLUMN          => $supplier->getEmail(),
@@ -29,5 +21,15 @@ class SupplierResource extends JsonResource
             Supplier::COMPANY_NAME_COLUMN   => $supplier->getCompanyName(),
             Supplier::ADDRESS_COLUMN        => $supplier->getAddress(),
         ];
+    }
+
+    /**
+     * Transform the resource into an array.
+     *
+     * @return array<string, mixed>
+     */
+    public function toArray($request): array
+    {
+        return self::staticToArray($this->resource);
     }
 }

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Hashing\HashManager;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Arr;
+use YouCanShop\QueryOption\QueryOption;
 
 readonly class UserService implements UserServiceInterface
 {
@@ -54,9 +55,9 @@ readonly class UserService implements UserServiceInterface
         return $this->userRepository->delete($model->getId(), $columnName);
     }
 
-    public function getPaginated(): LengthAwarePaginator
+    public function getPaginated(QueryOption $queryOption): LengthAwarePaginator
     {
-        return $this->userRepository->getPaginated();
+        return $this->userRepository->getPaginated($queryOption);
     }
 
     public function findByEmail(string $email): ?User

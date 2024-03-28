@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Collection;
 
 if (!function_exists('bind')) {
     /**
@@ -28,6 +29,20 @@ if (!function_exists('map_paginator')) {
         callable $callable
     ): LengthAwarePaginator {
         $paginator->collect()->map(bind($callable));
+
+        return $paginator;
+    }
+}
+
+if (!function_exists('transform_paginator')) {
+    function transform_paginator(
+        LengthAwarePaginator $paginator,
+        $transformer
+    ): LengthAwarePaginator {
+        /** @var Collection $transformed */
+        $transformed = $paginator->map("$transformer::staticToArray");
+
+        $paginator->setCollection($transformed);
 
         return $paginator;
     }
