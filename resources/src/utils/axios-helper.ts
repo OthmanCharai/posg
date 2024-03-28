@@ -2,6 +2,9 @@ import type { AxiosRequestConfig, AxiosResponse } from 'axios';
 import axios from "./http";
 import { processErrors } from '@utils/error-handler';
 
+// ziggy route caller
+export const route = window.route;
+
 /**
  * composable function for axios requests with reactive state
  * @returns {Object} { loading, response, errorMessage, request }
@@ -24,3 +27,4 @@ export const useAxios = (): object => {
 
   return { loading, response, errorMessage, request };
 };
+
