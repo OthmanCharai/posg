@@ -1,5 +1,5 @@
 import Swal from 'sweetalert2';
-import type { SweetAlertToasts } from '@common/types/toasts';
+import type { SweetAlertToasts } from '@common/types/global/toasts';
 
 const BaseToast = Swal.mixin({
   toast: true,

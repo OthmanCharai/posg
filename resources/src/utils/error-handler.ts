@@ -1,4 +1,4 @@
-import type { FormError } from '@common/types/form-errors';
+import type { FormError } from '@common/types/global/form-errors';
 import { Toast } from "@/src/utils/toast";
 
 const errors = reactive<FormError>({});
