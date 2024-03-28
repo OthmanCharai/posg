@@ -62,15 +62,15 @@
                                 <h6><span><vue-feather type="user" class="feather-16"></vue-feather></span>Customers</h6>
                                 <ul class="customers">
                                     <li>
-                                        <a href="javascript:void(0);">Aron Varu<img src="./../../assets/img/profiles/avator1.jpg"
+                                        <a href="javascript:void(0);">Aron Varu<img src="./../../assets/img/profiles/profile-01.png"
                                                 alt="" class="img-fluid"></a>
                                     </li>
                                     <li>
-                                        <a href="javascript:void(0);">Jonita<img src="./../../assets/img/profiles/avatar-01.jpg"
+                                        <a href="javascript:void(0);">Jonita<img src="./../../assets/img/profiles/profile-01.png"
                                                 alt="" class="img-fluid"></a>
                                     </li>
                                     <li>
-                                        <a href="javascript:void(0);">Aaron<img src="./../../assets/img/profiles/avatar-10.jpg"
+                                        <a href="javascript:void(0);">Aaron<img src="./../../assets/img/profiles/profile-01.png"
                                                 alt="" class="img-fluid"></a>
                                     </li>
                                 </ul>
@@ -80,36 +80,6 @@
                 </div>
             </li>
             <!-- /Search -->
-
-
-            <!-- Select Store -->
-            <li class="nav-item dropdown has-arrow main-drop select-store-dropdown">
-                <a href="javascript:void(0);" class="dropdown-toggle nav-link select-store" data-bs-toggle="dropdown">
-                    <span class="user-info">
-                        <span class="user-letter">
-                            <img src="./../../assets/img/store/store-01.png" alt="Store Logo" class="img-fluid">
-                        </span>
-                        <span class="user-detail">
-                            <span class="user-name">Select Store</span>
-                        </span>
-                    </span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right">
-                    <a href="javascript:void(0);" class="dropdown-item">
-                        <img src="./../../assets/img/store/store-01.png" alt="Store Logo" class="img-fluid"> Grocery Alpha
-                    </a>
-                    <a href="javascript:void(0);" class="dropdown-item">
-                        <img src="./../../assets/img/store/store-02.png" alt="Store Logo" class="img-fluid"> Grocery Apex
-                    </a>
-                    <a href="javascript:void(0);" class="dropdown-item">
-                        <img src="./../../assets/img/store/store-03.png" alt="Store Logo" class="img-fluid"> Grocery Bevy
-                    </a>
-                    <a href="javascript:void(0);" class="dropdown-item">
-                        <img src="./../../assets/img/store/store-04.png" alt="Store Logo" class="img-fluid"> Grocery Eden
-                    </a>
-                </div>
-            </li>
-            <!-- /Select Store -->
 
             <!-- Flag -->
             <li class="nav-item dropdown has-arrow flag-nav nav-item-box">
@@ -122,12 +92,6 @@
                     </a>
                     <a href="javascript:void(0);" class="dropdown-item">
                         <img src="./../../assets/img/flags/fr.png" alt="" height="16"> French
-                    </a>
-                    <a href="javascript:void(0);" class="dropdown-item">
-                        <img src="./../../assets/img/flags/es.png" alt="" height="16"> Spanish
-                    </a>
-                    <a href="javascript:void(0);" class="dropdown-item">
-                        <img src="./../../assets/img/flags/de.png" alt="" height="16"> German
                     </a>
                 </div>
             </li>
@@ -160,7 +124,7 @@
                                 <router-link to="/activities">
                                     <div class="media d-flex">
                                         <span class="avatar flex-shrink-0">
-                                            <img alt="" src="./../../assets/img/profiles/avatar-02.jpg">
+                                            <img alt="" src="./../../assets/img/profiles/profile-01.png">
                                         </span>
                                         <div class="media-body flex-grow-1">
                                             <p class="noti-details"><span class="noti-title">John Doe</span> added
@@ -176,7 +140,7 @@
                                 <router-link to="/activities">
                                     <div class="media d-flex">
                                         <span class="avatar flex-shrink-0">
-                                            <img alt="" src="./../../assets/img/profiles/avatar-03.jpg">
+                                            <img alt="" src="./../../assets/img/profiles/profile-01.png">
                                         </span>
                                         <div class="media-body flex-grow-1">
                                             <p class="noti-details"><span class="noti-title">Tarah Shropshire</span>
@@ -193,7 +157,7 @@
                                 <router-link to="/activities">
                                     <div class="media d-flex">
                                         <span class="avatar flex-shrink-0">
-                                            <img alt="" src="./../../assets/img/profiles/avatar-06.jpg">
+                                            <img alt="" src="./../../assets/img/profiles/profile-01.png">
                                         </span>
                                         <div class="media-body flex-grow-1">
                                             <p class="noti-details"><span class="noti-title">Misty Tison</span>
@@ -211,7 +175,7 @@
                                 <router-link to="/activities">
                                     <div class="media d-flex">
                                         <span class="avatar flex-shrink-0">
-                                            <img alt="" src="./../../assets/img/profiles/avatar-17.jpg">
+                                            <img alt="" src="./../../assets/img/profiles/profile-01.png">
                                         </span>
                                         <div class="media-body flex-grow-1">
                                             <p class="noti-details"><span class="noti-title">Rolland Webber</span>
@@ -227,7 +191,7 @@
                                 <router-link to="/activities">
                                     <div class="media d-flex">
                                         <span class="avatar flex-shrink-0">
-                                            <img alt="" src="./../../assets/img/profiles/avatar-13.jpg">
+                                            <img alt="" src="./../../assets/img/profiles/profile-01.png">
                                         </span>
                                         <div class="media-body flex-grow-1">
                                             <p class="noti-details"><span class="noti-title">Bernardo Galaviz</span>
@@ -254,7 +218,7 @@
                 <a href="javascript:void(0);" class="dropdown-toggle nav-link userset" data-bs-toggle="dropdown">
                     <span class="user-info">
                         <span class="user-letter">
-                            <img src="./../../assets/img/profiles/avator1.jpg" alt="" class="img-fluid">
+                            <img src="./../../assets/img/profiles/profile-01.png" alt="" class="img-fluid">
                         </span>
                         <span class="user-detail">
                             <span class="user-name">John Smilga</span>
@@ -265,7 +229,7 @@
                 <div class="dropdown-menu menu-drop-user">
                     <div class="profilename">
                         <div class="profileset">
-                            <span class="user-img"><img src="./../../assets/img/profiles/avator1.jpg" alt="">
+                            <span class="user-img"><img src="./../../assets/img/profiles/profile-01.png" alt="">
                                 <span class="status online"></span></span>
                             <div class="profilesets">
                                 <h6>John Smilga</h6>
