@@ -19,6 +19,12 @@ class UpdateSupplierController extends Controller
     {
         $this->supplierService->update($supplier, $request->validated());
 
-        return $this->response->withItem($supplier, new SupplierResource($supplier));
+        /* @var Supplier $updatedSupplier */
+        $updatedSupplier = $this->supplierService->find($supplier->getId());
+
+        return $this->response->withItem(
+            $updatedSupplier,
+            new SupplierResource($updatedSupplier)
+        );
     }
 }

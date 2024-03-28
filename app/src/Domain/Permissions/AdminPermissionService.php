@@ -51,7 +51,7 @@ class AdminPermissionService
         if ($this->isSuper($admin)) {
             return;
         }
-        dd($admin);
+
         $this->assertPermissionExists(
             $admin->getRole()?->getPermissions(),
             $permission

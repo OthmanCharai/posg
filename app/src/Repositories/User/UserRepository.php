@@ -5,6 +5,7 @@ namespace App\src\Repositories\User;
 use App\src\Models\User\User;
 use App\src\Repositories\BaseRepository;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use YouCanShop\QueryOption\QueryOption;
 
 class UserRepository extends BaseRepository
 {
@@ -16,8 +17,28 @@ class UserRepository extends BaseRepository
         return User::class;
     }
 
-    public function getPaginated(): LengthAwarePaginator
+    public function getPaginated(QueryOption $queryOption): LengthAwarePaginator
     {
-        return $this->getQueryBuilder()->paginate(10);
+        $query = $this->getQueryBuilder();
+
+        [$query, $queryOption] = $this->pipeThroughCriterias($query, $queryOption);
+
+        $query->select(
+            sprintf('%s.*', User::TABLE_NAME)
+        );
+
+        return $query->paginate(
+            $queryOption->getLimit(),
+            '*',
+            'page',
+            $queryOption->getPage()
+        );
+    }
+
+    protected function getQueryOptionCriterias(): array
+    {
+        return [
+
+        ];
     }
 }

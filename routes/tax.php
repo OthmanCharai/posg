@@ -7,7 +7,7 @@ use App\Http\Controllers\Tax\UpdateTaxController;
 use App\src\Domain\Permissions\Constants\AdminPermission;
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('tax')
+Route::prefix('taxes')
     ->name('tax.')
     ->middleware(['permissions:' . AdminPermission::MANAGE_TAXES])
     ->group(function () {
@@ -22,4 +22,7 @@ Route::prefix('tax')
 
         Route::delete('/{tax}', DeleteTaxController::class)
             ->name('delete');
+
+        Route::get('/', \App\Http\Controllers\Tax\ListTaxController::class)
+            ->name('list');
     });

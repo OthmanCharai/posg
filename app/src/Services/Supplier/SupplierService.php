@@ -6,6 +6,7 @@ use App\src\Models\Supplier\Supplier;
 use App\src\Repositories\Supplier\SupplierRepository;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\LengthAwarePaginator;
+use YouCanShop\QueryOption\QueryOption;
 
 class SupplierService implements SupplierServiceInterface
 {
@@ -35,8 +36,8 @@ class SupplierService implements SupplierServiceInterface
         return $this->supplierRepository->delete($model->getId(), $columnName);
     }
 
-    public function getPaginated(): LengthAwarePaginator
+    public function getPaginated(QueryOption $queryOption): LengthAwarePaginator
     {
-        return $this->supplierRepository->getPaginated();
+        return $this->supplierRepository->getPaginated($queryOption);
     }
 }

@@ -7,14 +7,14 @@ use App\Http\Controllers\TaxVariant\UpdateTaxVariantController;
 use App\src\Domain\Permissions\Constants\AdminPermission;
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('tax-variant')
+Route::prefix('tax-variants')
     ->name('tax-variant.')
     ->middleware(['permissions:' . AdminPermission::MANAGE_TAXES])
     ->group(function () {
         Route::post('/create/{tax}', StoreTaxVariantController::class)
             ->name('create.submit');
 
-        Route::get('/{tax}', ShowTaxVariantController::class)
+        Route::get('/{taxVariant}', ShowTaxVariantController::class)
             ->name('show');
 
         Route::put('/{taxVariant}/update', UpdateTaxVariantController::class)

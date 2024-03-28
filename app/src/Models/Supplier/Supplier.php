@@ -7,6 +7,7 @@ use App\src\Models\UuidModel;
 class Supplier extends UuidModel
 {
     private const ID_PREFIX = 'sup_';
+    public final const TABLE_NAME = "suppliers";
 
     public static function getPrefix(): string
     {

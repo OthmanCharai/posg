@@ -21,6 +21,7 @@ class UpdateTaxVariantController extends Controller
             $request->validated()
         );
 
-        return $this->response->withArray($taxVariant->toArray());
+
+        return $this->response->withArray($this->taxVariantService->find($taxVariant->getId())?->toArray());
     }
 }

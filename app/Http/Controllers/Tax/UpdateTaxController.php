@@ -18,6 +18,8 @@ class UpdateTaxController extends Controller
     {
         $this->taxService->update($tax, $request->validated());
 
-        return $this->response->withArray($tax->toArray());
+        $updatedTax = $this->taxService->find($tax->getId());
+
+        return $this->response->withArray($updatedTax?->toArray());
     }
 }
