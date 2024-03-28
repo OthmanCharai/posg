@@ -1,73 +1,41 @@
-
-<script>
+<script setup lang="ts">
 import { Form, Field } from "vee-validate";
 import * as Yup from "yup";
-import { Toast } from "@/src/utils/toast";
+import { ref } from "vue";
+import { useAxios } from "@/src/utils/axios-helper";
+import {  useRouter } from "vue-router";
 
-export default {
-  components: {
-    Form,
-    Field,
-  },
-  data() {
-    return {
-      showPassword: false,
-      password: null,
-      emailError: "",
-      passwordError: "",
-    };
-  },
-  computed: {
-    buttonLabel() {
-      return this.showPassword ? "Hide" : "Show";
-    },
-  },
-  methods: {
-    toggleShow() {
-      this.showPassword = !this.showPassword;
-    },
-  },
-  setup() {
-    let users = localStorage.getItem("storedData");
-    if (users === null) {
-      let password = [
-        {
-          email: "example@dreamstechnologies.com",
-          password: "123456",
-        },
-      ];
-      const jsonData = JSON.stringify(password);
-      localStorage.setItem("storedData", jsonData);
+// vars
+const { request, response, loading, errorMessage } = useAxios()
+const router=useRouter();
+const showPassword = ref(false);
+const password = ref(null);
+const email=ref(null);
+
+
+// Methods
+const toggleShow = () => {
+  showPassword.value = !showPassword.value;
+};
+
+const schema = Yup.object().shape({
+  email: Yup.string().required("Email is required").email("Email is invalid"),
+  password: Yup.string()
+    .min(6, "Password must be at least 6 characters")
+    .required("Password is required"),
+});
+
+const onSubmit = async() => {
+  await request({
+    method: 'POST',
+    url: route('auth.login.submit'),
+    data: {
+      email: email.value,
+      password: password.value,
+      password_confirmation: password.value
     }
-    const schema = Yup.object().shape({
-      email: Yup.string().required("Email is required").email("Email is invalid"),
-      password: Yup.string()
-        .min(6, "Password must be at least 6 characters")
-        .required("Password is required"),
-    });
-    const onSubmit = (values) => {
-      document.getElementById("email").innerHTML = "";
-      document.getElementById("password").innerHTML = "";
-      let data = localStorage.getItem("storedData");
-      var Pdata = JSON.parse(data);
-      const Eresult = Pdata.find(({ email }) => email === values.email);
-      if (Eresult) {
-        if (Eresult.password === values.password) {
-          router.push("/dashboard");
-        } else {
-          document.getElementById("password").innerHTML = "Incorrect password";
-          Toast.error('password incorrect');
-        }
-      } else {
-        document.getElementById("email").innerHTML = "Email is not valid";
-      }
-    };
-    return {
-      schema,
-      onSubmit,
-      checked: ref(false),
-    };
-  },
+  })
+  router.push('/admins')
 };
 </script>
 
@@ -83,11 +51,17 @@ export default {
                 <img src="" alt="" />
               </router-link>
             </div>
-            <Form @submit="onSubmit" :validation-schema="schema" v-slot="{ errors }">
+            <Form
+              @submit="onSubmit"
+              :validation-schema="schema"
+              v-slot="{ errors }"
+            >
               <div class="login-userset">
                 <div class="login-userheading">
                   <h3>Sign In</h3>
-                  <h4>Access the Dreamspos panel using your email and passcode.</h4>
+                  <h4>
+                    Access the Dreamspos panel using your email and passcode.
+                  </h4>
                 </div>
                 <div class="form-login">
                   <label class="form-label">Email Address</label>
@@ -95,7 +69,7 @@ export default {
                     <Field
                       name="email"
                       type="text"
-                      value="example@dreamstechnologies.com"
+                      v-model:model-value="email"
                       class="form-control"
                       :class="{ 'is-invalid': errors.email }"
                     />
@@ -110,7 +84,7 @@ export default {
                     <Field
                       name="password"
                       :type="showPassword ? 'text' : 'password'"
-                      value="123456"
+                      v-model:model-value="password"
                       class="form-control pass-input mt-2"
                       :class="{ 'is-invalid': errors.password }"
                     />
@@ -144,7 +118,7 @@ export default {
                   </div>
                 </div>
                 <div class="form-login">
-                  <button class="btn btn-login" type="submit">Sign In</button>
+                  <button :disabled="loading" class="btn btn-login" type="submit">Sign In</button>
                 </div>
               </div>
             </Form>
@@ -152,7 +126,10 @@ export default {
           <div
             class="my-4 d-flex justify-content-center align-items-center copyright-text"
           >
-            <p>Copyright &copy; {{ new Date().getFullYear() }} DreamsPOS. All rights reserved</p>
+            <p>
+              Copyright &copy; {{ new Date().getFullYear() }} DreamsPOS. All
+              rights reserved
+            </p>
           </div>
         </div>
       </div>

@@ -13,12 +13,9 @@ use Illuminate\Support\Facades\Lang;
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
         web:      __DIR__ . '/../routes/web.php',
+        api:      __DIR__ . '/../routes/api.php',
         commands: __DIR__ . '/../routes/console.php',
-        health:   '/up',
-    )
-    ->withRouting(
-        api:    __DIR__ . '/../routes/api.php',
-        health: '/up'
+        health:   '/up'
     )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->alias(['permissions' => AuthorizeAdmin::class]);
@@ -34,14 +31,12 @@ return Application::configure(basePath: dirname(__DIR__))
                         return \response()->json('Record Not Founded', 404);
                     }
                     $exceptionContent = [
-                        'message'        => Lang::get(
-                            'exceptions.exception_' . CommonException::DEFAULT_CODE
-                        ),
+                        'message'        => $exception->getMessage(),
                         'exception_code' => CommonException::DEFAULT_CODE,
                     ];
                     if (env('LARAVEL_APP_ENV') !== 'production') {
                         $exceptionInfo = [
-                            'exception message' => $exception->getMessage(),
+                            'exception_message' => $exception->getMessage(),
                             'file'              => $exception->getFile(),
                             'line'              => $exception->getLine(),
                             'trace'             => $exception->getTrace(),

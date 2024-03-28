@@ -5,10 +5,16 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
 use App\src\Models\User\User;
+use Illuminate\Config\Repository;
 use Illuminate\Support\Arr;
 
 class LoginController extends Controller
 {
+    public function __construct(private readonly Repository $repository)
+    {
+        parent::__construct();
+    }
+
     public function __invoke(LoginRequest $request): \Illuminate\Http\JsonResponse
     {
         $token = auth()->attempt(
@@ -31,6 +37,10 @@ class LoginController extends Controller
             return $this->response->withError('user not found');
         }
 
-        return $this->response->withArray(array_merge($user->toArray(), ['access_token' => $token]));
+        cookie($this->repository->get('globals.auth_cookie_name'), $token, 10);
+
+        return $this->response->withArray(array_merge($user->toArray(), ['access_token' => $token]))->withCookie(
+            cookie($this->repository->get('globals.auth_cookie_name'), $token, 1000)
+        );
     }
 }
