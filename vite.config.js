@@ -8,10 +8,10 @@ import path from 'path';
 export default defineConfig({
   resolve: {
     alias: {
-        '@': path.resolve(__dirname, './resources/'),
-        "@utils": path.resolve(__dirname, './resources/src/utils/'),
-        "@pages": path.resolve(__dirname, './resources/src/pages/'),
-        "@common": path.resolve(__dirname, './resources/src/common/')
+      '@': path.resolve(__dirname, './resources/'),
+      "@utils": path.resolve(__dirname, './resources/src/utils/'),
+      "@pages": path.resolve(__dirname, './resources/src/pages/'),
+      "@common": path.resolve(__dirname, './resources/src/common/')
     },
   },
 
