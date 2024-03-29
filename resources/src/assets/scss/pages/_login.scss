@@ -139,8 +139,8 @@
             }
             .form-addons{
                 position: relative;
-                img{
-                    @include position(absolute,16px,20px,null,null);
+                i{
+                    @include position(absolute,13px,16px,null,null);
                 }
 
             }
@@ -265,7 +265,6 @@
             cursor: pointer;
             width: 30px;
             height: 30px;
-            color: $sub-title;
             font-size: $font-size-18;
             display: -webkit-box;
             display: -ms-flexbox;

@@ -67,6 +67,7 @@ const onSubmit = async() => {
                     <div class="invalid-feedback">
                       {{ getErrorMessage('email') }}
                     </div>
+                    <vue-feather type="mail" size="16" :class="{'hide-icon': hasError('email')}"></vue-feather>
                   </div>
                 </div>
                 <div class="form-login">
@@ -80,12 +81,8 @@ const onSubmit = async() => {
                       :class="{ 'is-invalid': hasError('password') }"
                     />
                     <span @click="toggleShow" class="toggle-password">
-                      <i
-                        :class="{
-                          'fas fa-eye': showPassword,
-                          'fas fa-eye-slash': !showPassword,
-                        }"
-                      ></i>
+                      <vue-feather v-if="showPassword" type="eye" size="16" :class="{'hide-icon': hasError('passowrd')}"></vue-feather>
+                      <vue-feather v-else type="eye-off" size="16" :class="{'hide-icon': hasError('password')}"></vue-feather>
                     </span>
                     <div class="invalid-feedback">
                       {{ getErrorMessage('password') }}
@@ -127,3 +124,9 @@ const onSubmit = async() => {
     </div>
   </div>
 </template>
+
+<style scoped>
+.hide-icon {
+  display: none;
+}
+</style>
