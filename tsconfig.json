@@ -23,7 +23,7 @@
       "@utils/*": ["./resources/src/utils/*"],
       "@pages/*": ["./resources/src/pages/*"],
       "@common/*": ["./resources/src/common/*"],
-      "@store/*": ["./resources/src/store/*"]
+      "@stores/*": ["resources/src/stores/*"]
     }
   },
   "include": ["./**/*.ts", "./**/*.d.ts", "./**/*.vue"],

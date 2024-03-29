@@ -3,7 +3,7 @@ import { Form, Field } from "vee-validate";
 import { useAxios, route } from "@/src/utils/axios-helper";
 import { useRouter } from "vue-router";
 import { getErrorMessage, hasError } from "@utils/error-handler";
-import { store } from '@store/index';
+import { store } from '@stores/index';
 import { Toast } from "@utils/toast";
 
 const authStore = store.auth();
