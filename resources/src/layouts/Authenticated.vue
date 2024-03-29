@@ -1,4 +1,5 @@
 <script setup lang="ts">
+  import { RouterView } from 'vue-router';
 </script>
 
 <template>
@@ -6,9 +7,6 @@
   <layout-sidebar></layout-sidebar>
 
   <Suspense>
-    <router-view></router-view>
+    <RouterView />
   </Suspense>
 </template>
-
-
-
