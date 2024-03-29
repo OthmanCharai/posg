@@ -13,8 +13,6 @@ import "@/src/assets/css/style.css";
 import Header from "./views/layouts/posg-header.vue";
 import Sidebar from "./views/layouts/posg-sidebar.vue";
 
-export const route = window.route;
-
 const app = createApp(App);
 
 /********* Layout component**********/

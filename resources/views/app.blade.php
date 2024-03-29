@@ -10,7 +10,6 @@
   </head>
   <body>
     <div id="app">
-     <vue-router />
     </div>
 
     @vite('resources/src/main.ts')

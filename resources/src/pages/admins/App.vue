@@ -1,6 +1,4 @@
 <template>
-    <layout-header></layout-header>
-    <layout-sidebar></layout-sidebar>
     <div class="page-wrapper">
       <div class="content">
         <div class="page-header">
@@ -53,7 +51,7 @@
             >
           </div>
         </div>
-  
+
         <!-- /product list -->
         <div class="card table-list-card">
           <div class="card-body">
@@ -380,7 +378,7 @@
     methods: {
       toggleCollapse() {
         const collapseHeader = this.$refs.collapseHeader;
-  
+
         if (collapseHeader) {
           collapseHeader.classList.toggle("active");
           document.body.classList.toggle("header-collapse");
@@ -389,4 +387,3 @@
     },
   };
   </script>
-  
