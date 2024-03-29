@@ -8,9 +8,8 @@ export const route = window.route;
 
 /**
  * composable function for axios requests with reactive state
- * @returns {Object} { loading, response, errorMessage, request }
  */
-export const useAxios = (): object => {
+export const useAxios = () => {
   const loading = ref(false);
   const response = ref<AxiosResponse<any>>();
   const errorMessage = ref<string>('');

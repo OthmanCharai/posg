@@ -22,7 +22,8 @@
       "@/*": ["./resources/*"],
       "@utils/*": ["./resources/src/utils/*"],
       "@pages/*": ["./resources/src/pages/*"],
-      "@common/*": ["./resources/src/common/*"]
+      "@common/*": ["./resources/src/common/*"],
+      "@store/*": ["./resources/src/store/*"]
     }
   },
   "include": ["./**/*.ts", "./**/*.d.ts", "./**/*.vue"],

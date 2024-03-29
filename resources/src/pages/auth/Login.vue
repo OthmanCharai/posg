@@ -1,41 +1,39 @@
 <script setup lang="ts">
 import { Form, Field } from "vee-validate";
-import * as Yup from "yup";
-import { ref } from "vue";
-import { useAxios } from "@/src/utils/axios-helper";
-import {  useRouter } from "vue-router";
+import { useAxios, route } from "@/src/utils/axios-helper";
+import { useRouter } from "vue-router";
+import { getErrorMessage, hasError } from "@utils/error-handler";
+import { store } from '@store/index';
+import { Toast } from "@utils/toast";
 
-// vars
-const { request, response, loading, errorMessage } = useAxios()
-const router=useRouter();
+const authStore = store.auth();
+const { request, loading, response } = useAxios();
+const router = useRouter();
 const showPassword = ref(false);
-const password = ref(null);
-const email=ref(null);
-
 
 // Methods
 const toggleShow = () => {
   showPassword.value = !showPassword.value;
 };
 
-const schema = Yup.object().shape({
-  email: Yup.string().required("Email is required").email("Email is invalid"),
-  password: Yup.string()
-    .min(6, "Password must be at least 6 characters")
-    .required("Password is required"),
-});
+const data = ref({
+  email: '',
+  password: '',
+})
 
 const onSubmit = async() => {
   await request({
     method: 'POST',
     url: route('auth.login.submit'),
-    data: {
-      email: email.value,
-      password: password.value,
-      password_confirmation: password.value
-    }
+    data: data.value
   })
-  router.push('/admins')
+
+  if (response.value && response.value.data) {
+    // we need to add Cookie here
+    authStore.authenticated = true;
+    Toast.success('Login success');
+    router.push({name: 'Dashboard'});
+  }
 };
 </script>
 
@@ -47,15 +45,8 @@ const onSubmit = async() => {
           <div class="login-content user-login">
             <div class="login-logo">
               <img src="" alt="img" />
-              <router-link to="/dashboard" class="login-logo logo-white">
-                <img src="" alt="" />
-              </router-link>
             </div>
-            <Form
-              @submit="onSubmit"
-              :validation-schema="schema"
-              v-slot="{ errors }"
-            >
+            <Form @submit="onSubmit">
               <div class="login-userset">
                 <div class="login-userheading">
                   <h3>Sign In</h3>
@@ -69,13 +60,13 @@ const onSubmit = async() => {
                     <Field
                       name="email"
                       type="text"
-                      v-model:model-value="email"
+                      v-model="data.email"
                       class="form-control"
-                      :class="{ 'is-invalid': errors.email }"
+                      :class="{ 'is-invalid': hasError('email') }"
                     />
-                    <div class="invalid-feedback">{{ errors.email }}</div>
-                    <div class="emailshow text-danger" id="email"></div>
-                    <img src="" alt="img" />
+                    <div class="invalid-feedback">
+                      {{ getErrorMessage('email') }}
+                    </div>
                   </div>
                 </div>
                 <div class="form-login">
@@ -84,9 +75,9 @@ const onSubmit = async() => {
                     <Field
                       name="password"
                       :type="showPassword ? 'text' : 'password'"
-                      v-model:model-value="password"
+                      v-model="data.password"
                       class="form-control pass-input mt-2"
-                      :class="{ 'is-invalid': errors.password }"
+                      :class="{ 'is-invalid': hasError('password') }"
                     />
                     <span @click="toggleShow" class="toggle-password">
                       <i
@@ -96,8 +87,9 @@ const onSubmit = async() => {
                         }"
                       ></i>
                     </span>
-                    <div class="invalid-feedback">{{ errors.password }}</div>
-                    <div class="emailshow text-danger" id="password"></div>
+                    <div class="invalid-feedback">
+                      {{ getErrorMessage('password') }}
+                    </div>
                   </div>
                 </div>
                 <div class="form-login authentication-check">
@@ -111,9 +103,9 @@ const onSubmit = async() => {
                       </div>
                     </div>
                     <div class="col-6 text-end">
-                      <router-link class="forgot-link" to="/forgot-password-3"
-                        >Forgot Password?</router-link
-                      >
+                      <router-link class="forgot-link" to="/forgot-password-3">
+                        Forgot Password?
+                      </router-link>
                     </div>
                   </div>
                 </div>
@@ -127,8 +119,7 @@ const onSubmit = async() => {
             class="my-4 d-flex justify-content-center align-items-center copyright-text"
           >
             <p>
-              Copyright &copy; {{ new Date().getFullYear() }} DreamsPOS. All
-              rights reserved
+              Copyright &copy; {{ new Date().getFullYear() }} DreamsPOS. All rights reserved
             </p>
           </div>
         </div>

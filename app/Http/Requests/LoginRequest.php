@@ -26,7 +26,7 @@ class LoginRequest extends FormRequest
     {
         return [
             User::EMAIL_COLUMN    => ['required', 'string', 'email'],
-            User::PASSWORD_COLUMN => ['required', 'confirmed', Password::min(8)],
+            User::PASSWORD_COLUMN => ['required', 'string', Password::min(8)],
         ];
     }
 }
