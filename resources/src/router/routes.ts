@@ -1,70 +1,72 @@
 import type { NavigationGuardNext, RouteLocationNormalized } from 'vue-router';
 import { store } from '@store/index';
 
-const AuthenticatedLayout = () => import('@/src/layouts/Authenticated.vue');
-const GuestLayout = () => import('@/src/layouts/Guest.vue');
-
 function isAuthenticated(to: RouteLocationNormalized, from: RouteLocationNormalized, next: NavigationGuardNext) {
   const authStore = store.auth();
   let isLogin = false;
-  isLogin = !!authStore.authenticated; // we need to get a cookie value
+  isLogin = !!authStore.authenticated;
 
-  if (isLogin) {
+  // check if the user is trying to access a login page
+  if (to.name === 'Login' && !isLogin) {
+    // allow to proceed to login page if not logged in
+    next();
+  } else if (isLogin) {
+    // If logged in, proceed as normal
     next();
   } else {
-    next({ name: 'sign-in' });
+    // redirect to login if trying to access a protected route and not logged in
+    next({ name: 'Login' });
   }
 }
 
 export default [
+  // -------- Guest user ---------- //
   {
     path: '/',
     redirect: {
-      name: 'sign-in'
+      name: 'Login'
     },
-    component: GuestLayout,
+    component: () => import('@/src/layouts/Guest.vue'),
     beforeEnter: isAuthenticated,
     children: [
       {
         path: '',
-        name: 'sign-in',
-        component: () => import('@pages/auth/SignIn.vue'),
+        name: 'Login',
+        component: () => import('@pages/auth/Login.vue'),
       },
       // {
       //     path: 'register',
-      //     name: 'auth.register',
+      //     name: 'Register',
       //     component: ,
-      //     beforeEnter: guest,
       // },
       // {
       //     path: 'forgot-password',
-      //     name: 'auth.forgot-password',
+      //     name: 'ForgotPassword',
       //     component: ,
-      //     beforeEnter: guest,
       // },
       // {
       //     path: 'reset-password',
-      //     name: 'auth.reset-password',
+      //     name: 'ResetPassword',
       //     component: ,
-      //     beforeEnter: guest,
       // },
     ]
   },
+
+  // --------  Admin user --------- //
   {
     path: '/admins',
-    redirect: {
-      name: 'admins'
-    },
-    component: AuthenticatedLayout,
+    component: () => import('@/src/layouts/Authenticated.vue'),
     beforeEnter: isAuthenticated,
     children: [
       {
-        path:"",
-        name: 'admins',
+        path:"dashboard",
+        name: 'Dashboard',
         component: () => import('@pages/admins/App.vue')
       },
     ]
   },
+
+  // --------  404 page --------- //
   // {
   //     path: "/:pathMatch(.*)*",
   //     name: 'NotFound',

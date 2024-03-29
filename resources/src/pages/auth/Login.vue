@@ -4,6 +4,7 @@ import { useAxios, route } from "@/src/utils/axios-helper";
 import { useRouter } from "vue-router";
 import { getErrorMessage, hasError } from "@utils/error-handler";
 import { store } from '@store/index';
+import { Toast } from "@utils/toast";
 
 const authStore = store.auth();
 const { request, loading, response } = useAxios();
@@ -27,10 +28,11 @@ const onSubmit = async() => {
     data: data.value
   })
 
-  if (response.value) {
+  if (response.value && response.value.data) {
     // we need to add Cookie here
     authStore.authenticated = true;
-    router.push('/admins');
+    Toast.success('Login success');
+    router.push({name: 'Dashboard'});
   }
 };
 </script>
@@ -43,9 +45,6 @@ const onSubmit = async() => {
           <div class="login-content user-login">
             <div class="login-logo">
               <img src="" alt="img" />
-              <router-link to="/dashboard" class="login-logo logo-white">
-                <img src="" alt="" />
-              </router-link>
             </div>
             <Form @submit="onSubmit">
               <div class="login-userset">
@@ -61,7 +60,7 @@ const onSubmit = async() => {
                     <Field
                       name="email"
                       type="text"
-                      v-model:model-value="data.email"
+                      v-model="data.email"
                       class="form-control"
                       :class="{ 'is-invalid': hasError('email') }"
                     />
@@ -76,7 +75,7 @@ const onSubmit = async() => {
                     <Field
                       name="password"
                       :type="showPassword ? 'text' : 'password'"
-                      v-model:model-value="data.password"
+                      v-model="data.password"
                       class="form-control pass-input mt-2"
                       :class="{ 'is-invalid': hasError('password') }"
                     />
