@@ -28,6 +28,7 @@ const onSubmit = async() => {
   })
 
   if (response.value) {
+    // we need to add Cookie here
     authStore.authenticated = true;
     router.push('/admins');
   }

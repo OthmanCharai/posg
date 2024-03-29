@@ -7,7 +7,7 @@ const GuestLayout = () => import('@/src/layouts/Guest.vue');
 function isAuthenticated(to: RouteLocationNormalized, from: RouteLocationNormalized, next: NavigationGuardNext) {
   const authStore = store.auth();
   let isLogin = false;
-  isLogin = !!authStore.authenticated;
+  isLogin = !!authStore.authenticated; // we need to get a cookie value
 
   if (isLogin) {
     next();
