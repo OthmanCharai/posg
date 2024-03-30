@@ -64,7 +64,7 @@
         &.header-collapse {
             .header {
                 .header-left {
-                    background-color: $black-bg;     
+                    background-color: $black-bg;
                 }
             }
         }
@@ -73,14 +73,14 @@
             .header-left .logo-white {
                 display: none !important;
             }
-        } 
+        }
         &.expand-menu {
             .header-left .logo-white {
                 display: block !important;
             }
         }
         .page-wrapper-new {
-            background-color: $black-bg; 
+            background-color: $black-bg;
         }
         label, .form-label, .form-control,.notes-summernote p {
             color: $theme-title;
@@ -92,8 +92,8 @@
         background: $black-bg;
         border-bottom: 1px solid $navy;
         .header-left {
-            border-color: $navy; 
-            border-bottom: 1px solid $navy;      
+            border-color: $navy;
+            border-bottom: 1px solid $navy;
             .logo-normal {
                 display: none;
             }
@@ -122,7 +122,7 @@
                     border-radius: 5px;
                     padding: 10px 0;
                     li {
-                        a {                            
+                        a {
                             color: $gray-500;
                         }
                     }
@@ -206,7 +206,7 @@
     }
     .form-control {
         color: $theme-title;
-        border: 1px solid $navy;        
+        border: 1px solid $navy;
     }
     select.form-control {
         &:focus {
@@ -256,22 +256,22 @@
         background-color: $gray-900;
         border-color: $input-bg;
     }
-    
+
     .fc-day {
         background-color: $gray-900 !important;
     }
-    
+
     .chat-cont-left .chat-scroll .media {
         .media-body {
             .user-name, .user-last-chat {
                 color: $theme-title;
-            }  
-        } 
+            }
+        }
         &.active, &:hover {
             background: $title-color;
         }
     }
-    .chat-cont-right ul.list-unstyled .media.sent .media-body .msg-box p {    
+    .chat-cont-right ul.list-unstyled .media.sent .media-body .msg-box p {
         color: $secondary;
     }
     .inbox-menu {
@@ -300,28 +300,28 @@
             & > a {
                 span {
                     color: $gray-500;
-                }                
+                }
                 img, svg {
                     filter: brightness(0) saturate(100%) invert(65%) sepia(27%) saturate(206%) hue-         rotate(165deg) brightness(93%) contrast(88%);
                 }
             }
-            &.submenu ul {            
+            &.submenu ul {
                 background: $black-bg;
                 li {
-                    a {                        
+                    a {
                         color: $gray-500;
                     }
                     img, svg {
                         filter: brightness(0) saturate(100%) invert(65%) sepia(27%) saturate(206%) hue-rotate(165deg) brightness(93%) contrast(88%) !important;
                     }
-                    
+
                     & > ul {
                         box-shadow: none;
                     }
                 }
             }
         }
-       
+
     }
     .sidebar.side-three.horizontal-sidebar .sidebar-menu > ul > li ul li.submenu {
         a {
@@ -344,7 +344,7 @@
                 th{
                     color: $theme-title;
                 }
-               
+
             }
         }
         tbody {
@@ -382,16 +382,16 @@
                                 color: $theme-title
                             }
                         }
-                    } 
+                    }
                 }
             }
-           
+
         }
     }
     .sidebar.collapsed-sidebar .ui-aside .nav-item .nav-link {
         border-bottom: $navy;
     }
-    .sidebar.collapsed-sidebar .sidebar-menu ul li a img {        
+    .sidebar.collapsed-sidebar .sidebar-menu ul li a img {
         filter: brightness(0) saturate(100%) invert(65%) sepia(27%) saturate(206%) hue-rotate(165deg) brightness(93%) contrast(88%);
     }
     .select2-results__option {
@@ -434,7 +434,7 @@
         }
     }
     input[type="email"]{
-        border: 1px solid $gray-700; 
+        border: 1px solid $gray-700;
     }
     .tabs-set .nav-tabs .nav-link {
         background: $black-bg;
@@ -479,14 +479,14 @@
             border: 1px solid $navy !important;
             box-shadow: none;
             &:hover {
-               color: $gray-500 !important; 
+               color: $gray-500 !important;
             }
         }
         .btn-white {
             background-color: $black-bg;
             color: $gray-500;
             &:hover {
-               color: $gray-500; 
+               color: $gray-500;
             }
         }
         .dropdown-menu {
@@ -495,9 +495,9 @@
             .dropdown-item {
                 color: $gray-500;
                 &:hover {
-                   color: $gray-500; 
+                   color: $gray-500;
                    background: $gray-900;
-                } 
+                }
             }
         }
     }
@@ -541,7 +541,7 @@
         }
     }
     .user-menu.nav > li > a.select-store {
-        border: 1px solid $navy; 
+        border: 1px solid $navy;
     }
     .custom-file-container .custom-file-container__custom-file__custom-file-control__button {
         color: $theme-title;
@@ -554,7 +554,7 @@
                     color: $theme-title;
                 }
                 .noti-details {
-                    color: $gray-500; 
+                    color: $gray-500;
                 }
                 .notification-time {
                     color: $gray-500;
@@ -573,7 +573,7 @@
                         }
                         &:hover {
                            background: $gray-900 url(../img/icons/check.svg) no-repeat calc(100% - 12px) center;
-                        } 
+                        }
                     }
                 }
             }
@@ -595,7 +595,7 @@
     .profilename {
         .profileset {
             h5, h6 {
-                color: $gray-500; 
+                color: $gray-500;
             }
         }
     }
@@ -604,9 +604,9 @@
             .dropdown-item {
                 color: $gray-500;
                 &:hover {
-                   color: $gray-500; 
+                   color: $gray-500;
                    background: $gray-900;
-                } 
+                }
             }
         }
     }
@@ -642,9 +642,9 @@
         .dropdown-item {
             color: $gray-500;
             &:hover {
-               color: $gray-500; 
+               color: $gray-500;
                background: $gray-900;
-            } 
+            }
         }
     }
     .page-header {
@@ -666,28 +666,28 @@
     .select2-container--default .select2-selection--single,
     .select2-container--focus .select2-selection--single, .form-control, .form-select,
     .select2-container--default .select2-selection--multiple {
-        background: $card-dark-bg  !important;     
-        color: $theme-title;  
+        background: $card-dark-bg  !important;
+        color: $theme-title;
         &::placeholder {
-            color: $theme-title;  
-        } 
+            color: $theme-title;
+        }
     }
     .select2-container--default .select2-results__option[aria-selected=true] {
-        background: $gray-900 !important; 
-        color: $theme-title !important;    
+        background: $gray-900 !important;
+        color: $theme-title !important;
     }
-    .select2-container--default .select2-selection--single .select2-selection__rendered {   
+    .select2-container--default .select2-selection--single .select2-selection__rendered {
         color: $theme-title;
-        border-color: $navy; 
-        border: 1px solid $navy; 
+        border-color: $navy;
+        border: 1px solid $navy;
     }
     .select2-container--default .select2-selection--single {
-        border-color: $navy; 
-        border: 1px solid $navy; 
+        border-color: $navy;
+        border: 1px solid $navy;
     }
     .select2-container--focus .select2-selection--single {
-        border-color: $navy; 
-        border: 1px solid $navy; 
+        border-color: $navy;
+        border: 1px solid $navy;
     }
     .input-blocks{
         input[type=text]{
@@ -841,12 +841,12 @@
     .btn-white {
         background-color: $black-bg;
         border: 1px solid $navy;
-        color: $theme-title;  
+        color: $theme-title;
     }
     .calendar-events:hover {
         background-color: $navy;
         border: 1px solid $navy;
-        color: $theme-title;  
+        color: $theme-title;
     }
     .fc-button {
         color: $theme-title;
@@ -920,11 +920,11 @@
         }
         .form-login {
             input {
-                background: $gray-900 !important;     
-                color: $theme-title;  
+                background: $gray-900 !important;
+                color: $theme-title;
                 &::placeholder {
-                    color: $theme-title;  
-                } 
+                    color: $theme-title;
+                }
             }
         }
     }
@@ -945,7 +945,7 @@
                 }
             }
         }
-    } 
+    }
     .sales-cards {
         .card {
             h3,p {
@@ -961,7 +961,7 @@
             span,h5 {
                 color: $gray-600;
             }
-        } 
+        }
         .right-sidebar .right-sidebar-wrap {
             background: $black-bg;
         }
@@ -975,7 +975,7 @@
                 h4 {
                     color: $theme-title;
                 }
-            } 
+            }
             .left-chat-title {
                 border-bottom-color: $gray-600;
                 background: $black-bg;
@@ -990,7 +990,7 @@
                     }
                 }
             }
-        } 
+        }
         .top-online-contacts {
             background: $black-bg;
         }
@@ -1014,8 +1014,8 @@
                         }
                     }
                 }
-            } 
-        } 
+            }
+        }
         .chat {
             background: $black-bg;
             .chat-header {
@@ -1025,7 +1025,7 @@
                     h5,small {
                         color: $theme-title;
                     }
-                } 
+                }
                 li {
                     a {
                         i {
@@ -1037,13 +1037,13 @@
             .chat-body .messages .chat-profile-name h6 {
                 color: $theme-title;
             }
-        } 
+        }
         .main-wrapper {
             .content .sidebar-group .sidebar {
                 border-right-color: $gray-600;
             }
-        } 
-    } 
+        }
+    }
     .part-name.sub-part-name,.recession-meet-blk .partispant-blk span a {
         background: $secondary;
         h4 {
@@ -1063,20 +1063,20 @@
         }
     }
     .bar-code-view {
-        border-color: $navy;        
+        border-color: $navy;
     }
     .productdetails {
         > ul {
             > li {
                 border-color: $navy;
                 h4 {
-                    border-color: $navy;                    
+                    border-color: $navy;
                 }
                 &:last-child {
-                    border-color: $navy;                    
+                    border-color: $navy;
                 }
                 &:first-child {
-                    border-color: $navy;                    
+                    border-color: $navy;
                 }
             }
         }
@@ -1095,7 +1095,7 @@
             .chat-footer {
                 background: $black-bg;
             }
-        } 
+        }
         &.right-side-party {
             .slimscroll {
                 background: $black-bg;
@@ -1112,9 +1112,9 @@
                 .card-body-blk .user-list .user-list-item {
                     background: $secondary;
                 }
-            } 
+            }
         }
-    } 
+    }
     .history-modal-profile .right-sidebar-profile {
         background: $black-bg;
     }
@@ -1158,13 +1158,13 @@
                             a {
                                 color: $theme-title;
                             }
-                        } 
-                    } 
+                        }
+                    }
                 }
                 .dropdown-menu {
                     border-color: $navy;
                 }
-            } 
+            }
             .notes-card-body {
                 .dropdown-menu {
                     border-color: $navy;
@@ -1183,10 +1183,10 @@
                             a {
                                 color: $theme-title;
                             }
-                        } 
-                    } 
-                } 
-            } 
+                        }
+                    }
+                }
+            }
         }
     }
     .todo-today-content .todo-today-header h3 {
@@ -1200,8 +1200,8 @@
                 h4 {
                     color: $theme-title;
                 }
-            } 
-        } 
+            }
+        }
     }
     .dropdown-menu.notes-menu a.dropdown-item {
         color: $gray-500;
@@ -1263,7 +1263,7 @@
         .status-toggle {
             background: $black-bg;
         }
-    } 
+    }
     .barcode-content-list {
         background: $black-bg;
         .search-modal-header {
@@ -1274,9 +1274,9 @@
                 p {
                     color: $theme-title;
                 }
-            } 
-        } 
-    } 
+            }
+        }
+    }
     .barcode-scanner-link {
         background: $black-bg;
         h6 {
@@ -1329,7 +1329,7 @@
         }
     }
     .product-wrap .product-list .action a {
-        border-color: $navy;        
+        border-color: $navy;
     }
     .pos-categories, aside, .pos-products .product-info .img-bg{
         background: $black-bg;
@@ -1381,12 +1381,12 @@
                             svg {
                                 color: #67748E;
                             }
-                        } 
-                    } 
-                } 
-            } 
+                        }
+                    }
+                }
+            }
         }
-    } 
+    }
     .security-settings {
         ul {
             li {
@@ -1397,10 +1397,10 @@
                     .security-icon {
                         background: $secondary;
                     }
-                } 
-            } 
-        } 
-    } 
+                }
+            }
+        }
+    }
     .connected-app-card ul {
         background: $black-bg;
         box-shadow: 0px 4px 60px 0px $gray-800;
@@ -1515,7 +1515,7 @@
             span {
                 color: #5B6670;
             }
-        } 
+        }
         .emp-location-info {
             h6 {
                 color: $theme-title;
@@ -1524,7 +1524,7 @@
                 color: #5B6670;
             }
         }
-    } 
+    }
     .pay-slip-box .card .card-body .emp-details.justify-content-start {
         background: $black-bg ;
     }
@@ -1585,7 +1585,7 @@
         }
     }
     .select2-container--default .select2-results__option--highlighted[aria-selected] {
-        background: #FF9F43 !important;
+        background: #001656 !important;
         color: #fff !important;
     }
     .profile-pic-upload {
@@ -1605,7 +1605,7 @@
             &.add-product{
                 .addproduct-icon{
                     border-color: $navy;
-                }    
+                }
             }
         }
     }
@@ -1648,7 +1648,7 @@
                     }
                 }
             }
-        }        
+        }
     }
     .record-time {
         span {
@@ -1675,7 +1675,7 @@
             h6 {
                 color: $theme-title;
             }
-        }    
+        }
     }
     .sidebars.settings-sidebar {
         .sidebar-menu {
@@ -1699,9 +1699,9 @@
                     .message-content {
                         background: $secondary;
                         color: $theme-title;
-                    }                
-                }    
-                .file-download {                
+                    }
+                }
+                .file-download {
                     background: $secondary;
                     .file-details {
                         span {
@@ -1800,7 +1800,7 @@
     .btn {
         &.text-dark{
             color: $white !important;
-        }  
+        }
     }
     .callout-info {
         background-color: rgba(23, 162, 184, 0.25);
@@ -1821,7 +1821,7 @@
         color: #fff;
         .bg-light {
             background-color: transparent !important;
-        }   
+        }
     }
     .grid-showcase{
         .text-dark {
@@ -1856,7 +1856,7 @@
         }
     }
     .form-select {
-        border-color: $gray-700; 
+        border-color: $gray-700;
     }
     .productdetails {
         > ul{
@@ -1936,7 +1936,7 @@
                     }
                 }
             }
-        }    
+        }
     }
     .notes-dash .notes-top-head-submenu {
         border-bottom: 1px solid $navy;
@@ -1946,10 +1946,10 @@
             color: $theme-title;
         }
     }
-    .input-blocks .bootstrap-tagsinput .tag {  
-        background: $card-dark-bg;     
-        color: $theme-title; 
-        border-color: $gray-700; 
+    .input-blocks .bootstrap-tagsinput .tag {
+        background: $card-dark-bg;
+        color: $theme-title;
+        border-color: $gray-700;
     }
     .company-info {
         border-bottom: 1px solid $navy;
@@ -2000,10 +2000,10 @@
             background-color: $card-dark-bg;
             border: 1px solid $navy;
             i {
-                color: $theme-title;                
+                color: $theme-title;
             }
         }
-    }        
+    }
     .select2-container--default {
         &.select2-container--focus {
             .select2-selection--multiple {

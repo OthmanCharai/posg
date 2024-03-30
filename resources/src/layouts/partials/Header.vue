@@ -4,13 +4,13 @@
         <!-- Logo -->
         <div class="header-left active">
             <router-link to="/dashboard" class="logo logo-normal">
-                <img src="./../../assets/img/logo.png" alt="">
+                <img src="" alt="">
             </router-link>
             <router-link to="/dashboard" class="logo logo-white">
-                <img src="./../../assets/img/logo-white.png" alt="">
+                <img src="" alt="">
             </router-link>
             <router-link to="/dashboard" class="logo-small">
-                <img src="./../../assets/img/logo-small.png" alt="">
+                <img src="" alt="">
             </router-link>
             <a id="toggle_btn" href="javascript:void(0);" @click="toggleSidebar">
                 <vue-feather type="chevrons-left"></vue-feather>
@@ -62,15 +62,15 @@
                                 <h6><span><vue-feather type="user" class="feather-16"></vue-feather></span>Customers</h6>
                                 <ul class="customers">
                                     <li>
-                                        <a href="javascript:void(0);">Aron Varu<img src="./../../assets/img/profiles/profile-01.png"
+                                        <a href="javascript:void(0);">Aron Varu<img src=""
                                                 alt="" class="img-fluid"></a>
                                     </li>
                                     <li>
-                                        <a href="javascript:void(0);">Jonita<img src="./../../assets/img/profiles/profile-01.png"
+                                        <a href="javascript:void(0);">Jonita<img src=""
                                                 alt="" class="img-fluid"></a>
                                     </li>
                                     <li>
-                                        <a href="javascript:void(0);">Aaron<img src="./../../assets/img/profiles/profile-01.png"
+                                        <a href="javascript:void(0);">Aaron<img src=""
                                                 alt="" class="img-fluid"></a>
                                     </li>
                                 </ul>
@@ -84,14 +84,14 @@
             <!-- Flag -->
             <li class="nav-item dropdown has-arrow flag-nav nav-item-box">
                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="javascript:void(0);" role="button">
-                    <img src="./../../assets/img/flags/us.png" alt="Language" class="img-fluid">
+                    <img src="" alt="Language" class="img-fluid">
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
                     <a href="javascript:void(0);" class="dropdown-item active">
-                        <img src="./../../assets/img/flags/us.png" alt="" height="16"> English
+                        <img src="" alt="" height="16"> English
                     </a>
                     <a href="javascript:void(0);" class="dropdown-item">
-                        <img src="./../../assets/img/flags/fr.png" alt="" height="16"> French
+                        <img src="" alt="" height="16"> French
                     </a>
                 </div>
             </li>
@@ -124,7 +124,7 @@
                                 <router-link to="/activities">
                                     <div class="media d-flex">
                                         <span class="avatar flex-shrink-0">
-                                            <img alt="" src="./../../assets/img/profiles/profile-01.png">
+                                            <img alt="" src="">
                                         </span>
                                         <div class="media-body flex-grow-1">
                                             <p class="noti-details"><span class="noti-title">John Doe</span> added
@@ -140,7 +140,7 @@
                                 <router-link to="/activities">
                                     <div class="media d-flex">
                                         <span class="avatar flex-shrink-0">
-                                            <img alt="" src="./../../assets/img/profiles/profile-01.png">
+                                            <img alt="" src="">
                                         </span>
                                         <div class="media-body flex-grow-1">
                                             <p class="noti-details"><span class="noti-title">Tarah Shropshire</span>
@@ -157,7 +157,7 @@
                                 <router-link to="/activities">
                                     <div class="media d-flex">
                                         <span class="avatar flex-shrink-0">
-                                            <img alt="" src="./../../assets/img/profiles/profile-01.png">
+                                            <img alt="" src="">
                                         </span>
                                         <div class="media-body flex-grow-1">
                                             <p class="noti-details"><span class="noti-title">Misty Tison</span>
@@ -175,7 +175,7 @@
                                 <router-link to="/activities">
                                     <div class="media d-flex">
                                         <span class="avatar flex-shrink-0">
-                                            <img alt="" src="./../../assets/img/profiles/profile-01.png">
+                                            <img alt="" src="">
                                         </span>
                                         <div class="media-body flex-grow-1">
                                             <p class="noti-details"><span class="noti-title">Rolland Webber</span>
@@ -191,7 +191,7 @@
                                 <router-link to="/activities">
                                     <div class="media d-flex">
                                         <span class="avatar flex-shrink-0">
-                                            <img alt="" src="./../../assets/img/profiles/profile-01.png">
+                                            <img alt="" src="">
                                         </span>
                                         <div class="media-body flex-grow-1">
                                             <p class="noti-details"><span class="noti-title">Bernardo Galaviz</span>
@@ -218,7 +218,7 @@
                 <a href="javascript:void(0);" class="dropdown-toggle nav-link userset" data-bs-toggle="dropdown">
                     <span class="user-info">
                         <span class="user-letter">
-                            <img src="./../../assets/img/profiles/profile-01.png" alt="" class="img-fluid">
+                            <img src="" alt="" class="img-fluid">
                         </span>
                         <span class="user-detail">
                             <span class="user-name">John Smilga</span>
@@ -229,7 +229,7 @@
                 <div class="dropdown-menu menu-drop-user">
                     <div class="profilename">
                         <div class="profileset">
-                            <span class="user-img"><img src="./../../assets/img/profiles/profile-01.png" alt="">
+                            <span class="user-img"><img src="" alt="">
                                 <span class="status online"></span></span>
                             <div class="profilesets">
                                 <h6>John Smilga</h6>

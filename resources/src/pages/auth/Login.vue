@@ -44,7 +44,7 @@ const onSubmit = async() => {
         <div class="container">
           <div class="login-content user-login">
             <div class="login-logo">
-              <img src="" alt="img" />
+              <img src="@/src/assets/img/logo/logo-login.png" alt="logo" />
             </div>
             <Form @submit="onSubmit">
               <div class="login-userset">
@@ -90,7 +90,7 @@ const onSubmit = async() => {
                   </div>
                 </div>
                 <div class="form-login authentication-check">
-                  <div class="row">
+                  <div class="row align-items-center">
                     <div class="col-6">
                       <div class="custom-control custom-checkbox">
                         <label class="checkboxs ps-4 mb-0 pb-0 line-height-1">
