@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\src\Entities\UserLocator;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -20,5 +21,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->loadMigrationsFrom(app_path('/src/databases/migrations'));
+        $this->app->singleton(UserLocator::class);
     }
 }

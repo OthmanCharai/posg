@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\src\Entities\UserLocator;
 use App\src\Http\Response;
-use App\src\Models\User\User;
 
 abstract class Controller
 {
-    protected ?User $user;
     protected Response $response;
+    protected UserLocator $userLocator;
 
     public function __construct()
     {
         $this->response = app(Response::class);
+        $this->userLocator = app(UserLocator::class);
     }
 }
