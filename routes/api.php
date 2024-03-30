@@ -20,5 +20,6 @@ Route::group(
         require __DIR__ . '/company-setting.php';
         require __DIR__ . '/bank-accounts.php';
         require __DIR__ . '/suppliers.php';
+        require __DIR__ . '/brands.php';
     }
 );

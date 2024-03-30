@@ -13,7 +13,7 @@ class CompanyServiceProvider extends ServiceProvider implements DeferrableProvid
     {
         $this->app->bind(
             CompanySettingServiceInterface::class,
-            fn() => new CompanySettingServiceService(new CompanySettingRepository(), app(MediaService::class))
+            fn() => new CompanySettingService(new CompanySettingRepository(), app(MediaService::class))
         );
     }
 
