@@ -8,7 +8,9 @@ use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Lang;
+use Illuminate\Validation\ValidationException;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -27,8 +29,14 @@ return Application::configure(basePath: dirname(__DIR__))
                 if (!$exception instanceof CommonException
                     && $request->expectsJson()
                 ) {
-                    if ($exception instanceof ModelNotFoundException) {
-                        return \response()->json('Record Not Founded', 404);
+                    if ($exception instanceof ModelNotFoundException || $exception instanceof NotFoundHttpException) {
+                        return \response()->json(
+                            'Record Not Found',
+                            Response::HTTP_NOT_FOUND
+                        );
+                    }
+                    if ($exception instanceof ValidationException) {
+                        return response()->json($exception->errors(), Response::HTTP_BAD_REQUEST);
                     }
                     $exceptionContent = [
                         'message'        => $exception->getMessage(),

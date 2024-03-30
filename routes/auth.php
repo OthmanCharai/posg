@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\GetAuthUserController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\src\Auth\AdminAuth;
@@ -18,5 +19,9 @@ Route::prefix('auth')
             ->group(function () {
                 Route::post('/logout', LogoutController::class)
                     ->name('logout');
+
+                Route::get('/me', GetAuthUserController::class)
+                    ->name('me');
             });
+
     });
