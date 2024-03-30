@@ -8,7 +8,7 @@ body {
 	overflow-x: hidden;
 }
 ::selection {
-  background: $primary;
+  background: $primary-400;
   color: $white;
   text-shadow: none;
 }
@@ -93,7 +93,6 @@ ul {
 	      left: -10px;
 	      padding: 1px;
 	      top: -1px;
-	      
 	    }
 	    i {
 	      font-size: $font-size-20;

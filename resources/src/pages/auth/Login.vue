@@ -31,7 +31,7 @@ const onSubmit = async() => {
   if (response.value && response.value.data) {
     // we need to add Cookie here
     authStore.authenticated = true;
-    Toast.success('Login success');
+    Toast.success('Connexion effectuée avec succès.');
     router.push({name: 'Dashboard'});
   }
 };
@@ -49,13 +49,13 @@ const onSubmit = async() => {
             <Form @submit="onSubmit">
               <div class="login-userset">
                 <div class="login-userheading">
-                  <h3>Sign In</h3>
+                  <h3>Se connecter</h3>
                   <h4>
-                    Access the Dreamspos panel using your email and passcode.
+                    Connectez-vous au tableau de bord avec votre e-mail et code d'accès.
                   </h4>
                 </div>
                 <div class="form-login">
-                  <label class="form-label">Email Address</label>
+                  <label class="form-label">Adresse e-mail</label>
                   <div class="form-addons">
                     <Field
                       name="email"
@@ -71,7 +71,7 @@ const onSubmit = async() => {
                   </div>
                 </div>
                 <div class="form-login">
-                  <label>Password</label>
+                  <label>Mot de passe</label>
                   <div class="pass-group">
                     <Field
                       name="password"
@@ -95,19 +95,19 @@ const onSubmit = async() => {
                       <div class="custom-control custom-checkbox">
                         <label class="checkboxs ps-4 mb-0 pb-0 line-height-1">
                           <input type="checkbox" />
-                          <span class="checkmarks"></span>Remember me
+                          <span class="checkmarks"></span>Se souvenir de moi
                         </label>
                       </div>
                     </div>
                     <div class="col-6 text-end">
                       <router-link class="forgot-link" to="/forgot-password-3">
-                        Forgot Password?
+                        Mot de passe oublié ?
                       </router-link>
                     </div>
                   </div>
                 </div>
                 <div class="form-login">
-                  <button :disabled="loading" class="btn btn-login" type="submit">Sign In</button>
+                  <button :disabled="loading" class="btn btn-login" type="submit">Se connecter</button>
                 </div>
               </div>
             </Form>
@@ -116,7 +116,7 @@ const onSubmit = async() => {
             class="my-4 d-flex justify-content-center align-items-center copyright-text"
           >
             <p>
-              Copyright &copy; {{ new Date().getFullYear() }} DreamsPOS. All rights reserved
+              Droit d'auteur &copy; {{ new Date().getFullYear() }} Piston Gabon. Tous droits réservés.
             </p>
           </div>
         </div>
