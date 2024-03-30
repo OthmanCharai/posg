@@ -4,6 +4,7 @@ namespace App\src\Services;
 
 use App\src\Services\AdminRole\AdminRoleServiceProvider;
 use App\src\Services\BankAccount\BankAccountServiceProvider;
+use App\src\Services\Brand\BrandServiceProvider;
 use App\src\Services\CompanySetting\CompanyServiceProvider;
 use App\src\Services\Supplier\SupplierServiceProvider;
 use App\src\Services\Tax\TaxServiceProvider;
@@ -21,6 +22,7 @@ class BaseServiceProvider extends ServiceProvider
         TaxServiceProvider::class,
         TaxVariantServiceProvider::class,
         SupplierServiceProvider::class,
+        BrandServiceProvider::class,
     ];
 
     public function register(): void

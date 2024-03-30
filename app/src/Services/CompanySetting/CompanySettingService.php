@@ -10,7 +10,7 @@ use App\src\Repositories\CompanySetting\CompanySettingRepository;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 
-readonly class CompanySettingServiceService implements CompanySettingServiceInterface
+readonly class CompanySettingService implements CompanySettingServiceInterface
 {
     public function __construct(
         private CompanySettingRepository $companySettingRepository,
