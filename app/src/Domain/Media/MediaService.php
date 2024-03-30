@@ -17,7 +17,7 @@ class MediaService
         private readonly Repository $repository,
         private readonly FilesystemManager $filesystemManager
     ) {
-        $this->storage = $this->filesystemManager->disk($this->repository->get('filesystems.disks.public.driver'));
+        $this->storage = $this->filesystemManager->disk($this->repository->get('filesystems.disks.s3.driver'));
     }
 
     public function get(string $filename): array
@@ -46,7 +46,7 @@ class MediaService
      *
      * @return string|null
      */
-    protected function generateTemporaryUrl(string $filename, int $expirationTimeInSeconds = 60): ?string
+    public function generateTemporaryUrl(string $filename, int $expirationTimeInSeconds = 60): ?string
     {
         return $this->storage->temporaryUrl(
             $filename,

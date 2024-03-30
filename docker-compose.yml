@@ -24,6 +24,7 @@ services:
         depends_on:
             - typesense
             - mysql
+            - minio
     typesense:
         image: 'typesense/typesense:0.25.2'
         ports:
@@ -69,6 +70,27 @@ services:
                 - '-p${DB_PASSWORD}'
             retries: 3
             timeout: 5s
+    minio:
+        image: 'minio/minio:latest'
+        ports:
+            - '${FORWARD_MINIO_PORT:-9000}:9000'
+            - '${FORWARD_MINIO_CONSOLE_PORT:-8900}:8900'
+        environment:
+            MINIO_ROOT_USER: sail
+            MINIO_ROOT_PASSWORD: password
+        volumes:
+            - 'sail-minio:/data/minio'
+        networks:
+            - sail
+        command: 'minio server /data/minio --console-address ":8900"'
+        healthcheck:
+            test:
+                - CMD
+                - curl
+                - '-f'
+                - 'http://localhost:9000/minio/health/live'
+            retries: 3
+            timeout: 5s
 networks:
     sail:
         driver: bridge
@@ -76,4 +98,6 @@ volumes:
     sail-typesense:
         driver: local
     sail-mysql:
+        driver: local
+    sail-minio:
         driver: local
