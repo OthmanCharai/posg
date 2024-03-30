@@ -1585,7 +1585,7 @@
         }
     }
     .select2-container--default .select2-results__option--highlighted[aria-selected] {
-        background: #001656 !important;
+        background: $primary !important;
         color: #fff !important;
     }
     .profile-pic-upload {
