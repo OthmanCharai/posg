@@ -1,4 +1,4 @@
-export default interface IAdmin {
+export interface Admin {
   email: string;
   first_name: string;
   last_name: string;

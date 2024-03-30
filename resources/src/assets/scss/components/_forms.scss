@@ -877,6 +877,9 @@ fieldset:disabled .btn {
     outline: none;
   }
 }
+.form-control.is-invalid {
+  border-color: $danger !important;
+}
 .form-control.is-valid:focus,
 .was-validated .form-control:valid:focus {
   border-color: $success;
@@ -934,7 +937,7 @@ input[type="range"]::-webkit-slider-runnable-track {
   font-weight: $font-weight-semibold;
 }
 #exampleColorInput::-webkit-color-swatch-wrapper {
-  direction: rtl; 
+  direction: rtl;
 }
 [data-theme-mode="dark"] {
   input {

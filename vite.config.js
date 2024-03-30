@@ -12,7 +12,7 @@ export default defineConfig({
       "@utils": path.resolve(__dirname, './resources/src/utils/'),
       "@pages": path.resolve(__dirname, './resources/src/pages/'),
       "@common": path.resolve(__dirname, './resources/src/common/'),
-      "@store": path.resolve(__dirname, './resources/src/store/')
+      "@stores": path.resolve(__dirname, './resources/src/stores/')
     },
   },
 

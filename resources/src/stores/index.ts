@@ -1,7 +1,7 @@
 import { auth } from './auth';
-import { admins } from './admins';
+import { admin } from './admin';
 
 export const store = {
   auth,
-  admins
+  admin
 }

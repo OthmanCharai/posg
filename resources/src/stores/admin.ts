@@ -1,16 +1,16 @@
 import { defineStore } from 'pinia'
-import IAdmin from '../pages/admins/type'
-import { useAxios, route } from '../utils/axios-helper'
+import type { Admin } from '@common/types/global/admin';
+import { useAxios, route } from '../utils/axios-helper';
 
 const { request, response } = useAxios();
 
-export const admins = defineStore('admins', {
+export const admin = defineStore('admin', {
   state: () => ({
-    admins: {} as IAdmin,
+    admins: {} as Admin,
   }),
 
   actions: {
-    getAdminData(data: IAdmin) {
+    getAdminData(data: Admin) {
       request({
         method: 'GET',
         url: route('admins.index')

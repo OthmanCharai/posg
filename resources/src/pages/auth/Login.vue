@@ -3,7 +3,7 @@ import { Form, Field } from "vee-validate";
 import { useAxios, route } from "@/src/utils/axios-helper";
 import { useRouter } from "vue-router";
 import { getErrorMessage, hasError } from "@utils/error-handler";
-import { store } from '@store/index';
+import { store } from '@stores/index';
 import { Toast } from "@utils/toast";
 
 const authStore = store.auth();
@@ -44,7 +44,7 @@ const onSubmit = async() => {
         <div class="container">
           <div class="login-content user-login">
             <div class="login-logo">
-              <img src="" alt="img" />
+              <img src="@/src/assets/img/logo/logo-login.png" alt="logo" />
             </div>
             <Form @submit="onSubmit">
               <div class="login-userset">
@@ -67,6 +67,7 @@ const onSubmit = async() => {
                     <div class="invalid-feedback">
                       {{ getErrorMessage('email') }}
                     </div>
+                    <vue-feather type="mail" size="16" :class="{'hide-icon': hasError('email')}"></vue-feather>
                   </div>
                 </div>
                 <div class="form-login">
@@ -80,12 +81,8 @@ const onSubmit = async() => {
                       :class="{ 'is-invalid': hasError('password') }"
                     />
                     <span @click="toggleShow" class="toggle-password">
-                      <i
-                        :class="{
-                          'fas fa-eye': showPassword,
-                          'fas fa-eye-slash': !showPassword,
-                        }"
-                      ></i>
+                      <vue-feather v-if="showPassword" type="eye" size="16" :class="{'hide-icon': hasError('passowrd')}"></vue-feather>
+                      <vue-feather v-else type="eye-off" size="16" :class="{'hide-icon': hasError('password')}"></vue-feather>
                     </span>
                     <div class="invalid-feedback">
                       {{ getErrorMessage('password') }}
@@ -93,7 +90,7 @@ const onSubmit = async() => {
                   </div>
                 </div>
                 <div class="form-login authentication-check">
-                  <div class="row">
+                  <div class="row align-items-center">
                     <div class="col-6">
                       <div class="custom-control custom-checkbox">
                         <label class="checkboxs ps-4 mb-0 pb-0 line-height-1">
@@ -127,3 +124,9 @@ const onSubmit = async() => {
     </div>
   </div>
 </template>
+
+<style scoped>
+.hide-icon {
+  display: none;
+}
+</style>

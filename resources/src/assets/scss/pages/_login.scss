@@ -139,8 +139,8 @@
             }
             .form-addons{
                 position: relative;
-                img{
-                    @include position(absolute,16px,20px,null,null);
+                i{
+                    @include position(absolute,13px,16px,null,null);
                 }
 
             }
@@ -199,7 +199,7 @@
                 }
             }
             .forgot-link {
-                color: $danger;
+                color: $primary;
                 font-size: $font-size-15;
                 font-weight: $font-weight-semibold;
             }
@@ -265,7 +265,6 @@
             cursor: pointer;
             width: 30px;
             height: 30px;
-            color: $sub-title;
             font-size: $font-size-18;
             display: -webkit-box;
             display: -ms-flexbox;
@@ -581,4 +580,3 @@
         }
     }
 }
-

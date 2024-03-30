@@ -1,5 +1,5 @@
 import type { NavigationGuardNext, RouteLocationNormalized } from 'vue-router';
-import { store } from '@store/index';
+import { store } from '@stores/index';
 
 function isAuthenticated(to: RouteLocationNormalized, from: RouteLocationNormalized, next: NavigationGuardNext) {
   const authStore = store.auth();
@@ -61,7 +61,7 @@ export default [
       {
         path:"dashboard",
         name: 'Dashboard',
-        component: () => import('@pages/admins/App.vue')
+        component: () => import('@pages/admin/Dashboard.vue')
       },
     ]
   },

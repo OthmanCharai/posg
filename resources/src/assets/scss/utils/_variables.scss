@@ -14,9 +14,9 @@ $font-weight-bolder: bolder;
 $font-family-primary: 'Nunito', sans-serif;
 $font-family-secondary: "Poppins", sans-serif;
 $font-awesome: "Fontawesome";
-	
+
 // Theme Colors Variables
-$primary: #FF9F43;
+$primary: #001656;
 $primary-hover: darken($primary, 10%);
 $secondary: #092C4C;
 $secondary-hover: darken($secondary, 10%);
@@ -43,16 +43,15 @@ $orange: #ffa500;
 $indigo: #4d5ddb;
 $yellow: #ffff00;
 
-// Primary
-$primary-100: #FFF5EC;
-$primary-200: #FFECD9;
-$primary-300: #FFE2C7;
-$primary-400: #FFD9B4;
-$primary-500: #FFCFA1;
-$primary-600: #FFC58E;
-$primary-700: #FFBC7B;
-$primary-800: #FFB269;
-$primary-900: #FFA956;
+$primary-100: #E6EAF8;
+$primary-200: #CCD5F1;
+$primary-300: #B3C0EA;
+$primary-400: #99ABE3;
+$primary-500: #7F96DC;
+$primary-600: #657FC6;
+$primary-700: #4C69B0;
+$primary-800: #324C99;
+$primary-900: #001656;
 
 // Secondary
 $secondary-100: #E6EAED;
