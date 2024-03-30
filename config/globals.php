@@ -1,6 +1,6 @@
 <?php
 
 return [
-    'auth_cookie_name' => env('AUTH_COOKIE_NAME', 'auth_cookie_name'),
+    'auth_cookie_name' => env('AUTH_COOKIE_NAME', 'posg_token'),
 ];
 
