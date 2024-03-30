@@ -23,7 +23,7 @@ export const processErrors = (error: any, errorMessage: Ref<string>): void => {
     Toast.error(error.response.data.message);
   } else {
 
-    Toast.error('An error occured!');
+    Toast.error('Une erreur est survenue !');
   }
 };
 

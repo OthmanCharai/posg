@@ -42,12 +42,7 @@ return Application::configure(basePath: dirname(__DIR__))
                         );
                     }
                     if ($exception instanceof ValidationException) {
-                      $exceptionValidation = [
-                        'errors'  => $exception->errors(),
-                        'message' => $exception->getMessage(),
-                      ];
-
-                      return response()->json($exceptionValidation, Response::HTTP_BAD_REQUEST);
+                      return response()->json(['errors' => $exception->errors()], Response::HTTP_BAD_REQUEST);
                     }
                     $exceptionContent = [
                         'message'        => $exception->getMessage(),
