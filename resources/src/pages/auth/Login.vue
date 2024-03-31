@@ -29,8 +29,8 @@ const onSubmit = async() => {
   })
 
   if (response.value && response.value.data) {
-    // we need to add Cookie here
-    authStore.isLogin.loggedIn = true;
+    await authStore.getUser();
+
     Toast.success('Connexion effectuée avec succès.');
     router.push({name: 'Dashboard'});
   }
