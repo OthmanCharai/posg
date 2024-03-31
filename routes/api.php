@@ -21,6 +21,6 @@ Route::group(
         require __DIR__ . '/bank-accounts.php';
         require __DIR__ . '/suppliers.php';
         require __DIR__ . '/brands.php';
-
+        require __DIR__ . '/article-categories.php';
     }
 );
