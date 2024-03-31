@@ -13,7 +13,6 @@ export const useAuthStore = defineStore('auth', {
   actions: {
     async getUser() {
       if(this.authenticated === false) {
-        console.log('test');
         await request({
           method: 'GET',
           url: route('auth.me')
