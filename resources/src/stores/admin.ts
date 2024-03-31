@@ -4,7 +4,7 @@ import { useAxios, route } from '../utils/axios-helper';
 
 const { request, response } = useAxios();
 
-export const admin = defineStore('admin', {
+export const useAdminStore = defineStore('admin', {
   state: () => ({
     admins: {} as Admin,
   }),
