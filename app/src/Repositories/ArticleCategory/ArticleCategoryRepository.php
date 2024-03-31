@@ -1,35 +1,29 @@
 <?php
 
-namespace App\src\Repositories\Brand;
+namespace App\src\Repositories\ArticleCategory;
 
-use App\src\Models\Brands\Brand;
+use App\src\Models\ArticleCategory\ArticleCategory;
 use App\src\Repositories\BaseRepository;
-use Illuminate\Pagination\LengthAwarePaginator;
-use YouCanShop\QueryOption\QueryOption;
 
-class BrandRepository extends BaseRepository
+class ArticleCategoryRepository extends BaseRepository
 {
+
     /**
      * @inheritDoc
      */
     public function getModelClass(): string
     {
-        return Brand::class;
+        return ArticleCategory::class;
     }
 
-    /**
-     * @param QueryOption $queryOption
-     *
-     * @return LengthAwarePaginator
-     */
-    public function getPaginated(QueryOption $queryOption): LengthAwarePaginator
+    public function getPaginated(\YouCanShop\QueryOption\QueryOption $queryOption)
     {
         $query = $this->getQueryBuilder();
 
         [$query, $queryOption] = $this->pipeThroughCriterias($query, $queryOption);
 
         $query->select(
-            sprintf('%s.*', Brand::TABLE_NAME)
+            sprintf('%s.*', ArticleCategory::TABLE_NAME)
         );
 
         return $query->paginate(

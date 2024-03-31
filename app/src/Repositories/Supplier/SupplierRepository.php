@@ -3,13 +3,11 @@
 namespace App\src\Repositories\Supplier;
 
 use App\src\Models\Supplier\Supplier;
-use App\src\Models\Tax\Tax;
 use App\src\Repositories\BaseRepository;
 use YouCanShop\QueryOption\QueryOption;
 
 class SupplierRepository extends BaseRepository
 {
-
     /**
      * @inheritDoc
      */
