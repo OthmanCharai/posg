@@ -3,10 +3,10 @@ import { Form, Field } from "vee-validate";
 import { useAxios, route } from "@/src/utils/axios-helper";
 import { useRouter } from "vue-router";
 import { getErrorMessage, hasError } from "@utils/error-handler";
-import { store } from '@stores/index';
+import { useAuthStore } from '@stores/auth';
 import { Toast } from "@utils/toast";
 
-const authStore = store.auth();
+const authStore = useAuthStore();
 const { request, loading, response } = useAxios();
 const router = useRouter();
 const showPassword = ref(false);
@@ -30,7 +30,7 @@ const onSubmit = async() => {
 
   if (response.value && response.value.data) {
     // we need to add Cookie here
-    authStore.authenticated = true;
+    authStore.isLogin.loggedIn = true;
     Toast.success('Connexion effectuée avec succès.');
     router.push({name: 'Dashboard'});
   }

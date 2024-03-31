@@ -1,38 +1,26 @@
-import type { NavigationGuardNext, RouteLocationNormalized } from 'vue-router';
-import { store } from '@stores/index';
-
-function isAuthenticated(to: RouteLocationNormalized, from: RouteLocationNormalized, next: NavigationGuardNext) {
-  const authStore = store.auth();
-  let isLogin = false;
-  isLogin = !!authStore.authenticated;
-
-  // check if the user is trying to access a login page
-  if (to.name === 'Login' && !isLogin) {
-    // allow to proceed to login page if not logged in
-    next();
-  } else if (isLogin) {
-    // If logged in, proceed as normal
-    next();
-  } else {
-    // redirect to login if trying to access a protected route and not logged in
-    next({ name: 'Login' });
-  }
-}
+import guest from './middleware/guest';
+import auth from './middleware/auth';
 
 export default [
   // -------- Guest user ---------- //
   {
     path: '/',
-    redirect: {
-      name: 'Login'
-    },
     component: () => import('@/src/layouts/Guest.vue'),
-    beforeEnter: isAuthenticated,
+    meta: {
+      middleware: [
+          guest
+      ]
+    },
     children: [
       {
         path: '',
         name: 'Login',
         component: () => import('@pages/auth/Login.vue'),
+        meta: {
+          middleware: [
+              guest
+          ]
+        }
       },
       // {
       //     path: 'register',
@@ -54,22 +42,26 @@ export default [
 
   // --------  Admin user --------- //
   {
-    path: '/admins',
+    path: '/',
     component: () => import('@/src/layouts/Authenticated.vue'),
-    beforeEnter: isAuthenticated,
     children: [
       {
-        path:"dashboard",
+        path: '/dashboard',
         name: 'Dashboard',
-        component: () => import('@pages/admin/Dashboard.vue')
+        component: () => import('@pages/admin/Dashboard.vue'),
+        meta: {
+          middleware: [
+              auth
+          ]
+        }
       },
     ]
   },
 
   // --------  404 page --------- //
-  // {
-  //     path: "/:pathMatch(.*)*",
-  //     name: 'NotFound',
-  //     component: () => import("errors/404.vue"),
-  // },
+  {
+      path: "/:pathMatch(.*)*",
+      name: 'NotFound',
+      component: () => import('@pages/errors/404.vue'),
+  },
 ];
