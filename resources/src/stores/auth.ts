@@ -1,15 +1,29 @@
-import { defineStore } from 'pinia'
+import { defineStore } from 'pinia';
+import { useAxios, route } from '@utils/axios-helper';
+import { deepClone } from '@utils/object';
+
+const { request, response } = useAxios();
 
 export const useAuthStore = defineStore('auth', {
   state: () => ({
-    user: {
-      loggedIn: false
-    }
+    authenticated: false,
+    user: {}
   }),
 
-  getters: {
-    isLogin(state) {
-      return state.user;
+  actions: {
+    async getUser() {
+      if(this.authenticated === false) {
+        console.log('test');
+        await request({
+          method: 'GET',
+          url: route('auth.me')
+        });
+
+        if(response.value && response.value.data) {
+          this.$state.authenticated = true;
+          this.$state.user = deepClone(response.value.data);
+        }
+      }
     }
   }
 })
