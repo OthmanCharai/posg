@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import logo from '@/src/assets/img/logo/logo-login.png';
+import profilThumbnail from '@/src/assets/img/profil_thumbnail.png';
 
 const toggleSidebar1 = () => {
     const body = document.body;
@@ -139,7 +140,7 @@ onUnmounted(() => {
                 <div class="dropdown-menu notifications">
                     <div class="topnav-dropdown-header">
                         <span class="notification-title">Notifications</span>
-                        <a href="javascript:void(0)" class="clear-noti"> Clear All </a>
+                        <a href="javascript:void(0)" class="clear-noti"> Tout effacer </a>
                     </div>
                     <div class="noti-content">
                         <ul class="notification-list">
@@ -147,7 +148,7 @@ onUnmounted(() => {
                                 <router-link to="/activities">
                                     <div class="media d-flex">
                                         <span class="avatar flex-shrink-0">
-                                            <img alt="" src="">
+                                            <img :src="profilThumbnail">
                                         </span>
                                         <div class="media-body flex-grow-1">
                                             <p class="noti-details"><span class="noti-title">John Doe</span> added
@@ -162,7 +163,7 @@ onUnmounted(() => {
                         </ul>
                     </div>
                     <div class="topnav-dropdown-footer">
-                        <router-link to="/activities">View all Notifications</router-link>
+                        <router-link to="/activities">Voir toutes les notifications</router-link>
                     </div>
                 </div>
             </li>
@@ -179,7 +180,7 @@ onUnmounted(() => {
                 <a href="javascript:void(0);" class="dropdown-toggle nav-link userset" data-bs-toggle="dropdown">
                     <span class="user-info">
                         <span class="user-letter">
-                            <img src="" alt="" class="img-fluid">
+                            <img :src="profilThumbnail" alt="profil" class="img-fluid">
                         </span>
                         <span class="user-detail">
                             <span class="user-name">John Smilga</span>
@@ -190,7 +191,8 @@ onUnmounted(() => {
                 <div class="dropdown-menu menu-drop-user">
                     <div class="profilename">
                         <div class="profileset">
-                            <span class="user-img"><img src="" alt="">
+                            <span class="user-img">
+                                <img :src="profilThumbnail" alt="profil">
                                 <span class="status online"></span></span>
                             <div class="profilesets">
                                 <h6>John Smilga</h6>
@@ -198,14 +200,19 @@ onUnmounted(() => {
                             </div>
                         </div>
                         <hr class="m-0">
-                        <router-link class="dropdown-item" to="/pages/profile"> <vue-feather class="me-2"
-                                type="user"></vue-feather> My
-                            Profile</router-link>
-                        <router-link class="dropdown-item" to="/settings/general-settings"><vue-feather class="me-2"
-                                type="settings"></vue-feather>Settings</router-link>
+                        <router-link class="dropdown-item" to="/pages/profile">
+                          <vue-feather class="me-2" type="user"></vue-feather>
+                          Mon profil
+                        </router-link>
+                        <router-link class="dropdown-item" to="/settings/general-settings">
+                          <vue-feather class="me-2" type="settings"></vue-feather>
+                          Paramètres
+                        </router-link>
                         <hr class="m-0">
-                        <router-link class="dropdown-item logout pb-0" to="/"><img src=""
-                                class="me-2" alt="img">Logout</router-link>
+                        <router-link class="dropdown-item logout pb-0" to="/">
+                          <vue-feather class="me-2" type="log-out" stroke="red"></vue-feather>
+                          Déconnexion
+                        </router-link>
                     </div>
                 </div>
             </li>
@@ -218,9 +225,9 @@ onUnmounted(() => {
             <a href="javascript:void(0);" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
                 aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
             <div class="dropdown-menu dropdown-menu-right">
-                <router-link class="dropdown-item" to="/pages/profile">My Profile</router-link>
-                <router-link class="dropdown-item" to="/settings/general-settings">Settings</router-link>
-                <router-link class="dropdown-item" to="/">Logout</router-link>
+                <router-link class="dropdown-item" to="/pages/profile">Mon profil</router-link>
+                <router-link class="dropdown-item" to="/settings/general-settings">Paramètres</router-link>
+                <router-link class="dropdown-item" to="/">Déconnexion</router-link>
             </div>
         </div>
         <!-- /Mobile Menu -->
