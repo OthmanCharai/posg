@@ -54,13 +54,13 @@
             display: inline-block;
             line-height: 0;
             img{
-                width: 140px;
+                width: 70px;
             }
             @include respond-below(custom991) {
                 text-align: center;
                 width: 100%;
                 img{
-                    width: 140px;
+                    width: 70px;
                 }
             }
         }
@@ -83,7 +83,7 @@
             float: left;
             font-size: $font-size-26;
             line-height: 50px;
-            
+
             .bar-icon {
                 display: inline-block;
                 width: 21px;
@@ -139,7 +139,7 @@
             @include position(absolute,0,null,null,0);
             display: block;
         }
-       
+
     }
     .responsive-search {
         display: none;
@@ -210,7 +210,7 @@
                 display: block;
                 line-height: initial;
             }
-        } 
+        }
     }
     .menu-drop-user{
         .dropdown-item {
@@ -297,7 +297,7 @@
             padding: 0;
             a{
                 color:$gray-800;
-                line-height: 40px; 
+                line-height: 40px;
                 @include margin-padding(null, 0 10px);
             }
         }
@@ -346,7 +346,7 @@
         .user-menu{
             .badge{
                 display: flex !important;
-            }  
+            }
         }
         &.expand-menu{
             .menu-arrow{
@@ -368,7 +368,7 @@
                 @include margin-padding(null, 0 20px);
                 display: flex;
             }
-            
+
         }
         .noti-dot{
             &:before{
@@ -415,7 +415,7 @@
     .searchcontents {
         @include margin-padding(null, 25px 0);
     }
-    
+
     .searchparts {
         position: relative;
         input[type="text"] {
@@ -496,7 +496,7 @@
             height: 40px;
             @include margin-padding(null, 10px);
             .clear-noti {
-                color: $danger-700 !important; 
+                color: $danger-700 !important;
                 float: right;
                 font-size: $font-size-11 !important;
                 text-transform: uppercase;
@@ -696,7 +696,7 @@
                     @include transform(rotate(135deg));
                  }
             }
-        } 
+        }
     }
 }
 hr{
@@ -735,7 +735,7 @@ hr{
         &::after{
             transform: rotate(-140deg);
             top: 10px;
-        }  
+        }
     }
 }
 .feather-40 {
@@ -841,7 +841,7 @@ hr{
     -webkit-box-align: center;
     -ms-flex-align: center;
     justify-content: center;
-    -webkit-justify-content: center;
+    -webkit-justify-content: end;
     -ms-flex-pack: center;
     margin: 0;
     position: relative;
@@ -859,7 +859,7 @@ hr{
         }
         svg {
             width: 18px;
-            color: #67748E;            
+            color: #67748E;
         }
         a:hover{
             svg {
@@ -948,7 +948,7 @@ hr{
                 min-width: 210px;
                 .dropdown-item {
                     @include margin-padding(null, 10px 10px);
-                    color: #67748E;                    
+                    color: #67748E;
                     border-radius: 10px;
                     transition: none;
                     &.active{
@@ -984,7 +984,7 @@ hr{
         @include respond-below(custom1199) {
             width: 170px;
         }
-    }   
+    }
     .search-addon{
         span{
             z-index: 9;
@@ -1030,13 +1030,13 @@ hr{
     margin-top: 0;
     overflow-y: auto;
     .search-info {
-        @include margin-padding(0 0 15px 0, 0 0 15px 0); 
+        @include margin-padding(0 0 15px 0, 0 0 15px 0);
         border-bottom: 1px solid $gray-400;
         font-size: $font-size-14;
         color: $text-color;
         &:last-child {
             border-bottom: none;
-            @include margin-padding(0, 0); 
+            @include margin-padding(0, 0);
         }
         h6 {
             font-size: $font-size-14;
@@ -1117,7 +1117,7 @@ hr{
                 }
             }
         }
-    }   
+    }
 }
 .user-menu.nav {
     > li {
