@@ -82,13 +82,6 @@ const handleMouseover = (e: MouseEvent) => {
     }
 };
 
-// show / hide Profile menu
-const showMenu = ref(false);
-
-const toggleMenu = () => {
-  showMenu.value = !showMenu.value;
-}
-
 // Setup lifecycle hooks
 onMounted(() => {
     document.addEventListener('mouseover', handleMouseover);
