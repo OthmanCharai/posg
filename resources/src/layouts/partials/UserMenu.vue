@@ -41,14 +41,15 @@ export default {
 
 <template>
   <ul>
-    <template v-for="item in sideBarData" :key="item.tittle">
+    <template v-for="item in sideBarData" :key="item.title">
       <li class="submenu-open">
-        <h6 class="submenu-hdr">{{ item.tittle }}</h6>
+        <h6 class="submenu-hdr">{{ item.title }}</h6>
         <ul>
           <template v-for="menu in item.menu" :key="menu.menuValue">
             <li v-if="!menu.hasSubRoute" :class="{ 'active': $route.path === menu.route }">
               <router-link v-if="menu.route" :to="menu.route">
-                <vue-feather :type="menu.icon"></vue-feather>
+                <vue-feather v-if="menu.icon" :type="menu.icon"></vue-feather>
+                <div v-else v-html="menu.customIcon"></div>
                 <span>{{ menu.menuValue }} </span>
               </router-link>
             </li>
