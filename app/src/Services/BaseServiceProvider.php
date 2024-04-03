@@ -7,6 +7,7 @@ use App\src\Services\ArticleCategory\ArticleCategoryServiceProvider;
 use App\src\Services\BankAccount\BankAccountServiceProvider;
 use App\src\Services\Brand\BrandServiceProvider;
 use App\src\Services\CompanySetting\CompanyServiceProvider;
+use App\src\Services\Depot\DepotServiceProvider;
 use App\src\Services\Supplier\SupplierServiceProvider;
 use App\src\Services\Tax\TaxServiceProvider;
 use App\src\Services\TaxVariant\TaxVariantServiceProvider;
@@ -25,6 +26,7 @@ class BaseServiceProvider extends ServiceProvider
         SupplierServiceProvider::class,
         BrandServiceProvider::class,
         ArticleCategoryServiceProvider::class,
+        DepotServiceProvider::class,
     ];
 
     public function register(): void
