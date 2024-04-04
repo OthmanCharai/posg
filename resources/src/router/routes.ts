@@ -55,6 +55,16 @@ export default [
           ]
         }
       },
+      {
+        path: '/utilisateurs',
+        name: 'Users',
+        component: () => import('@pages/admin/Users.vue'),
+        meta: {
+          middleware: [
+              auth
+          ]
+        }
+      },
     ]
   },
 
