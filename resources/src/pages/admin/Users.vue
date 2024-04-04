@@ -15,5 +15,12 @@
       </a>
     </div>
   </PageHeader>
+
+  <div class="card table-list-card">
+    <Filter />
+    <div class="card-body">
+      <DataTable />
+    </div>
+  </div>
 </template>
 

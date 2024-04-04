@@ -347,10 +347,7 @@
     align-items: center;
     -webkit-box-align: center;
     -ms-flex-align: center;
-    justify-content: space-between;
-    -webkit-justify-content: space-between;
-    -ms-flex-pack: space-between;
-    margin-bottom: 25px;
+    gap: 10px;
 
     @include respond-below(custom575) {
         flex-wrap: wrap;
@@ -403,20 +400,13 @@
         .btn-searchset {
             @include margin-padding(null, null);
             @include rounded(50px);
-            @include position(absolute, 0, 0, null, null);
+            @include position(absolute, 2px, 0, null, null);
             border: 0;
-
-            .feather-search {
-                width: 14px;
-                height: 14px;
-            }
         }
     }
 }
 
 .search-path {
-    margin-left: auto;
-
     @include respond-below(custom575) {
         margin-right: 0;
         margin-left: 0;

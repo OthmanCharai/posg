@@ -643,12 +643,12 @@ caption {
   }
 
   .table-top {
-    padding: 24px 24px 0;
+    padding: 24px 24px 25px;
+    border-bottom: 1px solid $gray-400;
   }
 
   .table-responsive {
     padding: 24px;
-    border-top: 1px solid $gray-400;
 
     .dataTables_wrapper {
       border: 0;
@@ -956,8 +956,10 @@ td.ant-table-column-sort {
 }
 
 .ant-pagination-item-active {
-  background: #FF5B37 !important;
-  border-color: #FF5B37;
+  border-radius: 50% !important;
+  background: $primary !important;
+  border-color: $primary !important;
+  color: white !important
 }
 .ant-pagination-item {
   border-radius: 5px;
@@ -967,4 +969,10 @@ td.ant-table-column-sort {
 .ant-checkbox-inner {
   background-color: transparent;
   border-radius: 5px;
+}
+:where(.css-dev-only-do-not-override-1hsjdkk).ant-pagination .ant-pagination-item:not(.ant-pagination-item-active):hover {
+  border-radius: 50%;
+}
+.anticon svg {
+  vertical-align: unset;
 }
