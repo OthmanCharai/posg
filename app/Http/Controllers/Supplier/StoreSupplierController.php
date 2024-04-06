@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Supplier;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreSupplierRequest;
-use App\Http\Resources\SupplierResource;
+use App\Http\Transformers\SupplierTransformer;
 use App\src\Services\Supplier\SupplierServiceInterface;
 
 class StoreSupplierController extends Controller
@@ -18,6 +18,6 @@ class StoreSupplierController extends Controller
     {
         $supplier = $this->supplierService->create($request->validated());
 
-        return $this->response->withItem($supplier, new SupplierResource($supplier));
+        return $this->response->withItem($supplier, new SupplierTransformer($supplier));
     }
 }

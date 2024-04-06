@@ -2,6 +2,7 @@
 
 namespace App\src\Repositories\User;
 
+use App\src\Models\AdminRole\AdminRole;
 use App\src\Models\User\User;
 use App\src\Repositories\BaseRepository;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
@@ -22,6 +23,8 @@ class UserRepository extends BaseRepository
         $query = $this->getQueryBuilder();
 
         [$query, $queryOption] = $this->pipeThroughCriterias($query, $queryOption);
+
+        $query->with(User::RELATIONS[AdminRole::class]);
 
         $query->select(
             sprintf('%s.*', User::TABLE_NAME)

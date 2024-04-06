@@ -3,7 +3,9 @@
 namespace App\Http\Requests;
 
 use App\src\Models\AdminRole\AdminRole;
+use App\src\Models\Depot\Depot;
 use App\src\Models\User\User;
+use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Password;
@@ -21,7 +23,8 @@ class UpdateUserRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     * @return array<string, ValidationRule|arr
+     * ay<mixed>|string>
      */
     public function rules(): array
     {
@@ -44,6 +47,11 @@ class UpdateUserRequest extends FormRequest
                 'string',
                 sprintf('exists:%s,%s', AdminRole::TABLE_NAME, AdminRole::ID_COLUMN),
             ],
+            User::LOGO_COLUMN         => [
+                'nullable',
+                'image',
+            ],
+            User::DEPOT_ID_COLUMN     => ['nullable', Rule::exists(Depot::TABLE_NAME, Depot::ID_COLUMN)],
         ];
     }
 }

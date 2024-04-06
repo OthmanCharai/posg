@@ -2,6 +2,9 @@
 
 namespace App\src\Services\User;
 
+use App\src\Domain\Media\Exceptions\FileDeleteFromS3FailedException;
+use App\src\Domain\Media\Exceptions\FileUploadToS3FailedException;
+use App\src\Domain\Media\MediaService;
 use App\src\Models\User\User;
 use App\src\Repositories\User\UserRepository;
 use Illuminate\Database\Eloquent\Model;
@@ -14,7 +17,8 @@ readonly class UserService implements UserServiceInterface
 {
     public function __construct(
         private readonly UserRepository $userRepository,
-        private readonly HashManager $hashManager
+        private readonly HashManager $hashManager,
+        private readonly MediaService $mediaService
     ) {
     }
 
@@ -24,34 +28,59 @@ readonly class UserService implements UserServiceInterface
         return $this->userRepository->find($value, $columnName);
     }
 
+    /**
+     * @throws FileUploadToS3FailedException
+     * @throws FileDeleteFromS3FailedException
+     */
     public function update(User|Model $model, array $attributes): bool
     {
+        if ($uploadedFile = Arr::get($attributes, User::LOGO_COLUMN)) {
+            $this->mediaService->delete($model?->getLogo());
+            $uploadedFile = $this->mediaService->save('usr_', $uploadedFile);
+        }
+
         return $this->userRepository->update(
             $model->getId(),
             array_merge(
                 $attributes,
                 [
                     User::PASSWORD_COLUMN => $this->hashManager->make(Arr::get($attributes, User::PASSWORD_COLUMN)),
+                    User::LOGO_COLUMN     => $uploadedFile,
                 ]
             )
         );
     }
 
+    /**
+     * @throws FileUploadToS3FailedException
+     */
     public function create(array $attributes): User
     {
+        if ($uploadedFile = Arr::get($attributes, User::LOGO_COLUMN)) {
+            $uploadedFile = $this->mediaService->save('usr_', $uploadedFile);
+        }
+
         /* @var User */
         return $this->userRepository->create(
             array_merge(
                 $attributes,
                 [
                     User::PASSWORD_COLUMN => $this->hashManager->make(Arr::get($attributes, User::PASSWORD_COLUMN)),
+                    User::LOGO_COLUMN     => $uploadedFile,
                 ]
             )
         );
     }
 
+    /**
+     * @throws FileDeleteFromS3FailedException
+     */
     public function delete(User|Model $model, string $columnName = 'id'): bool
     {
+        if ($path = $model->getLogo()) {
+            $this->mediaService->delete($path);
+        }
+
         return $this->userRepository->delete($model->getId(), $columnName);
     }
 

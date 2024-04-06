@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\src\Models\AdminRole\AdminRole;
+use App\src\Models\Depot\Depot;
 use App\src\Models\User\User;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
@@ -41,6 +42,11 @@ class StoreUserRequest extends FormRequest
                 'string',
                 sprintf('exists:%s,%s', AdminRole::TABLE_NAME, AdminRole::ID_COLUMN),
             ],
+            User::LOGO_COLUMN         => [
+                'nullable',
+                'image',
+            ],
+            User::DEPOT_ID_COLUMN     => ['nullable', Rule::exists(Depot::TABLE_NAME, Depot::ID_COLUMN)],
         ];
     }
 }

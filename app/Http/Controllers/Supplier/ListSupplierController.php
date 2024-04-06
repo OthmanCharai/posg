@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Supplier;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\SupplierResource;
+use App\Http\Transformers\SupplierTransformer;
 use App\src\Services\Supplier\SupplierServiceInterface;
 use Illuminate\Http\Request;
 use YouCanShop\QueryOption\QueryOptionFactory;
@@ -19,7 +19,7 @@ class ListSupplierController extends Controller
     {
         $suppliers = $this->supplierService->getPaginated(QueryOptionFactory::createFromIlluminateRequest($request));
 
-        $suppliers = transform_paginator($suppliers,SupplierResource::class);
+        $suppliers = transform_paginator($suppliers, SupplierTransformer::class);
 
         return $this->response->withArray($suppliers->toArray());
     }

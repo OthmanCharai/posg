@@ -4,6 +4,7 @@ namespace App\src\Services\Depot;
 
 use App\src\Models\Depot\Depot;
 use App\src\Repositories\Depot\DepotRepository;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Arr;
@@ -57,5 +58,10 @@ class DepotService implements DepotServiceInterface
     public function getPaginated(QueryOption $queryOption): LengthAwarePaginator
     {
         return $this->depotRepository->getPaginated($queryOption);
+    }
+
+    public function get(): Collection
+    {
+        return $this->depotRepository->get();
     }
 }

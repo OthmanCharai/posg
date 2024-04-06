@@ -18,6 +18,8 @@ class User extends UuidModel implements JWTSubject, Authenticated
     public const ADDRESS_COLUMN = "address";
     public const PASSWORD_COLUMN = 'password';
     public const ROLE_ID_COLUMN = 'role_id';
+    public const LOGO_COLUMN = 'logo';
+    public const DEPOT_ID_COLUMN = 'depot_id';
 
     public const TABLE_NAME = "users";
     private const ID_PREFIX = 'usr_';
@@ -58,6 +60,11 @@ class User extends UuidModel implements JWTSubject, Authenticated
         return $this->getAttribute(self::ADDRESS_COLUMN);
     }
 
+    public function getRoleId(): string
+    {
+        return $this->getAttribute(self::ROLE_ID_COLUMN);
+    }
+
     public function getJWTIdentifier()
     {
         return $this->getKey();
@@ -66,5 +73,15 @@ class User extends UuidModel implements JWTSubject, Authenticated
     public function getJWTCustomClaims()
     {
         return [];
+    }
+
+    public function getLogo(): ?string
+    {
+        return $this->getAttribute(self::LOGO_COLUMN);
+    }
+
+    public function getDepotId(): ?string
+    {
+        return $this->getAttribute(self::DEPOT_ID_COLUMN);
     }
 }
