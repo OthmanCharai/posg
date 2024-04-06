@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Supplier;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateSupplierRequest;
-use App\Http\Resources\SupplierResource;
+use App\Http\Transformers\SupplierTransformer;
 use App\src\Models\Supplier\Supplier;
 use App\src\Services\Supplier\SupplierServiceInterface;
 
@@ -24,7 +24,7 @@ class UpdateSupplierController extends Controller
 
         return $this->response->withItem(
             $updatedSupplier,
-            new SupplierResource($updatedSupplier)
+            new SupplierTransformer($updatedSupplier)
         );
     }
 }

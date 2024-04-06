@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 
@@ -40,10 +41,48 @@ if (!function_exists('transform_paginator')) {
         $transformer
     ): LengthAwarePaginator {
         /** @var Collection $transformed */
-        $transformed = $paginator->map("$transformer::staticToArray");
+        $transformed = $paginator->map("$transformer::transform");
 
         $paginator->setCollection($transformed);
 
         return $paginator;
+    }
+}
+
+if (!function_exists('transform_collection')) {
+    /**
+     *
+     * @param Illuminate\Support\Collection $collection
+     * @param callable|string $transformer
+     *
+     * @return Illuminate\Support\Collection
+     */
+    function transform_collection(Collection $collection, callable|string $transformer): Illuminate\Support\Collection
+    {
+        return $collection->map("$transformer::transform");
+    }
+}
+
+if (!function_exists('throw_if_null')) {
+    function throw_if_null($data, Throwable $e): mixed
+    {
+        throw_if($data === null, $e);
+
+        return $data;
+    }
+}
+
+if (!function_exists('make')) {
+    /**
+     * @template TClass
+     *
+     * @param class-string<TClass> $class
+     *
+     * @return TClass
+     * @throws BindingResolutionException|BindingResolutionException
+     */
+    function make(string $class)
+    {
+        return app()->make($class);
     }
 }

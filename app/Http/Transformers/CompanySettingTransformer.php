@@ -1,25 +1,20 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Transformers;
 
 use App\src\Domain\Media\MediaService;
 use App\src\Models\CompanySetting\CompanySetting;
-use Illuminate\Http\Request;
-use Illuminate\Http\Resources\Json\JsonResource;
 
-class CompanySettingResource extends JsonResource
+class CompanySettingTransformer
 {
     /**
      * Transform the resource into an array.
      *
      * @return array<string, mixed>
      */
-    public function toArray(Request $request): array
+    public static function transform(CompanySetting $companySetting): array
     {
         $mediaService = app(MediaService::class);
-
-        /* @var CompanySetting $companySetting */
-        $companySetting = $this;
 
         return [
             CompanySetting::ID_COLUMN              => $companySetting->getId(),

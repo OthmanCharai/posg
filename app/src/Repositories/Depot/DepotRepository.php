@@ -40,6 +40,11 @@ class DepotRepository extends BaseRepository
         );
     }
 
+    public function get(): array|\Illuminate\Database\Eloquent\Collection
+    {
+        return $this->getQueryBuilder()->get();
+    }
+
     protected function getQueryOptionCriterias(): array
     {
         return [

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Tax;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\TaxResource;
+use App\Http\Transformers\TaxTransformer;
 use App\src\Models\Tax\Tax;
 
 class ShowTaxController extends Controller
@@ -12,6 +12,6 @@ class ShowTaxController extends Controller
     {
         $tax->load(Tax::TAX_VARIANT_RELATION);
 
-        return $this->response->withItem($tax, new TaxResource($tax));
+        return $this->response->withItem($tax, new TaxTransformer($tax));
     }
 }

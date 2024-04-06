@@ -17,6 +17,6 @@ class CreateArticleCategoryController extends Controller
     {
         $articleCategory = $this->articleCategoryService->create($request->validated());
 
-        return $this->response->withArray($articleCategory->toArray());
+        return $this->response->withArray(['article_category' => $articleCategory->toArray()]);
     }
 }

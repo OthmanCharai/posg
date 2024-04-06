@@ -4,6 +4,7 @@ namespace App\Http\Controllers\AdminRole;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreAdminRoleRequest;
+use App\Http\Transformers\RoleTransformer;
 use App\src\Domain\Permissions\Traits\ComputedPermissions;
 use App\src\Models\AdminRole\AdminRole;
 use App\src\Services\AdminRole\AdminRoleServiceInterface;
@@ -31,6 +32,7 @@ class StoreAdminRoleController extends Controller
             new DuplicateRolePermissionException($permissions)
         );
 
+        /* @var AdminRole $role */
         $role = $this->adminRoleService->create(
             array_merge(
                 $attributes,
@@ -40,6 +42,6 @@ class StoreAdminRoleController extends Controller
             )
         );
 
-        return $this->response->withArray($role->toArray());
+        return $this->response->withArray(['role' => RoleTransformer::transform($role)]);
     }
 }

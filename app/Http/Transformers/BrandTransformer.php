@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Transformers;
 
 use App\src\Domain\Media\MediaService;
 use App\src\Models\Brands\Brand;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class BrandResource extends JsonResource
+class BrandTransformer extends JsonResource
 {
     public static function staticToArray(Brand $brand): array
     {

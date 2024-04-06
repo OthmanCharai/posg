@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Brands;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateBrandRequest;
-use App\Http\Resources\BrandResource;
+use App\Http\Transformers\BrandTransformer;
 use App\src\Models\Brands\Brand;
 use App\src\Services\Brand\BrandServiceInterface;
 use Illuminate\Http\JsonResponse;
@@ -23,6 +23,6 @@ class UpdateBrandController extends Controller
         /* @var Brand $updatedBrand */
         $updatedBrand = $this->brandService->find($brand->getId());
 
-        return $this->response->withArray(BrandResource::staticToArray($updatedBrand));
+        return $this->response->withArray(BrandTransformer::staticToArray($updatedBrand));
     }
 }

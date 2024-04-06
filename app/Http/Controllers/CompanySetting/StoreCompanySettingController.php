@@ -4,9 +4,9 @@ namespace App\Http\Controllers\CompanySetting;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCompanySettingRequest;
-use App\Http\Resources\CompanySettingResource;
+use App\Http\Transformers\CompanySettingTransformer;
+use App\src\Models\CompanySetting\CompanySetting;
 use App\src\Services\CompanySetting\CompanySettingServiceInterface;
-use App\src\Transformers\CompanySettingTransformer;
 
 class StoreCompanySettingController extends Controller
 {
@@ -17,8 +17,9 @@ class StoreCompanySettingController extends Controller
 
     public function __invoke(StoreCompanySettingRequest $request): \Illuminate\Http\JsonResponse
     {
+        /* @var CompanySetting $companySetting */
         $companySetting = $this->companySettingService->create($request->validated());
 
-        return $this->response->withItem($companySetting, new companySettingResource($companySetting));
+        return $this->response->withArray(CompanySettingTransformer::transform($companySetting));
     }
 }

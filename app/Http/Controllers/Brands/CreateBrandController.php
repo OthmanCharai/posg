@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Brands;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreBrandRequest;
-use App\Http\Resources\BrandResource;
+use App\Http\Transformers\BrandTransformer;
 use App\src\Models\Brands\Brand;
 use App\src\Services\Brand\BrandServiceInterface;
 
@@ -20,6 +20,6 @@ class CreateBrandController extends Controller
         /* @var  Brand $brand */
         $brand = $this->brandService->create($request->validated());
 
-        return $this->response->withArray(BrandResource::staticToArray($brand));
+        return $this->response->withArray(BrandTransformer::staticToArray($brand));
     }
 }

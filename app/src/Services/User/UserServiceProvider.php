@@ -2,6 +2,7 @@
 
 namespace App\src\Services\User;
 
+use App\src\Domain\Media\MediaService;
 use App\src\Repositories\User\UserRepository;
 use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Hashing\HashManager;
@@ -13,7 +14,7 @@ class UserServiceProvider extends ServiceProvider implements DeferrableProvider
     {
         $this->app->bind(
             UserServiceInterface::class,
-            fn() => new UserService(new UserRepository(), app(HashManager::class))
+            fn() => new UserService(new UserRepository(), app(HashManager::class), app(MediaService::class))
         );
     }
 

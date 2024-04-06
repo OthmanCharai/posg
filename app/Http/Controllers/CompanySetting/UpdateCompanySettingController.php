@@ -4,10 +4,9 @@ namespace App\Http\Controllers\CompanySetting;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateCompanySettingRequest;
-use App\Http\Resources\CompanySettingResource;
+use App\Http\Transformers\CompanySettingTransformer;
 use App\src\Models\CompanySetting\CompanySetting;
 use App\src\Services\CompanySetting\CompanySettingServiceInterface;
-use App\src\Transformers\CompanySettingTransformer;
 
 class UpdateCompanySettingController extends Controller
 {
@@ -22,6 +21,6 @@ class UpdateCompanySettingController extends Controller
     ): \Illuminate\Http\JsonResponse {
         $this->companySettingService->update($companySetting, $request->validated());
 
-        return $this->response->withItem($companySetting, new companySettingResource($companySetting));
+        return $this->response->withArray(CompanySettingTransformer::transform($companySetting));
     }
 }
