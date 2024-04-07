@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { Toast } from "@/src/utils/toast";
 
 axios.defaults.headers.common = {
   'X-Requested-With': 'XMLHttpRequest',
@@ -6,18 +7,21 @@ axios.defaults.headers.common = {
 };
 
 axios.interceptors.request.use((config) => {
-  if (config.method === 'get') {
-    config = {
-      ...config,
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-      params: {
-        ...config.params,
-        t: Date.now(),
-      },
-    };
+  return config
+})
+
+axios.interceptors.response.use((response) => {
+  return response;
+}, (error) => {
+  if (error.response?.status === 401 || error.response?.status === 403 || error.response?.status === 419) {
+    if (location.pathname !== '/login') {
+      location.assign('/login');
+    }
+  } else {
+    Toast.error('Une erreur est survenue !');
   }
 
-  return config;
-});
+  return Promise.reject(error);
+})
 
 export default axios;

@@ -21,9 +21,6 @@ export const processErrors = (error: any, errorMessage: Ref<string>): void => {
     errorMessage.value = error.response.data.message;
 
     Toast.error(error.response.data.message);
-  } else {
-
-    Toast.error('Une erreur est survenue !');
   }
 };
 
