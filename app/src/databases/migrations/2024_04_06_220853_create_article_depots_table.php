@@ -17,11 +17,12 @@ return new class extends Migration {
             $table->string('article_id');
             $table->string('depot_id');
             $table->integer('quantity');
-            $table->foreign('article_id')->references(Article::class)->on(
-                Article::ID_COLUMN
+
+            $table->foreign('article_id')->references(Article::ID_COLUMN)->on(
+                Article::TABLE_NAME
             )->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreign('depot_id')->references(Depot::class)->on(
-                Depot::ID_COLUMN
+            $table->foreign('depot_id')->references(Depot::ID_COLUMN)->on(
+                Depot::TABLE_NAME
             )->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });

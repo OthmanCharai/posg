@@ -7,8 +7,8 @@ use App\Http\Controllers\Admins\UpdateAdminController;
 use App\src\Domain\Permissions\Constants\AdminPermission;
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('admins')
-    ->name('admins.')
+Route::prefix('users')
+    ->name('users.')
     ->middleware(['permissions:' . AdminPermission::MANAGE_ADMINS])
     ->group(function () {
         Route::get('/', ListAdminsController::class)

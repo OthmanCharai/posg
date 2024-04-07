@@ -5,8 +5,6 @@ namespace App\Http\Controllers\Admins;
 use App\Http\Controllers\Controller;
 use App\Http\Transformers\DepotTransformer;
 use App\Http\Transformers\UserTransformer;
-use App\src\Models\Depot\Depot;
-use App\src\Models\User\User;
 use App\src\Services\Depot\DepotServiceInterface;
 use App\src\Services\User\UserServiceInterface;
 use Illuminate\Http\Request;
@@ -27,8 +25,8 @@ class ListAdminsController extends Controller
 
         return $this->response->withArray(
             [
-                User::TABLE_NAME  => transform_paginator($admins, UserTransformer::class),
-                Depot::TABLE_NAME => transform_collection(
+                'users'  => transform_paginator($admins, UserTransformer::class),
+                'depots' => transform_collection(
                     $this->depotService->get(),
                     DepotTransformer::class
                 ),

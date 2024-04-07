@@ -16,6 +16,7 @@ return new class extends Migration {
             $table->string('id')->primary();
             $table->string('article_id');
             $table->string('compatibility_id');
+
             $table->foreign('article_id')->references(Article::TABLE_NAME)->on(
                 Article::ID_COLUMN
             )->cascadeOnDelete()->cascadeOnUpdate();
@@ -33,6 +34,7 @@ return new class extends Migration {
     public function down(): void
     {
         Schema::table('article_compatibilities',function (Blueprint $table));
+
         Schema::dropIfExists('article_compatibilities');
     }
 };
