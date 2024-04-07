@@ -28,15 +28,15 @@ return new class extends Migration {
             $table->string('brand_id');
             $table->string('article_category_id');
             $table->string('supplier_id');
-            $table->foreign('brand_id')->references(Brand::TABLE_NAME)->on(
-                Brand::ID_COLUMN
+            $table->foreign('brand_id')->references(Brand::ID_COLUMN)->on(
+                Brand::TABLE_NAME
             )->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreign('article_category_id')->references(
-                ArticleCategory::TABLE_NAME
+                ArticleCategory::ID_COLUMN
             )
-                ->on(ArticleCategory::ID_COLUMN)->cascadeOnUpdate()->cascadeOnDelete();
-            $table->foreign('supplier_id')->references(Supplier::TABLE_NAME)->on(
-                Supplier::ID_COLUMN
+                ->on(ArticleCategory::TABLE_NAME)->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreign('supplier_id')->references(Supplier::ID_COLUMN)->on(
+                Supplier::TABLE_NAME
             )
                 ->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();

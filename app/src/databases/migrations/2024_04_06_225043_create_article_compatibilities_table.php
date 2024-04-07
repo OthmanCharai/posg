@@ -14,7 +14,6 @@ return new class extends Migration {
             $table->string('id')->primary();
             $table->string('article_id');
             $table->string('compatibility_id');
-            $table->foreign();
             $table->timestamps();
         });
     }
