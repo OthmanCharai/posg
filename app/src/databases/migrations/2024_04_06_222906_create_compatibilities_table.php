@@ -10,7 +10,7 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('compatibilities', function (Blueprint $table) {
+        Schema::create('compatibilities', static function (Blueprint $table) {
             $table->string('id')->primary();
             $table->string('name');
             $table->timestamps();

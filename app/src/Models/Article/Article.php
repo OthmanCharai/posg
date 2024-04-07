@@ -22,6 +22,7 @@ class Article extends UuidModel
     public const CATEGORY_ID_COLUMN = 'article_category_id';
     public const SUPPLIER_ID_COLUMN = 'supplier_id';
     private const ID_PREFIX = 'art_';
+    public const TABLE_NAME = 'articles';
 
     public function getBarcode(): string
     {
