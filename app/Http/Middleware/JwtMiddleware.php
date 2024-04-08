@@ -9,7 +9,6 @@ use Exception;
 use Illuminate\Config\Repository;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Tymon\JWTAuth\Exceptions\TokenExpiredException;
 use Tymon\JWTAuth\Exceptions\TokenInvalidException;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
@@ -36,9 +35,10 @@ class JwtMiddleware
         }
         try {
             $user = JWTAuth::parseToken()->authenticate();
-            if ($user instanceof User) {
-                $this->userLocator->setUser($user);
+            if (!$user instanceof User) {
+                throw new TokenInvalidException();
             }
+            $this->userLocator->setUser($user);
         } catch (TokenInvalidException|Exception $e) {
             return response()->json(['status' => 'unauthorized'])->setStatusCode(419);
         }

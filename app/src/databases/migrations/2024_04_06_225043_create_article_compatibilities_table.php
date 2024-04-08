@@ -17,11 +17,11 @@ return new class extends Migration {
             $table->string('article_id');
             $table->string('compatibility_id');
 
-            $table->foreign('article_id')->references(Article::TABLE_NAME)->on(
-                Article::ID_COLUMN
+            $table->foreign('article_id')->references(Article::ID_COLUMN)->on(
+                Article::TABLE_NAME
             )->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreign('compatibility_id')->references(Compatibility::TABLE_NAME)
-                ->on(Compatibility::ID_COLUMN)
+            $table->foreign('compatibility_id')->references(Compatibility::ID_COLUMN)
+                ->on(Compatibility::TABLE_NAME)
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
             $table->timestamps();
@@ -33,7 +33,9 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::table('article_compatibilities',function (Blueprint $table));
+        Schema::table('article_compatibilities', static function (Blueprint $table) {
+            $table->dropForeign(['compatibility_id', 'article_id']);
+        });
 
         Schema::dropIfExists('article_compatibilities');
     }

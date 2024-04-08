@@ -4,6 +4,7 @@ namespace App\src\Models\Article;
 
 use App\src\Models\ArticleCategory\ArticleCategory;
 use App\src\Models\Brands\Brand;
+use App\src\Models\Compatibility\Compatibility;
 use App\src\Models\Depot\Depot;
 use App\src\Models\Supplier\Supplier;
 use Illuminate\Database\Eloquent\Collection;
@@ -17,6 +18,7 @@ trait HasRelations
         ArticleCategory::class => 'articleCategory',
         Brand::class           => 'brand',
         Depot::class           => 'depots',
+        Compatibility::class   => 'compatibilities',
     ];
 
     public function supplier(): BelongsTo
@@ -57,5 +59,15 @@ trait HasRelations
     public function getDepots(): Collection
     {
         return $this->getAttribute(self::RELATIONS[Depot::class]);
+    }
+
+    public function compatibilities(): BelongsToMany
+    {
+        return $this->belongsToMany(Compatibility::class);
+    }
+
+    public function getCompatibilities(): Collection
+    {
+        return $this->getAttribute(self::RELATIONS[Compatibility::class]);
     }
 }
