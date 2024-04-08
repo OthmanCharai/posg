@@ -18,5 +18,6 @@ export interface PaginatedResponse<T> extends PaginationMetadata {
 
 export interface AntPagination {
   current: number,
-  pageSize: number
+  pageSize: number,
+  total: number
 }

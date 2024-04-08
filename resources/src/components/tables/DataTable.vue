@@ -1,13 +1,19 @@
 <script setup lang="ts">
-defineProps<{
-  columns?: Array<object>,
-  data?: Array<object>,
+import type { AntPagination } from '@common/types/global/pagination';
+
+const props = defineProps<{
+  columns: Array<object>,
+  data: Array<object>,
   currentPage?: Number,
+  total?: Number
+  fetchedData: Function
 }>();
 
-const onChange = (pagination: any, filters: any, sorter: any, extra: any) => {
-  console.log("params", pagination, filters, sorter, extra);
+const onChange = async (pagination: AntPagination)  => {
+  await props.fetchedData(pagination.current);
+  console.log("params", pagination);
 };
+
 </script>
 
 <template>
@@ -18,6 +24,7 @@ const onChange = (pagination: any, filters: any, sorter: any, extra: any) => {
       :data-source="data"
       :pagination="{
         current: currentPage,
+        total: total,
         pageSize: 10
       }"
       @change="onChange"

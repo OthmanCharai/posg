@@ -3,7 +3,7 @@ import { useAxios, route } from '@/src/utils/axios-helper';
 import type { Users } from '@common/types/users';
 import type { PaginationMetadata } from '@common/types/global/pagination';
 import { extractPaginatorObject } from '@utils/pagination';
-import { createLengthBasedSorter } from '../../../composable/table-sorters';
+import { createLengthBasedSorter } from '@/src/composables/table-sorters';
 
 const { request, response } = useAxios();
 
@@ -28,15 +28,15 @@ const columns = [
   {
     title: "Role",
     customRender: ({ record }) => {
-      return record.role ? record.role.name : 'N/A';
+      return record.role ? record.role.name : '-';
     }
   },
 ];
 
-const getUsersList = async () => {
+const getUsersList = async (page: number = 1) => {
   await request({
     method: 'GET',
-    url: route('users.index')
+    url: route('users.index', `page=${page}`)
   })
 
   if (response.value && response.value.data) {
@@ -68,7 +68,13 @@ onMounted(async () => {
   <div class="card table-list-card">
     <Filter />
     <div class="card-body">
-      <DataTable :columns="columns" :data="usersData"/>
+      <DataTable
+        :columns="columns"
+        :data="usersData"
+        :current-page="pagination?.current_page"
+        :total="pagination?.total"
+        :fetched-data="getUsersList"
+      />
     </div>
   </div>
 </template>
