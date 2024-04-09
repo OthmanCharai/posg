@@ -7,6 +7,7 @@ const props = defineProps<{
   currentPage?: Number,
   total?: Number
   fetchedData: Function
+  loading?: boolean
 }>();
 
 const onChange = async (pagination: AntPagination)  => {
@@ -27,6 +28,7 @@ const onChange = async (pagination: AntPagination)  => {
         total: total,
         pageSize: 10
       }"
+      :loading="loading"
       @change="onChange"
     />
   </div>
