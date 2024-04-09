@@ -3,27 +3,27 @@ import { useAxios, route } from '@/src/utils/axios-helper';
 import type { Users } from '@common/types/users';
 import type { PaginationMetadata } from '@common/types/global/pagination';
 import { extractPaginatorObject } from '@utils/pagination';
-import { createLengthBasedSorter } from '@/src/composables/table-sorters';
+import { lengthSorter } from '@/src/composables/table-sorters';
 
-const { request, response } = useAxios();
+const { request, response, loading } = useAxios();
 
 const usersData = ref<Users[]>([]);
 const pagination = ref<PaginationMetadata>();
-const columns = [
+const columns = computed(() => [
   {
     title: "Nome",
     dataIndex: "first_name",
-    sorter: createLengthBasedSorter(usersData.value, 'first_name')
+    sorter: lengthSorter('first_name'),
   },
   {
     title: "Prenom",
     dataIndex: "last_name",
-    sorter: createLengthBasedSorter(usersData.value, 'last_name')
+    sorter: lengthSorter('last_name'),
   },
   {
     title: "Email",
     dataIndex: "email",
-    sorter: createLengthBasedSorter(usersData.value, 'email')
+    sorter: lengthSorter('email'),
   },
   {
     title: "Role",
@@ -31,7 +31,11 @@ const columns = [
       return record.role ? record.role.name : '-';
     }
   },
-];
+  {
+    title: 'Action',
+    key: 'action',
+  },
+]);
 
 const getUsersList = async (page: number = 1) => {
   await request({
@@ -74,7 +78,21 @@ onMounted(async () => {
         :current-page="pagination?.current_page"
         :total="pagination?.total"
         :fetched-data="getUsersList"
-      />
+        :loading="loading"
+      >
+        <template #bodyCell="{column, record}">
+          <template v-if="column.key === 'action'">
+            <td class="action-table-data">
+              <button class="action-button edit">
+                <vue-feather type="edit"></vue-feather>
+              </button>
+              <button class="action-button delete">
+                <vue-feather type="trash-2"></vue-feather>
+              </button>
+            </td>
+          </template>
+        </template>
+      </DataTable>
     </div>
   </div>
 </template>
