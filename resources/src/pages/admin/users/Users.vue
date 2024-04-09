@@ -80,18 +80,18 @@ onMounted(async () => {
         :fetched-data="getUsersList"
         :loading="loading"
       >
-      <template #bodyCell="{column, record}">
-        <template v-if="column.key === 'action'">
-          <td class="action-table-data">
-            <button class="action-button edit">
-              <vue-feather type="edit"></vue-feather>
-            </button>
-            <button class="action-button delete">
-              <vue-feather type="trash-2"></vue-feather>
-            </button>
-          </td>
+        <template #bodyCell="{column, record}">
+          <template v-if="column.key === 'action'">
+            <td class="action-table-data">
+              <button class="action-button edit">
+                <vue-feather type="edit"></vue-feather>
+              </button>
+              <button class="action-button delete">
+                <vue-feather type="trash-2"></vue-feather>
+              </button>
+            </td>
+          </template>
         </template>
-      </template>
       </DataTable>
     </div>
   </div>
