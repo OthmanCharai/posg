@@ -43,6 +43,10 @@
     color: $white;
     background-color: $primary;
     border-color: $primary;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: .5rem;
 }
 .btn-previw {
     background: $danger;
@@ -146,7 +150,7 @@
         margin-right: 10px;
         width: 16px;
         height: 16px;
-    }    
+    }
 }
 .btn-barcode {
     background: $danger;
@@ -174,7 +178,7 @@
         width: 16px;
         height: 16px;
     }
-    
+
 }
 .btn-primary.add-em-payroll {
     padding: 9px 11px;
@@ -230,7 +234,7 @@ button {
     }
 }
 .btn {
-    border-radius: $border-radius-sm;
+    border-radius: $border-radius-lg;
     padding: 0.625rem 1.25rem;
     padding: 0.5rem 0.85rem;
     font-size: 0.85rem;
@@ -270,6 +274,10 @@ button {
         }
     }
     &.btn-light {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: .5rem;
         background-color: $light;
         border: 1px solid $light;
         color: $gray-800 !important;
@@ -346,7 +354,7 @@ button {
       }
     }
   }
-  
+
   .btn-list {
     margin-block-end: -0.5rem;
   }
@@ -359,7 +367,7 @@ button {
   .btn-group-pill .btn:last-child {
     border-radius: 0 60px 60px 0;
   }
-  
+
   .btn-group-square .btn:first-child {
     border-radius: 0px 0 0 0px;
   }
@@ -622,7 +630,7 @@ button {
     &.active {
        box-shadow: 0 3px 12px rgba($primary, .2);
        border-color: $primary;
-    }    
+    }
 }
 .btn-soft-secondary {
     background-color: $secondary-300 !important;
@@ -634,7 +642,7 @@ button {
     &.active {
        box-shadow: 0 3px 12px rgba($secondary, .2);
        border-color: $secondary;
-    }    
+    }
 }
 .btn-soft-success {
     background-color: $success-300 !important;
@@ -646,7 +654,7 @@ button {
     &.active {
        box-shadow: 0 3px 12px rgba($success, .2);
        border-color: $success;
-    }    
+    }
 }
 .btn-soft-danger {
     background-color: $danger-300 !important;
@@ -658,7 +666,7 @@ button {
     &.active {
        box-shadow: 0 3px 12px rgba($danger, .2);
        border-color: $danger;
-    }    
+    }
 }
 .btn-soft-warning {
     background-color: $warning-300 !important;
@@ -670,7 +678,7 @@ button {
     &.active {
        box-shadow: 0 3px 12px rgba($warning, .2);
        border-color: $warning;
-    }    
+    }
 }
 .btn-soft-info {
     background-color: rgba($info, 0.3) !important;
@@ -682,7 +690,7 @@ button {
     &.active {
        box-shadow: 0 3px 12px rgba($info, .2);
        border-color: $info;
-    }    
+    }
 }
 .btn-soft-light {
     background-color: rgba($light, .9) !important;
@@ -695,7 +703,7 @@ button {
        box-shadow: 0 3px 12px rgba($light, .2);
        border-color: $light;
        border-color: $text-color;
-    }    
+    }
 }
 .btn-soft-dark {
     background-color: rgba($dark, 0.3) !important;
@@ -707,5 +715,5 @@ button {
     &.active {
        box-shadow: 0 3px 12px rgba($dark, .2);
        border-color: $dark;
-    }    
+    }
 }

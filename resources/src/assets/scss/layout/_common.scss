@@ -208,7 +208,7 @@
         color: $white;
         font-weight: $font-weight-bold;
         font-size: $font-size-14;
-        border-radius: 8px;
+        border-radius: $border-radius-lg;
 
         &:active {
             color: $white;
@@ -244,7 +244,7 @@
         color: $white;
         font-weight: $font-weight-bold;
         font-size: $font-size-14;
-        border-radius: 8px;
+        border-radius: $border-radius-lg;
         margin: 0 15px 0 15px;
 
         img {
@@ -277,7 +277,7 @@
         color: $white;
         font-weight: $font-weight-bold;
         font-size: $font-size-14;
-        border-radius: 8px;
+        border-radius: $border-radius-lg;
 
         img {
             filter: brightness(0) invert(1);

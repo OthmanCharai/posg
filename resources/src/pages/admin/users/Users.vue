@@ -58,10 +58,9 @@ onMounted(async () => {
   <PageHeader title="Utilisateurs">
     <div class="page-btn">
       <a
-        href="javascript:void(0);"
         class="btn btn-added color"
         data-bs-toggle="modal"
-        data-bs-target="#view-notes"
+        data-bs-target="#add-user"
         >
         <vue-feather type="plus-circle" class="me-2"></vue-feather>
         Ajouter
@@ -95,4 +94,14 @@ onMounted(async () => {
       </DataTable>
     </div>
   </div>
+
+  <Modal id="add-user">
+    <template #title>
+      Add users
+    </template>
+
+    <template #body>
+      hello world
+    </template>
+  </Modal>
 </template>
