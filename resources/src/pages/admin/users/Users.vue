@@ -4,9 +4,10 @@ import type { Users } from '@common/types/users';
 import type { PaginationMetadata } from '@common/types/global/pagination';
 import { extractPaginatorObject } from '@utils/pagination';
 import { lengthSorter } from '@/src/composables/table-sorters';
+import { Modal } from 'ant-design-vue';
 
 const { request, response, loading } = useAxios();
-
+const showModal = ref(false);
 const usersData = ref<Users[]>([]);
 const pagination = ref<PaginationMetadata>();
 const columns = computed(() => [
@@ -59,8 +60,7 @@ onMounted(async () => {
     <div class="page-btn">
       <a
         class="btn btn-added color"
-        data-bs-toggle="modal"
-        data-bs-target="#add-user"
+        @click="showModal= !showModal"
         >
         <vue-feather type="plus-circle" class="me-2"></vue-feather>
         Ajouter
@@ -95,13 +95,32 @@ onMounted(async () => {
     </div>
   </div>
 
-  <Modal id="add-user">
-    <template #title>
-      Add users
-    </template>
-
-    <template #body>
-      hello world
+  <Modal v-model:open="showModal" title="hello test test" :zIndex="1010">
+    <div class="border-top border-dark-subtle pt-3">
+    <div>
+      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestias rerum amet est incidunt asperiores!
+      Corrupti velit commodi deleniti optio quas non excepturi voluptates debitis,
+      vitae quia reprehenderit delectus minus sed.
+    </div>
+    </div>
+    <template #footer>
+      <div class="pt-3 d-flex justify-content-end gap-2 border-top border-dark-subtle">
+        <button
+          type="button"
+          class="btn btn-primary"
+        >
+          <vue-feather :size="16" type="save"></vue-feather>
+          <span>Enregister</span>
+        </button>
+        <button
+          type="button"
+          class="btn btn-light"
+          @click="showModal = false"
+        >
+          <vue-feather :size="16" type="x-octagon"></vue-feather>
+          <span>Annuler</span>
+        </button>
+      </div>
     </template>
   </Modal>
 </template>
