@@ -976,3 +976,42 @@ td.ant-table-column-sort {
 .anticon svg {
   vertical-align: unset;
 }
+
+table tbody td.action-table-data {
+  display: flex;
+  gap: 8px;
+
+  .action-button {
+    display: flex;
+    border: 1px solid rgba(145, 158, 171, 0.3);
+    border-radius: 8px;
+    background-color: white;
+    padding: 8px;
+
+    i {
+      width: 14px;
+      height: 14px;
+    }
+
+    $action-buttons: (
+      delete: #FF0000,
+      edit: #3577f1
+    );
+
+    @each $type, $color in $action-buttons {
+      &.#{$type} {
+        i {
+          color: $color;
+        }
+
+        &:hover {
+          background-color: $color;
+
+          i {
+            color: white;
+          }
+        }
+      }
+    }
+  }
+}
