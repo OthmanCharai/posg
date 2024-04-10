@@ -3,6 +3,7 @@
 namespace App\src\Services;
 
 use App\src\Services\AdminRole\AdminRoleServiceProvider;
+use App\src\Services\Article\ArticleServiceProvider;
 use App\src\Services\ArticleCategory\ArticleCategoryServiceProvider;
 use App\src\Services\BankAccount\BankAccountServiceProvider;
 use App\src\Services\Brand\BrandServiceProvider;
@@ -27,6 +28,8 @@ class BaseServiceProvider extends ServiceProvider
         BrandServiceProvider::class,
         ArticleCategoryServiceProvider::class,
         DepotServiceProvider::class,
+        ArticleServiceProvider::class,
+        CompanyServiceProvider::class,
     ];
 
     public function register(): void

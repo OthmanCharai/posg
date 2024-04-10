@@ -3,6 +3,8 @@
 namespace App\src\Models\Article;
 
 use App\src\Models\UuidModel;
+use Money\Currency;
+use Money\Money;
 
 class Article extends UuidModel
 {
@@ -21,8 +23,12 @@ class Article extends UuidModel
     public const BRAND_ID_COLUMN = 'brand_id';
     public const CATEGORY_ID_COLUMN = 'article_category_id';
     public const SUPPLIER_ID_COLUMN = 'supplier_id';
+
+    public final const CURRENCY_VALUE = 'CFA';
     private const ID_PREFIX = 'art_';
     public const TABLE_NAME = 'articles';
+
+    protected $guarded = [];
 
     public function getBarcode(): string
     {
@@ -39,24 +45,25 @@ class Article extends UuidModel
         return $this->getAttribute(self::LOCATION_COLUMN);
     }
 
-    public function getPurchasePrice(): int
+
+    public function getPurchasePrice(): Money
     {
-        return $this->getAttribute(self::PURCHASE_PRICE_COLUMN);
+        return new Money($this->getAttribute(self::PURCHASE_PRICE_COLUMN), new Currency(self::CURRENCY_VALUE));
     }
 
-    public function getWholesalePrice(): int
+    public function getWholesalePrice(): Money
     {
-        return $this->getAttribute(self::WHOLESALE_PRICE_COLUMN);
+        return new Money($this->getAttribute(self::WHOLESALE_PRICE_COLUMN), new Currency(self::CURRENCY_VALUE));
     }
 
-    public function getRetailPrice(): int
+    public function getRetailPrice(): Money
     {
-        return $this->getAttribute(self::RETAIL_PRICE_COLUMN);
+        return new Money($this->getAttribute(self::RETAIL_PRICE_COLUMN), new Currency(self::CURRENCY_VALUE));
     }
 
-    public function getLastSalePrice(): int
+    public function getLastSalePrice(): Money
     {
-        return $this->getAttribute(self::LAST_SALE_PRICE_COLUMN);
+        return new Money($this->getAttribute(self::LAST_SALE_PRICE_COLUMN), new Currency(self::CURRENCY_VALUE));
     }
 
     public function getStockType(): int

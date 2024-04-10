@@ -17,6 +17,7 @@ return new class extends Migration {
             $table->string('article_id');
             $table->string('depot_id');
             $table->integer('quantity');
+
             $table->foreign('article_id')->references(Article::ID_COLUMN)->on(
                 Article::TABLE_NAME
             )->cascadeOnDelete()->cascadeOnUpdate();

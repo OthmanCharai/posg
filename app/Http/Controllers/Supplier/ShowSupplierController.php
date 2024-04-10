@@ -10,6 +10,6 @@ class ShowSupplierController extends Controller
 {
     public function __invoke(Supplier $supplier): \Illuminate\Http\JsonResponse
     {
-        return $this->response->withItem($supplier, new SupplierTransformer($supplier));
+        return $this->response->withArray(SupplierTransformer::transform($supplier));
     }
 }
