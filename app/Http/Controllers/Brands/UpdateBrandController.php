@@ -23,6 +23,6 @@ class UpdateBrandController extends Controller
         /* @var Brand $updatedBrand */
         $updatedBrand = $this->brandService->find($brand->getId());
 
-        return $this->response->withArray(BrandTransformer::staticToArray($updatedBrand));
+        return $this->response->withArray(BrandTransformer::transform($updatedBrand));
     }
 }

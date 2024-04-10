@@ -1,6 +1,8 @@
 <?php
 
+use App\src\Models\UuidModel;
 use Illuminate\Contracts\Container\BindingResolutionException;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 
@@ -84,5 +86,14 @@ if (!function_exists('make')) {
     function make(string $class)
     {
         return app()->make($class);
+    }
+}
+
+if (!function_exists('load_relations')) {
+    function load_relations(UuidModel $model, array $relations): Model
+    {
+        $model->load(implode(',', array_values($relations)));
+
+        return $model;
     }
 }

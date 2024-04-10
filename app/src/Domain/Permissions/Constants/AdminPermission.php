@@ -12,6 +12,7 @@ final readonly class AdminPermission
     public final const  MANAGE_TAXES = 1 << 4;
     public final const MANAGE_BANK_ACCOUNT = 1 << 5;
     public final const MANAGE_SUPPLIER = 1 << 6;
+    public final const MANAGE_ARTICLE = 1 << 7;
 
     public final const PERMISSIONS = [
         'general'         => [
@@ -34,6 +35,9 @@ final readonly class AdminPermission
         ],
         'manage_supplier' => [
             self::MANAGE_SUPPLIER => 'manage suppliers',
+        ],
+        'manage_article'  => [
+            self::MANAGE_ARTICLE => 'manage article',
         ],
     ];
 }

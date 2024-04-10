@@ -12,11 +12,11 @@ use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Arr;
 use YouCanShop\QueryOption\QueryOption;
 
-class ArticleService implements ArticleServiceInterface
+readonly class ArticleService implements ArticleServiceInterface
 {
     public function __construct(
-        private readonly ArticleRepository $articleRepository,
-        private readonly MediaService $mediaService
+        private ArticleRepository $articleRepository,
+        private MediaService $mediaService
     ) {
     }
 
@@ -53,9 +53,20 @@ class ArticleService implements ArticleServiceInterface
 
     public function create(array $attributes): Model
     {
+        $uploadedImage = $this->mediaService->save('art_', Arr::get($attributes, Article::IMAGE_COLUMN));
+
+        return $this->articleRepository->create(
+            array_merge(
+                $attributes,
+                [
+                    Article::IMAGE_COLUMN => $uploadedImage,
+                ]
+            )
+        );
     }
 
-    public function delete(Model $model, string $columnName = 'id'): bool
+    public function delete(Model|Article $model, string $columnName = 'id'): bool
     {
+        return $this->articleRepository->delete($model->getId());
     }
 }

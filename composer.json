@@ -10,6 +10,7 @@
         "laravel/tinker": "^2.9",
         "league/flysystem-aws-s3-v3": "^3.26",
         "league/fractal": "^0.20.1",
+        "moneyphp/money": "^4.5",
         "tightenco/ziggy": "^2.1",
         "tuupola/ksuid": "^2.1",
         "tymon/jwt-auth": "^2.1",

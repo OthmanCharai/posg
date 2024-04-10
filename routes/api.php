@@ -23,5 +23,6 @@ Route::group(
         require __DIR__ . '/brands.php';
         require __DIR__ . '/article-categories.php';
         require __DIR__ . '/depots.php';
+        require __DIR__ . '/articles.php';
     }
 );

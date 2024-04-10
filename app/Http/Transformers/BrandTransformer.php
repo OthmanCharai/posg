@@ -4,28 +4,25 @@ namespace App\Http\Transformers;
 
 use App\src\Domain\Media\MediaService;
 use App\src\Models\Brands\Brand;
-use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Contracts\Container\BindingResolutionException;
 
-class BrandTransformer extends JsonResource
+class BrandTransformer
 {
-    public static function staticToArray(Brand $brand): array
-    {
-        $mediaService = app(MediaService::class);
-
-        return [
-            Brand::NAME_COLUMN         => $brand->getName(),
-            Brand::ABBREVIATION_COLUMN => $brand->getAbbriviation(),
-            Brand::LOGO_COLUMN         => $mediaService->url($brand->getLogo()),
-        ];
-    }
-
     /**
      * Transform the resource into an array.
      *
      * @return array<string, mixed>
+     * @throws BindingResolutionException
      */
-    public function toArray($request): array
+    public static function transform(Brand $brand): array
     {
-        return self::staticToArray($this->resource);
+        $mediaService = make(MediaService::class);
+
+        return [
+            Brand::NAME_COLUMN         => $brand->getName(),
+            Brand::LOGO_COLUMN         => $mediaService->url($brand->getLogo()),
+            Brand::ID_COLUMN           => $brand->getId(),
+            Brand::ABBREVIATION_COLUMN => $brand->getAbbriviation(),
+        ];
     }
 }
