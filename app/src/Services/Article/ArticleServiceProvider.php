@@ -13,7 +13,7 @@ class ArticleServiceProvider extends ServiceProvider implements DeferrableProvid
     {
         $this->app->bind(
             ArticleServiceInterface::class,
-            fn() => new ArticleService(new ArticleRepository(), new MediaService())
+            fn() => new ArticleService(new ArticleRepository(), make(MediaService::class))
         );
     }
 

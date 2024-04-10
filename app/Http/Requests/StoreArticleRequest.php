@@ -30,11 +30,11 @@ class StoreArticleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            Article::BARCODE_COLUMN         => ['required', 'unique'],
+            Article::BARCODE_COLUMN         => ['required', Rule::unique(Article::TABLE_NAME, Article::ID_COLUMN)],
             Article::NAME_COLUMN            => ['required', 'string', 'max:255'],
             Article::STOCK_TYPE_COLUMN      => [
                 'required',
-                'number',
+                'numeric',
                 'in:' . implode(',', array_column(ArticleStockTypeEnum::cases(), 'value')),
             ],
             Article::SUPPLIER_ID_COLUMN     => [
@@ -63,5 +63,25 @@ class StoreArticleRequest extends FormRequest
                 Rule::exists(Compatibility::class, Compatibility::ID_COLUMN),
             ],
         ];
+    }
+
+    protected function prepareForValidation(): void
+    {
+        $this->merge(
+            [
+                Article::PURCHASE_PRICE_COLUMN  => (int)$this->getInputSource()?->get(
+                        Article::PURCHASE_PRICE_COLUMN
+                    ) * 100,
+                Article::LAST_SALE_PRICE_COLUMN => (int)$this->getInputSource()?->get(
+                        Article::LAST_SALE_PRICE_COLUMN
+                    ) * 100,
+                Article::RETAIL_PRICE_COLUMN    => (int)$this->getInputSource()?->get(
+                        Article::RETAIL_PRICE_COLUMN
+                    ) * 100,
+                Article::WHOLESALE_PRICE_COLUMN => (int)$this->getInputSource()?->get(
+                        Article::WHOLESALE_PRICE_COLUMN
+                    ) * 100,
+            ]
+        );
     }
 }

@@ -64,4 +64,16 @@ class UpdateArticleRequest extends FormRequest
             ],
         ];
     }
+
+    protected function prepareForValidation(): void
+    {
+        $this->merge(
+            [
+                Article::PURCHASE_PRICE_COLUMN  => (int)$this->getInputSource(Article::PURCHASE_PRICE_COLUMN) * 100,
+                Article::LAST_SALE_PRICE_COLUMN => (int)$this->getInputSource(Article::LAST_SALE_PRICE_COLUMN) * 100,
+                Article::RETAIL_PRICE_COLUMN    => (int)$this->getInputSource(Article::RETAIL_PRICE_COLUMN) * 100,
+                Article::WHOLESALE_PRICE_COLUMN => (int)$this->getInputSource(Article::WHOLESALE_PRICE_COLUMN) * 100,
+            ]
+        );
+    }
 }

@@ -22,9 +22,8 @@ class UpdateSupplierController extends Controller
         /* @var Supplier $updatedSupplier */
         $updatedSupplier = $this->supplierService->find($supplier->getId());
 
-        return $this->response->withItem(
-            $updatedSupplier,
-            new SupplierTransformer($updatedSupplier)
+        return $this->response->withArray(
+            SupplierTransformer::transform($updatedSupplier),
         );
     }
 }

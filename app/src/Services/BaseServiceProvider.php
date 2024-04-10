@@ -29,6 +29,7 @@ class BaseServiceProvider extends ServiceProvider
         ArticleCategoryServiceProvider::class,
         DepotServiceProvider::class,
         ArticleServiceProvider::class,
+        CompanyServiceProvider::class,
     ];
 
     public function register(): void
