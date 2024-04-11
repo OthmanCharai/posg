@@ -4,6 +4,8 @@ import Vue from '@vitejs/plugin-vue';
 import AutoImport from 'unplugin-auto-import/vite';
 import Components from 'unplugin-vue-components/vite';
 import path from 'path';
+import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers';
+
 
 export default defineConfig({
   resolve: {
@@ -43,6 +45,11 @@ export default defineConfig({
       extensions: ['vue'],
       include: [/\.vue$/, /\.vue\?vue/],
       dts: 'resources/src/components.d.ts',
+      resolvers: [
+        AntDesignVueResolver({
+          importStyle: false, // css in js
+        }),
+      ],
     }),
   ],
 

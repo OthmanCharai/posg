@@ -7,6 +7,10 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    AButton: typeof import('ant-design-vue/es')['Button']
+    AResult: typeof import('ant-design-vue/es')['Result']
+    ASpace: typeof import('ant-design-vue/es')['Space']
+    ATable: typeof import('ant-design-vue/es')['Table']
     DataTable: typeof import('./components/tables/DataTable.vue')['default']
     Filter: typeof import('./components/Filter.vue')['default']
     PageHeader: typeof import('./components/PageHeader.vue')['default']
