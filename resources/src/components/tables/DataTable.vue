@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { AntPagination } from '@common/types/global/pagination';
+import { Table } from 'ant-design-vue';
 
 const props = defineProps<{
   columns: Array<object>,
@@ -19,7 +20,7 @@ const onChange = async (pagination: AntPagination)  => {
 
 <template>
   <div class="table-responsive">
-    <a-table
+    <Table
       outlined
       :columns="columns"
       :data-source="data"
@@ -34,7 +35,7 @@ const onChange = async (pagination: AntPagination)  => {
       <template v-for="(slotName, index) in Object.keys($slots)" :key="index" v-slot:[slotName]="slotProps">
         <slot :name="slotName" v-bind="slotProps"></slot>
       </template>
-    </a-table>
+    </Table>
   </div>
 </template>
 
