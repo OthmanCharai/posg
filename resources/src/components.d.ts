@@ -10,7 +10,6 @@ declare module 'vue' {
     AApp: typeof import('ant-design-vue/es')['App']
     AConfigProvider: typeof import('ant-design-vue/es')['ConfigProvider']
     AResult: typeof import('ant-design-vue/es')['Result']
-    ASpace: typeof import('ant-design-vue/es')['Space']
     ATable: typeof import('ant-design-vue/es')['Table']
     DataTable: typeof import('./components/tables/DataTable.vue')['default']
     Filter: typeof import('./components/Filter.vue')['default']
