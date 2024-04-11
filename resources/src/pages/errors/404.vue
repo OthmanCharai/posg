@@ -1,6 +1,10 @@
+<script setup lang="ts">
+import { Result } from 'ant-design-vue';
+</script>
+
 <template>
   <div class="wrong-page-wrapper">
-    <a-result status="404" title="404" sub-title="Désolé, la page que vous avez visitée n'existe pas.">
+    <Result status="404" title="404" sub-title="Désolé, la page que vous avez visitée n'existe pas.">
       <template #extra>
         <a
           href="/"
@@ -9,7 +13,7 @@
           Retour à l'accueil
         </a>
       </template>
-    </a-result>
+    </Result>
   </div>
 </template>
 
