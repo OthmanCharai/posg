@@ -94,7 +94,7 @@
                 width: 0.5rem;
                 height: 0.5rem;
             }
-        }    
+        }
     }
     &.avatar-md {
         width: 2.5rem;
@@ -115,7 +115,7 @@
                 width: 0.75rem;
                 height: 0.75rem;
             }
-        }    
+        }
         svg {
             width: 1.5rem;
             height: 1.5rem;
@@ -135,7 +135,7 @@
                 width: 0.8rem;
                 height: 0.8rem;
             }
-        }    
+        }
         svg {
             width: 1.8rem;
             height: 1.8rem;
@@ -155,7 +155,7 @@
                 width: 0.95rem;
                 height: 0.95rem;
             }
-        }    
+        }
     }
     &.avatar-xxl {
         width: 5rem;
@@ -172,7 +172,7 @@
                 height: 1.05rem;
                 inset-block-end: 0.25rem;
             }
-        }    
+        }
     }
     &.avatar-xxxl {
         width: 6rem;
@@ -189,100 +189,6 @@
                 height: 1.05rem;
                 inset-block-end: 0.25rem;
             }
-        }    
-    }
-}
-.avatar-list-stacked {
-    padding: 0;
-    &.avatar-group-overlapped {
-        .avatar {
-            margin-right: -.875rem;
-            &:hover{
-                z-index:1;
-            }
-        }
-    }	
-    &.avatar-group-lg {
-        .avatar { 
-            width: 3.25rem;
-            height: 3.25rem;
-            >.initial-wrap {
-                font-size: .95rem;
-            }
-        }
-        &.avatar-group-overlapped .avatar {
-            margin-right: -1rem;
-        }	
-    }
-    &.avatar-group-sm {
-        .avatar { 
-            width: 2rem;
-            height: 2rem;
-            >.initial-wrap {
-                font-size: .6rem;
-            }
-        }
-        &.avatar-group-overlapped .avatar {
-            margin-right: -0.625rem;
-        }	
-    }
-    .avatar {
-        margin-inline-end: -0.875rem !important;
-        border: 1px solid rgba(0,0,0,0.05);
-        vertical-align: middle;
-        transition: transform ease 200ms;
-        &:last-child {
-            margin-inline-end: 0 !important;
-        }
-        &:hover {
-            z-index: 1;
-            transform: translateY(-0.188rem);
         }
     }
-}
-.avatar-group {
-	display: -webkit-inline-box;
-	display: -ms-inline-flexbox;
-	display: inline-flex;
-	.avatar { 
-		width: 2.625rem;
-		height: 2.625rem;
-		.avatar-img,
-		>.initial-wrap {
-			border:2px solid $white;
-			font-size: .9rem;
-		}
-	}
-	&.avatar-group-overlapped {
-		.avatar {
-			margin-right: -.875rem;
-			&:hover{
-				z-index:1;
-			}
-		}
-	}	
-	&.avatar-group-lg {
-		.avatar { 
-			width: 3.25rem;
-			height: 3.25rem;
-			>.initial-wrap {
-				font-size: .95rem;
-			}
-		}
-		&.avatar-group-overlapped .avatar {
-			margin-right: -1rem;
-		}	
-	}
-	&.avatar-group-sm {
-		.avatar { 
-			width: 2rem;
-			height: 2rem;
-			>.initial-wrap {
-				font-size: .6rem;
-			}
-		}
-		&.avatar-group-overlapped .avatar {
-			margin-right: -0.625rem;
-		}	
-	}
 }
