@@ -26,7 +26,7 @@
       "@stores/*": ["resources/src/stores/*"]
     }
   },
-  "include": ["./**/*.ts", "./**/*.d.ts", "./**/*.vue"],
+  "include": ["./**/*.ts", "./**/*.d.ts", "./**/*.vue", "postcss.config.js"],
   "exclude": [
     "node_modules",
     "public"
