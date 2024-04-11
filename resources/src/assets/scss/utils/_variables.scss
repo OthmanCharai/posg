@@ -130,20 +130,6 @@ $gray-700: #495057;
 $gray-800: #343a40;
 $gray-900: #212529;
 
-$colors: (
-  "blue":       $blue,
-  "indigo":     $indigo,
-  "purple":     $purple,
-  "pink":       $pink,
-  "orange":     $orange,
-  "yellow":     $yellow,
-  "green":      $green,
-  "teal":       $teal,
-  "cyan":       $cyan,
-  "white":      $white,
-  "gray":       $gray-600,
-  "gray-dark":  $gray-800
-);
 
 $theme-colors: (
     "primary": $primary,
@@ -173,32 +159,6 @@ $navy: #353570;
 $theme-title: #97A2D2;
 $input-bg: #2c2c50;
 $form-control-bg: #ffffff;
-
-// Social Icons Colors
-$facebook: #3B5998;
-$twitter: #00ACEE;
-$google: #DD4B39;
-$telegram: #0088CC;
-$linkedin: #0E76A8;
-$youtube: #C4302B;
-$instagram: #3F729B;
-$reddit: #C6C6C6;
-$pinterest: #cc2127;
-$vk: #2B587A;
-$rss: #EE802F;
-$skype: #00AFF0;
-$xing: #126567;
-$tumblr: #34526F;
-$email: #6567A5;
-$delicious: #205CC0;
-$stumbleupon: #F74425;
-$digg: #191919;
-$blogger: #FC4F08;
-$flickr: #FF0084;
-$vimeo: #86C9EF;
-$yahoo: #720E9E;
-$gplus: #DD4B39;
-$appstore: #000;
 
 // Gradient Variables
 $primary-gradient: linear-gradient(to right, $primary 0%, #8e77fa 100%);
