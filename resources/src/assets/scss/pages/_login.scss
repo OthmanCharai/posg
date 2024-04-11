@@ -7,28 +7,6 @@
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    &.bg-img {
-        background-image: url(../img/authentication/login-img.jpg);
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center;
-        .login-content {
-            background: rgba(255, 255, 255, 0.80);
-            backdrop-filter: blur(17px);
-        }
-        &.register-wrap {
-            background-image: url(../img/authentication/register-img.jpg);
-        }
-        &.forgot-pass-wrap {
-            background-image: url(../img/authentication/forgot-password-img.jpg);
-        }
-        &.reset-pass-wrap {
-            background-image: url(../img/authentication/reset-password-img.jpg);
-        }
-        &.email-veri-wrap {
-            background-image: url(../img/authentication/email-verification-img.jpg);
-        }
-    }
     .login-content {
         width: 50%;
         height: 100vh;

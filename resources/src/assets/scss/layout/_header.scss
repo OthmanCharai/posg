@@ -954,9 +954,6 @@ hr{
                     &.active{
                         color: $white;
                     }
-                    &.active,&:hover{
-                        background: #F7F7F7 url(../img/icons/check.svg) no-repeat calc(100% - 12px) center;
-                    }
                 }
                 a{
                     img{
