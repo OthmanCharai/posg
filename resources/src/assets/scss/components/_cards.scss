@@ -25,17 +25,17 @@
         .subtitle {
             padding-top: 0.3125rem;
             font-size: 0.875rem;
-            line-height: 1.5; 
+            line-height: 1.5;
         }
     }
     .card-footer {
         border-color: $border-color;
         background: transparent;
         padding: 1rem 1.25rem 1rem;
-    }    
+    }
 }
 .card-group {
-  .card {    
+  .card {
       margin-bottom: 1.5rem;
   }
 }
@@ -326,66 +326,7 @@
   background-color: rgba($danger, 0.075);
   border-color: rgba($danger, 0.5);
 }
-.btn-facebook {
-  background-color: $facebook;
-  color: $white;
-  border: 1px solid $facebook;
-  &:hover,
-  &:focus,
-  &:active {
-    background-color: $facebook !important;
-    color: $white !important;
-    border: 1px solid $facebook !important;
-  }
-}
-.btn-instagram {
-  background: #f09433;
-  background: -moz-linear-gradient(
-    45deg,
-    #f09433 0%,
-    #e6683c 25%,
-    #dc2743 50%,
-    #cc2366 75%,
-    #bc1888 100%
-  );
-  background: -webkit-linear-gradient(
-    45deg,
-    #f09433 0%,
-    #e6683c 25%,
-    #dc2743 50%,
-    #cc2366 75%,
-    #bc1888 100%
-  );
-  background: linear-gradient(
-    45deg,
-    #f09433 0%,
-    #e6683c 25%,
-    #dc2743 50%,
-    #cc2366 75%,
-    #bc1888 100%
-  );
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f09433', endColorstr='#bc1888',GradientType=1 );
-  color: $white;
-  border: 1px solid transparent;
-  &:hover,
-  &:focus,
-  &:active {
-    color: $white;
-    border: 1px solid transparent;
-  }
-}
-.btn-twitter {
-  background-color: $twitter;
-  color: $white;
-  border: 1px solid $twitter;
-  &:hover,
-  &:focus,
-  &:active {
-    background-color: $twitter !important;
-    color: $white !important;
-    border: 1px solid $twitter !important;
-  }
-}
+
 .btn-icon {
     width: 2.313rem;
     height: 2.313rem;
