@@ -11,6 +11,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
 import "sweetalert2/dist/sweetalert2.min.css";
 import "@/src/assets/scss/main.scss";
+import 'ant-design-vue/dist/reset.css';
 
 const app = createApp(App);
 
