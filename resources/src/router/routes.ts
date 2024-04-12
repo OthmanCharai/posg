@@ -58,7 +58,7 @@ export default [
       {
         path: '/utilisateurs',
         name: 'Users',
-        component: () => import('@/src/pages/admin/users/Users.vue'),
+        component: () => import('@/src/pages/admin/users/UsersList.vue'),
         meta: {
           middleware: [
               auth
