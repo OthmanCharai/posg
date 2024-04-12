@@ -49,6 +49,11 @@ class AdminRoleRepository extends BaseRepository
         );
     }
 
+    public function get(): \Illuminate\Database\Eloquent\Collection|array
+    {
+        return $this->getQueryBuilder()->get();
+    }
+
     protected function getQueryOptionCriterias(): array
     {
         return [

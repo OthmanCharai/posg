@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admins;
 
 use App\Http\Controllers\Controller;
 use App\Http\Transformers\DepotTransformer;
+use App\Http\Transformers\RoleTransformer;
 use App\Http\Transformers\UserTransformer;
+use App\src\Services\AdminRole\AdminRoleServiceInterface;
 use App\src\Services\Depot\DepotServiceInterface;
 use App\src\Services\User\UserServiceInterface;
 use Illuminate\Http\Request;
@@ -14,7 +16,8 @@ class ListAdminsController extends Controller
 {
     public function __construct(
         private readonly UserServiceInterface $userService,
-        private readonly DepotServiceInterface $depotService
+        private readonly DepotServiceInterface $depotService,
+        private readonly AdminRoleServiceInterface $adminRoleService
     ) {
         parent::__construct();
     }
@@ -29,8 +32,8 @@ class ListAdminsController extends Controller
                 'depots' => transform_collection(
                     $this->depotService->get(),
                     DepotTransformer::class
-                ),
-
+                )->toArray(),
+                'roles'  => transform_collection($this->adminRoleService->get(), RoleTransformer::class)->toArray(),
             ]
         );
     }
