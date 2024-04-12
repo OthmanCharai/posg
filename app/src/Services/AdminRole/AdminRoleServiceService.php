@@ -4,6 +4,7 @@ namespace App\src\Services\AdminRole;
 
 use App\src\Models\AdminRole\AdminRole;
 use App\src\Repositories\AdminRole\AdminRoleRepository;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\LengthAwarePaginator;
 use YouCanShop\QueryOption\QueryOption;
@@ -44,5 +45,10 @@ readonly class AdminRoleServiceService implements AdminRoleServiceInterface
     public function getPaginated(QueryOption $queryOption): LengthAwarePaginator
     {
         return $this->adminRoleRepository->getPaginated($queryOption);
+    }
+
+    public function get(): Collection
+    {
+        return $this->adminRoleRepository->get();
     }
 }
