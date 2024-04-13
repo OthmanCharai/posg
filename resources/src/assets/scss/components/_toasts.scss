@@ -1,19 +1,19 @@
 // sweetalert2 toasts
 .colored-toast {
   &.swal2-icon-success {
-    background-color: #a5dc86 !important;
+    background-color: $success !important;
   }
 
   &.swal2-icon-error {
-    background-color: #f27474 !important;
+    background-color: $danger !important;
   }
 
   &.swal2-icon-warning {
-    background-color: #f8bb86 !important;
+    background-color: $warning !important;
   }
 
   &.swal2-icon-info {
-    background-color: #3fc3ee !important;
+    background-color: $info !important;
   }
 
   &.swal2-icon-question {

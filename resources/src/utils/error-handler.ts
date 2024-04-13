@@ -44,6 +44,15 @@ export const hasError = (field: string): boolean => {
 };
 
 /**
+ * set 'error' if error exist
+ * @param field - field name
+ */
+export const isError = (field: string): string => {
+  return Boolean(errors[field]) ? 'error' : '';
+};
+
+
+/**
  * Clear error from field
  * @param field - field name
  */

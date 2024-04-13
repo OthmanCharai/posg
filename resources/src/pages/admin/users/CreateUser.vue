@@ -5,7 +5,11 @@ import { useUsers } from '@/src/stores/users';
 import { deepClone } from '@/src/utils/object';
 import type { Roles } from '@/src/common/types/global/roles';
 import { dropDownFilter } from '@/src/composables/filters';
+import { useAxios, route } from '@utils/axios-helper';
+import { clearError, getErrorMessage, isError } from "@/src/utils/error-handler";
+import { Toast } from "@utils/toast";
 
+const { request, response } = useAxios();
 const store = useUsers();
 const roles = ref<Roles[]>([]);
 const rolesList = ref<SelectProps['options']>([]);
@@ -29,14 +33,20 @@ const data = ref<Users>({
   phone_number: '',
   address: '',
   logo: '',
-  role: {
-    id: '',
-  }
+  role_id: ''
 })
 
 // Submit data
-const handleSubmission = () => {
-  console.log('hello');
+const handleSubmission = async () => {
+  await request({
+        method: 'POST',
+        url: route('users.create.submit'),
+        data: data.value
+      })
+
+  if (response.value) {
+    Toast.success('Votre compte a été crée avec succès.');
+  }
 };
 
 // upload image
@@ -51,60 +61,56 @@ const imageUrl = ref<string>('');
     <section class="grid grid-cols-2 gap-4">
       <div class="grid gap-4">
         <a-form-item
-          validate-status=""
-          help=""
+          :validate-status="isError('email')"
+          :help="getErrorMessage('email')"
         >
-          <a-input addonBefore="Email" v-model:value="data.email" />
+          <a-input type="email" addonBefore="Email" v-model:value="data.email" @change="clearError('email')" />
         </a-form-item>
-
         <a-form-item
-          validate-status=""
-          help=""
+          :validate-status="isError('password')"
+          :help="getErrorMessage('password')"
         >
-          <a-input addonBefore="Mot de passe" v-model:value="data.password" />
+          <a-input-password addonBefore="Mot de passe" v-model:value="data.password" @change="clearError('password')"/>
         </a-form-item>
-
         <a-form-item
-          validate-status=""
-          help=""
+          :validate-status="isError('first_name')"
+          :help="getErrorMessage('first_name')"
         >
-          <a-input addonBefore="Nom" v-model:value="data.first_name" />
+          <a-input addonBefore="Nom" v-model:value="data.first_name"  @change="clearError('first_name')" />
         </a-form-item>
-
         <a-form-item
-          validate-status=""
-          help=""
+          :validate-status="isError('last_name')"
+          :help="getErrorMessage('last_name')"
         >
-          <a-input addonBefore="Prenom" v-model:value="data.last_name" />
+          <a-input addonBefore="Prenom" v-model:value="data.last_name"  @change="clearError('last_name')"/>
         </a-form-item>
       </div>
       <div>
-        <a-form-item
-          validate-status=""
-          help=""
-        >
-          <a-textarea placeholder="Address" class="h-[88px!important] mb-4" v-model:value="data.address" />
+        <a-form-item>
+          <a-textarea placeholder="Address" class="h-[88px!important] mb-4" v-model:value="data.address"/>
         </a-form-item>
-
-        <a-form-item
-          validate-status=""
-          help=""
-        >
-          <a-input addonBefore="Tel" v-model:value="data.phone_number" />
+        <a-form-item>
+          <a-input type="number" addonBefore="Tel" v-model:value="data.phone_number"/>
         </a-form-item>
       </div>
     </section>
     <div class="grid grid-cols-2 gap-4">
       <section class="middle-section">
         <a-divider class="!text-xl">Roles</a-divider>
+        <a-form-item
+          :validate-status="isError('role_id')"
+          :help="getErrorMessage('role_id')"
+        >
         <a-select
-          v-model:value="data.role.id"
+          v-model:value="data.role_id"
           show-search
           style="width: 100%;"
           placeholder="Role"
           :options="rolesList"
           :filter-option="dropDownFilter"
+          @change="clearError('role_id')"
         ></a-select>
+        </a-form-item>
       </section>
       <section class="last-section">
         <a-divider class="!text-xl">Image</a-divider>
@@ -126,10 +132,3 @@ const imageUrl = ref<string>('');
     </div>
   </ModalWrapper>
 </template>
-
-<style scoped>
-  :deep(.ant-select-selector) {
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
-  }
-</style>
