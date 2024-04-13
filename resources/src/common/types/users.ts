@@ -9,5 +9,5 @@ export interface Users {
   password: string,
   address: string,
   logo: string | null,
-  role: Pick<Roles, 'id' & 'name'>
+  role: Pick<Roles, 'id'>
 }

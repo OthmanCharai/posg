@@ -3,14 +3,23 @@ import type { Users } from '@common/types/users';
 import { SelectProps } from 'ant-design-vue/es/vc-select/Select';
 import { useUsers } from '@/src/stores/users';
 import { deepClone } from '@/src/utils/object';
+import type { Roles } from '@/src/common/types/global/roles';
+import { dropDownFilter } from '@/src/composables/filters';
 
 const store = useUsers();
+const roles = ref<Roles[]>([]);
+const rolesList = ref<SelectProps['options']>([]);
+const showModal = inject('showCreateModal') as Ref<boolean>;
 
 watchEffect(() => {
-  console.log('Current roles:', deepClone(store.roles));
+  roles.value = deepClone(store.roles);
+  if (roles.value.length > 0) {
+    rolesList.value = roles.value.map(role => ({
+      label: role.name,
+      value: role.id
+    }));
+  }
 });
-
-const showModal = inject('showCreateModal') as Ref<boolean>;
 
 const data = ref<Users>({
   first_name: '',
@@ -22,24 +31,15 @@ const data = ref<Users>({
   logo: '',
   role: {
     id: '',
-    name: ''
   }
 })
 
-const options = ref<SelectProps['options']>([
-  { value: 'jack', label: 'Jack' },
-  { value: 'lucy', label: 'Lucy' },
-  { value: 'tom', label: 'Tom' },
-]);
-
-const filterOption = (input: string, option: any) => {
-  return option.value.toLowerCase().indexOf(input.toLowerCase()) >= 0;
-};
-
+// Submit data
 const handleSubmission = () => {
   console.log('hello');
 };
 
+// upload image
 const fileList = ref([]);
 const imgLoader = ref<boolean>(false);
 const imageUrl = ref<string>('');
@@ -98,12 +98,12 @@ const imageUrl = ref<string>('');
       <section class="middle-section">
         <a-divider class="!text-xl">Roles</a-divider>
         <a-select
-          v-model:value="data.userName"
+          v-model:value="data.role.id"
           show-search
           style="width: 100%;"
           placeholder="Role"
-          :options="options"
-          :filter-option="filterOption"
+          :options="rolesList"
+          :filter-option="dropDownFilter"
         ></a-select>
       </section>
       <section class="last-section">
