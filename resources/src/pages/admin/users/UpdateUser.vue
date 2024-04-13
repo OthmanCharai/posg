@@ -97,8 +97,6 @@ const imageUrl = ref<string>('');
     >
       <img v-if="imageUrl" :src="imageUrl" alt="avatar" />
       <div v-else>
-        <loading-outlined v-if="imgLoader"></loading-outlined>
-        <plus-outlined v-else></plus-outlined>
         <div class="ant-upload-text">Upload</div>
       </div>
     </a-upload>

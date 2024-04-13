@@ -1,16 +1,10 @@
 <script setup lang="ts">
-import { useAxios, route } from '@/src/utils/axios-helper';
-import type { Users } from '@common/types/users';
-import type { PaginationMetadata } from '@common/types/global/pagination';
-import { extractPaginatorObject } from '@utils/pagination';
 import { lengthSorter } from '@/src/composables/table-sorters';
 import CreateUser from './CreateUser.vue';
 import UpdateUser from './UpdateUser.vue';
+import { useUsers } from '@/src/stores/users';
 
-const { request, response, loading } = useAxios();
-
-const usersData = ref<Users[]>([]);
-const pagination = ref<PaginationMetadata>();
+const store = useUsers();
 const columns = computed(() => [
   {
     title: "Nome",
@@ -39,26 +33,14 @@ const columns = computed(() => [
   },
 ]);
 
-const getUsersList = async (page: number = 1) => {
-  await request({
-    method: 'GET',
-    url: route('users.index', `page=${page}`)
-  })
-
-  if (response.value && response.value.data) {
-    usersData.value = response.value.data.users.data;
-    pagination.value = extractPaginatorObject(response.value.data.users);
-  }
-}
-
 const showCreateModal = ref(false);
 provide('showCreateModal', showCreateModal);
 
-const showUpdateModal = ref(true);
+const showUpdateModal = ref(false);
 provide('showUpdateModal', showUpdateModal);
 
 onMounted(async () => {
-  await getUsersList();
+  await store.getUsersList();
 })
 </script>
 
@@ -81,11 +63,11 @@ onMounted(async () => {
     <div class="card-body">
       <DataTable
         :columns="columns"
-        :data="usersData"
-        :current-page="pagination?.current_page"
-        :total="pagination?.total"
-        :fetched-data="getUsersList"
-        :loading="loading"
+        :data="store.usersData"
+        :current-page="store.pagination.current_page"
+        :total="store.pagination.total"
+        :fetched-data="store.getUsersList"
+        :loading="store.loading"
       >
         <template #bodyCell="{column, record}">
           <template v-if="column.key === 'action'">

@@ -1,3 +1,5 @@
+import { Roles } from "./global/roles";
+
 export interface Users {
   id?: string,
   first_name: string,
@@ -6,11 +8,6 @@ export interface Users {
   phone_number: string,
   password: string,
   address: string,
-  logo?: string,
-  role?: {
-    id: string,
-    name: string,
-    description: string,
-    permissions: number
-  }
+  logo: string | null,
+  role: Pick<Roles, 'id' & 'name'>
 }

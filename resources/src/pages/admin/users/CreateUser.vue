@@ -1,6 +1,14 @@
 <script setup lang="ts">
 import type { Users } from '@common/types/users';
 import { SelectProps } from 'ant-design-vue/es/vc-select/Select';
+import { useUsers } from '@/src/stores/users';
+import { deepClone } from '@/src/utils/object';
+
+const store = useUsers();
+
+watchEffect(() => {
+  console.log('Current roles:', deepClone(store.roles));
+});
 
 const showModal = inject('showCreateModal') as Ref<boolean>;
 
@@ -12,6 +20,10 @@ const data = ref<Users>({
   phone_number: '',
   address: '',
   logo: '',
+  role: {
+    id: '',
+    name: ''
+  }
 })
 
 const options = ref<SelectProps['options']>([
@@ -88,8 +100,8 @@ const imageUrl = ref<string>('');
         <a-select
           v-model:value="data.userName"
           show-search
-          style="width: 100%"
-          placeholder="Select a person"
+          style="width: 100%;"
+          placeholder="Role"
           :options="options"
           :filter-option="filterOption"
         ></a-select>
@@ -106,8 +118,6 @@ const imageUrl = ref<string>('');
         >
           <img v-if="imageUrl" :src="imageUrl" alt="avatar" />
           <div v-else>
-            <loading-outlined v-if="imgLoader"></loading-outlined>
-            <plus-outlined v-else></plus-outlined>
             <div class="ant-upload-text">Upload</div>
           </div>
         </a-upload>
@@ -116,3 +126,10 @@ const imageUrl = ref<string>('');
     </div>
   </ModalWrapper>
 </template>
+
+<style scoped>
+  :deep(.ant-select-selector) {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+</style>
