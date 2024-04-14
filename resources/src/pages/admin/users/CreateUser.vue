@@ -11,7 +11,7 @@ import { Toast } from "@utils/toast";
 import { PlusOutlined } from '@ant-design/icons-vue';
 import type { UploadProps } from 'ant-design-vue';
 
-const { request, response } = useAxios();
+const { request, response, loading } = useAxios();
 const store = useUsers();
 const roles = ref<Roles[]>([]);
 const rolesList = ref<SelectProps['options']>([]);
@@ -61,6 +61,7 @@ const handleSubmission = async () => {
 
   if (response.value) {
     Toast.success('Votre compte a été crée avec succès.');
+    showModal.value = false;
   }
 };
 
@@ -149,6 +150,7 @@ const stopAntdvDefaultRequest = () => {
       </section>
     </div>
   </ModalWrapper>
+  <Loader :is-active="loading"/>
 </template>
 
 <style scoped>
