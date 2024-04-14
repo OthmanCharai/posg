@@ -8,7 +8,7 @@ import { dropDownFilter } from '@/src/composables/filters';
 import { useAxios, route } from '@utils/axios-helper';
 import { clearError, getErrorMessage, isError } from "@/src/utils/error-handler";
 import { Toast } from "@utils/toast";
-import { UploadOutlined } from '@ant-design/icons-vue';
+import { PlusOutlined } from '@ant-design/icons-vue';
 import type { UploadProps } from 'ant-design-vue';
 
 const { request, response } = useAxios();
@@ -122,15 +122,13 @@ const beforeUpload = (file: UploadProps['fileList'][number]) => {
           <a-upload
             v-model:file-list="fileList"
             name="avatar"
-            list-type="picture"
+            list-type="picture-card"
             class="upload-list-inline"
             :before-upload="beforeUpload"
           >
             <div v-if="fileList && fileList.length < 1">
-              <a-button class="p-[4px!important] w-[350px]">
-                <upload-outlined></upload-outlined>
-                Uploader votre image
-              </a-button>
+              <plus-outlined></plus-outlined>
+              <div class="ant-upload-text">Upload</div>
             </div>
           </a-upload>
         </div>
@@ -140,10 +138,16 @@ const beforeUpload = (file: UploadProps['fileList'][number]) => {
 </template>
 
 <style scoped>
-.upload-list-inline :deep(.ant-upload-list-item) {
-  width: 350px;
+.upload-list-inline {
+  display: flex;
+  max-width: max-content;
 }
-.upload-list-inline :deep(.ant-upload-list-item) {
-  margin-top: unset !important;
+.upload-list-inline :deep(.ant-upload-list-item-actions) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.upload-list-inline :deep(.ant-upload-list-item-actions a) {
+  display: none !important;
 }
 </style>
