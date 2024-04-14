@@ -40,10 +40,23 @@ const data = ref<Users>({
 
 // Submit data
 const handleSubmission = async () => {
+  if (fileList.value && fileList.value?.length > 0) {
+    data.value.logo = fileList.value[0].originFileObj;
+  }
+
+  const formData = new FormData();
+
+  Object.entries(data.value).forEach(([key, value]) => {
+    formData.append(key, value ?? "");
+  });
+
   await request({
         method: 'POST',
         url: route('users.create.submit'),
-        data: data.value
+        data: formData,
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
       })
 
   if (response.value) {
@@ -54,7 +67,7 @@ const handleSubmission = async () => {
 // upload image
 const fileList = ref<UploadProps['fileList']>([]);
 
-const beforeUpload = (file: UploadProps['fileList'][number]) => {
+const stopAntdvDefaultRequest = () => {
   return false; // This stops the upload request of antdv
 }
 </script>
@@ -124,7 +137,8 @@ const beforeUpload = (file: UploadProps['fileList'][number]) => {
             name="avatar"
             list-type="picture-card"
             class="upload-list-inline"
-            :before-upload="beforeUpload"
+            :before-upload="stopAntdvDefaultRequest"
+            accept="image/png, image/jpeg"
           >
             <div v-if="fileList && fileList.length < 1">
               <plus-outlined></plus-outlined>

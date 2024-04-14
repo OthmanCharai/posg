@@ -6,6 +6,6 @@ export interface Users {
   phone_number: string,
   password: string,
   address: string,
-  logo: string | null,
+  logo: File | string | null | undefined,
   role_id: string
 }
