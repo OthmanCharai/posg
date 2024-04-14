@@ -8,6 +8,8 @@ import { dropDownFilter } from '@/src/composables/filters';
 import { useAxios, route } from '@utils/axios-helper';
 import { clearError, getErrorMessage, isError } from "@/src/utils/error-handler";
 import { Toast } from "@utils/toast";
+import { UploadOutlined } from '@ant-design/icons-vue';
+import type { UploadProps } from 'ant-design-vue';
 
 const { request, response } = useAxios();
 const store = useUsers();
@@ -50,9 +52,11 @@ const handleSubmission = async () => {
 };
 
 // upload image
-const fileList = ref([]);
-const imgLoader = ref<boolean>(false);
-const imageUrl = ref<string>('');
+const fileList = ref<UploadProps['fileList']>([]);
+
+const beforeUpload = (file: UploadProps['fileList'][number]) => {
+  return false; // This stops the upload request of antdv
+}
 </script>
 
 <template>
@@ -116,19 +120,30 @@ const imageUrl = ref<string>('');
         <a-divider class="!text-xl">Image</a-divider>
         <div class="flex justify-center">
           <a-upload
-          v-model:file-list="fileList"
-          name="avatar"
-          list-type="picture-card"
-          class="avatar-uploader max-w-max"
-          :show-upload-list="false"
-        >
-          <img v-if="imageUrl" :src="imageUrl" alt="avatar" />
-          <div v-else>
-            <div class="ant-upload-text">Upload</div>
-          </div>
-        </a-upload>
+            v-model:file-list="fileList"
+            name="avatar"
+            list-type="picture"
+            class="upload-list-inline"
+            :before-upload="beforeUpload"
+          >
+            <div v-if="fileList && fileList.length < 1">
+              <a-button class="p-[4px!important] w-[350px]">
+                <upload-outlined></upload-outlined>
+                Uploader votre image
+              </a-button>
+            </div>
+          </a-upload>
         </div>
       </section>
     </div>
   </ModalWrapper>
 </template>
+
+<style scoped>
+.upload-list-inline :deep(.ant-upload-list-item) {
+  width: 350px;
+}
+.upload-list-inline :deep(.ant-upload-list-item) {
+  margin-top: unset !important;
+}
+</style>
