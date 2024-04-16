@@ -1,15 +1,11 @@
 export interface Users {
-  id: string,
+  id?: string,
   first_name: string,
   last_name: string,
   email: string,
   phone_number: string,
+  password: string,
   address: string,
-  logo?: string,
-  role: {
-    id: string,
-    name: string,
-    description: string,
-    permissions: number
-  }
+  logo: File | string | null | undefined,
+  role_id: string
 }
