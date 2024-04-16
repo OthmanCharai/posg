@@ -28,7 +28,7 @@ const data = ref<Users>({
   phone_number: selectedUser.value?.phone_number,
   address: selectedUser.value?.address,
   logo: selectedUser.value?.logo,
-  role_id: selectedUser.value?.role_id,
+  role_id: selectedUser.value?.role.id,
 });
 
 // Submit data
