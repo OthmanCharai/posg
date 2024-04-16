@@ -39,6 +39,11 @@ provide('showCreateModal', showCreateModal);
 const showUpdateModal = ref(false);
 provide('showUpdateModal', showUpdateModal);
 
+const editUser = (record) => {
+  store.setCurrentUserData(record);
+  showUpdateModal.value = true;
+}
+
 onMounted(async () => {
   await store.getUsersList();
 })
@@ -72,7 +77,7 @@ onMounted(async () => {
         <template #bodyCell="{column, record}">
           <template v-if="column.key === 'action'">
             <td class="action-table-data">
-              <button class="action-button edit" @click="showUpdateModal = true">
+              <button class="action-button edit" @click="editUser(record)">
                 <vue-feather type="edit"></vue-feather>
               </button>
               <button class="action-button delete">
@@ -85,6 +90,6 @@ onMounted(async () => {
     </div>
   </div>
 
-  <CreateUser />
-  <UpdateUser />
+  <CreateUser v-if="store.getResponse && showCreateModal" />
+  <UpdateUser v-if="store.getResponse && showUpdateModal" />
 </template>

@@ -2,8 +2,6 @@
 import type { Users } from '@common/types/users';
 import { SelectProps } from 'ant-design-vue/es/vc-select/Select';
 import { useUsers } from '@/src/stores/users';
-import { deepClone } from '@/src/utils/object';
-import type { Roles } from '@/src/common/types/global/roles';
 import { dropDownFilter } from '@/src/composables/filters';
 import { useAxios, route } from '@utils/axios-helper';
 import { clearError, getErrorMessage, isError } from "@/src/utils/error-handler";
@@ -11,21 +9,15 @@ import { Toast } from "@utils/toast";
 import { PlusOutlined } from '@ant-design/icons-vue';
 import type { UploadProps } from 'ant-design-vue';
 
-const { request, response, loading } = useAxios();
 const store = useUsers();
-const roles = ref<Roles[]>([]);
+const { request, response, loading } = useAxios();
 const rolesList = ref<SelectProps['options']>([]);
-const showModal = inject('showCreateModal') as Ref<boolean>;
+const showCreateModal = inject('showCreateModal') as Ref<boolean>;
 
-watchEffect(() => {
-  roles.value = deepClone(store.roles);
-  if (roles.value.length > 0) {
-    rolesList.value = roles.value.map(role => ({
-      label: role.name,
-      value: role.id
-    }));
-  }
-});
+rolesList.value = store.roles.map(role => ({
+  label: role.name,
+  value: role.id
+}));
 
 const data = ref<Users>({
   first_name: '',
@@ -35,8 +27,8 @@ const data = ref<Users>({
   phone_number: '',
   address: '',
   logo: '',
-  role_id: ''
-})
+  role_id: '',
+});
 
 // Submit data
 const handleSubmission = async () => {
@@ -61,7 +53,7 @@ const handleSubmission = async () => {
 
   if (response.value) {
     Toast.success('Votre compte a été crée avec succès.');
-    showModal.value = false;
+    showCreateModal.value = false;
   }
 };
 
@@ -74,7 +66,7 @@ const stopAntdvDefaultRequest = () => {
 </script>
 
 <template>
-  <ModalWrapper title="Nouveau utilisateur" v-model:open="showModal" @submit="handleSubmission" width="800px">
+  <ModalWrapper title="Nouveau utilisateur" v-model:open="showCreateModal" @submit="handleSubmission" width="800px">
     <a-divider class="!text-xl">Données personnelles</a-divider>
     <section class="grid grid-cols-2 gap-4">
       <div class="grid gap-4">
