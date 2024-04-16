@@ -39,7 +39,7 @@ class UpdateUserRequest extends FormRequest
             User::PHONE_NUMBER_COLUMN => ['nullable', 'string', 'max:255'],
             User::PASSWORD_COLUMN     => [
                 'required',
-                Password::min(8)->mixedCase()->numbers()->symbols()->uncompromised(),
+                Password::min(8),
             ],
             User::ROLE_ID_COLUMN      => [
                 'required',
