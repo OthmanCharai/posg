@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { AntPagination } from '@common/types/global/pagination';
+import type { TablePaginationConfig } from 'ant-design-vue/lib/table/interface';
 
 const props = defineProps<{
   columns: Array<object>,
@@ -10,9 +10,8 @@ const props = defineProps<{
   loading?: boolean
 }>();
 
-const onChange = async (pagination: AntPagination)  => {
+const onChange = async (pagination: TablePaginationConfig)  => {
   await props.fetchedData(pagination.current);
-  console.log("params", pagination);
 };
 
 </script>
@@ -24,8 +23,8 @@ const onChange = async (pagination: AntPagination)  => {
       :columns="columns"
       :data-source="data"
       :pagination="{
-        current: currentPage,
-        total: total,
+        current: currentPage as number | undefined,
+        total: total as number | undefined,
         pageSize: 10
       }"
       :loading="loading"
