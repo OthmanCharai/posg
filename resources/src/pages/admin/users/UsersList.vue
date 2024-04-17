@@ -39,9 +39,22 @@ provide('showCreateModal', showCreateModal);
 const showUpdateModal = ref(false);
 provide('showUpdateModal', showUpdateModal);
 
+// Edit user
 const editUser = (record) => {
   store.setCurrentUserData(record);
   showUpdateModal.value = true;
+}
+
+// Delete user
+const showDeleteAlert = ref<boolean>(false);
+const deleteUser = (record) => {
+  store.setCurrentUserData(record);
+  showDeleteAlert.value = true;
+}
+
+// Update the state of delete alert child's event
+function handleToggleUpdate(newToggleValue: boolean) {
+  showDeleteAlert.value = newToggleValue;
 }
 
 onMounted(async () => {
@@ -80,7 +93,7 @@ onMounted(async () => {
               <button class="action-button edit" @click="editUser(record)">
                 <vue-feather type="edit"></vue-feather>
               </button>
-              <button class="action-button delete">
+              <button class="action-button delete" @click="deleteUser(record)">
                 <vue-feather type="trash-2"></vue-feather>
               </button>
             </td>
@@ -89,7 +102,16 @@ onMounted(async () => {
       </DataTable>
     </div>
   </div>
-
+  <!-- Create user modal -->
   <CreateUser v-if="store.getResponse && showCreateModal" />
+  <!-- Update user modal -->
   <UpdateUser v-if="store.getResponse && showUpdateModal" />
+  <!-- Delte user Alert -->
+  <DeleteAlert
+    v-if="store.getResponse && showDeleteAlert"
+    :toggle="showDeleteAlert"
+    model="users"
+    :id="store.currentUser.id"
+    @update:toggle="handleToggleUpdate"
+  />
 </template>

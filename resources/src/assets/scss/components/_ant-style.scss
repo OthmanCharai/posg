@@ -19,3 +19,25 @@
   padding-top: 0 !important;
   padding-bottom: 0 !important;
 }
+
+.delete-alert-wrapper  {
+  & .ant-modal-confirm-btns {
+    display: flex;
+    margin-top: 2em !important;
+
+    button {
+      flex: 1;
+    }
+
+    & .ant-btn-dangerous {
+      background-color: $danger !important;
+      color: white !important;
+
+      &:is(:active){
+        background-color: white !important;
+        border-color: $danger !important;
+        color: $danger !important;
+      }
+    }
+  }
+}
