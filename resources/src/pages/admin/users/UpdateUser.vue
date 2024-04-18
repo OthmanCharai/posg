@@ -39,8 +39,6 @@ const handleSubmission = async () => {
 
   const formData = new FormData();
 
-  formData.append('_method', 'PUT');
-
   Object.entries(data.value).forEach(([key, value]) => {
     formData.append(key, value ?? "");
   });
@@ -52,9 +50,9 @@ const handleSubmission = async () => {
         headers: {
           "Content-Type": "multipart/form-data",
         },
-       params: {
-         _method: "PUT",
-      },
+        params: {
+          _method: "PUT",
+        },
       })
 
   if (response.value && response.value.data) {
