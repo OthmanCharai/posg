@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateUserRequest;
 use App\Http\Transformers\UserTransformer;
 use App\src\Models\User\User;
 use App\src\Services\User\UserServiceInterface;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class UpdateAdminController extends Controller
 {
@@ -20,11 +21,13 @@ class UpdateAdminController extends Controller
         $this->userService->update($user, $request->validated());
 
         $admin = $this->userService->find($user->getId());
+        if (!$admin instanceof User) {
+            throw new ModelNotFoundException();
+        }
 
-        /* @var User $admin */
         return $this->response->withArray(
             [
-                'user' => UserTransformer::transform($user),
+                'user' => UserTransformer::transform($admin),
             ]
         );
     }

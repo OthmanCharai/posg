@@ -52,6 +52,9 @@ const handleSubmission = async () => {
         headers: {
           "Content-Type": "multipart/form-data",
         },
+       params: {
+         _method: "PUT",
+      },
       })
 
   if (response.value && response.value.data) {
