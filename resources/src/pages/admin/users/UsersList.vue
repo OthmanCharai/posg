@@ -2,9 +2,9 @@
 import { lengthSorter } from '@/src/composables/table-sorters';
 import CreateUser from './CreateUser.vue';
 import UpdateUser from './UpdateUser.vue';
-import { useUsers } from '@/src/stores/users';
+import { useUserStore } from '@/src/stores/users';
 
-const store = useUsers();
+const store = useUserStore();
 const columns = computed(() => [
   {
     title: "Nome",
@@ -50,11 +50,6 @@ const showDeleteAlert = ref<boolean>(false);
 const deleteUser = (record) => {
   store.setCurrentUserData(record);
   showDeleteAlert.value = true;
-}
-
-// Update the state of delete alert child's event
-function handleToggleUpdate(newToggleValue: boolean) {
-  showDeleteAlert.value = newToggleValue;
 }
 
 onMounted(async () => {
@@ -109,9 +104,9 @@ onMounted(async () => {
   <!-- Delte user Alert -->
   <DeleteAlert
     v-if="store.getResponse && showDeleteAlert"
-    :toggle="showDeleteAlert"
+    v-model:toggle="showDeleteAlert"
     model="users"
     :id="store.currentUser.id"
-    @update:toggle="handleToggleUpdate"
+    :clear="() => store.deleteUser(store.currentUser.id)"
   />
 </template>

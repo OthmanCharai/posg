@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Users } from '@common/types/users';
 import { SelectProps } from 'ant-design-vue/es/vc-select/Select';
-import { useUsers } from '@/src/stores/users';
+import { useUserStore } from '@/src/stores/users';
 import { dropDownFilter } from '@/src/composables/filters';
 import { useAxios, route } from '@utils/axios-helper';
 import { clearError, getErrorMessage, isError } from "@/src/utils/error-handler";
@@ -9,7 +9,7 @@ import { Toast } from "@utils/toast";
 import { PlusOutlined } from '@ant-design/icons-vue';
 import type { UploadProps } from 'ant-design-vue';
 
-const store = useUsers();
+const store = useUserStore();
 const { request, response, loading } = useAxios();
 const rolesList = ref<SelectProps['options']>([]);
 const showUpdateModal = inject('showUpdateModal') as Ref<boolean>;
