@@ -34,12 +34,26 @@ export const useUserStore = defineStore('users', {
         console.error(e)
       }
     },
+
     setCurrentUserData(data: Users) {
       this.currentUser = data;
     },
+
     addNewUser(user: Users) {
       this.usersData.push(user);
     },
+
+    updateUser (userId: string | undefined, newUserData: Partial<Users>) {
+      if (!userId) {
+        return;
+      }
+      const index = this.usersData.findIndex(user => user.id === userId);
+
+      if (index !== -1) {
+        Object.assign(this.usersData[index], newUserData);
+      }
+    },
+
     deleteUser (userId: string | undefined) {
       if(!userId) {
         return;
