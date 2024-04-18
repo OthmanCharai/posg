@@ -38,7 +38,7 @@ class UpdateUserRequest extends FormRequest
             User::ADDRESS_COLUMN      => ['nullable', 'string', 'max:255'],
             User::PHONE_NUMBER_COLUMN => ['nullable', 'string', 'max:255'],
             User::PASSWORD_COLUMN     => [
-                'required',
+                'nullable',
                 Password::min(8),
             ],
             User::ROLE_ID_COLUMN      => [
