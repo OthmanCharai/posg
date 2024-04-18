@@ -7,7 +7,7 @@ import { Roles } from '../common/types/global/roles';
 
 const { request, response } = useAxios();
 
-export const useUsers = defineStore('users', {
+export const useUserStore = defineStore('users', {
   state: () => ({
     usersData: [] as Users[],
     roles: [] as  Roles[],
