@@ -39,12 +39,14 @@ const handleSubmission = async () => {
 
   const formData = new FormData();
 
+  formData.append('_method', 'PUT');
+
   Object.entries(data.value).forEach(([key, value]) => {
     formData.append(key, value ?? "");
   });
 
   await request({
-        method: 'PUT',
+        method: 'POST',
         url: route('users.update', selectedUser.value.id),
         data: formData,
         headers: {
@@ -52,7 +54,8 @@ const handleSubmission = async () => {
         },
       })
 
-  if (response.value) {
+  if (response.value && response.value.data) {
+    store.updateUser(selectedUser.value.id, response.value.data.user);
     Toast.success('Votre compte a été mis à jour avec succès.');
     showUpdateModal.value = false;
   }
