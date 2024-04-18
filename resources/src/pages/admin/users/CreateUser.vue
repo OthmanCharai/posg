@@ -51,7 +51,8 @@ const handleSubmission = async () => {
         },
       })
 
-  if (response.value) {
+  if (response.value && response.value.data) {
+    store.addNewUser(response.value.data.user);
     Toast.success('Votre compte a été crée avec succès.');
     showCreateModal.value = false;
   }

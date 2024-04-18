@@ -107,5 +107,6 @@ onMounted(async () => {
     v-model:toggle="showDeleteAlert"
     model="users"
     :id="store.currentUser.id"
+    :clear="() => store.deleteUser(store.currentUser.id)"
   />
 </template>
