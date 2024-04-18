@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admins;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Transformers\UserTransformer;
+use App\src\Models\AdminRole\AdminRole;
 use App\src\Models\User\User;
 use App\src\Services\User\UserServiceInterface;
 
@@ -22,7 +23,7 @@ class CreateAdminController extends Controller
 
         return $this->response->withArray(
             [
-                'user' => UserTransformer::transform($user),
+                'user' => UserTransformer::transform($user->load(User::RELATIONS[AdminRole::class])),
             ]
         );
     }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admins;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateUserRequest;
 use App\Http\Transformers\UserTransformer;
+use App\src\Models\AdminRole\AdminRole;
 use App\src\Models\User\User;
 use App\src\Services\User\UserServiceInterface;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -27,7 +28,7 @@ class UpdateAdminController extends Controller
 
         return $this->response->withArray(
             [
-                'user' => UserTransformer::transform($admin),
+                'user' => UserTransformer::transform($admin->load(User::RELATIONS[AdminRole::class])),
             ]
         );
     }
