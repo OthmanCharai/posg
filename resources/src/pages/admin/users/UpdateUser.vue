@@ -8,6 +8,7 @@ import { clearError, getErrorMessage, isError } from "@/src/utils/error-handler"
 import { Toast } from "@utils/toast";
 import { PlusOutlined } from '@ant-design/icons-vue';
 import type { UploadProps } from 'ant-design-vue';
+import { imageUrlToFile } from '@/src/composables/media';
 
 const store = useUserStore();
 const { request, response, loading } = useAxios();
@@ -68,6 +69,32 @@ const fileList = ref<UploadProps['fileList']>([]);
 const stopAntdvDefaultRequest = () => {
   return false; // This stops the upload request of antdv
 }
+
+const changeImage = () => {
+  if (fileList.value && fileList.value.length > 0) {
+    return data.value.logo = fileList.value[0].originFileObj;
+  }
+}
+
+const removeImage = () => {
+  if (data.value.logo) {
+    data.value.logo = '';
+    return true; // data cleared
+  }
+}
+
+onMounted(async() => {
+  if(data.value.logo && fileList.value && fileList.value.length === 0) {
+    const image: UploadProps['fileList'][number] = {
+      uid: 'index-1',
+      originFileObj: await imageUrlToFile(data.value.logo as string, 'avatar'),
+      status: 'done',
+      thumbUrl: data.value.logo as string,
+    };
+
+    fileList.value.push(image);
+  }
+})
 </script>
 
 <template>
@@ -135,8 +162,11 @@ const stopAntdvDefaultRequest = () => {
             name="avatar"
             list-type="picture-card"
             class="upload-list-inline"
-            :before-upload="stopAntdvDefaultRequest"
             accept="image/png, image/jpeg"
+            :before-upload="stopAntdvDefaultRequest"
+            @remove="removeImage"
+            @change="changeImage"
+            :maxCount="1"
           >
             <div v-if="fileList && fileList.length < 1">
               <plus-outlined></plus-outlined>
