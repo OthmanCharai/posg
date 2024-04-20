@@ -83,8 +83,11 @@ class MediaService
     /**
      * @throws FileDeleteFromS3FailedException
      */
-    public function delete(string $filePath): bool
+    public function delete(string $filePath = null): bool
     {
+        if (is_null($filePath)) {
+            return false;
+        }
         try {
             $this->storage->delete($filePath);
 

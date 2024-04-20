@@ -67,7 +67,7 @@ const handleSubmission = async () => {
 const fileList = ref<UploadProps['fileList']>([]);
 
 const stopAntdvDefaultRequest = () => {
-  return false; // This stops the upload request of antdv
+  return false;
 }
 
 const changeImage = () => {
@@ -79,7 +79,7 @@ const changeImage = () => {
 const removeImage = () => {
   if (data.value.logo) {
     data.value.logo = '';
-    return true; // data cleared
+    return true;
   }
 }
 
