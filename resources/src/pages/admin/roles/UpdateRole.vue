@@ -4,6 +4,7 @@ import {dropDownFilter} from '@/src/composables/filters';
 import {useAxios} from '@utils/axios-helper';
 import {clearError, getErrorMessage, isError} from "@/src/utils/error-handler";
 import {Permissions, Roles} from "@common/types/global/roles";
+import {Toast} from "@utils/toast";
 
 const store = useRoleStore();
 const {request, response, loading} = useAxios();
@@ -33,7 +34,8 @@ const handleSubmission = async () => {
   }
   await store.updateRole(data.value, store.currentRole);
 
-  if (store.status) {
+  if (store.status === 201) {
+    Toast.success('Votre role a été modofoer avec succès.');
     showUpdateModal.value = false;
   }
 
