@@ -16,26 +16,14 @@ const data = ref<Roles>({
   name: store.currentRole.name
 });
 
-const currentPermissions = (permissions: Permissions, role: Roles) => {
+const currentPermissions = (permissions: Permissions [], role: Roles) => {
   // Deep copy the permissions object
-  const myPermissions = JSON.parse(JSON.stringify([permissions]));
-  console.log(Object
-      .values(myPermissions));
-  debugger;
-  const flat = Object
-      .values(myPermissions)
-      .reduce((combined, current) => Object.assign(combined, current));
-
-  return Object.keys(flat)
-      .map(permissionKey => parseInt(permissionKey))
-      .filter(permissionValue => (role.permissions & permissionValue) === permissionValue)
-      .map(permission => permission);
+  const myPermissions = JSON.parse(JSON.stringify(permissions));
+  return myPermissions
+      .filter(permission => (role.permissions & permission.value) === parseInt(permission.value));
 }
 
-store.permissions.map(permission => {
-  console.log(currentPermissions(permission as Permissions, store.currentRole));
-})
-
+data.value.permissions = currentPermissions(store.permissions, store.currentRole);
 
 // Submit data
 const handleSubmission = async () => {
@@ -43,6 +31,14 @@ const handleSubmission = async () => {
   showUpdateModal.value = false;
 };
 
+const checkIfSupper = (value: any) => {
+  clearError('permissions');
+  const hasSuper = value.includes('1');
+
+  if (hasSuper && value.length > 1) {
+    data.value.permissions = [];
+  }
+}
 </script>
 
 <template>
@@ -74,10 +70,12 @@ const handleSubmission = async () => {
               v-model:value="data.permissions"
               show-search
               style="width: 100%;"
-              placeholder="Role"
+              placeholder="Permissions"
+              mode="multiple"
+              :max-tag-count="10"
               :options="store.permissions"
               :filter-option="dropDownFilter"
-              @change="clearError('permissions')"
+              @change="checkIfSupper"
           ></a-select>
         </a-form-item>
       </section>

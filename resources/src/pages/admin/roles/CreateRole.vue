@@ -22,7 +22,8 @@ const handleSubmission = async () => {
   await store.createRole(data.value);
   showCreateModal.value = false;
 };
-const checkIfSupper = (value) => {
+const checkIfSupper = (value: any) => {
+  clearError('permissions');
   const hasSuper = value.includes('1');
 
   if (hasSuper && value.length > 1) {
