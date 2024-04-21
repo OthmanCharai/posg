@@ -8,7 +8,6 @@ import { clearError, getErrorMessage, isError } from "@/src/utils/error-handler"
 import { Toast } from "@utils/toast";
 import { PlusOutlined } from '@ant-design/icons-vue';
 import type { UploadProps } from 'ant-design-vue';
-import { imageUrlToFile } from '@/src/composables/media';
 
 const store = useUserStore();
 const { request, response, loading } = useAxios();
@@ -41,7 +40,11 @@ const handleSubmission = async () => {
   const formData = new FormData();
 
   Object.entries(data.value).forEach(([key, value]) => {
-    formData.append(key, value ?? "");
+    if (key === "logo" && typeof value === "string") {
+      return;
+    } else {
+      formData.append(key, value ?? "");
+    }
   });
 
   await request({
@@ -87,7 +90,6 @@ onMounted(async() => {
   if(data.value.logo && fileList.value && fileList.value.length === 0) {
     const image: UploadProps['fileList'][number] = {
       uid: 'index-1',
-      originFileObj: await imageUrlToFile(data.value.logo as string, 'avatar'),
       status: 'done',
       thumbUrl: data.value.logo as string,
     };
