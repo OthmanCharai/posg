@@ -65,6 +65,16 @@ export default [
           ]
         }
       },
+      {
+        path: '/roles',
+        name: 'Roles',
+        component: () => import('@/src/pages/admin/roles/RoleList.vue'),
+        meta: {
+          middleware: [
+            auth
+          ]
+        }
+      },
     ]
   },
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\AdminRole;
 
 use App\Http\Controllers\Controller;
 use App\Http\Transformers\RoleTransformer;
+use App\src\Domain\Permissions\Constants\AdminPermission;
 use App\src\Models\AdminRole\AdminRole;
 use App\src\Services\AdminRole\AdminRoleServiceInterface;
 use Illuminate\Http\JsonResponse;
@@ -26,6 +27,7 @@ class ListAdminRoleController extends Controller
         return $this->response->withArray(
             [
                 AdminRole::TABLE_NAME => transform_paginator($adminRoles, RoleTransformer::class)->toArray(),
+                'permissions'         => AdminPermission::PERMISSIONS,
             ]
         );
     }
