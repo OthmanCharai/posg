@@ -16,7 +16,7 @@ Route::prefix('bank-accounts')
             ->name('index');
 
         Route::post('/create', CreateBankAccountController::class)
-            ->name('create.submit');
+            ->name('submit');
 
         Route::get('/{bankAccount}', ShowBankAccountController::class)
             ->name('show');
