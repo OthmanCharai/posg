@@ -16,7 +16,7 @@ Route::prefix('roles')
             ->name('index');
 
         Route::post('/create', StoreAdminRoleController::class)
-            ->name('submit');
+            ->name('create');
 
         Route::get('/{adminRole}', ShowAdminRoleController::class)
             ->name('show');

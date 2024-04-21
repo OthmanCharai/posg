@@ -18,9 +18,6 @@ final readonly class AdminPermission
         'general'         => [
             self::SUPER => 'super',
         ],
-        'roles'           => [
-            self::MANAGE_ROLES => 'manage roles',
-        ],
         'admins'          => [
             self::MANAGE_ROLES => 'manage admins',
         ],

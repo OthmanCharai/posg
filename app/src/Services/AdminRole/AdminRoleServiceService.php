@@ -39,7 +39,7 @@ readonly class AdminRoleServiceService implements AdminRoleServiceInterface
 
     public function checkPermissionExistenceInRoles(int $permissions, ?AdminRole $role = null): bool
     {
-        return $this->adminRoleRepository->checkPermissionExistenceInRoles($permissions, $role);
+        return $this->adminRoleRepository->checkPermissionExistenceInRoles($permissions, $role?->getId());
     }
 
     public function getPaginated(QueryOption $queryOption): LengthAwarePaginator

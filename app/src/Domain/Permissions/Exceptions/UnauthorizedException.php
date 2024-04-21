@@ -3,12 +3,11 @@
 namespace App\src\Domain\Permissions\Exceptions;
 
 use App\src\Exceptions\CommonException;
-use Psr\Log\LogLevel;
 
 class UnauthorizedException extends CommonException
 {
-    public function getLevel(): string
+    public function getLevel(): int
     {
-        return LogLevel::ALERT;
+        return 4;
     }
 }
