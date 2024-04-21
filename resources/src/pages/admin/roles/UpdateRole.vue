@@ -38,7 +38,6 @@ const handleSubmission = async () => {
     Toast.success('Votre role a été modofoer avec succès.');
     showUpdateModal.value = false;
   }
-
 };
 
 const checkIfSupper = (value: any) => {

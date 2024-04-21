@@ -2,7 +2,8 @@
 import { lengthSorter } from '@/src/composables/table-sorters';
 import CreateUser from './CreateUser.vue';
 import UpdateUser from './UpdateUser.vue';
-import { useUserStore } from '@/src/stores/users';
+import { useUserStore } from '@/src/stores/users.store';
+import type { Users } from '@common/types/users';
 
 const store = useUserStore();
 const columns = computed(() => [
@@ -40,16 +41,16 @@ const showUpdateModal = ref(false);
 provide('showUpdateModal', showUpdateModal);
 
 // Edit user
-const editUser = (record) => {
-  store.setCurrentUserData(record);
+const editUser = (record: Users) => {
+  store.setSelectedUserData(record);
   showUpdateModal.value = true;
 }
 
 // Delete user
-const showDeleteAlert = ref<boolean>(false);
-const deleteUser = (record) => {
-  store.setCurrentUserData(record);
-  showDeleteAlert.value = true;
+const showDeleteModal = ref<boolean>(false);
+const deleteAlert = (record: Users) => {
+  store.setSelectedUserData(record);
+  showDeleteModal.value = true;
 }
 
 onMounted(async () => {
@@ -88,7 +89,7 @@ onMounted(async () => {
               <button class="action-button edit" @click="editUser(record)">
                 <vue-feather type="edit"></vue-feather>
               </button>
-              <button class="action-button delete" @click="deleteUser(record)">
+              <button class="action-button delete" @click="deleteAlert(record)">
                 <vue-feather type="trash-2"></vue-feather>
               </button>
             </td>
@@ -103,10 +104,10 @@ onMounted(async () => {
   <UpdateUser v-if="store.getResponse && showUpdateModal" />
   <!-- Delte user Alert -->
   <DeleteAlert
-    v-if="store.getResponse && showDeleteAlert"
-    v-model:toggle="showDeleteAlert"
+    v-if="store.getResponse && showDeleteModal"
+    v-model:toggle="showDeleteModal"
     model="users"
-    :id="store.currentUser.id"
-    :clear="() => store.deleteUser(store.currentUser.id)"
+    :id="store.selectedUser.id"
+    :update-data="() => store.getUsersList(store.pagination.current_page)"
   />
 </template>
