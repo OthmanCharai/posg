@@ -27,7 +27,11 @@ data.value.permissions = currentPermissions(store.permissions, store.currentRole
 
 // Submit data
 const handleSubmission = async () => {
-  await store.updateRole(store.currentRole, data.value);
+
+  if (typeof data.value.permissions === 'object') {
+    data.value.permissions = data.value.permissions?.map(item => item.value);
+  }
+  await store.updateRole(data.value, store.currentRole);
   showUpdateModal.value = false;
 };
 
