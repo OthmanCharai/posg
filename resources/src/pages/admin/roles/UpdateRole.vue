@@ -28,11 +28,15 @@ data.value.permissions = currentPermissions(store.permissions, store.currentRole
 // Submit data
 const handleSubmission = async () => {
 
-  if (typeof data.value.permissions === 'object') {
+  if (Array.isArray(data.value.permissions) && data.value.permissions.every(item => typeof item === 'object' && item !== null)) {
     data.value.permissions = data.value.permissions?.map(item => item.value);
   }
   await store.updateRole(data.value, store.currentRole);
-  showUpdateModal.value = false;
+
+  if (store.status) {
+    showUpdateModal.value = false;
+  }
+
 };
 
 const checkIfSupper = (value: any) => {

@@ -20,7 +20,9 @@ const data = ref<Roles>({
 // Submit data
 const handleSubmission = async () => {
   await store.createRole(data.value);
-  showCreateModal.value = false;
+  if (store.status === 201) {
+    showCreateModal.value = false;
+  }
 };
 const checkIfSupper = (value: any) => {
   clearError('permissions');

@@ -4,7 +4,7 @@ import type {PaginationMetadata} from '@common/types/global/pagination';
 import {route, useAxios} from '@utils/axios-helper';
 import {extractPaginatorObject} from '@utils/pagination';
 
-const {request, response, loading} = useAxios();
+const {request, response, loading, status} = useAxios();
 
 export const useRoleStore = defineStore('roles', {
     state: () => ({
@@ -13,7 +13,8 @@ export const useRoleStore = defineStore('roles', {
         loading: loading,
         getResponse: false,
         currentRole: {} as Roles,
-        permissions: [] as Permissions []
+        permissions: [] as Permissions [],
+        status: 0
     }),
     actions: {
         async getRolesList(page: number = 1) {
@@ -49,7 +50,8 @@ export const useRoleStore = defineStore('roles', {
                 url: route('roles.delete', role.id)
             })
             try {
-                if (response.value && response.value?.status === 200) {
+                if (status.value === 200) {
+                    this.status = status.value;
                     await this.getRolesList();
                 }
             } catch (e) {
@@ -64,7 +66,8 @@ export const useRoleStore = defineStore('roles', {
                 data: data
             });
             try {
-                if (response.value && response.value.data) {
+                if (status.value === 201) {
+                    this.status = status.value;
                     await this.getRolesList();
                 }
             } catch (e) {
@@ -79,11 +82,15 @@ export const useRoleStore = defineStore('roles', {
                 data: data
             });
             try {
-                await this.getRolesList();
+                if (status.value === 201) {
+                    this.status = status.value;
+                    await this.getRolesList();
+                }
             } catch (e) {
                 console.error(e);
             }
         },
+
         setCurrentRoleData(data: Roles) {
             this.currentRole = data;
         }
