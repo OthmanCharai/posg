@@ -1,16 +1,13 @@
 <script setup lang="ts">
 import type { Users } from '@common/types/users';
 import { SelectProps } from 'ant-design-vue/es/vc-select/Select';
-import { useUserStore } from '@/src/stores/users';
+import { useUserStore } from '@/src/stores/users.store';
 import { dropDownFilter } from '@/src/composables/filters';
-import { useAxios, route } from '@utils/axios-helper';
 import { clearError, getErrorMessage, isError } from "@/src/utils/error-handler";
-import { Toast } from "@utils/toast";
 import { PlusOutlined } from '@ant-design/icons-vue';
 import type { UploadProps } from 'ant-design-vue';
 
 const store = useUserStore();
-const { request, response, loading } = useAxios();
 const rolesList = ref<SelectProps['options']>([]);
 const showCreateModal = inject('showCreateModal') as Ref<boolean>;
 
@@ -42,20 +39,7 @@ const handleSubmission = async () => {
     formData.append(key, value ?? "");
   });
 
-  await request({
-        method: 'POST',
-        url: route('users.create.submit'),
-        data: formData,
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      })
-
-  if (response.value && response.value.data) {
-    store.addNewUser(response.value.data.user);
-    Toast.success('Votre compte a été crée avec succès.');
-    showCreateModal.value = false;
-  }
+  await store.createUser(formData, showCreateModal);
 };
 
 // upload image
@@ -143,7 +127,7 @@ const stopAntdvDefaultRequest = () => {
       </section>
     </div>
   </ModalWrapper>
-  <Loader :is-active="loading"/>
+  <Loader :is-active="store.loading"/>
 </template>
 
 <style scoped>

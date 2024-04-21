@@ -5,7 +5,7 @@ import { useAxios, route } from '@utils/axios-helper';
 import { Toast } from '@utils/toast';
 import { createVNode } from 'vue';
 
-const { toggle, id, model, clear } = defineProps({
+const { toggle, id, model, updateData } = defineProps({
   toggle: {
     type: Boolean,
     required: true,
@@ -18,7 +18,7 @@ const { toggle, id, model, clear } = defineProps({
     type: String,
     default: '',
   },
-  clear: {
+  updateData: {
     type: Function,
     required: true,
   }
@@ -35,7 +35,7 @@ async function deleteAction () {
   });
 
   if(response.value){
-    clear(),
+    updateData(),
     Toast.success('Votre suppression a été réussie');
     emit('update:toggle', false);
   }
