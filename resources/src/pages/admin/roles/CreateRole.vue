@@ -5,6 +5,7 @@ import {clearError, getErrorMessage, isError} from "@/src/utils/error-handler";
 import {dropDownFilter} from "@/src/composables/filters";
 import {Ref} from "vue";
 import {Roles} from "@common/types/global/roles";
+import {Toast} from "@utils/toast";
 
 const store = useRoleStore();
 const {request, response, loading} = useAxios();
@@ -21,6 +22,7 @@ const data = ref<Roles>({
 const handleSubmission = async () => {
   await store.createRole(data.value);
   if (store.status === 201) {
+    Toast.success('Votre role a été ajouter avec succès.');
     showCreateModal.value = false;
   }
 };
