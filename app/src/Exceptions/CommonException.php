@@ -10,7 +10,7 @@ use Psr\Log\LogLevel;
 abstract class CommonException extends Exception
 {
     // Default Status code
-    public const DEFAULT_CODE = 100;
+    protected const DEFAULT_CODE = 100;
 
     // Exception level
     protected string $level;
@@ -31,7 +31,7 @@ abstract class CommonException extends Exception
         Exception $originalException = null
     ) {
         $this->level = $level;
-        $this->code = $code;
+        $this->code = $this->getLevel();
 
         // Get message in user's lang
         $message = Lang::get(
@@ -59,5 +59,5 @@ abstract class CommonException extends Exception
         parent::__construct($this->message, $this->code);
     }
 
-    abstract public function getLevel(): string;
+    abstract public function getLevel(): int;
 }
