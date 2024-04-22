@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useRoleStore } from "@/src/stores/roles";
+import { useRoleStore } from "@/src/stores/roles.store";
 import { dropDownFilter } from '@/src/composables/filters';
 import { clearError, getErrorMessage, isError } from "@/src/utils/error-handler";
 import type { Permissions, Roles } from "@common/types/global/roles";
