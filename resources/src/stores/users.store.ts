@@ -24,15 +24,11 @@ export const useUserStore = defineStore('users', {
         method: 'GET',
         url: route('users.index', `page=${page}`)
       })
-      try {
-        if (response.value && response.value.data) {
-          this.usersData = response.value.data.users.data;
-          this.roles = response.value.data.roles;
-          this.pagination = extractPaginatorObject(response.value.data.users);
-          this.getResponse = true;
-        }
-      } catch(e) {
-        console.error(e)
+      if (response.value && response.value.data) {
+        this.usersData = response.value.data.users.data;
+        this.roles = response.value.data.roles;
+        this.pagination = extractPaginatorObject(response.value.data.users);
+        this.getResponse = true;
       }
     },
 

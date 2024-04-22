@@ -37,10 +37,10 @@ const editRole = (record: Roles) => {
 }
 
 // Delete Role
-const showDeleteAlert = ref<boolean>(false);
+const showDeleteModal = ref<boolean>(false);
 const deleteRole = (record: Roles) => {
   store.setCurrentRoleData(record);
-  showDeleteAlert.value = true;
+  showDeleteModal.value = true;
 }
 
 onMounted(async () => {
@@ -94,9 +94,10 @@ onMounted(async () => {
   <UpdateRole v-if="store.getResponse && showUpdateModal"/>
   <!-- Delete role Alert -->
   <DeleteAlert
-      v-if="store.getResponse && showDeleteAlert"
-      v-model:toggle="showDeleteAlert"
-      model="roles"
-      :id="store.currentRole.id"
+    v-if="store.getResponse && showDeleteModal"
+    v-model:toggle="showDeleteModal"
+    model="roles"
+    :id="store.currentRole.id"
+    :update-data="() => store.getRolesList(store.pagination.current_page)"
   />
 </template>
