@@ -85,6 +85,16 @@ export default [
                     ]
                 }
             },
+            {
+              path: '/administrations',
+              name: 'Administration',
+              component: () => import('@/src/pages/admin/administration/Index.vue'),
+              meta: {
+                  middleware: [
+                      auth
+                  ]
+              }
+          },
         ]
     },
 
