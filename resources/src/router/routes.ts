@@ -86,9 +86,9 @@ export default [
                 }
             },
             {
-                path: '/company',
-                name: 'Company',
-                component: () => import('@/src/pages/admin/company/CompanyProfile.vue'),
+                path: '/administrations',
+                name: 'Administration',
+                component: () => import('@/src/pages/admin/administration/Index.vue'),
                 meta: {
                     middleware: [
                         auth
