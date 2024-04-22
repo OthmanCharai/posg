@@ -14,4 +14,10 @@ class CompanySettingRepository extends BaseRepository
     {
         return CompanySetting::class;
     }
+
+    public function getFirst(): ?CompanySetting
+    {
+        /* @var CompanySetting|null */
+        return $this->getQueryBuilder()->first();
+    }
 }

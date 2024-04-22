@@ -12,9 +12,9 @@ Route::prefix('company-setting')
     ->middleware(['permissions:' . AdminPermission::MANAGE_COMPANY_SETTING])
     ->group(function () {
         Route::post('/create', StoreCompanySettingController::class)
-            ->name('create.submit');
+            ->name('create');
 
-        Route::get('/{companySetting}', ShowCompanySettingController::class)
+        Route::get('/', ShowCompanySettingController::class)
             ->name('show');
 
         Route::put('/{companySetting}/update', UpdateCompanySettingController::class)

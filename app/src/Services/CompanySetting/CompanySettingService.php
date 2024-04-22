@@ -66,4 +66,9 @@ readonly class CompanySettingService implements CompanySettingServiceInterface
 
         return $this->companySettingRepository->delete($model->getId(), $columnName);
     }
+
+    public function getFirst(): ?CompanySetting
+    {
+        return $this->companySettingRepository->getFirst();
+    }
 }
