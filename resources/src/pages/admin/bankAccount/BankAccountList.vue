@@ -1,6 +1,6 @@
 i
 <script setup lang="ts">
-import {useBankAccountStore} from "@stores/bankAccount";
+import {useBankAccountStore} from "@stores/bankAccount.store";
 import {BankAccount} from "@common/types/global/bankAccount";
 import CreateBank from "@pages/admin/bankAccount/CreateBank.vue";
 import UpdateBank from "@pages/admin/bankAccount/UpdateBank.vue";

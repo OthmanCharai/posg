@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useRoleStore } from "@/src/stores/roles";
+import { useRoleStore } from "@/src/stores/roles.store";
 import { dropDownFilter } from '@/src/composables/filters';
 import { clearError, getErrorMessage, isError } from "@/src/utils/error-handler";
 import type { Permissions, Roles } from "@common/types/global/roles";
@@ -18,10 +18,8 @@ const currentPermissions = (permissions: Permissions [], role: Roles) => {
   // Deep copy the permissions object
   const myPermissions = JSON.parse(JSON.stringify(permissions));
   return myPermissions
-      .filter((permission: { value: string; }) => (role.permissions && permission.value) === parseInt(permission.value));
+      .filter(permission => (role.permissions & permission.value) === parseInt(permission.value)); // to be improved later
 }
-
-data.value.permissions = currentPermissions(store.permissions, store.currentRole);
 
 // Submit data
 const handleSubmission = async () => {
@@ -32,7 +30,7 @@ const handleSubmission = async () => {
   await store.updateRole(data.value, showUpdateModal);
 };
 
-const checkIfSupper = (value: any) => {
+const checkIfSuper = (value: any) => {
   clearError('permissions');
   const hasSuper = value.includes('1');
 
@@ -40,6 +38,10 @@ const checkIfSupper = (value: any) => {
     data.value.permissions = [];
   }
 }
+
+onMounted(() => {
+  data.value.permissions = currentPermissions(store.permissions, store.currentRole);
+})
 </script>
 
 <template>
@@ -64,20 +66,21 @@ const checkIfSupper = (value: any) => {
       <section class="middle-section">
         <a-divider class="!text-xl">Permissions</a-divider>
         <a-form-item
-            :validate-status="isError('permissions')"
-            :help="getErrorMessage('permissions')"
+          :validate-status="isError('permissions')"
+          :help="getErrorMessage('permissions')"
         >
           <a-select
-              v-model:value="data.permissions"
-              show-search
-              style="width: 100%;"
-              placeholder="Permissions"
-              mode="multiple"
-              :max-tag-count="10"
-              :options="store.permissions"
-              :filter-option="dropDownFilter"
-              @change="checkIfSupper"
-          ></a-select>
+            v-model:value="data.permissions"
+            show-search
+            style="width: 100%;"
+            placeholder="Permissions"
+            mode="multiple"
+            :max-tag-count="10"
+            :options="store.permissions"
+            :filter-option="dropDownFilter"
+            @change="checkIfSuper"
+          >
+          </a-select>
         </a-form-item>
       </section>
     </div>

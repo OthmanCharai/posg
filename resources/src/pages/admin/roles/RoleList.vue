@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import {lengthSorter} from '@/src/composables/table-sorters';
-import {useRoleStore} from "@/src/stores/roles";
-import {Roles} from "@common/types/global/roles";
+import { lengthSorter } from '@/src/composables/table-sorters';
+import { useRoleStore } from "@/src/stores/roles.store";
+import type { Roles } from "@common/types/global/roles";
 import CreateRole from "@pages/admin/roles/CreateRole.vue";
 import UpdateRole from "@pages/admin/roles/UpdateRole.vue";
 

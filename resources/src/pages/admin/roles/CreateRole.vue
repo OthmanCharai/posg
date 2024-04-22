@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import {useRoleStore} from "@/src/stores/roles";
-import {clearError, getErrorMessage, isError} from "@/src/utils/error-handler";
-import {dropDownFilter} from "@/src/composables/filters";
-import {Roles} from "@common/types/global/roles";
+import { useRoleStore } from "@/src/stores/roles.store";
+import { clearError, getErrorMessage, isError } from "@/src/utils/error-handler";
+import { dropDownFilter } from "@/src/composables/filters";
+import type { Roles } from "@common/types/global/roles";
 
 const store = useRoleStore();
 const showCreateModal = inject('showCreateModal') as Ref<boolean>;

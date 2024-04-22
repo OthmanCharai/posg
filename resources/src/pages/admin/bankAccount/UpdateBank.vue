@@ -3,7 +3,7 @@ import {SelectProps} from 'ant-design-vue/es/vc-select/Select';
 import {useAxios} from '@utils/axios-helper';
 import {clearError, getErrorMessage, isError} from "@/src/utils/error-handler";
 import {Toast} from "@utils/toast";
-import {useBankAccountStore} from "@stores/bankAccount";
+import {useBankAccountStore} from "@stores/bankAccount.store";
 import {BankAccount} from "@common/types/global/bankAccount";
 
 const store = useBankAccountStore();
