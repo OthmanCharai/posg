@@ -1,13 +1,10 @@
 <script setup lang="ts">
-import {useRoleStore} from "@/src/stores/roles";
-import {dropDownFilter} from '@/src/composables/filters';
-import {useAxios} from '@utils/axios-helper';
-import {clearError, getErrorMessage, isError} from "@/src/utils/error-handler";
-import {Permissions, Roles} from "@common/types/global/roles";
-import {Toast} from "@utils/toast";
+import { useRoleStore } from "@/src/stores/roles";
+import { dropDownFilter } from '@/src/composables/filters';
+import { clearError, getErrorMessage, isError } from "@/src/utils/error-handler";
+import type { Permissions, Roles } from "@common/types/global/roles";
 
 const store = useRoleStore();
-const {request, response, loading} = useAxios();
 const showUpdateModal = inject('showUpdateModal') as Ref<boolean>;
 
 const data = ref<Roles>({
@@ -21,7 +18,7 @@ const currentPermissions = (permissions: Permissions [], role: Roles) => {
   // Deep copy the permissions object
   const myPermissions = JSON.parse(JSON.stringify(permissions));
   return myPermissions
-      .filter(permission => (role.permissions & permission.value) === parseInt(permission.value));
+      .filter((permission: { value: string; }) => (role.permissions && permission.value) === parseInt(permission.value));
 }
 
 data.value.permissions = currentPermissions(store.permissions, store.currentRole);
@@ -32,12 +29,7 @@ const handleSubmission = async () => {
   if (Array.isArray(data.value.permissions) && data.value.permissions.every(item => typeof item === 'object' && item !== null)) {
     data.value.permissions = data.value.permissions?.map(item => item.value);
   }
-  await store.updateRole(data.value, store.currentRole);
-
-  if (store.status === 201) {
-    Toast.success('Votre role a été modofoer avec succès.');
-    showUpdateModal.value = false;
-  }
+  await store.updateRole(data.value, showUpdateModal);
 };
 
 const checkIfSupper = (value: any) => {
@@ -51,7 +43,7 @@ const checkIfSupper = (value: any) => {
 </script>
 
 <template>
-  <ModalWrapper title="Nouveau role" v-model:open="showUpdateModal as boolean" @submit="handleSubmission" width="800px">
+  <ModalWrapper title="Nouveau role" v-model:open="showUpdateModal" @submit="handleSubmission" width="800px">
     <a-divider class="!text-xl">Données du role</a-divider>
     <section class="grid grid-cols-2 gap-4">
       <div class="grid gap-4">
@@ -64,7 +56,7 @@ const checkIfSupper = (value: any) => {
       </div>
       <div>
         <a-form-item>
-          <a-textarea placeholder="Address" class="h-[88px!important] mb-4" v-model:value="data.description"/>
+          <a-textarea placeholder="Description" class="h-[88px!important] mb-4" v-model:value="data.description"/>
         </a-form-item>
       </div>
     </section>
@@ -90,7 +82,7 @@ const checkIfSupper = (value: any) => {
       </section>
     </div>
   </ModalWrapper>
-  <Loader :is-active="loading"/>
+  <Loader :is-active="store.loading"/>
 </template>
 
 <style scoped>

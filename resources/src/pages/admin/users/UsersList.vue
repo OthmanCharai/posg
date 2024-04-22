@@ -48,7 +48,7 @@ const editUser = (record: Users) => {
 
 // Delete user
 const showDeleteModal = ref<boolean>(false);
-const deleteAlert = (record: Users) => {
+const deleteUser = (record: Users) => {
   store.setSelectedUserData(record);
   showDeleteModal.value = true;
 }
@@ -89,7 +89,7 @@ onMounted(async () => {
               <button class="action-button edit" @click="editUser(record)">
                 <vue-feather type="edit"></vue-feather>
               </button>
-              <button class="action-button delete" @click="deleteAlert(record)">
+              <button class="action-button delete" @click="deleteUser(record)">
                 <vue-feather type="trash-2"></vue-feather>
               </button>
             </td>

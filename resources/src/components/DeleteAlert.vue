@@ -35,9 +35,9 @@ async function deleteAction () {
   });
 
   if(response.value){
-    updateData(),
     Toast.success('Votre suppression a été réussie');
     emit('update:toggle', false);
+    updateData();
   }
 };
 
