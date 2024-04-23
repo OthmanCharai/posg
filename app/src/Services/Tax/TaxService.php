@@ -4,8 +4,8 @@ namespace App\src\Services\Tax;
 
 use App\src\Models\Tax\Tax;
 use App\src\Repositories\Tax\TaxRepository;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Pagination\LengthAwarePaginator;
 use YouCanShop\QueryOption\QueryOption;
 
 class TaxService implements TaxServiceInterface
@@ -36,7 +36,7 @@ class TaxService implements TaxServiceInterface
         return $this->taxRepository->delete($model->getId(), $columnName);
     }
 
-    public function getPaginated(QueryOption $queryOption): LengthAwarePaginator
+    public function getPaginated(QueryOption $queryOption): Collection
     {
         return $this->taxRepository->getPaginated($queryOption);
     }
