@@ -4,8 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-
-    "content-hash": "1dbd8066227ff513b910496c21262194",
+    "content-hash": "93ffa514616f8234353c8149eeeac983",
     "packages": [
         {
             "name": "aws/aws-crt-php",
@@ -6582,6 +6581,63 @@
                 "source": "https://github.com/youcan-shop/QueryOption/tree/v0.1.3"
             },
             "time": "2023-05-11T10:27:29+00:00"
+        },
+        {
+            "name": "yungts97/laravel-user-activity-log",
+            "version": "v1.4.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yungts97/laravel-user-activity-log.git",
+                "reference": "9cd9981f67c2fbc1ba4ba3d88bb06b1b262ec81d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yungts97/laravel-user-activity-log/zipball/9cd9981f67c2fbc1ba4ba3d88bb06b1b262ec81d",
+                "reference": "9cd9981f67c2fbc1ba4ba3d88bb06b1b262ec81d",
+                "shasum": ""
+            },
+            "require-dev": {
+                "orchestra/testbench": "^6.0",
+                "phpunit/phpunit": "^9.5"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Yungts97\\LaravelUserActivityLog\\UserActivityLogServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/Helpers/helpers.php"
+                ],
+                "psr-4": {
+                    "Yungts97\\LaravelUserActivityLog\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Yung Teck Sheng",
+                    "email": "yungts97@gmail.com"
+                }
+            ],
+            "description": "A simple laravel package by yungts97 to easily monitor your laravel app user activity.",
+            "keywords": [
+                "activity",
+                "laravel",
+                "log",
+                "user"
+            ],
+            "support": {
+                "issues": "https://github.com/yungts97/laravel-user-activity-log/issues",
+                "source": "https://github.com/yungts97/laravel-user-activity-log/tree/v1.4.1"
+            },
+            "time": "2022-10-02T08:22:35+00:00"
         }
     ],
     "packages-dev": [
