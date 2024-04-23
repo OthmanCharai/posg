@@ -1,4 +1,28 @@
 <script setup lang="ts">
+import type { Taxes } from '@common/types/taxes';
+import CreateTaxe from './CreateTaxe.vue';
+import EditTaxe from './EditTaxe.vue';
+import { useTaxeStore } from '@stores/taxes.store';
+
+const store = useTaxeStore();
+const showCreateTaxeModal = ref(false);
+provide('showCreateTaxeModal', showCreateTaxeModal);
+
+const showUpdateTaxeModal = ref(false);
+provide('showUpdateTaxeModal', showUpdateTaxeModal);
+
+// Edit user
+const editUser = (record: Taxes) => {
+  store.setSelectedTaxe(record);
+  showUpdateTaxeModal.value = true;
+}
+
+// Delete user
+const showDeleteTaxeModal = ref<boolean>(false);
+const deleteUser = (record: Taxes) => {
+  store.setSelectedTaxe(record);
+  showDeleteTaxeModal.value = true;
+}
 </script>
 
 <template>
@@ -49,5 +73,18 @@
   <div v-else class="flex justify-center items-center h-96">
     <a-empty />
   </div>
+
+  <!-- Create taxe modal -->
+  <CreateTaxe v-if="store.getResponse && showCreateTaxeModal" />
+  <!-- Update taxe modal -->
+  <EditTaxe v-if="store.getResponse && showUpdateTaxeModal" />
+  <!-- Delte taxe Alert -->
+  <DeleteAlert
+    v-if="store.getResponse && showDeleteTaxeModal"
+    v-model:toggle="showDeleteTaxeModal"
+    model="tax"
+    :id="store.selectedTaxe.id"
+    :update-data="() => store.getTaxesList()"
+  />
 </template>
 

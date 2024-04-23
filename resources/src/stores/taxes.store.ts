@@ -5,11 +5,12 @@ import type { Taxes } from '@common/types/taxes';
 
 const { request, response, loading } = useAxios();
 
-export const useUserStore = defineStore('users', {
+export const useTaxeStore = defineStore('taxes', {
   state: () => ({
     taxesList: {} as Taxes,
     loading: loading,
     getResponse: false,
+    selectedTaxe: {} as Taxes,
   }),
 
   actions: {
@@ -17,10 +18,10 @@ export const useUserStore = defineStore('users', {
     async getTaxesList () {
       await request({
         method: 'GET',
-        url: route('taxes.index')
+        url: route('tax.list')
       })
       if (response.value && response.value.data) {
-        this.taxesList = response.value.data.users.data;
+        this.taxesList = response.value.data;
         this.getResponse = true;
       }
     },
@@ -29,7 +30,7 @@ export const useUserStore = defineStore('users', {
     async createTaxe (formData: 'data', showCreateModal: Ref<boolean>) {
       await request({
         method: 'POST',
-        url: route('taxe.create'),
+        url: route('tax.create.submit'),
         data: formData,
       })
 
@@ -43,32 +44,24 @@ export const useUserStore = defineStore('users', {
     // Update
     async updateUser (formData: FormData, showUpdateModal: Ref<boolean>) {
       await request({
-        method: 'POST',
-        url: route('users.update', this.selectedUser.id),
+        method: 'PUT',
+        url: route('tax.update', this.selectedTaxe.id),
         data: formData,
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-        params: {
-          _method: "PUT",
-        },
       })
 
       if (response.value && response.value.data) {
-        Toast.success('Votre compte a été mis à jour avec succès.');
+        Toast.success('Votre taxe a été modifié avec succès.');
         showUpdateModal.value = false;
-        await this.getUsersList(this.pagination.current_page);
+        await this.getTaxesList();
       }
     },
 
-
-    // Delete
-
+    setSelectedTaxe(data: Taxes) {
+      this.selectedTaxe = data;
+    },
     /* ------------------- Taxe variants -------------------- */
     // Create
 
     // Update
-
-    // Delete
   }
 })
