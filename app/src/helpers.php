@@ -37,6 +37,23 @@ if (!function_exists('map_paginator')) {
     }
 }
 
+if (!function_exists('map_collection')) {
+    /**
+     * @param LengthAwarePaginator $paginator
+     * @param callable $callable
+     *
+     * @return LengthAwarePaginator
+     */
+    function map_collection(
+        \Illuminate\Database\Eloquent\Collection $paginator,
+        callable $callable
+    ): \Illuminate\Database\Eloquent\Collection {
+        $paginator->map(bind($callable));
+
+        return $paginator;
+    }
+}
+
 if (!function_exists('transform_paginator')) {
     function transform_paginator(
         LengthAwarePaginator $paginator,
