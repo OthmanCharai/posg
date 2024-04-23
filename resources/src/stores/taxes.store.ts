@@ -21,13 +21,14 @@ export const useTaxeStore = defineStore('taxes', {
         url: route('tax.list')
       })
       if (response.value && response.value.data) {
+        console.log(response.value);
         this.taxesList = response.value.data;
         this.getResponse = true;
       }
     },
     /* ------------------- Taxe parent -------------------- */
     // Create
-    async createTaxe (formData: 'data', showCreateModal: Ref<boolean>) {
+    async createTaxe (formData: Taxes, showCreateModal: Ref<boolean>) {
       await request({
         method: 'POST',
         url: route('tax.create.submit'),
@@ -42,7 +43,7 @@ export const useTaxeStore = defineStore('taxes', {
     },
 
     // Update
-    async updateUser (formData: FormData, showUpdateModal: Ref<boolean>) {
+    async updateUser (formData: Taxes, showUpdateModal: Ref<boolean>) {
       await request({
         method: 'PUT',
         url: route('tax.update', this.selectedTaxe.id),

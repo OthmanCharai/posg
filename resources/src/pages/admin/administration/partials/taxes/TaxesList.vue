@@ -27,7 +27,7 @@ const deleteUser = (record: Taxes) => {
 
 <template>
   <div class="mb-10 flex justify-end">
-    <a-button type="primary">
+    <a-button type="primary" @click="showCreateTaxeModal = true">
       <vue-feather :size="16" type="plus"></vue-feather>
       <span>Ajouter une taxe</span>
     </a-button>
@@ -75,7 +75,7 @@ const deleteUser = (record: Taxes) => {
   </div>
 
   <!-- Create taxe modal -->
-  <CreateTaxe v-if="store.getResponse && showCreateTaxeModal" />
+  <CreateTaxe v-if="showCreateTaxeModal" />
   <!-- Update taxe modal -->
   <EditTaxe v-if="store.getResponse && showUpdateTaxeModal" />
   <!-- Delte taxe Alert -->
