@@ -1,7 +1,9 @@
 <script setup lang="ts">
-import Taxes from './partials/Taxes.vue';
+import Taxes from "./partials/Taxes.vue";
+import BankAccountList from "../bankAccount/BankAccountList.vue";
+import CompanyProfile from "../company/CompanyProfile.vue";
 
-const activeKey = ref('1');
+const activeKey = ref("1");
 </script>
 
 <template>
@@ -17,16 +19,14 @@ const activeKey = ref('1');
   >
     <a-tab-pane key="1" tab="Information Société" :forceRender="true">
       <span v-if="activeKey === '1'">
-        Content of Tab Pane 1
+        <CompanyProfile />
       </span>
     </a-tab-pane>
     <a-tab-pane key="2" tab="Gestion de banques" :forceRender="true">
-      <span v-if="activeKey === '2'">
-        Content of Tab Pane 2
-      </span>
+      <span v-if="activeKey === '2'"> <BankAccountList /> </span>
     </a-tab-pane>
     <a-tab-pane key="3" tab="Gestion des taxes" :forceRender="true">
-      <Taxes v-if="activeKey === '3'"/>
+      <Taxes v-if="activeKey === '3'" />
     </a-tab-pane>
   </a-tabs>
 </template>

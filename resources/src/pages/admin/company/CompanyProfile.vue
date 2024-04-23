@@ -44,7 +44,32 @@ onMounted(async () => {
     path: store.company.path,
   };
   await nextTick();
+  
+  if(data.value.path && fileList.value && fileList.value.length === 0) {
+    const image: UploadProps['fileList'][number] = {
+      uid: 'index-1',
+      status: 'done',
+      thumbUrl: data.value.path as string,
+    };
+
+    fileList.value.push(image);
+  }
+
 });
+
+const changeImage = () => {
+  if (fileList.value && fileList.value.length > 0) {
+    return data.value.path = fileList.value[0].originFileObj;
+  }
+}
+
+const removeImage = () => {
+  if (data.value.path) {
+    data.value.path = '';
+    return true;
+  }
+}
+
 
 // upload image
 const fileList = ref<UploadProps["fileList"]>([]);
@@ -93,6 +118,9 @@ const submitForm = async () => {
             list-type="picture-card"
             class="upload-list-inline"
             :before-upload="stopAntdvDefaultRequest"
+            @remove="removeImage"
+            @change="changeImage"
+            :maxCount="1"
             accept="image/png, image/jpeg"
           >
             <div v-if="fileList && fileList.length < 1">

@@ -76,16 +76,6 @@ export default [
                 }
             },
             {
-                path: '/banques',
-                name: 'Banques',
-                component: () => import('@/src/pages/admin/bankAccount/BankAccountList.vue'),
-                meta: {
-                    middleware: [
-                        auth
-                    ]
-                }
-            },
-            {
                 path: '/administrations',
                 name: 'Administration',
                 component: () => import('@/src/pages/admin/administration/Index.vue'),
