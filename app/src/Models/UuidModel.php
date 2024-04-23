@@ -2,11 +2,13 @@
 
 namespace App\src\Models;
 
-use App\src\Models\BaseModel;
 use Tuupola\KsuidFactory;
+use Yungts97\LaravelUserActivityLog\Traits\Loggable;
 
 abstract class UuidModel extends BaseModel
 {
+    use Loggable;
+
     public const ID_COLUMN = 'id';
     public $incrementing = false;
     protected $keyType = "string";

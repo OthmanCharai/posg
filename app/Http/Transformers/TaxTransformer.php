@@ -12,9 +12,10 @@ class TaxTransformer
      *
      * @return array<string, mixed>
      */
-    public function transform(Tax $tax): array
+    public static function transform(Tax $tax): array
     {
         $data = [
+            Tax::ID_COLUMN   => $tax->getId(),
             Tax::NAME_COLUMN => $tax->getName(),
         ];
 
