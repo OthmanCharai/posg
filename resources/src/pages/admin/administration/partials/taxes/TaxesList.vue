@@ -2,7 +2,13 @@
 </script>
 
 <template>
-  <div class="overflow-hidden bg-white shadow-md sm:rounded-lg">
+  <div class="mb-10 flex justify-end">
+    <a-button type="primary">
+      <vue-feather :size="16" type="plus"></vue-feather>
+      <span>Ajouter une taxe</span>
+    </a-button>
+  </div>
+  <div v-if="true" class="overflow-hidden bg-white shadow-md sm:rounded-lg">
     <div class="px-4 py-6 sm:px-6 flex justify-between">
       <div class="flex gap-2">
         <h3 class="text-base font-semibold leading-7 text-gray-900">Applicant Information</h3>
@@ -39,6 +45,9 @@
         </template>
       </DataTable>
     </div>
+  </div>
+  <div v-else class="flex justify-center items-center h-96">
+    <a-empty />
   </div>
 </template>
 
