@@ -30,8 +30,11 @@ readonly class CompanySettingService implements CompanySettingServiceInterface
      */
     public function update(CompanySetting|Model $model, array $attributes): bool
     {
-        $this->mediaService->delete($model->getPath());
-        $path = $this->mediaService->save($model->getId(), Arr::get($attributes, CompanySetting::PATH_COLUMN));
+        $path = $model->getPath();
+        if (!is_null($uploadedFile = Arr::get($attributes, CompanySetting::PATH_COLUMN))) {
+            $this->mediaService->delete($model->getPath());
+            $path = $this->mediaService->save($model->getId(), $uploadedFile);
+        }
 
         return $this->companySettingRepository->update(
             $model->getId(),
