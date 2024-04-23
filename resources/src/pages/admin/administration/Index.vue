@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Taxes from "./partials/Taxes.vue";
+import Taxes from "./partials/taxes/TaxesList.vue";
 import BankAccountList from "../bankAccount/BankAccountList.vue";
 import CompanyProfile from "../company/CompanyProfile.vue";
 
