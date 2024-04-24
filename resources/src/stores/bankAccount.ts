@@ -4,7 +4,7 @@ import {BankAccount} from "@common/types/global/bankAccount";
 import {route, useAxios} from "@utils/axios-helper";
 import {extractPaginatorObject} from "@utils/pagination";
 
-const {request, response, loading, status} = useAxios();
+const {request, response, loading} = useAxios();
 
 export const useBankAccountStore = defineStore('bankAccounts', {
     state: () => ({
@@ -13,7 +13,6 @@ export const useBankAccountStore = defineStore('bankAccounts', {
         loading: loading,
         getResponse: false,
         currentBankAccount: {} as BankAccount,
-        status: 0
     }),
     actions: {
         async getList(page: number = 1) {
@@ -39,8 +38,7 @@ export const useBankAccountStore = defineStore('bankAccounts', {
                 data: data
             });
             try {
-                if (status.value === 201) {
-                    this.status = status.value;
+                if (response.value) {
                     await this.getList();
                 }
             } catch (e) {
@@ -55,8 +53,7 @@ export const useBankAccountStore = defineStore('bankAccounts', {
                 data: data
             });
             try {
-                if (status.value === 201) {
-                    this.status = status.value;
+                if (response.value) {
                     await this.getList();
                 }
             } catch (e) {
@@ -70,8 +67,7 @@ export const useBankAccountStore = defineStore('bankAccounts', {
                 url: route('bank-accounts.delete', bankAccount.id)
             });
             try {
-                if (status.value === 200) {
-                    this.status = status.value;
+                if (response.value) {
                     await this.getList();
                 }
             } catch (e) {

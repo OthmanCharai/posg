@@ -5,7 +5,7 @@ import { route, useAxios } from '@utils/axios-helper';
 import { extractPaginatorObject } from '@utils/pagination';
 import { Toast } from '@utils/toast';
 
-const { request, response, loading, status } = useAxios();
+const { request, response, loading } = useAxios();
 
 export const useRoleStore = defineStore('roles', {
   state: () => ({
@@ -15,7 +15,6 @@ export const useRoleStore = defineStore('roles', {
     getResponse: false,
     currentRole: {} as Roles,
     permissions: [] as Permissions[],
-    status: 0
   }),
   actions: {
     async getRolesList(page: number = 1) {
@@ -53,8 +52,7 @@ export const useRoleStore = defineStore('roles', {
         data: data
       });
       try {
-        if (status.value === 201) {
-          this.status = status.value;
+        if (response.value) {
           Toast.success('Votre role a été ajouter avec succès.');
           showCreateModal.value = false;
           await this.getRolesList();
@@ -71,9 +69,8 @@ export const useRoleStore = defineStore('roles', {
         data: data
       });
       try {
-        if (status.value === 201) {
-          Toast.success('Votre role a été modofoer avec succès.');
-          this.status = status.value;
+        if (response.value) {
+          Toast.success('Votre role a été modifié avec succès.');
           showUpdateModal.value = false;
           await this.getRolesList();
         }

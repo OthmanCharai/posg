@@ -10,26 +10,28 @@ export const route = window.route;
  * composable function for axios requests with reactive state
  */
 export const useAxios = () => {
-    const loading = ref(false);
-    const response = ref<AxiosResponse<any>>();
-    const errorMessage = ref<string>('');
-    const status = ref<number>();
+  const loading = ref(false);
+  const response = ref<AxiosResponse<any>>();
+  const errorMessage = ref<string>('');
 
-    const request = async (config: AxiosRequestConfig) => {
-        loading.value = true;
-        try {
-            response.value = await axios(config);
-            status.value = response.value?.status
-        } catch (err: any) {
-            response.value = err;
-            status.value = err.response.status;
-            processErrors(err, errorMessage);
+  const request = async (config: AxiosRequestConfig) => {
+    response.value = undefined; // clear response before lunching any request
+    loading.value = true;
+    try {
+      const result = await axios(config);
+      if (result.status >= 200 && result.status < 300) {
+        response.value = result;
+      } else {
+        throw new Error(`Request failed with status code: ${result.status}`);
+      }
+    } catch (err: any) {
+        processErrors(err, errorMessage);
 
-        } finally {
-            loading.value = false;
-        }
-    };
+    } finally {
+      loading.value = false;
+    }
+  };
 
-    return {loading, response, errorMessage, request, status};
+  return {loading, response, errorMessage, request};
 };
 
