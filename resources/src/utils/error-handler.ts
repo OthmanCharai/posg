@@ -19,8 +19,9 @@ export const processErrors = (error: any, errorMessage: Ref<string>): void => {
 
   if(error.response.data.message) {
     errorMessage.value = error.response.data.message;
-
     Toast.error(error.response.data.message);
+  } else {
+    Toast.error(error.message);
   }
 };
 

@@ -7,8 +7,7 @@ import {useBankAccountStore} from "@stores/bankAccount.store";
 import {BankAccount} from "@common/types/global/bankAccount";
 
 const store = useBankAccountStore();
-const {request, response, loading} = useAxios();
-const rolesList = ref<SelectProps['options']>([]);
+const {response, loading} = useAxios();
 const showUpdateModal = inject('showUpdateModal') as Ref<boolean>;
 
 const data = ref<BankAccount>({
@@ -23,7 +22,7 @@ const data = ref<BankAccount>({
 // Submit data
 const handleSubmission = async () => {
   await store.update(store.currentBankAccount, data.value);
-  if (store.status === 201) {
+  if (response.value) {
     Toast.success('Votre banque a été modifier avec succès.');
     showUpdateModal.value = false;
   }
@@ -31,8 +30,7 @@ const handleSubmission = async () => {
 </script>
 
 <template>
-  <ModalWrapper title="Nouveau utilisateur" v-model:open="showUpdateModal as boolean" @submit="handleSubmission"
-                width="800px">
+  <ModalWrapper title="Nouveau utilisateur" v-model:open="showUpdateModal" @submit="handleSubmission" width="800px">
     <a-divider class="!text-xl">Données du Banque</a-divider>
     <section class="grid grid-cols-2 gap-4">
       <div class="grid gap-4">
