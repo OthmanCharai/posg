@@ -85,6 +85,17 @@ export default [
                     ]
                 }
             },
+            {
+                path: '/traçabilité',
+                name: 'traçabilité',
+                component: () => import('@/src/pages/admin/tracability/ListLogs.vue'),
+                meta: {
+                    middleware: [
+                        auth
+                    ]
+                }
+            },
+
         ]
     },
 
