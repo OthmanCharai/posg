@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
 import { useAxios, route } from '@utils/axios-helper';
 import { Toast } from '@utils/toast';
-import type { Taxes } from '@common/types/taxes';
+import type { Taxes, TaxeVariants } from '@common/types/taxes';
 
 const { request, response, loading } = useAxios();
 
@@ -61,8 +61,38 @@ export const useTaxeStore = defineStore('taxes', {
       this.selectedTaxe = data;
     },
     /* ------------------- Taxe variants -------------------- */
-    // Create
+     // Create
+    async createTaxeVariant (formData: TaxeVariants, showCreateModal: Ref<boolean>) {
+      await request({
+        method: 'POST',
+        url: route('tax-variant.create.submit'),
+        data: formData,
+      })
+
+      if (response.value && response.value.data) {
+        Toast.success('Création faite avec succès.');
+        showCreateModal.value = false;
+        await this.getTaxesList();
+      }
+    },
 
     // Update
+    async updateTaxeVariant (formData: TaxeVariants, showUpdateModal: Ref<boolean>) {
+      await request({
+        method: 'PUT',
+        url: route('tax-variant.update', this.selectedTaxe.id),
+        data: formData,
+      })
+
+      if (response.value && response.value.data) {
+        Toast.success('Modification faite avec succès.');
+        showUpdateModal.value = false;
+        await this.getTaxesList();
+      }
+    },
+
+    setSelectedTaxeVariant(data: Taxes) {
+      this.selectedTaxe = data;
+    },
   }
 })

@@ -3,8 +3,34 @@ import type { Taxes } from '@common/types/taxes';
 import CreateTaxe from './CreateTaxe.vue';
 import EditTaxe from './EditTaxe.vue';
 import { useTaxeStore } from '@stores/taxes.store';
+import { lengthSorter } from '@/src/composables/table-sorters';
+import CreateTaxeVariant from './taxe-variants/CreateTaxeVariant.vue';
+import EditTaxeVariant from './taxe-variants/EditTaxeVariant.vue';
 
 const store = useTaxeStore();
+const columns = computed(() => [
+  {
+    title: "Taxes",
+    dataIndex: "name",
+    sorter: lengthSorter('name'),
+  },
+  {
+    title: "Valeur",
+    dataIndex: "value",
+    sorter: lengthSorter('value'),
+  },
+  {
+    title: "Type de valeur",
+    dataIndex: "type",
+    sorter: lengthSorter('type'),
+  },
+  {
+    title: 'Action',
+    key: 'action',
+  },
+]);
+
+//----------- CRUD Taxes -----------------
 const showCreateTaxeModal = ref(false);
 provide('showCreateTaxeModal', showCreateTaxeModal);
 
@@ -24,6 +50,26 @@ const deleteTaxe = (record: Taxes) => {
   showDeleteTaxeModal.value = true;
 }
 
+//----------- CRUD Taxe Variants -----------------
+const showCreateTaxeVariantModal = ref(false);
+provide('showCreateTaxeVariantModal', showCreateTaxeVariantModal);
+
+const showUpdateTaxeVariantModal = ref(false);
+provide('showUpdateTaxeVariantModal', showUpdateTaxeVariantModal);
+
+// Edit taxe
+const editTaxeVariant = (record: Taxes) => {
+  store.setSelectedTaxe(record);
+  showUpdateTaxeVariantModal.value = true;
+}
+
+// Delete taxe
+const showDeleteTaxeVariantModal = ref<boolean>(false);
+const deleteTaxeVariant = (record: Taxes) => {
+  store.setSelectedTaxe(record);
+  showDeleteTaxeVariantModal.value = true;
+}
+
 onMounted(async() => {
   await store.getTaxesList();
 })
@@ -38,8 +84,8 @@ onMounted(async() => {
       </a-button>
     </div>
     <div v-if="store.taxesList.length > 0" class="grid gap-10">
-      <div v-for="(item, i) in store.taxesList" :key="i" class="overflow-hidden bg-white shadow-md sm:rounded-lg max-h-[324px]">
-        <div class="px-4 py-6 sm:px-6 flex justify-between">
+      <div v-for="(item, i) in store.taxesList" :key="i" class="overflow-hidden bg-white shadow-md sm:rounded-lg max-h-[324px] !overflow-y-scroll">
+        <div class="px-3 md:px-4 py-6 sm:px-6 flex justify-between">
           <div class="flex gap-2">
             <h3 class="text-base font-semibold leading-7 text-gray-900">
               {{ item.name }}
@@ -56,26 +102,34 @@ onMounted(async() => {
             </template>
           </a-button>
         </div>
-        <div class="border-t border-gray-100 p-4">
-          <DataTable
-            :columns="[]"
-            :data="[]"
-            :fetched-data="{}"
-            :loading="false"
-          >
-            <template #bodyCell="{column, record}">
-              <template v-if="column.key === 'action'">
-                <td class="action-table-data">
-                  <button class="action-button edit" @click="">
-                    <vue-feather type="edit"></vue-feather>
-                  </button>
-                  <button class="action-button delete" @click="">
-                    <vue-feather type="trash-2"></vue-feather>
-                  </button>
-                </td>
+        <div class="border-t border-gray-100 px-3 md:px-4 py-4 flex flex-col-reverse md:flex-row gap-2">
+          <div class="w-full md:w-[90%] mx-auto">
+            <DataTable
+              :columns="columns"
+              :data="store.taxesList[i].tax_variants"
+              :fetched-data="store.getTaxesList"
+              :loading="false"
+            >
+              <template #bodyCell="{column, record}">
+                <template v-if="column.key === 'action'">
+                  <td class="action-table-data">
+                    <button class="action-button edit" @click="editTaxeVariant(record)">
+                      <vue-feather type="edit"></vue-feather>
+                    </button>
+                    <button class="action-button delete" @click="deleteTaxeVariant(record)">
+                      <vue-feather type="trash-2"></vue-feather>
+                    </button>
+                  </td>
+                </template>
               </template>
-            </template>
-          </DataTable>
+            </DataTable>
+          </div>
+          <div class="">
+            <a-button type="default">
+              <vue-feather :size="16" type="plus"></vue-feather>
+              <span>{{`Nouveau ${item.name}`}}</span>
+            </a-button>
+          </div>
         </div>
       </div>
     </div>
@@ -95,5 +149,14 @@ onMounted(async() => {
   />
 
   <!--------- Taxe variants CRUD modals ----------->
+  <CreateTaxeVariant v-if="showCreateTaxeVariantModal" />
+  <EditTaxeVariant v-if="store.getResponse && showUpdateTaxeVariantModal" />
+  <DeleteAlert
+    v-if="store.getResponse && showDeleteTaxeVariantModal"
+    v-model:toggle="showDeleteTaxeVariantModal"
+    model="tax-variant"
+    :id="store.selectedTaxe.id"
+    :update-data="() => store.getTaxesList()"
+  />
 </template>
 
