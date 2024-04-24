@@ -10,7 +10,7 @@ use Psr\Log\LogLevel;
 abstract class CommonException extends Exception
 {
     // Default Status code
-    protected const DEFAULT_CODE = 100;
+    public const DEFAULT_CODE = 100;
 
     // Exception level
     protected string $level;
