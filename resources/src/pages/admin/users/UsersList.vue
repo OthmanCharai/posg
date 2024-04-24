@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import { lengthSorter } from '@/src/composables/table-sorters';
+import {lengthSorter} from '@/src/composables/table-sorters';
 import CreateUser from './CreateUser.vue';
 import UpdateUser from './UpdateUser.vue';
-import { useUserStore } from '@/src/stores/users.store';
-import type { Users } from '@common/types/users';
+import {useUserStore} from '@/src/stores/users.store';
+import type {Users} from '@common/types/users';
 
 const store = useUserStore();
 const columns = computed(() => [
   {
-    title: "Nome",
+    title: "Nom",
     dataIndex: "first_name",
     sorter: lengthSorter('first_name'),
   },
@@ -24,7 +24,7 @@ const columns = computed(() => [
   },
   {
     title: "Role",
-    customRender: ({ record }) => {
+    customRender: ({record}) => {
       return record.role ? record.role.name : '-';
     }
   },
@@ -62,10 +62,10 @@ onMounted(async () => {
   <PageHeader title="Utilisateurs">
     <div class="page-btn">
       <a
-        href="javascript:void(0);"
-        class="btn btn-added color"
-        @click="showCreateModal = true"
-        >
+          href="javascript:void(0);"
+          class="btn btn-added color"
+          @click="showCreateModal = true"
+      >
         <vue-feather type="plus-circle" class="me-2"></vue-feather>
         Ajouter
       </a>
@@ -73,15 +73,15 @@ onMounted(async () => {
   </PageHeader>
 
   <div class="card table-list-card">
-    <Filter />
+    <Filter/>
     <div class="card-body">
       <DataTable
-        :columns="columns"
-        :data="store.usersData"
-        :current-page="store.pagination.current_page"
-        :total="store.pagination.total"
-        :fetched-data="store.getUsersList"
-        :loading="store.loading"
+          :columns="columns"
+          :data="store.usersData"
+          :current-page="store.pagination.current_page"
+          :total="store.pagination.total"
+          :fetched-data="store.getUsersList"
+          :loading="store.loading"
       >
         <template #bodyCell="{column, record}">
           <template v-if="column.key === 'action'">
@@ -99,15 +99,15 @@ onMounted(async () => {
     </div>
   </div>
   <!-- Create user modal -->
-  <CreateUser v-if="store.getResponse && showCreateModal" />
+  <CreateUser v-if="store.getResponse && showCreateModal"/>
   <!-- Update user modal -->
-  <UpdateUser v-if="store.getResponse && showUpdateModal" />
+  <UpdateUser v-if="store.getResponse && showUpdateModal"/>
   <!-- Delte user Alert -->
   <DeleteAlert
-    v-if="store.getResponse && showDeleteModal"
-    v-model:toggle="showDeleteModal"
-    model="users"
-    :id="store.selectedUser.id"
-    :update-data="() => store.getUsersList(store.pagination.current_page)"
+      v-if="store.getResponse && showDeleteModal"
+      v-model:toggle="showDeleteModal"
+      model="users"
+      :id="store.selectedUser.id"
+      :update-data="() => store.getUsersList(store.pagination.current_page)"
   />
 </template>
