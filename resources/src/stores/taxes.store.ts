@@ -7,7 +7,7 @@ const { request, response, loading } = useAxios();
 
 export const useTaxeStore = defineStore('taxes', {
   state: () => ({
-    taxesList: {} as Taxes,
+    taxesList: [] as Taxes[],
     loading: loading,
     getResponse: false,
     selectedTaxe: {} as Taxes,
@@ -22,7 +22,7 @@ export const useTaxeStore = defineStore('taxes', {
       })
       if (response.value && response.value.data) {
         console.log(response.value);
-        this.taxesList = response.value.data;
+        this.taxesList = response.value.data.taxes;
         this.getResponse = true;
       }
     },
@@ -43,7 +43,7 @@ export const useTaxeStore = defineStore('taxes', {
     },
 
     // Update
-    async updateUser (formData: Taxes, showUpdateModal: Ref<boolean>) {
+    async updateTaxe (formData: Taxes, showUpdateModal: Ref<boolean>) {
       await request({
         method: 'PUT',
         url: route('tax.update', this.selectedTaxe.id),
