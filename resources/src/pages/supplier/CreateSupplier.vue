@@ -24,7 +24,7 @@ const handleSubmission = async () => {
 </script>
 
 <template>
-  <ModalWrapper title="Nouveau Fournisseurs" v-model:open="showCreateModal as boolean" @submit="handleSubmission" width="800px">
+  <ModalWrapper title="Nouveau Fournisseurs" v-model:open="showCreateModal" @submit="handleSubmission" width="800px">
     <a-divider class="!text-xl">Informations de contact</a-divider>
     <section class="grid grid-cols-2 gap-4">
       <div class="grid gap-4">
@@ -56,28 +56,30 @@ const handleSubmission = async () => {
         </a-form-item>
       </div>
     </section>
-    <div class="grid grid-cols-2 gap-4">
+    <div class="grid grid-cols-1 gap-4">
       <section class="middle-section">
         <a-divider class="!text-xl">Details</a-divider>
-        <a-form-item
-            :validate-status="isError('company_name')"
-            :help="getErrorMessage('company_name')"
-        >
-          <a-input type="text" addonBefore="Nom Socété" v-model:value="data.company_name"/>
-        </a-form-item>
-        <a-form-item
-            :validate-status="isError('vat_number')"
-            :help="getErrorMessage('vat_number')"
-        >
-          <a-input type="text" addonBefore="TVA" v-model:value="data.vat_number"/>
-        </a-form-item>
+        <div class="grid gap-4">
+          <a-form-item
+              :validate-status="isError('company_name')"
+              :help="getErrorMessage('company_name')"
+          >
+            <a-input type="text" addonBefore="Nom Socété" v-model:value="data.company_name"/>
+          </a-form-item>
+          <a-form-item
+              :validate-status="isError('vat_number')"
+              :help="getErrorMessage('vat_number')"
+          >
+            <a-input type="text" addonBefore="TVA" v-model:value="data.vat_number"/>
+          </a-form-item>
 
-        <a-form-item
-            :validate-status="isError('account_number')"
-            :help="getErrorMessage('account_number')"
-        >
-          <a-input type="text" addonBefore="Numero de compte" v-model:value="data.account_number"/>
-        </a-form-item>
+          <a-form-item
+              :validate-status="isError('account_number')"
+              :help="getErrorMessage('account_number')"
+          >
+            <a-input type="text" addonBefore="Numero de compte" v-model:value="data.account_number"/>
+          </a-form-item>
+        </div>
       </section>
     </div>
   </ModalWrapper>
