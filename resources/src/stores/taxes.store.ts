@@ -17,20 +17,19 @@ export const useTaxeStore = defineStore('taxes', {
 
   actions: {
     // global tax list
-    async getTaxesList () {
+    async getTaxesList() {
       await request({
         method: 'GET',
         url: route('tax.list')
       })
       if (response.value && response.value.data) {
-        console.log(response.value);
         this.taxesList = response.value.data.taxes;
         this.getResponse = true;
       }
     },
     /* ------------------- Taxe parent -------------------- */
     // Create
-    async createTaxe (formData: Taxes, showCreateModal: Ref<boolean>) {
+    async createTaxe(formData: Taxes, showCreateModal: Ref<boolean>) {
       await request({
         method: 'POST',
         url: route('tax.create.submit'),
@@ -45,7 +44,7 @@ export const useTaxeStore = defineStore('taxes', {
     },
 
     // Update
-    async updateTaxe (formData: Taxes, showUpdateModal: Ref<boolean>) {
+    async updateTaxe(formData: Taxes, showUpdateModal: Ref<boolean>) {
       await request({
         method: 'PUT',
         url: route('tax.update', this.selectedTaxe.id),
@@ -64,7 +63,7 @@ export const useTaxeStore = defineStore('taxes', {
     },
     /* ------------------- Taxe variants -------------------- */
      // Create
-    async createTaxeVariant (formData: TaxeVariants, showCreateModal: Ref<boolean>) {
+    async createTaxeVariant(formData: TaxeVariants, showCreateModal: Ref<boolean>) {
       await request({
         method: 'POST',
         url: route('tax-variant.create.submit', this.selectedTaxeId),
@@ -82,7 +81,7 @@ export const useTaxeStore = defineStore('taxes', {
     async updateTaxeVariant (formData: TaxeVariants, showUpdateModal: Ref<boolean>) {
       await request({
         method: 'PUT',
-        url: route('tax-variant.update', this.selectedTaxe.id),
+        url: route('tax-variant.update', this.selectedTaxeVariant.id),
         data: formData,
       })
 
@@ -95,6 +94,10 @@ export const useTaxeStore = defineStore('taxes', {
 
     setSelectedTaxeId(data: string | undefined) {
       this.selectedTaxeId = data;
+    },
+
+    setSelectedTaxeVariants(data: TaxeVariants) {
+      this.selectedTaxeVariant = data;
     },
   }
 })

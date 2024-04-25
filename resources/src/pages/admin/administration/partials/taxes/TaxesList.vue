@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Taxes } from '@common/types/taxes';
+import type { TaxeVariants, Taxes } from '@common/types/taxes';
 import CreateTaxe from './CreateTaxe.vue';
 import EditTaxe from './EditTaxe.vue';
 import { useTaxeStore } from '@stores/taxes.store';
@@ -64,15 +64,15 @@ const createTaxeVariant = (id: string | undefined) => {
 }
 
 // Edit taxe variant
-const editTaxeVariant = (record: Taxes) => {
-  store.setSelectedTaxe(record);
+const editTaxeVariant = (record: TaxeVariants) => {
+  store.setSelectedTaxeVariants(record);
   showUpdateTaxeVariantModal.value = true;
 }
 
 // Delete taxe variant
 const showDeleteTaxeVariantModal = ref<boolean>(false);
-const deleteTaxeVariant = (record: Taxes) => {
-  store.setSelectedTaxe(record);
+const deleteTaxeVariant = (record: TaxeVariants) => {
+  store.setSelectedTaxeVariants(record);
   showDeleteTaxeVariantModal.value = true;
 }
 
@@ -165,7 +165,7 @@ onMounted(async() => {
     v-if="store.getResponse && showDeleteTaxeVariantModal"
     v-model:toggle="showDeleteTaxeVariantModal"
     model="tax-variant"
-    :id="store.selectedTaxe.id"
+    :id="store.selectedTaxeVariant.id"
     :update-data="() => store.getTaxesList()"
   />
 </template>
