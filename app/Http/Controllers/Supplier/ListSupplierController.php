@@ -21,6 +21,10 @@ class ListSupplierController extends Controller
 
         $suppliers = transform_paginator($suppliers, SupplierTransformer::class);
 
-        return $this->response->withArray($suppliers->toArray());
+        return $this->response->withArray(
+            [
+                'suppliers' => $suppliers,
+            ]
+        );
     }
 }

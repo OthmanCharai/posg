@@ -2,6 +2,8 @@
 import {lengthSorter} from '@/src/composables/table-sorters';
 import {useSupplierStore} from "@stores/supplier.store";
 import {Supplier} from "@common/types/global/supplier";
+import CreateSupplier from "@pages/supplier/CreateSupplier.vue";
+import UpdateSupplier from "@pages/supplier/UpdateSupplier.vue";
 
 const store = useSupplierStore();
 const columns = computed(() => [
@@ -13,7 +15,7 @@ const columns = computed(() => [
   {
     title: "Nom Fournisseur",
     customRender: ({record}) => {
-      return record.first + " " + record.last_name;
+      return record.first_name + " " + record.last_name;
     }
   },
   {
@@ -105,11 +107,11 @@ onMounted(async () => {
   <CreateSupplier v-if="store.getResponse && showCreateModal"/>
   <!-- Update supplier  modal -->
   <UpdateSupplier v-if="store.getResponse && showUpdateModal"/>
-  <!-- Delte supplier Alert -->
+  <!-- Delete supplier Alert -->
   <DeleteAlert
       v-if="store.getResponse && showDeleteModal"
       v-model:toggle="showDeleteModal"
-      model="users"
+      model="suppliers"
       :id="store.currentSupplier.id"
       :update-data="() => store.get(store.pagination.page)"
   />

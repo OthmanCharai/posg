@@ -4,27 +4,28 @@ import {useSupplierStore} from "@stores/supplier.store";
 import {Supplier} from "@common/types/global/supplier";
 
 const store = useSupplierStore();
-const showCreateModal = inject('showCreateModal') as Ref<boolean>;
+const showUpdateModal = inject('showUpdateModal') as Ref<boolean>;
 
 const data = ref<Supplier>({
-  first_name: '',
-  last_name: '',
-  email: '',
-  phone_number: '',
-  address: '',
-  company_name: '',
-  account_number: '',
-  vat_number: '',
+  first_name: store.currentSupplier.first_name,
+  last_name: store.currentSupplier.last_name,
+  email: store.currentSupplier.email,
+  phone_number: store.currentSupplier.phone_number,
+  address: store.currentSupplier.address,
+  company_name: store.currentSupplier.company_name,
+  account_number: store.currentSupplier.account_number,
+  vat_number: store.currentSupplier.vat_number,
 });
 
 // Submit data
 const handleSubmission = async () => {
-  await store.create(data.value, showCreateModal);
+  await store.update(store.currentSupplier, data.value, showUpdateModal);
 };
 </script>
 
 <template>
-  <ModalWrapper title="Nouveau Fournisseurs" v-model:open="showCreateModal as boolean" @submit="handleSubmission" width="800px">
+  <ModalWrapper title="Nouveau Fournisseurs" v-model:open="showUpdateModal as boolean" @submit="handleSubmission"
+                width="800px">
     <a-divider class="!text-xl">Informations de contact</a-divider>
     <section class="grid grid-cols-2 gap-4">
       <div class="grid gap-4">

@@ -22,8 +22,8 @@ export const useSupplierStore = defineStore('supplier', {
                 method: 'GET'
             })
             if (response.value && response.value?.data) {
-                this.suppliers = response.value?.data.suppliers;
-                this.pagination = extractPaginatorObject(response.value?.data.suppliers);
+                this.suppliers = response.value?.data.suppliers.data;
+                this.pagination = extractPaginatorObject(response.value?.data.suppliers.data);
                 this.getResponse = true;
             }
         },
