@@ -95,7 +95,16 @@ export default [
                     ]
                 }
             },
-
+            {
+                path: '/fournisseurs',
+                name: 'fournisseurs',
+                component: () => import('@/src/pages/supplier/ListSupplier.vue'),
+                meta: {
+                    middleware: [
+                        auth
+                    ]
+                }
+            },
         ]
     },
 

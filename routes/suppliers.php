@@ -16,7 +16,7 @@ Route::prefix('suppliers')
             ->name('index');
 
         Route::post('/create', StoreSupplierController::class)
-            ->name('create.submit');
+            ->name('create');
 
         Route::get('/{supplier}', ShowSupplierController::class)
             ->name('show');
