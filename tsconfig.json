@@ -23,7 +23,7 @@
       "@utils/*": ["./resources/src/utils/*"],
       "@pages/*": ["./resources/src/pages/*"],
       "@common/*": ["./resources/src/common/*"],
-      "@stores/*": ["resources/src/stores/*"]
+      "@stores/*": ["./resources/src/stores/*"],
     }
   },
   "include": ["./**/*.ts", "./**/*.d.ts", "./**/*.vue", "postcss.config.js"],

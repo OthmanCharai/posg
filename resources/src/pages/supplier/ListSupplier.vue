@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {lengthSorter} from '@/src/composables/table-sorters';
 import {useSupplierStore} from "@stores/supplier.store";
-import {Supplier} from "@common/types/global/supplier";
+import type {Supplier} from "@common/types/global/supplier";
 import CreateSupplier from "@pages/supplier/CreateSupplier.vue";
 import UpdateSupplier from "@pages/supplier/UpdateSupplier.vue";
 

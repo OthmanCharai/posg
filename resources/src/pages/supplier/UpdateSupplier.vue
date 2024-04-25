@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import {clearError, getErrorMessage, isError} from "@/src/utils/error-handler";
-import {useSupplierStore} from "@stores/supplier.store";
-import {Supplier} from "@common/types/global/supplier";
+import { clearError, getErrorMessage, isError } from "@/src/utils/error-handler";
+import { useSupplierStore } from "@stores/supplier.store";
+import type { Supplier } from "@common/types/global/supplier";
 
 const store = useSupplierStore();
 const showUpdateModal = inject('showUpdateModal') as Ref<boolean>;
@@ -24,7 +24,7 @@ const handleSubmission = async () => {
 </script>
 
 <template>
-  <ModalWrapper title="Nouveau Fournisseurs" v-model:open="showUpdateModal " @submit="handleSubmission"
+  <ModalWrapper title="Nouveau Fournisseurs" v-model:open="showUpdateModal" @submit="handleSubmission"
                 width="800px">
     <a-divider class="!text-xl">Informations de contact</a-divider>
     <section class="grid grid-cols-2 gap-4">
