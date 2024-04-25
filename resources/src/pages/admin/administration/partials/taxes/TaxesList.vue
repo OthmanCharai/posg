@@ -57,13 +57,19 @@ provide('showCreateTaxeVariantModal', showCreateTaxeVariantModal);
 const showUpdateTaxeVariantModal = ref(false);
 provide('showUpdateTaxeVariantModal', showUpdateTaxeVariantModal);
 
-// Edit taxe
+// Create taxe variant
+const createTaxeVariant = (id: string | undefined) => {
+  store.setSelectedTaxeId(id);
+  showCreateTaxeVariantModal.value = true;
+}
+
+// Edit taxe variant
 const editTaxeVariant = (record: Taxes) => {
   store.setSelectedTaxe(record);
   showUpdateTaxeVariantModal.value = true;
 }
 
-// Delete taxe
+// Delete taxe variant
 const showDeleteTaxeVariantModal = ref<boolean>(false);
 const deleteTaxeVariant = (record: Taxes) => {
   store.setSelectedTaxe(record);
@@ -111,6 +117,10 @@ onMounted(async() => {
               :loading="false"
             >
               <template #bodyCell="{column, record}">
+                <template v-if="column.dataIndex === 'type'">
+                  {{ record[column.dataIndex] === 0 ? '%' : '$' }}
+                </template>
+
                 <template v-if="column.key === 'action'">
                   <td class="action-table-data">
                     <button class="action-button edit" @click="editTaxeVariant(record)">
@@ -124,8 +134,8 @@ onMounted(async() => {
               </template>
             </DataTable>
           </div>
-          <div class="">
-            <a-button type="default">
+          <div>
+            <a-button type="default" @click="createTaxeVariant(item.id)">
               <vue-feather :size="16" type="plus"></vue-feather>
               <span>{{`Nouveau ${item.name}`}}</span>
             </a-button>

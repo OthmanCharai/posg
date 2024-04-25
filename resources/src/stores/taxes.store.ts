@@ -11,6 +11,8 @@ export const useTaxeStore = defineStore('taxes', {
     loading: loading,
     getResponse: false,
     selectedTaxe: {} as Taxes,
+    selectedTaxeVariant: {} as TaxeVariants,
+    selectedTaxeId: '' as string | undefined,
   }),
 
   actions: {
@@ -65,7 +67,7 @@ export const useTaxeStore = defineStore('taxes', {
     async createTaxeVariant (formData: TaxeVariants, showCreateModal: Ref<boolean>) {
       await request({
         method: 'POST',
-        url: route('tax-variant.create.submit'),
+        url: route('tax-variant.create.submit', this.selectedTaxeId),
         data: formData,
       })
 
@@ -91,8 +93,8 @@ export const useTaxeStore = defineStore('taxes', {
       }
     },
 
-    setSelectedTaxeVariant(data: Taxes) {
-      this.selectedTaxe = data;
+    setSelectedTaxeId(data: string | undefined) {
+      this.selectedTaxeId = data;
     },
   }
 })
