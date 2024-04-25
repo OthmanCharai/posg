@@ -4,7 +4,7 @@ namespace App\src\Repositories\Tax;
 
 use App\src\Models\Tax\Tax;
 use App\src\Repositories\BaseRepository;
-use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Database\Eloquent\Collection;
 use YouCanShop\QueryOption\QueryOption;
 
 class TaxRepository extends BaseRepository
@@ -17,7 +17,7 @@ class TaxRepository extends BaseRepository
         return Tax::class;
     }
 
-    public function getPaginated(QueryOption $queryOption): LengthAwarePaginator
+    public function getPaginated(QueryOption $queryOption): Collection
     {
         $query = $this->getQueryBuilder();
 
@@ -27,12 +27,7 @@ class TaxRepository extends BaseRepository
             sprintf('%s.*', Tax::TABLE_NAME)
         );
 
-        return $query->paginate(
-            $queryOption->getLimit(),
-            '*',
-            'page',
-            $queryOption->getPage()
-        );
+        return $query->get();
     }
 
     protected function getQueryOptionCriterias(): array

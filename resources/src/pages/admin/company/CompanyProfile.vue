@@ -7,6 +7,7 @@ import {
 } from "@/src/utils/error-handler";
 import type { UploadProps } from "ant-design-vue";
 import { useCompanyStore } from "@/src/stores/company.store";
+import { PlusOutlined } from '@ant-design/icons-vue';
 
 const store = useCompanyStore();
 
@@ -44,7 +45,7 @@ onMounted(async () => {
     path: store.company.path,
   };
   await nextTick();
-  
+
   if(data.value.path && fileList.value && fileList.value.length === 0) {
     const image: UploadProps['fileList'][number] = {
       uid: 'index-1',
