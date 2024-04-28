@@ -26,4 +26,7 @@ jobs:
       - name: Deploy to production
         run: |
           cd /home/runner/work/posg/posg
+          ls -al
+          cd vendor
+          ls -al
           php vendor/bin/envoy run deploy
