@@ -1,34 +1,26 @@
-name: CD
+name: Deploy Laravel App
 
 on:
   push:
-    branches: [ production ]
+    branches:
+      - main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-        with:
-          token: ${{ secrets.PUSH_TOKEN }}
-      - name: Set up Node
-        uses: actions/setup-node@v1
-        with:
-          node-version: '20.x'
-      - run: npm install
-      - run: npm run production
-      - name: Commit built assets
-        run: |
-          git config --local user.email "otmanchar3i0688@gmail.com"
-          git config --local user.name "OthmanCharai"
-          git checkout -B deploy
-          git add -f public/
-          git commit -m "Build front-end assets"
-          git push -f origin deploy
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install Envoy
+        run: composer global require laravel/envoy
+
       - name: Deploy to production
         uses: appleboy/ssh-action@master
         with:
-          username: YOUR USERNAME GOES HERE
-          host: YOUR SERVER'S HOSTNAME GOES HERE
+          host: ${{ secrets.SERVER_IP }}
+          username: ${{ secrets.SSH_USERNAME }}
           password: ${{ secrets.SSH_PASSWORD }}
-          script: 'cd /var/www/html && ./server_deploy.sh'
+          script: |
+            cd /path/to/laravel/project
+            envoy run deploy
