@@ -24,6 +24,6 @@ jobs:
           cd /home/runner/work/posg/posg
           composer install
       - name: Deploy to production
-        run: |
+        run: | 
           cd /home/runner/work/posg/posg 
           php vendor/bin/envoy run deploy
