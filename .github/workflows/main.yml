@@ -23,5 +23,5 @@ jobs:
           password: ${{ secrets.SSH_PASSWORD }}
           script: |
             cd /var/www/html/posg
-            php /var/www/html/posg/vendor/bin/envoy run deploy
+            /var/www/html/posg/vendor/bin/envoy run deploy
 
