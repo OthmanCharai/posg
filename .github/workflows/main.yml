@@ -3,7 +3,7 @@ name: Deploy Laravel App
 on:
   push:
     branches:
-      - main
+      - production
 
 jobs:
   deploy:
@@ -12,16 +12,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Install Envoy
-        run: composer global require laravel/envoy
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+
+      - name: Install Composer dependencies
+        run: |
+          cd /var/www/html/posg
+          composer install 
 
       - name: Deploy to production
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.SERVER_IP }}
-          username: ${{ secrets.SSH_USERNAME }}
-          password: ${{ secrets.SSH_PASSWORD }}
-          script: |
-            cd /var/www/html/posg
-            /var/www/html/posg/vendor/bin/envoy run deploy
-
+        run: |
+          cd /var/www/html/posg
+          php vendor/bin/envoy run deploy
