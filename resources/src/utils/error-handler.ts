@@ -20,11 +20,14 @@ export const processErrors = (error: any, errorMessage: Ref<string>): void => {
   if(error.response.data.message) {
     errorMessage.value = error.response.data.message;
     Toast.error(error.response.data.message);
+  }
+
+  if(error.response.status === 401 || error.response.status === 403 || error.response.status === 419) {
+    return;
   } else {
-    Toast.error(error.message);
+    Toast.error('Une erreur est survenue !');
   }
 };
-
 /**
  * Display error message
  * @param field - field name

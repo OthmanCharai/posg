@@ -21,8 +21,6 @@ export const useAxios = () => {
       const result = await axios(config);
       if (result.status >= 200 && result.status < 300) {
         response.value = result;
-      } else {
-        throw new Error(`Request failed with status code: ${result.status}`);
       }
     } catch (err: any) {
         processErrors(err, errorMessage);

@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { Toast } from "@/src/utils/toast";
 
 axios.defaults.headers.common = {
   'X-Requested-With': 'XMLHttpRequest',
@@ -17,8 +16,6 @@ axios.interceptors.response.use((response) => {
     if (location.pathname !== '/login') {
       location.assign('/login');
     }
-  } else {
-    Toast.error('Une erreur est survenue !');
   }
 
   return Promise.reject(error);
