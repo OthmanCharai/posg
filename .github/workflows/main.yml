@@ -21,9 +21,9 @@ jobs:
           pwd
       - name: Install Composer dependencies
         run: |
-          cd /var/www/html/posg
+          cd /home/runner/work/posg/posg
           composer install
       - name: Deploy to production
         run: |
-          cd /var/www/html/posg
+          cd /home/runner/work/posg/posg
           php vendor/bin/envoy run deploy
