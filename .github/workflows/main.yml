@@ -16,12 +16,13 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.3'
-
+      - name: pwd
+        run:
+          pwd
       - name: Install Composer dependencies
         run: |
           cd /var/www/html/posg
-          composer install 
-
+          composer install
       - name: Deploy to production
         run: |
           cd /var/www/html/posg
