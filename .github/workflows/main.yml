@@ -22,6 +22,7 @@ jobs:
       - name: Install Composer dependencies
         run: |
           cd /home/runner/work/posg/posg
+          ssh-keygen -R 93.127.203.1
           composer install
       - name: Deploy to production
         run: | 
