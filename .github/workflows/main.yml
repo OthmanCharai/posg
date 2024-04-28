@@ -22,5 +22,5 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           password: ${{ secrets.SSH_PASSWORD }}
           script: |
-            cd /path/to/laravel/project
+            cd /var/www/html/posg
             envoy run deploy
