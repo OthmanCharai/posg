@@ -1,4 +1,4 @@
-@servers(['web' => 'root@93.127.203.1'])
+@servers(['web' => '93.127.203.1'])
 
 @setup
 $repository = 'git@github.com:OthmanCharai/posg.git';
