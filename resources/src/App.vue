@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap-vue/dist/bootstrap-vue.css";
 import "sweetalert2/dist/sweetalert2.min.css";
 import "@/src/assets/scss/main.scss";
 
@@ -22,7 +20,7 @@ checkLoadStatus();
   <div>
     <div class="main-wrapper">
       <Loader v-if="isLoading" :is-active="true" :has-overlay="false"/>
-      <router-view v-if="!isLoading"/>
+      <router-view v-show="!isLoading"/>
     </div>
   </div>
 </template>

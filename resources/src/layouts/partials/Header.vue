@@ -123,7 +123,7 @@ onUnmounted(() => {
         </a>
 
         <!-- Header Menu -->
-        <ul class="nav user-menu">
+        <ul class="flex user-menu">
             <!-- maximize screen -->
             <li class="nav-item nav-item-box">
                 <a href="javascript:void(0);" id="btnFullscreen" @click="initFullScreen">
@@ -133,7 +133,7 @@ onUnmounted(() => {
             <!-- maximize screen -->
 
             <!-- Notifications -->
-            <li class="nav-item dropdown nav-item-box">
+            <!-- <li class="nav-item dropdown nav-item-box">
                 <a href="javascript:void(0);" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
                     <vue-feather type="bell"></vue-feather><span class="badge rounded-pill">2</span>
                 </a>
@@ -146,11 +146,11 @@ onUnmounted(() => {
                         <ul class="notification-list">
                             <li class="notification-message">
                                 <router-link to="/activities">
-                                    <div class="media d-flex">
+                                    <div class="media flex">
                                         <span class="avatar flex-shrink-0">
                                             <img :src="profilThumbnail">
                                         </span>
-                                        <div class="media-body flex-grow-1">
+                                        <div class="media-body flex-grow">
                                             <p class="noti-details"><span class="noti-title">John Doe</span> added
                                                 new task <span class="noti-title">Patient appointment booking</span>
                                             </p>
@@ -166,17 +166,11 @@ onUnmounted(() => {
                         <router-link to="/activities">Voir toutes les notifications</router-link>
                     </div>
                 </div>
-            </li>
+            </li> -->
             <!-- /Notifications -->
 
-            <!-- general settings -->
-            <li class="nav-item nav-item-box">
-                <router-link to="/settings/general-settings"><vue-feather type="settings"></vue-feather></router-link>
-            </li>
-            <!-- /general settings -->
-
             <!-- profile menu -->
-            <li class="nav-item dropdown has-arrow main-drop">
+            <!-- <li class="nav-item dropdown has-arrow main-drop">
                 <a href="javascript:void(0);" class="dropdown-toggle nav-link userset" data-bs-toggle="dropdown">
                     <span class="user-info">
                         <span class="user-letter">
@@ -215,7 +209,7 @@ onUnmounted(() => {
                         </router-link>
                     </div>
                 </div>
-            </li>
+            </li> -->
             <!-- /profile menu -->
         </ul>
         <!-- /Header Menu -->

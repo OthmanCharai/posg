@@ -66,7 +66,7 @@ export default {
                 <span>{{ menu.menuValue }}</span>
                 <span class="menu-arrow"></span>
               </a>
-              <ul :class="{ 'd-block': menu.showSubRoute, 'd-none': !menu.showSubRoute }">
+              <ul :class="{ 'block': menu.showSubRoute, '!hidden': !menu.showSubRoute }">
                 <template v-for="subMenu in menu.subMenus" :key="subMenu.id">
                   <li :class="{ 'active': currentPath === subMenu.active_link }">
                     <router-link
@@ -95,8 +95,8 @@ export default {
               </a>
               <ul
                 :class="{
-                  'd-block': openMenuItem === menu,
-                  'd-none': openMenuItem !== menu,
+                  'block': openMenuItem === menu,
+                  '!hidden': openMenuItem !== menu,
                 }"
               >
                 <li v-for="subMenus in menu.subMenus" :key="subMenus.menuValue">
@@ -117,8 +117,8 @@ export default {
                       </a>
                       <ul
                         :class="{
-                          'd-block': openSubmenuOneItem === subMenus,
-                          'd-none': openSubmenuOneItem !== subMenus,
+                          'block': openSubmenuOneItem === subMenus,
+                          '!hidden': openSubmenuOneItem !== subMenus,
                         }"
                       >
                         <li
