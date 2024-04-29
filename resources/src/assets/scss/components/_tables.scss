@@ -959,7 +959,9 @@ td.ant-table-column-sort {
   border-radius: 50% !important;
   background: $primary !important;
   border-color: $primary !important;
-  color: white !important
+  a {
+    color: white !important
+  }
 }
 .ant-pagination-item {
   border-radius: 5px;
@@ -970,8 +972,10 @@ td.ant-table-column-sort {
   background-color: transparent;
   border-radius: 5px;
 }
-:where(.css-dev-only-do-not-override-1hsjdkk).ant-pagination .ant-pagination-item:not(.ant-pagination-item-active):hover {
-  border-radius: 50%;
+.ant-pagination .ant-pagination-item:not(.ant-pagination-item-active):hover,
+.ant-pagination .ant-pagination-next:hover .ant-pagination-item-link,
+.ant-pagination .ant-pagination-prev:hover .ant-pagination-item-link {
+  border-radius: 50% !important;
 }
 .anticon svg {
   vertical-align: unset;

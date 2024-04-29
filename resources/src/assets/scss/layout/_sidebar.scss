@@ -1,4 +1,4 @@
-.sidebar,.sidebars {
+.sidebar {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -38,7 +38,7 @@
                         color: $white;
                     }
                     svg {
-                        color: #FE9F43
+                        color: $primary,
                     }
                 }
                 svg {
@@ -66,21 +66,21 @@
                     }
                     &:hover{
                         background: rgba(254, 159, 67, 0.08);
-                        color: #FE9F43;
+                        color: $primary;
                         border-radius: 5px;
                         img {
                             filter: invert(72%) sepia(76%) saturate(1430%) hue-rotate(327deg) brightness(103%) contrast(101%);
                         }
                         span{
-                            color: #FE9F43;
+                            color: $primary;
                         }
                         svg{
-                            color: #FE9F43;
+                            color: $primary;
                         }
                     }
                     &.active{
                         background: rgba(254, 159, 67, 0.08);
-                        color: #FE9F43;
+                        color: $primary;
                         border-radius: 5px;
                         svg{
                             color: $white;
@@ -89,12 +89,12 @@
                             filter: invert(72%) sepia(76%) saturate(1430%) hue-rotate(327deg) brightness(103%) contrast(101%);
                         }
                         span{
-                            color: #FE9F43;
+                            color: $primary;
                         }
                         .menu-arrow{
                             background: #FFEDDC;
                             &::before{
-                                border-color: #FE9F43;
+                                border-color: $primary;
                             }
                         }
                     }
@@ -112,7 +112,7 @@
                             filter: invert(72%) sepia(76%) saturate(1430%) hue-rotate(327deg) brightness(103%) contrast(101%);
                         }
                         span{
-                            color: #FE9F43;
+                            color: $primary;
                         }
                     }
                 }
@@ -132,8 +132,8 @@
                                &.active{
                                    color: $secondary;
                                    &:after{
-                                    background: #FE9F43;
-                                    border: 2px solid #FDB;
+                                    background: $primary;
+                                    border: 2px solid #d0cbff;
                                    }
                                }
                                &::after{
@@ -148,8 +148,8 @@
                                &:hover{
                                    color:$primary;
                                    &:after{
-                                    background: #FE9F43;
-                                    border: 2px solid #FDB;
+                                    background: $primary;
+                                    border: 2px solid #d0cbff;
                                    }
                                }
                            }
@@ -188,28 +188,28 @@
                                        }
                                    }
                                    &:after{
-                                    background: #FE9F43;
-                                    border: 2px solid #FDB;
+                                    background: $primary;
+                                    border: 2px solid #d0cbff;
                                    }
                                }
                                &:hover{
                                    color:$primary;
                                    &:after{
-                                    background: #FE9F43;
-                                    border: 2px solid #FDB;
+                                    background: $primary;
+                                    border: 2px solid #d0cbff;
                                    }
                                    span {
                                         color:$primary;
                                    }
                                }
-                           }  
+                           }
                        }
-                       > li 
+                       > li
                        {
                         &.active a{
-                            background: rgba(254, 159, 67, 0.08);
+                            background: #f3f6f9;
                             border-radius: 5px;
-                            color: #FE9F43;
+                            color: $primary;
                             span {
                                 color: $primary;
                             }
@@ -240,25 +240,25 @@
             li {
                 &.active{
                     a{
-                        color: #FE9F43;
+                        color: $primary;
                     }
                     svg {
-                        color: #FE9F43
+                        color: $primary
                     }
                 }
                 .submenu > {
                     a {
                         &.active{
                             background: rgba(254, 159, 67, 0.08);
-                            color: #FE9F43;
+                            color: $primary;
                             border-radius: 5px;
                             span{
-                                color: #FE9F43;
+                                color: $primary;
                             }
                             .menu-arrow{
                                 background: #FFEDDC;
                                 &::before{
-                                    border-color: #FE9F43;
+                                    border-color: $primary;
                                 }
                             }
                         }
@@ -271,7 +271,7 @@
                         }
                     }
                 }
-                
+
             }
 
         }
@@ -321,15 +321,15 @@
                             &:hover{
                                 color:$primary;
                                 &:after{
-                                background: #FE9F43;
-                                border: 2px solid #FDB;
+                                background: $primary;
+                                border: 2px solid #d0cbff;
                                 }
                             }
                         }
                     }
-                } 
-            } 
-        }               
+                }
+            }
+        }
         .menu-arrow {
             display: -webkit-box;
             display: -ms-flexbox;
@@ -373,7 +373,7 @@
         }
         &.subdrop{
             .menu-arrow {
-                @include transform(rotate(90deg));                            
+                @include transform(rotate(90deg));
                 background: #FFEDDC;
             }
         }
@@ -403,7 +403,7 @@
                 @include position(absolute,36px,0,null,null);
             }
         }
-        
+
     }
     .sidebar-left {
         width: 100px;
@@ -476,7 +476,7 @@
             @include transform(translate(0, 0));
             &:before {
                 content: "\f105";
-                
+
             }
         }
     }
@@ -512,13 +512,13 @@
             &:hover{
                 box-shadow: 0  0 0 150px $violet inset;
                 color: $white;
-            }  
+            }
             span{
                 margin-top: 15px;
                 font-weight:$font-weight-medium;
             }
         }
-       
+
     }
     .sidemenu {
         a {
@@ -537,11 +537,11 @@
             svg {
                 stroke-width: 1px;
             }
-           
+
         }
     }
 }
-.header-left{    
+.header-left{
         #toggle_btn{
             display: -webkit-box;
             display: -ms-flexbox;
@@ -563,15 +563,15 @@
             cursor: pointer;
             svg {
                 transform: rotate(180deg);
-            }    
+            }
             &:hover {
                 background: $primary-hover;
-            }       
+            }
         }
         &.active svg {
             transform: rotate(0) !important;
         }
-      
+
 }
 
 @include respond-above(custom991) {
@@ -592,7 +592,7 @@
                 #toggle_btn{
                     opacity: 1;
                 }
-            }  
+            }
         }
         .sidebar-right {
             display: none;
@@ -608,13 +608,13 @@
                         }
                         .submenu-hdr {
                             display:none;
-                        }                                                       
+                        }
                         svg {
                             margin-right:0;
                         }
                     }
                 }
-            } 
+            }
         }
         .sidebar{
             width: 80px;
@@ -637,7 +637,7 @@
                                 display:inline-block;
                                 line-height: 0;
                             }
-                        }                        
+                        }
                         svg {
                             margin-right:10px;
                         }
@@ -763,7 +763,7 @@ body.mini-sidebar{
     position: relative;
     margin: auto;
     width: 100%;
-    height: calc(100vh - 30px);
+    height: calc(100vh - 50px);
     background-color: transparent !important;
 }
 .stickysidebar {
