@@ -20,7 +20,7 @@ checkLoadStatus();
   <div>
     <div class="main-wrapper">
       <Loader v-if="isLoading" :is-active="true" :has-overlay="false"/>
-      <router-view v-show="!isLoading"/>
+      <router-view v-if="!isLoading"/>
     </div>
   </div>
 </template>
