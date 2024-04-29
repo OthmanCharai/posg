@@ -1,7 +1,17 @@
 <script setup lang="ts">
-  defineProps<{
-    isActive: Boolean
-  }>();
+const props = withDefaults(defineProps<{
+  isActive: boolean
+  hasOverlay?: boolean
+}>(), {
+  isActive: false,
+  hasOverlay: true,
+})
+
+const backgroundColor = ref('');
+
+onMounted(() => {
+  backgroundColor.value = props.hasOverlay ? 'rgba(0, 0, 0, 0.2)' : 'unset';
+})
 </script>
 
 <template>
@@ -17,7 +27,7 @@
   position: fixed;
   left: 0;
   top: 0;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: v-bind(backgroundColor);
   display: flex;
   justify-content: center;
   align-items: center;

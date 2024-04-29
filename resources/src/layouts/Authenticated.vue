@@ -10,11 +10,9 @@
   <Header />
   <Sidebar />
 
-  <Suspense>
-    <section class="page-wrapper">
-      <div class="content">
-        <RouterView />
-      </div>
-    </section>
-  </Suspense>
+  <section class="page-wrapper">
+    <div class="content">
+      <RouterView />
+    </div>
+  </section>
 </template>
