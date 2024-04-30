@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import "sweetalert2/dist/sweetalert2.min.css";
 import "@/src/assets/scss/main.scss";
 
 const isLoading = ref(true);
