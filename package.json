@@ -24,7 +24,6 @@
     "pinia": "^2.1.7",
     "sweetalert2": "^11.10.8",
     "unplugin-vue-components": "^0.26.0",
-    "vee-validate": "^4.12.6",
     "vue": "^3.4.5",
     "vue-feather": "^2.0.0",
     "vue-router": "^4.2.5",
