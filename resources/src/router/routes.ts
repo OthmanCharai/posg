@@ -105,6 +105,16 @@ export default [
                     ]
                 }
             },
+            {
+                path: 'articles/catégorie',
+                name: 'articleCategories',
+                component: () => import('@/src/pages/article/category/ListCategory.vue'),
+                meta: {
+                    middleware: [
+                        auth
+                    ]
+                }
+            },
         ]
     },
 

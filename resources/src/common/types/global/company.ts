@@ -12,5 +12,5 @@ export interface Company {
   num_bgfi: string;
   num_ugb: string;
   return_policy: string;
-  path: File | string | null | undefined,;
+  path: File | string | null | undefined;
 }

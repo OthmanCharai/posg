@@ -10,6 +10,7 @@ class ArticleCategory extends UuidModel
 
     public const NAME_COLUMN = 'name';
     public const TABLE_NAME = "article_categories";
+    protected $guarded = [];
 
     public static function getPrefix(): string
     {

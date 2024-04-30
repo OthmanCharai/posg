@@ -13,7 +13,7 @@ Route::prefix('article-categories')
     ->middleware(['permissions:' . AdminPermission::MANAGE_SUPPLIER])
     ->group(function () {
         Route::post('/create', CreateArticleCategoryController::class)
-            ->name('create.submit');
+            ->name('create');
 
         Route::get('/{articleCategory}', ShowArticleCategoryController::class)
             ->name('show');
@@ -25,5 +25,5 @@ Route::prefix('article-categories')
             ->name('delete');
 
         Route::get('/', ListArticleCategoryController::class)
-            ->name('list');
+            ->name('index');
     });
