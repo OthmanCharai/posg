@@ -1,5 +1,5 @@
 import {defineStore} from "pinia";
-import {ArticleCategory} from "@common/types/global/articleCategory";
+import {Depot} from "@common/types/global/depot";
 import {PaginationMetadata} from "@common/types/global/pagination";
 import {route, useAxios} from "@utils/axios-helper";
 import {extractPaginatorObject} from "@utils/pagination";
@@ -7,10 +7,10 @@ import {Toast} from "@utils/toast";
 
 const {request, response, loading} = useAxios();
 
-export const useArticleCategoryStore = defineStore('article-categories', {
+export const useDepotStore = defineStore('depots', {
     state: () => ({
-        categories: [] as ArticleCategory[],
-        currentCategory: {} as ArticleCategory,
+        depots: [] as Depot[],
+        currentDepot: {} as Depot,
         pagination: {} as PaginationMetadata,
         loading: loading,
         getResponse: false,
@@ -18,46 +18,49 @@ export const useArticleCategoryStore = defineStore('article-categories', {
     actions: {
         async get(page: number = 1) {
             await request({
-                url: route('article-categories.index', `page=${page}`),
+                url: route('depots.index', `page=${page}`),
                 method: 'GET'
             });
+
             if (response.value && response.value?.data) {
-                this.categories = response.value?.data.article_categories.data
-                this.pagination = extractPaginatorObject(response.value?.data.article_categories);
+                this.depots = response.value?.data.depots.data;
+                this.pagination = extractPaginatorObject(response.value?.data.depots);
                 this.getResponse = true;
             }
         },
 
         async create(data: any, showCreateModal: Ref<boolean>) {
             await request({
-                url: route('article-categories.create'),
+                url: route('depots.create'),
                 method: 'POST',
                 data: data
             });
+
             if (response.value) {
-                await Toast.success('article category a été crée avec succès.');
+                await Toast.success('depot a été crée avec succès.');
                 showCreateModal.value = false;
                 await this.get();
             }
         },
 
-        async update(articleCategory: ArticleCategory, data: any, showUpdateModal: Ref<boolean>) {
+        async update(depot: Depot, data: any, showUpdateModal: Ref<boolean>) {
             await request({
-                url: route('article-categories.update', articleCategory.id),
-                method: "PUT",
+                url: route('depots.update', depot.id),
+                method: 'PUT',
                 data: data
             });
+
             if (response.value) {
-                await Toast.success('article category a été mis à jour avec succès.');
+                await Toast.success('depot a été mis à jour avec succès.');
                 showUpdateModal.value = false;
                 await this.get();
             }
         },
 
-        async delete(articleCategory: ArticleCategory) {
+        async delete(depot: Depot) {
             await request({
-                url: route('article-categories.delete', articleCategory.id),
-                method: "DELETE"
+                url: route('depots.delete', depot.id),
+                method: 'DELETE',
             });
 
             if (response.value) {
@@ -65,8 +68,8 @@ export const useArticleCategoryStore = defineStore('article-categories', {
             }
         },
 
-        setCurrentArticle(articleCategory: ArticleCategory) {
-            this.currentCategory = articleCategory;
+        setCurrentDepot(depot: Depot) {
+            this.currentDepot = depot;
         }
     }
 });

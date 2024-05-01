@@ -115,6 +115,16 @@ export default [
                     ]
                 }
             },
+            {
+                path: 'articles/marques',
+                name: 'marque',
+                component: () => import('@/src/pages/article/depot/ListDepot.vue'),
+                meta: {
+                    middleware: [
+                        auth
+                    ]
+                }
+            },
         ]
     },
 
