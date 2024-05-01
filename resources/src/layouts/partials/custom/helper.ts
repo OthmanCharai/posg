@@ -3,7 +3,8 @@ export const customStyle = {
   // global style:
   token: {
     colorPrimary: "#001656",
-    colorPrimaryBg: "#e0efff"
+    colorPrimaryBg: "#e0efff",
+    fontFamily: ["Nunito", "sans-serif"]
 
   },
 
