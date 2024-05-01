@@ -1,4 +1,4 @@
-@servers(['web' => '93.127.203.1'])
+@servers(['web' => 'root@93.127.203.1'])
 
 @setup
 $repository = 'git@github.com:OthmanCharai/posg.git';
@@ -6,7 +6,7 @@ $releases_dir = '/var/www/html/posg/releases';
 $app_dir = '/var/www/html/posg';
 $release = date('YmdHis');
 $new_release_dir = $releases_dir . '/' . $release;
-$password = 'password';
+$password = 'F5k&d8@w^W~#VgP>Sbs5';
 @endsetup
 
 @story('deploy')

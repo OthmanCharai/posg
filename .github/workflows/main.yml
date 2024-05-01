@@ -21,10 +21,9 @@ jobs:
           pwd
       - name: Install Composer dependencies
         run: |
-          ssh-keygen -R 93.127.203.1
           cd /home/runner/work/posg/posg
           composer install
       - name: Deploy to production
-        run: | 
+        run: |
           cd /home/runner/work/posg/posg 
           php vendor/bin/envoy run deploy
