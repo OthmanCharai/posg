@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateBrandRequest;
 use App\Http\Transformers\BrandTransformer;
 use App\src\Models\Brands\Brand;
 use App\src\Services\Brand\BrandServiceInterface;
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Http\JsonResponse;
 
 class UpdateBrandController extends Controller
@@ -16,6 +17,9 @@ class UpdateBrandController extends Controller
         parent::__construct();
     }
 
+    /**
+     * @throws BindingResolutionException
+     */
     public function __invoke(Brand $brand, UpdateBrandRequest $request): JsonResponse
     {
         $this->brandService->update($brand, $request->validated());

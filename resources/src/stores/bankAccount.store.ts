@@ -21,9 +21,9 @@ export const useBankAccountStore = defineStore('bankAccounts', {
                 url: route('bank-accounts.index', `page=${page}`)
             })
             try {
-                if (response.value && response.value.data) {
-                    this.bankAccounts = response.value.data.bank_accounts.data;
-                    this.pagination = extractPaginatorObject(response.value.data.bank_accounts);
+                if (response.value && response.value?.data) {
+                    this.bankAccounts = response.value?.data.bank_accounts.data;
+                    this.pagination = extractPaginatorObject(response.value?.data.bank_accounts);
                     this.getResponse = true;
                 }
             } catch (e) {

@@ -35,7 +35,7 @@ export const useArticleCategoryStore = defineStore('article-categories', {
                 data: data
             });
             if (response.value) {
-                await Toast.success('article category a été crée avec succès.');
+                Toast.success('article category a été crée avec succès.');
                 showCreateModal.value = false;
                 await this.get();
             }
@@ -48,23 +48,11 @@ export const useArticleCategoryStore = defineStore('article-categories', {
                 data: data
             });
             if (response.value) {
-                await Toast.success('article category a été mis à jour avec succès.');
+                Toast.success('article category a été mis à jour avec succès.');
                 showUpdateModal.value = false;
                 await this.get();
             }
         },
-
-        async delete(articleCategory: ArticleCategory) {
-            await request({
-                url: route('article-categories.delete', articleCategory.id),
-                method: "DELETE"
-            });
-
-            if (response.value) {
-                await this.get();
-            }
-        },
-
         setCurrentArticle(articleCategory: ArticleCategory) {
             this.currentCategory = articleCategory;
         }

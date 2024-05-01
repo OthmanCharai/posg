@@ -32,9 +32,12 @@ class BrandService implements BrandServiceInterface
      */
     public function update(Model|Brand $model, array $attributes): bool
     {
-        $this->mediaService->delete($model->getLogo());
+        $path = $model->getLogo();
 
-        $path = $this->mediaService->save('brand-id', Arr::get($attributes, Brand::LOGO_COLUMN));
+        if (!is_null($uploadedFile = Arr::get($attributes, Brand::LOGO_COLUMN))) {
+            $this->mediaService->delete($model->getLogo());
+            $path = $this->mediaService->save('brand-id', $uploadedFile);
+        }
 
         return $this->brandRepository->update(
             $model->getId(),

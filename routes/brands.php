@@ -16,7 +16,7 @@ Route::prefix('brands')
             ->name('index');
 
         Route::post('/create', CreateBrandController::class)
-            ->name('create.submit');
+            ->name('create');
 
         Route::get('/{brand}', ShowBrandController::class)
             ->name('show');

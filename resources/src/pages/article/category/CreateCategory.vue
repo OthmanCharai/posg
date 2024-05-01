@@ -17,9 +17,8 @@ const handleSubmission = async () => {
 </script>
 
 <template>
-  <ModalWrapper title="Nouveau Article category" v-model:open="showCreateModal" @submit="handleSubmission"
-                width="800px">
-    <section class="grid grid-cols-1 gap-4">
+  <ModalWrapper title="Nouveau Article category" v-model:open="showCreateModal" @submit="handleSubmission" width="450px">
+    <section class="grid grid-cols-1 gap-4 border-t pt-4 pb-1">
       <div class="grid gap-4">
         <a-form-item
             :validate-status="isError('name')"

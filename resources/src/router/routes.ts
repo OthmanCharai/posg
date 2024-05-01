@@ -106,7 +106,7 @@ export default [
                 }
             },
             {
-                path: 'articles/catégorie',
+                path: 'articles/categorie',
                 name: 'articleCategories',
                 component: () => import('@/src/pages/article/category/ListCategory.vue'),
                 meta: {
@@ -116,9 +116,19 @@ export default [
                 }
             },
             {
-                path: 'articles/marques',
+                path: 'articles/depots',
                 name: 'marque',
                 component: () => import('@/src/pages/article/depot/ListDepot.vue'),
+                meta: {
+                    middleware: [
+                        auth
+                    ]
+                }
+            },
+            {
+                path: 'articles/marques',
+                name: 'marque',
+                component: () => import('@/src/pages/article/brand/ListBrand.vue'),
                 meta: {
                     middleware: [
                         auth
