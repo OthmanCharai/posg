@@ -16,7 +16,7 @@ Route::prefix('depots')
             ->name('index');
 
         Route::post('/create', CreateDepotController::class)
-            ->name('create.submit');
+            ->name('create');
 
         Route::get('/{depot}', ShowDepotController::class)
             ->name('show');

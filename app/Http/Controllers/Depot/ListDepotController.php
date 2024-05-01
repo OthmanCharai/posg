@@ -18,6 +18,10 @@ class ListDepotController extends Controller
     {
         $depots = $this->depotService->getPaginated(QueryOptionFactory::createFromIlluminateRequest($request));
 
-        return $this->response->withArray($depots->toArray());
+        return $this->response->withArray(
+            [
+                'depots' => $depots,
+            ]
+        );
     }
 }
