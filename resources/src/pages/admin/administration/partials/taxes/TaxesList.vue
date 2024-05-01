@@ -85,12 +85,12 @@ onMounted(async() => {
   <section class="mb-10">
     <div class="mb-10 flex justify-end">
       <a-button type="primary" @click="showCreateTaxeModal = true">
-        <vue-feather :size="16" type="plus"></vue-feather>
+        <vue-feather :size="16" type="plus-circle"></vue-feather>
         <span>Ajouter une taxe</span>
       </a-button>
     </div>
     <div v-if="store.taxesList.length > 0" class="grid gap-10">
-      <div v-for="(item, i) in store.taxesList" :key="i" class="overflow-hidden bg-white shadow-md sm:rounded-lg max-h-[324px] !overflow-y-scroll">
+      <div v-for="(item, i) in store.taxesList" :key="i" class="bg-white shadow-md sm:rounded-lg max-h-[324px] !overflow-y-scroll">
         <div class="px-3 md:px-4 py-6 sm:px-6 flex justify-between">
           <div class="flex gap-2">
             <h3 class="text-base font-semibold leading-7 text-gray-900">

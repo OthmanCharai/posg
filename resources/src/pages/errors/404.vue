@@ -2,12 +2,10 @@
   <div class="wrong-page-wrapper">
     <a-result status="404" title="404" sub-title="Désolé, la page que vous avez visitée n'existe pas.">
       <template #extra>
-        <a
-          href="/"
-          class="btn btn-primary"
-          >
-          Retour à l'accueil
-        </a>
+        <a-button type="primary" href="/">
+          <vue-feather :size="16" type="arrow-left"></vue-feather>
+          <span>Retour à l'accueil</span>
+        </a-button>
       </template>
     </a-result>
   </div>
