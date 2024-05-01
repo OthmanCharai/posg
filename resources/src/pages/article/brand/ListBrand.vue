@@ -75,7 +75,6 @@ onMounted(async () => {
           <template v-if="column.dataIndex === 'path'">
             <img :src="record.path" :alt="record.name" class="w-[100px] h-[70px] object-cover rounded-md" />
           </template>
-
           <template v-if="column.key === 'action'">
             <td class="action-table-data">
               <button class="action-button edit" @click="editBrand(record)">
