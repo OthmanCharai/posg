@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import "@/src/assets/scss/main.scss";
+import CustomAntdStyle from '@/src/layouts/partials/custom/CustomAntdStyle.vue';
 
 const isLoading = ref(true);
 
@@ -16,10 +17,9 @@ checkLoadStatus();
 </script>
 
 <template>
-  <div>
-    <div class="main-wrapper">
-      <Loader v-if="isLoading" :is-active="true" :has-overlay="false"/>
-      <router-view v-if="!isLoading"/>
-    </div>
+  <CustomAntdStyle />
+  <div class="main-wrapper">
+    <Loader v-if="isLoading" :is-active="true" :has-overlay="false"/>
+    <router-view v-if="!isLoading"/>
   </div>
 </template>
