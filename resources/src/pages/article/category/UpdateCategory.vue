@@ -5,7 +5,6 @@ import {ArticleCategory} from "@common/types/global/articleCategory";
 
 const showUpdateModal = inject('showUpdateModal') as Ref<boolean>;
 const store = useArticleCategoryStore();
-const showCreateModal = inject('showCreateModal') as Ref<boolean>;
 
 const data = ref<ArticleCategory>({
   name: store.currentCategory.name,
@@ -18,9 +17,8 @@ const handleSubmission = async () => {
 </script>
 
 <template>
-  <ModalWrapper title="Nouveau Article category" v-model:open="showUpdateModal" @submit="handleSubmission"
-                width="800px">
-    <section class="grid grid-cols-1 gap-4">
+  <ModalWrapper title="Nouveau Article category" v-model:open="showUpdateModal" @submit="handleSubmission" width="450px">
+    <section class="grid grid-cols-1 gap-4 border-t pt-4 pb-1">
       <div class="grid gap-4">
         <a-form-item
             :validate-status="isError('name')"

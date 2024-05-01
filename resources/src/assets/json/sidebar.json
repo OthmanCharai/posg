@@ -103,8 +103,8 @@
           },
           {
             "menuValue": "Catégorie",
-            "route": "/articles/catégorie",
-            "active_link" : "/catégorie",
+            "route": "/articles/categorie",
+            "active_link" : "/articles/categorie",
             "customSubmenuTwo": false
           },
           {
@@ -115,8 +115,8 @@
           },
           {
             "menuValue": "Dépots",
-            "route": "/article/dépots",
-            "active_link" : "/",
+            "route": "/article/depots",
+            "active_link" : "/article/depots",
             "customSubmenuTwo": false
           }
         ]
