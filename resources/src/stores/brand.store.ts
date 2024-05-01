@@ -38,7 +38,7 @@ export const useBrandStore = defineStore('brands', {
                 }
             });
             if (response.value) {
-                await Toast.success('marque a été crée avec succès.');
+                Toast.success('marque a été crée avec succès.');
                 showCreateModal.value = false;
                 await this.get();
             }
@@ -58,7 +58,7 @@ export const useBrandStore = defineStore('brands', {
             });
 
             if (response.value) {
-                await Toast.success('marque a  été mis à jour avec succès.');
+                Toast.success('marque a  été mis à jour avec succès.');
                 showUpdateModal.value = false;
                 await this.get();
             }

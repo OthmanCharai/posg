@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {lengthSorter} from '@/src/composables/table-sorters';
 import {useBrandStore} from "@stores/brand.store";
-import {Brand} from "@common/types/global/brand";
+import type {Brand} from "@common/types/global/brand";
 import CreateBrand from "@pages/article/brand/CreateBrand.vue";
 import UpdateBrand from "@pages/article/brand/UpdateBrand.vue";
 

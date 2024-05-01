@@ -2,7 +2,7 @@
 import {clearError, getErrorMessage, isError} from "@/src/utils/error-handler";
 import type {UploadProps} from 'ant-design-vue';
 import {useBrandStore} from "@stores/brand.store";
-import {Brand} from "@common/types/global/brand";
+import type {Brand} from "@common/types/global/brand";
 import {PlusOutlined} from "@ant-design/icons-vue";
 
 const store = useBrandStore();
