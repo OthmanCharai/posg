@@ -246,62 +246,6 @@
             }
         }
     }
-    .profilename {
-        .user-img {
-            .status {
-                bottom: 10px;
-            }
-        }
-    }
-    .user-img {
-        display: inline-block;
-        position: relative;
-        img {
-            width: 38px;
-            @include rounded(50%);
-        }
-        .status {
-            border: 2px solid $white;
-            height: 10px;
-            width: 10px;
-            @include margin-padding(0, null);
-            @include position(absolute,null,0,30px,null);
-            @include rounded(50%);
-            display: inline-block;
-            background: $success;
-        }
-    }
-    .mobile-user-menu {
-        color: $white;
-        display: none;
-        float: right;
-        font-size: $font-size-24;
-        height: 60px;
-        line-height: 60px;
-        text-align: right;
-        width: 60px;
-        z-index: 10;
-        @include margin-padding(null, 0 20px);
-        @include position(absolute,0,0,null,null);
-        @include respond-below(custom991) {
-            display: block;
-        }
-        a{
-            color: $primary;
-            padding: 0;
-            &::after{
-                display: none;
-            }
-        }
-        .dropdown-menu{
-            padding: 0;
-            a{
-                color:$gray-800;
-                line-height: 40px;
-                @include margin-padding(null, 0 10px);
-            }
-        }
-    }
 }
 .logo-small img {
     width: 30px;
@@ -496,7 +440,7 @@
             height: 40px;
             @include margin-padding(null, 10px);
             .clear-noti {
-                color: $danger-700 !important;
+                color: $danger !important;
                 float: right;
                 font-size: $font-size-11 !important;
                 text-transform: uppercase;
@@ -1006,7 +950,7 @@ hr{
         svg {
             opacity: 0;
             @include transition(all 0.5s ease);
-            color: $danger-700;
+            color: $danger;
         }
     }
     &.show {

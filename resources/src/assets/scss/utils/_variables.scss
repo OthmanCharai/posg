@@ -64,61 +64,6 @@ $secondary-700: #536B82;
 $secondary-800: #3A5670;
 $secondary-900: #22415E;
 
-// Success
-$success-100: #EAF9F1;
-$success-200: #D4F4E2;
-$success-300: #BFEED4;
-$success-400: #A9E9C5;
-$success-500: #94E3B7;
-$success-600: #7EDDA9;
-$success-700: #69D89A;
-$success-800: #53D28C;
-$success-900: #3ECD7D;
-
-// Warning
-$warning-100: #FFF5E6;
-$warning-200: #FFEBCC;
-$warning-300: #FFE0B3;
-$warning-400: #FFD699;
-$warning-500: #FFCC80;
-$warning-600: #FFC266;
-$warning-700: #FFB84D;
-$warning-800: #FFAD33;
-$warning-900: #FFA31A;
-
-// Danger
-$danger-100: #FFE6E6;
-$danger-200: #FFCCCC;
-$danger-300: #FFB3B3;
-$danger-400: #FF9999;
-$danger-500: #FF8080;
-$danger-600: #FF6666;
-$danger-700: #FF4D4D;
-$danger-800: #FF3333;
-$danger-900: #FF1A1A;
-
-// Purple
-$purple-100: #F8F8FA;
-$purple-200: #E3E1FC;
-$purple-300: #D5D1FB;
-$purple-400: #C7C2F9;
-$purple-500: #B9B3F8;
-$purple-600: #ABA4F6;
-$purple-700: #9D95F5;
-$purple-800: #8F85F3;
-$purple-900: #8176F2;
-
-// White
-$white-1: rgba(0,0,0,0.1);
-$white-2: rgba(0,0,0,0.2);
-$white-3: rgba(0,0,0,0.3);
-$white-4: rgba(0,0,0,0.4);
-$white-5: rgba(0,0,0,0.5);
-$white-6: rgba(0,0,0,0.6);
-$white-7: rgba(0,0,0,0.7);
-$white-8: rgba(0,0,0,0.8);
-$white-9: rgba(0,0,0,0.9);
-
 // Gray
 $gray-100: #f3f6f9;
 $gray-200: #eff2f7;
@@ -160,28 +105,6 @@ $theme-title: #97A2D2;
 $input-bg: #2c2c50;
 $form-control-bg: #ffffff;
 
-// Gradient Variables
-$primary-gradient: linear-gradient(to right, $primary 0%, #8e77fa 100%);
-$secondary-gradient: linear-gradient(to right, $secondary 0%, #28b7f9 100%);
-$success-gradient: linear-gradient(to right,$success 0%, #5cf9e2 100%);
-$warning-gradient: linear-gradient(to right, $warning 0%, #fbc434 100%);
-$danger-gradient: linear-gradient(to right,$danger 0%, #fd4a68  100%);
-$info-gradient: linear-gradient(to right, $info 0%, #00f2fe  100%);
-$pink-gradient: linear-gradient(to right, $pink 0%, #FFA795 100%);
-$teal-gradient: linear-gradient(to right, $teal 0%, #0695DD 100%);
-$orange-gradient: linear-gradient(to right,$orange 0%,#FBB034 100%);
-$purple-gradient: linear-gradient(to right, $purple 0%, #9b25b7 100%);
-$light-gradient: linear-gradient(to right, $light 0%, #D1D6DE 100%);
-$dark-gradient: linear-gradient(to right, $dark 0%, #54505D 100%);
-
-// Style Anchor Elements
-$link-color: $primary;
-$link-decoration: none;
-$link-shade-percentage: 20%;
-$link-hover-color: darken($link-color, 10%);
-$link-hover-decoration: null;
-$spacer: 1rem;
-
 // Border
 $border-width: 1px;
 $border-style: solid;
@@ -200,8 +123,6 @@ $rounded-pill: 1.5rem;
 
 // Box Shadow
 $box-shadow: 0px 4px 60px 0px rgba(231, 231, 231, 0.47);
-$box-shadow-sm: 0px 4px 60px 0px rgba(190, 190, 190, 0.27);
-$box-shadow-lg: 0 5px 10px rgba(30, 32, 37, 0.12);
 
 // Font Size
 $font-size-8: 8px;
@@ -228,17 +149,3 @@ $font-size-42: 42px;
 $font-size-50: 50px;
 $font-size-54: 54px;
 $font-size-60: 60px;
-
-$h1-fs: 2rem;
-$h2-fs: 1.75rem;
-$h3-fs: 1.5rem;
-$h4-fs: 1.25rem;
-$h5-fs: 1.15rem;
-$h6-fs: 1rem;
-
-$h1-font-size: $font-size-base * 2.5;
-$h2-font-size: $font-size-base * 2;
-$h3-font-size: $font-size-base * 1.75;
-$h4-font-size: $font-size-base * 1.5;
-$h5-font-size: $font-size-base * 1.25;
-$h6-font-size: $font-size-base;
