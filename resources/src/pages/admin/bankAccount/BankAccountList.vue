@@ -69,7 +69,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <PageHeader title="Banques">
+  <PageHeader>
     <a-button type="primary" @click="showCreateModal = true">
       <vue-feather :size="16" type="plus-circle"></vue-feather>
       <span>Ajouter</span>

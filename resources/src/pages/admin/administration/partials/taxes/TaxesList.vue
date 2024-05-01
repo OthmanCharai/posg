@@ -86,7 +86,7 @@ onMounted(async() => {
     <div class="mb-10 flex justify-end">
       <a-button type="primary" @click="showCreateTaxeModal = true">
         <vue-feather :size="16" type="plus-circle"></vue-feather>
-        <span>Ajouter une taxe</span>
+        <span>Ajouter</span>
       </a-button>
     </div>
     <div v-if="store.taxesList.length > 0" class="grid gap-10">
