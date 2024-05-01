@@ -50,16 +50,10 @@ onMounted(async () => {
 
 <template>
   <PageHeader title="Depot">
-    <div class="page-btn">
-      <a
-          href="javascript:void(0);"
-          class="btn btn-added color"
-          @click="showCreateModal = true"
-      >
-        <vue-feather type="plus-circle" class="me-2"></vue-feather>
-        Ajouter
-      </a>
-    </div>
+    <a-button type="primary" @click="showCreateModal = true">
+      <vue-feather :size="16" type="plus-circle"></vue-feather>
+      <span>Ajouter</span>
+    </a-button>
   </PageHeader>
 
   <div class="card table-list-card">

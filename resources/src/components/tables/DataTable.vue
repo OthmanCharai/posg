@@ -17,7 +17,7 @@ const onChange = async (pagination: TablePaginationConfig)  => {
 </script>
 
 <template>
-  <div class="table-responsive">
+  <div class="table-responsive overflow-x-scroll">
     <a-table
       outlined
       :columns="columns"
