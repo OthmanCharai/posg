@@ -10,13 +10,9 @@
 @import "tailwindcss/components";
 /******* Components ******/
 @import "components/ant-style";
-@import "components/avatar";
-@import "components/button";
 @import "components/badge";
-@import "components/dropdown";
 @import "components/typography";
 @import "components/toasts";
-@import "components/forms";
 @import "components/tables";
 @import "components/cards";
 @import "components/navs-tabs";
@@ -26,7 +22,6 @@
 @import "layout/content";
 @import "layout/common";
 @import "layout/header";
-@import "layout/loader";
 @import "layout/sidebar";
 @import "layout/notification";
 

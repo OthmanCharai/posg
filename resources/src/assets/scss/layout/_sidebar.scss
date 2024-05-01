@@ -17,7 +17,7 @@
         background: $white;
     }
     @include respond-below(custom575) {
-        width: 100%;
+        max-width: 100%;
     }
     .slimScrollDiv {
         background: $white;
