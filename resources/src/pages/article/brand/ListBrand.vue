@@ -23,8 +23,7 @@ const columns = computed(() => [
   },
   {
     title: 'Action',
-    key:
-        'action',
+    key: 'action',
   },
 ]);
 
