@@ -7,28 +7,26 @@ import UpdateBrand from "@pages/article/brand/UpdateBrand.vue";
 
 const store = useBrandStore();
 const columns = computed(() => [
-      {
-        title: "Logo",
-        dataIndex: "path",
-        render: (dataIndexValue, record) => '<img src={path} alt={record.name} />'
-      },
-      {
-        title: "Nom",
-        dataIndex: "name",
-        sorter: lengthSorter('name'),
-      },
-      {
-        title: "abbreviation",
-        dataIndex: "abbreviation",
-        sorter: lengthSorter('abbreviation'),
-      },
-      {
-        title: 'Action',
-        key:
-            'action',
-      },
-    ])
-;
+  {
+    title: "Logo",
+    dataIndex: "path",
+  },
+  {
+    title: "Nom",
+    dataIndex: "name",
+    sorter: lengthSorter('name'),
+  },
+  {
+    title: "abbreviation",
+    dataIndex: "abbreviation",
+    sorter: lengthSorter('abbreviation'),
+  },
+  {
+    title: 'Action',
+    key:
+        'action',
+  },
+]);
 
 const showCreateModal = ref(false);
 provide('showCreateModal', showCreateModal);
@@ -74,6 +72,10 @@ onMounted(async () => {
           :loading="store.loading"
       >
         <template #bodyCell="{column, record}">
+          <template v-if="column.dataIndex === 'path'">
+            <img :src="record.path" :alt="record.name" class="w-[100px] h-[70px] object-cover rounded-md" />
+          </template>
+
           <template v-if="column.key === 'action'">
             <td class="action-table-data">
               <button class="action-button edit" @click="editBrand(record)">
