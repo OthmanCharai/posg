@@ -115,7 +115,7 @@
           },
           {
             "menuValue": "Dépots",
-            "route": "/dépots",
+            "route": "/article/dépots",
             "active_link" : "/",
             "customSubmenuTwo": false
           }

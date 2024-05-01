@@ -116,9 +116,19 @@ export default [
                 }
             },
             {
-                path: 'articles/marques',
+                path: 'articles/dépots',
                 name: 'marque',
                 component: () => import('@/src/pages/article/depot/ListDepot.vue'),
+                meta: {
+                    middleware: [
+                        auth
+                    ]
+                }
+            },
+            {
+                path: 'articles/marques',
+                name: 'marque',
+                component: () => import('@/src/pages/article/brand/ListBrand.vue'),
                 meta: {
                     middleware: [
                         auth

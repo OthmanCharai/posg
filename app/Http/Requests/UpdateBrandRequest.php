@@ -26,7 +26,7 @@ class UpdateBrandRequest extends FormRequest
         return [
             Brand::NAME_COLUMN         => ['required', 'string', 'max:255'],
             Brand::ABBREVIATION_COLUMN => ['nullable', 'string', 'max:255'],
-            Brand::LOGO_COLUMN         => ['required', 'image'],
+            Brand::LOGO_COLUMN         => ['nullable', 'image'],
         ];
     }
 }

@@ -21,7 +21,7 @@ class ListBrandsController extends Controller
 
         $brands = transform_paginator($brands, BrandTransformer::class);
 
-        return $this->response->withArray($brands->toArray());
+        return $this->response->withArray(['brands' => $brands]);
     }
 }
 

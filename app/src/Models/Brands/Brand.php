@@ -11,7 +11,7 @@ class Brand extends UuidModel
     private const ID_PREFIX = 'brd_';
 
     public final const NAME_COLUMN = 'name';
-    public final const LOGO_COLUMN = 'logo';
+    public final const LOGO_COLUMN = 'path';
     public final const ABBREVIATION_COLUMN = 'abbreviation';
     public final const TABLE_NAME = 'brands';
 
