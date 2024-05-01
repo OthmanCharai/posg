@@ -121,7 +121,7 @@ const submitForm = async () => {
       </a-card>
       <br>
       <a-card title="Generale Informations" style="width: 100%">
-        <div class="grid grid-cols-2 gap-5">
+        <div class="grid md:grid-cols-2 gap-5">
           <a-form-item
             :validate-status="isError('name')"
             :help="getErrorMessage('name')"
@@ -170,7 +170,7 @@ const submitForm = async () => {
       </a-card>
       <br>
       <a-card title="Capital et autres Informations" style="width: 100%">
-        <div class="grid grid-cols-2 gap-5">
+        <div class="grid md:grid-cols-2 gap-5">
           <a-form-item
             :validate-status="isError('capital')"
             :help="getErrorMessage('capital')"
