@@ -58,7 +58,8 @@
             }
             @include respond-below(custom991) {
                 text-align: center;
-                width: 100%;
+                max-width: max-content;
+                margin: 0 auto;
                 img{
                     width: 70px;
                 }

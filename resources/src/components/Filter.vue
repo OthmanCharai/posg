@@ -9,7 +9,7 @@ const filter = ref(false);
       <div class="search-input">
         <input type="text" placeholder="Search" class="dark-input" />
         <a href="javascript:void(0);" class="btn btn-searchset">
-          <vue-feather type="search" size="16" class="feather-search"></vue-feather>
+          <vue-feather type="search" size="16" class="mr-[6px] mt-[7px]"></vue-feather>
         </a>
       </div>
     </div>
