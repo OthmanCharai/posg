@@ -108,7 +108,7 @@ export default [
             {
                 path: 'articles/categorie',
                 name: 'articleCategories',
-                component: () => import('@/src/pages/article/category/ListCategory.vue'),
+                component: () => import('@/src/pages/articles/category/ListCategory.vue'),
                 meta: {
                     middleware: [
                         auth
@@ -118,7 +118,7 @@ export default [
             {
                 path: 'articles/depots',
                 name: 'depots',
-                component: () => import('@/src/pages/article/depot/ListDepot.vue'),
+                component: () => import('@/src/pages/articles/depot/ListDepot.vue'),
                 meta: {
                     middleware: [
                         auth
@@ -128,7 +128,7 @@ export default [
             {
                 path: 'articles/marques',
                 name: 'marque',
-                component: () => import('@/src/pages/article/brand/ListBrand.vue'),
+                component: () => import('@/src/pages/articles/brand/ListBrand.vue'),
                 meta: {
                     middleware: [
                         auth
