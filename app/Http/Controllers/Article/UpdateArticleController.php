@@ -20,17 +20,17 @@ class UpdateArticleController extends Controller
     /**
      * @throws BindingResolutionException
      */
-    public function __invoke(Article $article, UpdateArticleRequest $request)
+    public function __invoke(Article $article, UpdateArticleRequest $request): \Illuminate\Http\JsonResponse
     {
         $this->articleService->update($article, $attributes = $request->validated());
-
-        $article->depots()->syncWithoutDetaching(Arr::get($attributes, 'depots'));
 
         $article->compatibilities()->syncWithoutDetaching(Arr::get($attributes, 'compatibilities'));
 
         /* @var Article $updatedArticle */
-        $updatedArticle = $this->articleService->find($article->getId()); //todo: load rlt if needed
+        $updatedArticle = $this->articleService->find($article->getId());
 
-        return $this->response->withArray(ArticleTransformer::transform($updatedArticle));
+        return $this->response->withArray(
+            ArticleTransformer::transform($updatedArticle->load(array_values(Article::RELATIONS)))
+        );
     }
 }

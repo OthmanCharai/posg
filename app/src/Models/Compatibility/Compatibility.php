@@ -13,6 +13,8 @@ class Compatibility extends UuidModel
     public final const NAME_COLUMN = 'name';
     private const ID_PREFIX = 'cmp_';
 
+    protected $guarded = [];
+
     public static function getPrefix(): string
     {
         return self::ID_PREFIX;

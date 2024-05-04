@@ -32,6 +32,7 @@ class UpdateUserRequest extends FormRequest
             User::EMAIL_COLUMN        => [
                 'nullable',
                 'email',
+                Rule::unique(User::TABLE_NAME, User::EMAIL_COLUMN)->ignore($this->user()->id, User::ID_COLUMN),
             ],
             User::FIRST_NAME_COLUMN   => ['nullable', 'string', 'max:255'],
             User::LAST_NAME_COLUMN    => ['nullable', 'string', 'max:255'],

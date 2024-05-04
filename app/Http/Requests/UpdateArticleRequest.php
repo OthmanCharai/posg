@@ -6,7 +6,6 @@ use App\src\Models\Article\Article;
 use App\src\Models\Article\Enums\ArticleStockTypeEnum;
 use App\src\Models\ArticleCategory\ArticleCategory;
 use App\src\Models\Compatibility\Compatibility;
-use App\src\Models\Depot\Depot;
 use App\src\Models\Supplier\Supplier;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
@@ -30,11 +29,17 @@ class UpdateArticleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            Article::BARCODE_COLUMN         => ['required', 'unique'],
+            Article::BARCODE_COLUMN         => [
+                'required',
+                Rule::unique(Article::TABLE_NAME, Article::BARCODE_COLUMN)->ignore(
+                    $this->article->id,
+                    Article::ID_COLUMN
+                ),
+            ],
             Article::NAME_COLUMN            => ['required', 'string', 'max:255'],
             Article::STOCK_TYPE_COLUMN      => [
                 'required',
-                'number',
+                'numeric',
                 'in:' . implode(',', array_column(ArticleStockTypeEnum::cases(), 'value')),
             ],
             Article::SUPPLIER_ID_COLUMN     => [
@@ -47,16 +52,13 @@ class UpdateArticleRequest extends FormRequest
                 'string',
                 Rule::exists(ArticleCategory::TABLE_NAME, ArticleCategory::ID_COLUMN),
             ],
-            Article::IMAGE_COLUMN           => ['required', 'image'],
+            Article::IMAGE_COLUMN           => ['nullable', 'image'],
             Article::PURCHASE_PRICE_COLUMN  => ['required', 'numeric'],
             Article::LAST_SALE_PRICE_COLUMN => ['required', 'numeric'],
             Article::RETAIL_PRICE_COLUMN    => ['required', 'numeric'],
             Article::WHOLESALE_PRICE_COLUMN => ['required', 'numeric'],
             Article::DESCRIPTION_COLUMN     => ['required', 'string'],
             Article::LOCATION_COLUMN        => ['required', 'string', 'max:255'],
-            'depots'                        => ['required', 'array'],
-            'depots.*.id'                   => ['required', Rule::exists(Depot::TABLE_NAME, Depot::ID_COLUMN)],
-            'depots.*.quantity'             => ['required', 'numeric'],
             'compatibilities'               => ['required', 'array'],
             'compatibilities.*'             => [
                 'required',
@@ -69,10 +71,18 @@ class UpdateArticleRequest extends FormRequest
     {
         $this->merge(
             [
-                Article::PURCHASE_PRICE_COLUMN  => (int)$this->getInputSource(Article::PURCHASE_PRICE_COLUMN) * 100,
-                Article::LAST_SALE_PRICE_COLUMN => (int)$this->getInputSource(Article::LAST_SALE_PRICE_COLUMN) * 100,
-                Article::RETAIL_PRICE_COLUMN    => (int)$this->getInputSource(Article::RETAIL_PRICE_COLUMN) * 100,
-                Article::WHOLESALE_PRICE_COLUMN => (int)$this->getInputSource(Article::WHOLESALE_PRICE_COLUMN) * 100,
+                Article::PURCHASE_PRICE_COLUMN  => (int)$this->getInputSource()?->get(
+                        Article::PURCHASE_PRICE_COLUMN
+                    ) * 100,
+                Article::LAST_SALE_PRICE_COLUMN => (int)$this->getInputSource()?->get(
+                        Article::LAST_SALE_PRICE_COLUMN
+                    ) * 100,
+                Article::RETAIL_PRICE_COLUMN    => (int)$this->getInputSource()?->get(
+                        Article::RETAIL_PRICE_COLUMN
+                    ) * 100,
+                Article::WHOLESALE_PRICE_COLUMN => (int)$this->getInputSource()?->get(
+                        Article::WHOLESALE_PRICE_COLUMN
+                    ) * 100,
             ]
         );
     }

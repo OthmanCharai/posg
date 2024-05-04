@@ -20,6 +20,10 @@ class CreateCompatibilityController extends Controller
         /* @var Compatibility $compatibility */
         $compatibility = $this->compatibilityService->create($request->validated());
 
-        return $this->response->withArray(CompatibilityTransformer::transform($compatibility));
+        return $this->response->withArray(
+            [
+                'compatibility' => CompatibilityTransformer::transform($compatibility),
+            ]
+        );
     }
 }
