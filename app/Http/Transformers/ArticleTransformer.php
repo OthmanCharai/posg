@@ -6,6 +6,7 @@ use App\src\Domain\Media\MediaService;
 use App\src\Models\Article\Article;
 use App\src\Models\Article\Enums\ArticleStockTypeEnum;
 use App\src\Models\ArticleCategory\ArticleCategory;
+use App\src\Models\ArticleIso\ArticleIso;
 use App\src\Models\Brands\Brand;
 use App\src\Models\Compatibility\Compatibility;
 use App\src\Models\Depot\Depot;
@@ -55,6 +56,10 @@ class ArticleTransformer
                 $article->getCompatibilities(),
                 CompatibilityTransformer::class
             )->toArray();
+        }
+
+        if ($article->relationLoaded(Article::RELATIONS[ArticleIso::class])) {
+            $data['article_iso'] = transform_collection($article->getArticleIso(), ArticleIsoTransformer::class);
         }
 
         return $data;

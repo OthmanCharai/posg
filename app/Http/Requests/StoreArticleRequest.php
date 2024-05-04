@@ -5,8 +5,8 @@ namespace App\Http\Requests;
 use App\src\Models\Article\Article;
 use App\src\Models\Article\Enums\ArticleStockTypeEnum;
 use App\src\Models\ArticleCategory\ArticleCategory;
+use App\src\Models\Brands\Brand;
 use App\src\Models\Compatibility\Compatibility;
-use App\src\Models\Depot\Depot;
 use App\src\Models\Supplier\Supplier;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
@@ -30,7 +30,10 @@ class StoreArticleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            Article::BARCODE_COLUMN         => ['required', Rule::unique(Article::TABLE_NAME, Article::ID_COLUMN)],
+            Article::BARCODE_COLUMN         => [
+                'required',
+                Rule::unique(Article::TABLE_NAME, Article::BARCODE_COLUMN),
+            ],
             Article::NAME_COLUMN            => ['required', 'string', 'max:255'],
             Article::STOCK_TYPE_COLUMN      => [
                 'required',
@@ -47,6 +50,11 @@ class StoreArticleRequest extends FormRequest
                 'string',
                 Rule::exists(ArticleCategory::TABLE_NAME, ArticleCategory::ID_COLUMN),
             ],
+            Article::BRAND_ID_COLUMN        => [
+                'required',
+                'string',
+                Rule::exists(Brand::TABLE_NAME, Brand::ID_COLUMN),
+            ],
             Article::IMAGE_COLUMN           => ['required', 'image'],
             Article::PURCHASE_PRICE_COLUMN  => ['required', 'numeric'],
             Article::LAST_SALE_PRICE_COLUMN => ['required', 'numeric'],
@@ -54,7 +62,6 @@ class StoreArticleRequest extends FormRequest
             Article::WHOLESALE_PRICE_COLUMN => ['required', 'numeric'],
             Article::DESCRIPTION_COLUMN     => ['required', 'string'],
             Article::LOCATION_COLUMN        => ['required', 'string', 'max:255'],
-            //todo: move it to new formRequest
             'compatibilities'               => ['required', 'array'],
             'compatibilities.*'             => [
                 'required',

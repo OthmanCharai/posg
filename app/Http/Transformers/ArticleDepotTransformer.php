@@ -12,6 +12,7 @@ class ArticleDepotTransformer
             ArticleDepot::ARTICLE_ID_COLUMN => $articleDepot->getArticleId(),
             ArticleDepot::QUANTITY_COLUMN   => $articleDepot->getQuantity(),
             ArticleDepot::DEPOT_ID_COLUMN   => $articleDepot->getDepotId(),
+            ArticleDepot::ID_COLUMN         => $articleDepot->getId(),
         ];
     }
 }

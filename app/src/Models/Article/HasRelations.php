@@ -31,7 +31,7 @@ trait HasRelations
 
     public function getSupplier(): Supplier
     {
-        return $this->getAttribute(Supplier::class);
+        return $this->getAttribute(self::RELATIONS[Supplier::class]);
     }
 
     public function articleCategory(): BelongsTo
@@ -41,7 +41,7 @@ trait HasRelations
 
     public function getArticleCategory(): ArticleCategory
     {
-        return $this->getAttribute(ArticleCategory::class);
+        return $this->getAttribute(self::RELATIONS[ArticleCategory::class]);
     }
 
     public function brand(): BelongsTo
@@ -51,12 +51,12 @@ trait HasRelations
 
     public function getBrand(): Brand
     {
-        return $this->getAttribute(Brand::class);
+        return $this->getAttribute(self::RELATIONS[Brand::class]);
     }
 
     public function depots(): BelongsToMany
     {
-        return $this->belongsToMany(Depot::class)->withPivot('quantity');
+        return $this->belongsToMany(Depot::class, 'article_depots')->withPivot('quantity');
     }
 
     public function getDepots(): Collection
@@ -66,7 +66,7 @@ trait HasRelations
 
     public function compatibilities(): BelongsToMany
     {
-        return $this->belongsToMany(Compatibility::class);
+        return $this->belongsToMany(Compatibility::class, 'article_compatibilities');
     }
 
     public function getCompatibilities(): Collection
@@ -77,5 +77,10 @@ trait HasRelations
     public function articleIso(): HasMany
     {
         return $this->hasMany(ArticleIso::class);
+    }
+
+    public function getArticleIso(): Collection
+    {
+        return $this->getAttribute(self::RELATIONS[ArticleIso::class]);
     }
 }

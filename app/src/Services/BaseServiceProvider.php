@@ -10,6 +10,7 @@ use App\src\Services\ArticleIso\ArticleIsoServiceProvider;
 use App\src\Services\BankAccount\BankAccountServiceProvider;
 use App\src\Services\Brand\BrandServiceProvider;
 use App\src\Services\CompanySetting\CompanyServiceProvider;
+use App\src\Services\Compatibility\CompatibilityServiceProvider;
 use App\src\Services\Depot\DepotServiceProvider;
 use App\src\Services\Supplier\SupplierServiceProvider;
 use App\src\Services\Tax\TaxServiceProvider;
@@ -34,6 +35,7 @@ class BaseServiceProvider extends ServiceProvider
         CompanyServiceProvider::class,
         ArticleIsoServiceProvider::class,
         ArticleDepotServiceProvider::class,
+        CompatibilityServiceProvider::class
     ];
 
     public function register(): void

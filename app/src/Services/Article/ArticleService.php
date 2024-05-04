@@ -37,13 +37,29 @@ readonly class ArticleService implements ArticleServiceInterface
      */
     public function update(Model|Article $model, array $attributes): bool
     {
-        $this->mediaService->delete($model->getImage());
-        $uploadedImage = $this->mediaService->save('art_', Arr::get($attributes, Article::IMAGE_COLUMN));
+        $uploadedImage = $model->getImage();
+        if (!is_null($image = Arr::get($attributes, Article::IMAGE_COLUMN))) {
+            $this->mediaService->delete($model->getImage());
+            $uploadedImage = $this->mediaService->save('art_', $image);
+        }
 
         return $this->articleRepository->update(
             $model->getId(),
             array_merge(
-                $attributes,
+                Arr::only($attributes, [
+                    Article::BARCODE_COLUMN,
+                    Article::NAME_COLUMN,
+                    Article::STOCK_TYPE_COLUMN,
+                    Article::SUPPLIER_ID_COLUMN,
+                    Article::CATEGORY_ID_COLUMN,
+                    Article::PURCHASE_PRICE_COLUMN,
+                    Article::LAST_SALE_PRICE_COLUMN,
+                    Article::RETAIL_PRICE_COLUMN,
+                    Article::WHOLESALE_PRICE_COLUMN,
+                    Article::DESCRIPTION_COLUMN,
+                    Article::LOCATION_COLUMN,
+                    Article::BRAND_ID_COLUMN,
+                ]),
                 [
                     Article::IMAGE_COLUMN => $uploadedImage,
                 ]
@@ -51,13 +67,29 @@ readonly class ArticleService implements ArticleServiceInterface
         );
     }
 
+    /**
+     * @throws FileUploadToS3FailedException
+     */
     public function create(array $attributes): Model
     {
         $uploadedImage = $this->mediaService->save('art_', Arr::get($attributes, Article::IMAGE_COLUMN));
 
         return $this->articleRepository->create(
             array_merge(
-                $attributes,
+                Arr::only($attributes, [
+                    Article::BARCODE_COLUMN,
+                    Article::NAME_COLUMN,
+                    Article::STOCK_TYPE_COLUMN,
+                    Article::SUPPLIER_ID_COLUMN,
+                    Article::CATEGORY_ID_COLUMN,
+                    Article::PURCHASE_PRICE_COLUMN,
+                    Article::LAST_SALE_PRICE_COLUMN,
+                    Article::RETAIL_PRICE_COLUMN,
+                    Article::WHOLESALE_PRICE_COLUMN,
+                    Article::DESCRIPTION_COLUMN,
+                    Article::LOCATION_COLUMN,
+                    Article::BRAND_ID_COLUMN,
+                ]),
                 [
                     Article::IMAGE_COLUMN => $uploadedImage,
                 ]
