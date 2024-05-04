@@ -93,7 +93,7 @@ export default [
                     middleware: [
                         auth
                     ]
-                }
+                },
             },
             {
                 path: '/fournisseurs',
@@ -104,6 +104,26 @@ export default [
                         auth
                     ]
                 }
+            },
+            {
+              path: 'articles',
+              name: 'articles',
+              component: () => import('@/src/pages/articles/article/ListArticle.vue'),
+              meta: {
+                  middleware: [
+                      auth
+                  ]
+              },
+            },
+            {
+              path: 'articles/article-panneau',
+              name: 'articlePanel',
+              component: () => import('@/src/pages/articles/article/ArticlePanel.vue'),
+              meta: {
+                  middleware: [
+                      auth
+                  ]
+              }
             },
             {
                 path: 'articles/categorie',
