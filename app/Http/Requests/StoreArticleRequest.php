@@ -54,9 +54,7 @@ class StoreArticleRequest extends FormRequest
             Article::WHOLESALE_PRICE_COLUMN => ['required', 'numeric'],
             Article::DESCRIPTION_COLUMN     => ['required', 'string'],
             Article::LOCATION_COLUMN        => ['required', 'string', 'max:255'],
-            'depots'                        => ['required', 'array'],
-            'depots.*.id'                   => ['required', Rule::exists(Depot::TABLE_NAME, Depot::ID_COLUMN)],
-            'depots.*.quantity'             => ['required', 'numeric'],
+            //todo: move it to new formRequest
             'compatibilities'               => ['required', 'array'],
             'compatibilities.*'             => [
                 'required',

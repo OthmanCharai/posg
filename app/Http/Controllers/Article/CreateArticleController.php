@@ -26,8 +26,6 @@ class CreateArticleController extends Controller
         /* @var Article $article */
         $article = $this->articleService->create($attributes = $request->validated());
 
-        $article->depots()->createMany(Arr::get($attributes, 'depots'));
-
         $article->compatibilities()->createMany(Arr::get($attributes, 'compatibilities'));
 
         return $this->response->withArray(ArticleTransformer::transform($article));
