@@ -22,7 +22,7 @@ class UpdateArticleDepotController extends Controller
         $data = $request->validate(
             [
                 ArticleDepot::DEPOT_ID_COLUMN => ['required', Rule::exists(Depot::TABLE_NAME, Depot::ID_COLUMN)],
-                ArticleDepot::QUANTITY_COLUMN => ['required', 'number', 'min:0'],
+                ArticleDepot::QUANTITY_COLUMN => ['required', 'numeric', 'min:0'],
             ]
         );
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\src\Models\ArticleDepot\ArticleDepot;
 use App\src\Models\Depot\Depot;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
@@ -25,9 +26,8 @@ class SyncArticleDepotRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'depots'            => ['required', 'array'],
-            'depots.*.id'       => ['required', Rule::exists(Depot::TABLE_NAME, Depot::ID_COLUMN)],
-            'depots.*.quantity' => ['required', 'numeric'],
+            ArticleDepot::DEPOT_ID_COLUMN => ['required', Rule::exists(Depot::TABLE_NAME, Depot::ID_COLUMN)],
+            ArticleDepot::QUANTITY_COLUMN => ['required', 'numeric'],
         ];
     }
 }

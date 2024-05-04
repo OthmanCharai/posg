@@ -10,7 +10,7 @@ Route::prefix('article-iso')
     ->name('article-iso.')
     ->middleware(['permissions:' . AdminPermission::MANAGE_ARTICLE])
     ->group(function () {
-        Route::post('/create/{article}', CreateArticleIsoController::class)
+        Route::post('/{article}/create', CreateArticleIsoController::class)
             ->name('create');
 
         Route::put('/{articleIso}/update', UpdateArticleIsoController::class)

@@ -6,8 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\SyncArticleDepotRequest;
 use App\Http\Transformers\ArticleDepotTransformer;
 use App\src\Models\Article\Article;
+use App\src\Models\ArticleDepot\ArticleDepot;
 use App\src\Services\ArticleDepot\ArticleDepotServiceInterface;
-use Illuminate\Support\Arr;
 
 class CreateArticleDepotController extends Controller
 {
@@ -18,14 +18,16 @@ class CreateArticleDepotController extends Controller
 
     public function __invoke(Article $article, SyncArticleDepotRequest $request): \Illuminate\Http\JsonResponse
     {
-        $articleDepotCollection = $this->articleDepotService->createMany(
-            $article,
-            Arr::get($request->validated(), 'depots')
+        /* @var ArticleDepot $articleDepot */
+        $articleDepot = $this->articleDepotService->create(
+            array_merge($request->validated(), [
+                ArticleDepot::ARTICLE_ID_COLUMN => $article->getId(),
+            ]),
         );
 
         return $this->response->withArray(
             [
-                'depots' => transform_collection($articleDepotCollection, ArticleDepotTransformer::class),
+                'depot' => ArticleDepotTransformer::transform($articleDepot),
             ]
         );
     }

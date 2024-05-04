@@ -10,7 +10,7 @@ Route::prefix('article-depots')
     ->name('article-depots.')
     ->middleware(['permissions:' . AdminPermission::MANAGE_ARTICLE])
     ->group(function () {
-        Route::post('/create', CreateArticleDepotController::class)
+        Route::post('/{article}/create', CreateArticleDepotController::class)
             ->name('create');
 
         Route::put('/{articleDepot}/update', UpdateArticleDepotController::class)
