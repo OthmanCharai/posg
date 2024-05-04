@@ -27,8 +27,8 @@ const activeKey = ref("1");
         <ArticleDetails />
       </span>
     </a-tab-pane>
-    <a-tab-pane key="2" tab="Compatibilité" :forceRender="true">
-      <span v-if="activeKey === '2'">
+    <a-tab-pane key="2" tab="ISO" :forceRender="true">
+      <span v-if="activeKey === '2'" >
         content 2
       </span>
     </a-tab-pane>
@@ -37,5 +37,11 @@ const activeKey = ref("1");
         content 3
       </span>
     </a-tab-pane>
+    <a-tab-pane key="4" tab="Historique des ventes" :forceRender="true">
+      <span v-if="activeKey === '4'">
+        content 4
+      </span>
+    </a-tab-pane>
+
   </a-tabs>
 </template>
