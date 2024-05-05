@@ -1,7 +1,7 @@
-import type {AxiosRequestConfig, AxiosResponse} from 'axios';
-import axios from "./http";
-import {processErrors} from '@utils/error-handler';
-import {ref} from 'vue';
+import type { AxiosRequestConfig, AxiosResponse } from 'axios';
+import axios from './http';
+import { processErrors } from '@utils/error-handler';
+import { ref } from 'vue';
 
 // ziggy route caller
 export const route = window.route;
@@ -23,13 +23,11 @@ export const useAxios = () => {
         response.value = result;
       }
     } catch (err: any) {
-        processErrors(err, errorMessage);
-
+      processErrors(err, errorMessage);
     } finally {
       loading.value = false;
     }
   };
 
-  return {loading, response, errorMessage, request};
+  return { loading, response, errorMessage, request };
 };
-

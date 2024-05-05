@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const filter = ref(false);
+  const filter = ref(false);
 </script>
 
 <template>
@@ -16,14 +16,16 @@ const filter = ref(false);
     <!-- /Search input -->
     <!-- Filter button -->
     <div class="search-path">
-      <a id="filter_search" @click="filter = !filter">
-        Recherche avancée »
-      </a>
+      <a id="filter_search" @click="filter = !filter"> Recherche avancée » </a>
     </div>
     <!-- /Filter button -->
   </div>
   <!-- /Filter -->
-  <div class="card mb-0" :style="{ display: filter ? 'block' : 'none' }" id="filter_inputs">
+  <div
+    class="card mb-0"
+    :style="{ display: filter ? 'block' : 'none' }"
+    id="filter_inputs"
+  >
     <div class="card-body pb-0">
       <slot />
     </div>

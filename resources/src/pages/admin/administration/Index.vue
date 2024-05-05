@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import Taxes from "./partials/taxes/TaxesList.vue";
-import BankAccountList from "../bankAccount/BankAccountList.vue";
-import CompanyProfile from "../company/CompanyProfile.vue";
+  import Taxes from './partials/taxes/TaxesList.vue';
+  import BankAccountList from '../bankAccount/BankAccountList.vue';
+  import CompanyProfile from '../company/CompanyProfile.vue';
 
-const activeKey = ref("1");
+  const activeKey = ref('1');
 </script>
 
 <template>

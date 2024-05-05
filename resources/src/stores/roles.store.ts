@@ -1,4 +1,4 @@
-import { defineStore } from "pinia";
+import { defineStore } from 'pinia';
 import { Permissions, Roles } from '@common/types/global/roles';
 import type { PaginationMetadata } from '@common/types/global/pagination';
 import { route, useAxios } from '@utils/axios-helper';
@@ -20,8 +20,8 @@ export const useRoleStore = defineStore('roles', {
     async getRolesList(page: number = 1) {
       await request({
         method: 'GET',
-        url: route('roles.index', `page=${page}`)
-      })
+        url: route('roles.index', `page=${page}`),
+      });
       try {
         if (response.value && response.value.data) {
           this.roles = response.value.data.admin_roles.data;
@@ -34,14 +34,14 @@ export const useRoleStore = defineStore('roles', {
             for (const [key, value] of Object.entries(perms)) {
               result.push({
                 label: value,
-                value: key
+                value: key,
               });
             }
           }
           this.permissions = result;
         }
       } catch (e) {
-        console.error(e)
+        console.error(e);
       }
     },
 
@@ -49,7 +49,7 @@ export const useRoleStore = defineStore('roles', {
       await request({
         method: 'POST',
         url: route('roles.create'),
-        data: data
+        data: data,
       });
       try {
         if (response.value) {
@@ -66,7 +66,7 @@ export const useRoleStore = defineStore('roles', {
       await request({
         method: 'PUT',
         url: route('roles.update', this.currentRole.id),
-        data: data
+        data: data,
       });
       try {
         if (response.value) {
@@ -81,6 +81,6 @@ export const useRoleStore = defineStore('roles', {
 
     setCurrentRoleData(data: Roles) {
       this.currentRole = data;
-    }
-  }
-})
+    },
+  },
+});

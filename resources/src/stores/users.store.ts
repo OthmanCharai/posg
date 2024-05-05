@@ -11,7 +11,7 @@ const { request, response, loading } = useAxios();
 export const useUserStore = defineStore('users', {
   state: () => ({
     usersData: [] as Users[],
-    roles: [] as  Roles[],
+    roles: [] as Roles[],
     pagination: {} as PaginationMetadata,
     loading: loading,
     getResponse: false,
@@ -19,11 +19,11 @@ export const useUserStore = defineStore('users', {
   }),
 
   actions: {
-    async getUsersList (page: number = 1) {
+    async getUsersList(page: number = 1) {
       await request({
         method: 'GET',
-        url: route('users.index', `page=${page}`)
-      })
+        url: route('users.index', `page=${page}`),
+      });
       if (response.value && response.value.data) {
         this.usersData = response.value.data.users.data;
         this.roles = response.value.data.roles;
@@ -32,15 +32,15 @@ export const useUserStore = defineStore('users', {
       }
     },
 
-    async createUser (formData: FormData, showCreateModal: Ref<boolean>) {
+    async createUser(formData: FormData, showCreateModal: Ref<boolean>) {
       await request({
         method: 'POST',
         url: route('users.create.submit'),
         data: formData,
         headers: {
-          "Content-Type": "multipart/form-data",
+          'Content-Type': 'multipart/form-data',
         },
-      })
+      });
 
       if (response.value && response.value.data) {
         Toast.success('Votre compte a été crée avec succès.');
@@ -49,18 +49,18 @@ export const useUserStore = defineStore('users', {
       }
     },
 
-    async updateUser (formData: FormData, showUpdateModal: Ref<boolean>) {
+    async updateUser(formData: FormData, showUpdateModal: Ref<boolean>) {
       await request({
         method: 'POST',
         url: route('users.update', this.selectedUser.id),
         data: formData,
         headers: {
-          "Content-Type": "multipart/form-data",
+          'Content-Type': 'multipart/form-data',
         },
         params: {
-          _method: "PUT",
+          _method: 'PUT',
         },
-      })
+      });
 
       if (response.value && response.value.data) {
         Toast.success('Votre compte a été mis à jour avec succès.');
@@ -72,5 +72,5 @@ export const useUserStore = defineStore('users', {
     setSelectedUserData(data: Users) {
       this.selectedUser = data;
     },
-  }
-})
+  },
+});

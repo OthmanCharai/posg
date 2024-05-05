@@ -1,6 +1,10 @@
 <template>
   <div class="wrong-page-wrapper">
-    <a-result status="404" title="404" sub-title="Désolé, la page que vous avez visitée n'existe pas.">
+    <a-result
+      status="404"
+      title="404"
+      sub-title="Désolé, la page que vous avez visitée n'existe pas."
+    >
       <template #extra>
         <router-link to="/dashboard" class="w-full">
           <a-button type="primary" class="w-full">

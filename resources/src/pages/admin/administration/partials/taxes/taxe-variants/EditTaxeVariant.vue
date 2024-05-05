@@ -1,37 +1,40 @@
 <script setup lang="ts">
-import type { TaxeVariants } from '@common/types/taxes';
-import { useTaxeStore } from '@/src/stores/taxes.store';
-import { clearError, getErrorMessage, isError } from "@/src/utils/error-handler";
+  import type { TaxeVariants } from '@common/types/taxes';
+  import { useTaxeStore } from '@/src/stores/taxes.store';
+  import { clearError, getErrorMessage, isError } from '@/src/utils/error-handler';
 
-const store = useTaxeStore();
-const showUpdateModal = inject('showUpdateTaxeVariantModal') as Ref<boolean>;
-const selectedTaxeVariant = ref<TaxeVariants>(store.selectedTaxeVariant);
+  const store = useTaxeStore();
+  const showUpdateModal = inject('showUpdateTaxeVariantModal') as Ref<boolean>;
+  const selectedTaxeVariant = ref<TaxeVariants>(store.selectedTaxeVariant);
 
-const data = ref<TaxeVariants>({
-  name: selectedTaxeVariant.value.name,
-  value: selectedTaxeVariant.value.value,
-  type: selectedTaxeVariant.value.type,
-});
+  const data = ref<TaxeVariants>({
+    name: selectedTaxeVariant.value.name,
+    value: selectedTaxeVariant.value.value,
+    type: selectedTaxeVariant.value.type,
+  });
 
-// Submit data
-const handleSubmission = async () => {
-  await store.updateTaxeVariant(data.value, showUpdateModal);
-};
+  // Submit data
+  const handleSubmission = async () => {
+    await store.updateTaxeVariant(data.value, showUpdateModal);
+  };
 </script>
 
 <template>
-  <ModalWrapper title="Editer taxe" v-model:open="showUpdateModal" @submit="handleSubmission" width="400px">
+  <ModalWrapper
+    title="Editer taxe"
+    v-model:open="showUpdateModal"
+    @submit="handleSubmission"
+    width="400px"
+  >
     <section class="w-full border-t border-gray-100 py-8 grid gap-3">
-      <a-form-item
-        :validate-status="isError('name')"
-        :help="getErrorMessage('name')"
-      >
-        <a-input addonBefore="Nom du taxe" v-model:value="data.name"  @change="clearError('name')" />
+      <a-form-item :validate-status="isError('name')" :help="getErrorMessage('name')">
+        <a-input
+          addonBefore="Nom du taxe"
+          v-model:value="data.name"
+          @change="clearError('name')"
+        />
       </a-form-item>
-      <a-form-item
-        :validate-status="isError('value')"
-        :help="getErrorMessage('value')"
-      >
+      <a-form-item :validate-status="isError('value')" :help="getErrorMessage('value')">
         <a-input-number
           type="number"
           v-model:value="data.value"
@@ -55,5 +58,5 @@ const handleSubmission = async () => {
       </a-radio-group>
     </div>
   </ModalWrapper>
-  <Loader :is-active="store.loading"/>
+  <Loader :is-active="store.loading" />
 </template>

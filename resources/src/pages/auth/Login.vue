@@ -1,37 +1,36 @@
 <script setup lang="ts">
-import { useAxios, route } from "@/src/utils/axios-helper";
-import { useRouter } from "vue-router";
-import { getErrorMessage, isError, clearError } from "@utils/error-handler";
-import { useAuthStore } from '@stores/auth.store';
-import { Toast } from "@utils/toast";
-import { LoadingOutlined } from '@ant-design/icons-vue';
+  import { useAxios, route } from '@/src/utils/axios-helper';
+  import { useRouter } from 'vue-router';
+  import { getErrorMessage, isError, clearError } from '@utils/error-handler';
+  import { useAuthStore } from '@stores/auth.store';
+  import { Toast } from '@utils/toast';
+  import { LoadingOutlined } from '@ant-design/icons-vue';
 
+  const authStore = useAuthStore();
+  const { request, loading, response } = useAxios();
+  const router = useRouter();
 
-const authStore = useAuthStore();
-const { request, loading, response } = useAxios();
-const router = useRouter();
+  const data = ref({
+    email: '',
+    password: '',
+  });
 
-const data = ref({
-  email: '',
-  password: '',
-})
+  const checked = ref(false);
 
-const checked = ref(false);
+  const onSubmit = async () => {
+    await request({
+      method: 'POST',
+      url: route('auth.login.submit'),
+      data: data.value,
+    });
 
-const onSubmit = async() => {
-  await request({
-    method: 'POST',
-    url: route('auth.login.submit'),
-    data: data.value
-  })
+    if (response.value && response.value.data) {
+      await authStore.getUser();
 
-  if (response.value && response.value.data) {
-    await authStore.getUser();
-
-    Toast.success('Connexion effectuée avec succès.');
-    router.push({name: 'Dashboard'});
-  }
-};
+      Toast.success('Connexion effectuée avec succès.');
+      router.push({ name: 'Dashboard' });
+    }
+  };
 </script>
 
 <template>
@@ -57,7 +56,12 @@ const onSubmit = async() => {
                     :validate-status="isError('email')"
                     :help="getErrorMessage('email')"
                   >
-                    <a-input size="large" type="email" v-model:value="data.email" @change="clearError('email')">
+                    <a-input
+                      size="large"
+                      type="email"
+                      v-model:value="data.email"
+                      @change="clearError('email')"
+                    >
                       <template #suffix>
                         <vue-feather type="mail" stroke="#8c8c8c" size="16"></vue-feather>
                       </template>
@@ -70,11 +74,17 @@ const onSubmit = async() => {
                     :validate-status="isError('password')"
                     :help="getErrorMessage('password')"
                   >
-                    <a-input-password size="large" v-model:value="data.password" @change="clearError('password')"/>
+                    <a-input-password
+                      size="large"
+                      v-model:value="data.password"
+                      @change="clearError('password')"
+                    />
                   </a-form-item>
                 </div>
                 <div class="form-login flex justify-between">
-                  <a-checkbox class="max-w-max" v-model:checked="checked">Se souvenir de moi</a-checkbox>
+                  <a-checkbox class="max-w-max" v-model:checked="checked"
+                    >Se souvenir de moi</a-checkbox
+                  >
                   <div class="">
                     <router-link class="forgot-link" to="/forgot-password-3">
                       Mot de passe oublié ?
@@ -92,7 +102,8 @@ const onSubmit = async() => {
           </div>
           <div class="my-4 flex justify-center items-center copyright-text">
             <p>
-              Droit d'auteur &copy; {{ new Date().getFullYear() }} Piston Gabon. Tous droits réservés.
+              Droit d'auteur &copy; {{ new Date().getFullYear() }} Piston Gabon. Tous
+              droits réservés.
             </p>
           </div>
         </div>
@@ -102,18 +113,18 @@ const onSubmit = async() => {
 </template>
 
 <style scoped lang="scss">
-:deep(.ant-input-affix-wrapper-lg) {
-  border-radius: 0 !important;
-}
-:deep(.ant-btn.ant-btn-lg) {
-  border-radius: 0 !important;
-  width: 100% !important;
-  height: 47.14px !important;
-
-  &:is(:hover, :active) {
-    background: white !important;
-    border: 1px solid #001656;
-    color: #001656 !important;
+  :deep(.ant-input-affix-wrapper-lg) {
+    border-radius: 0 !important;
   }
-}
+  :deep(.ant-btn.ant-btn-lg) {
+    border-radius: 0 !important;
+    width: 100% !important;
+    height: 47.14px !important;
+
+    &:is(:hover, :active) {
+      background: white !important;
+      border: 1px solid #001656;
+      color: #001656 !important;
+    }
+  }
 </style>

@@ -1,21 +1,24 @@
 <script setup lang="ts">
-const props = defineProps({
-  open: Boolean,
-  title: String,
-  width: String,
-});
+  const props = defineProps({
+    open: Boolean,
+    title: String,
+    width: String,
+  });
 
-const emit = defineEmits(['update:open', 'submit']);
+  const emit = defineEmits(['update:open', 'submit']);
 
-const internalOpen = ref(props.open);
+  const internalOpen = ref(props.open);
 
-watch(() => props.open, (newVal) => {
-  internalOpen.value = newVal;
-});
+  watch(
+    () => props.open,
+    (newVal) => {
+      internalOpen.value = newVal;
+    },
+  );
 
-watch(internalOpen, (newVal) => {
-  emit('update:open', newVal);
-});
+  watch(internalOpen, (newVal) => {
+    emit('update:open', newVal);
+  });
 </script>
 
 <template>

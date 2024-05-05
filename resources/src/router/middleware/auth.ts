@@ -6,14 +6,14 @@ interface GuestFunctionParams {
   auth: ReturnType<typeof useAuthStore>;
 }
 
-export default async function guest ({ next, auth }: GuestFunctionParams){
+export default async function guest({ next, auth }: GuestFunctionParams) {
   await auth.getUser();
 
-  if(!auth.authenticated){
-      return next({
-        name: 'Login'
-      })
+  if (!auth.authenticated) {
+    return next({
+      name: 'Login',
+    });
   }
 
-  return next()
+  return next();
 }

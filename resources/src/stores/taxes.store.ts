@@ -20,8 +20,8 @@ export const useTaxeStore = defineStore('taxes', {
     async getTaxesList() {
       await request({
         method: 'GET',
-        url: route('tax.list')
-      })
+        url: route('tax.list'),
+      });
       if (response.value && response.value.data) {
         this.taxesList = response.value.data.taxes;
         this.getResponse = true;
@@ -34,7 +34,7 @@ export const useTaxeStore = defineStore('taxes', {
         method: 'POST',
         url: route('tax.create.submit'),
         data: formData,
-      })
+      });
 
       if (response.value && response.value.data) {
         Toast.success('Votre taxe a été crée avec succès.');
@@ -49,7 +49,7 @@ export const useTaxeStore = defineStore('taxes', {
         method: 'PUT',
         url: route('tax.update', this.selectedTaxe.id),
         data: formData,
-      })
+      });
 
       if (response.value && response.value.data) {
         Toast.success('Votre taxe a été modifié avec succès.');
@@ -62,13 +62,13 @@ export const useTaxeStore = defineStore('taxes', {
       this.selectedTaxe = data;
     },
     /* ------------------- Taxe variants -------------------- */
-     // Create
+    // Create
     async createTaxeVariant(formData: TaxeVariants, showCreateModal: Ref<boolean>) {
       await request({
         method: 'POST',
         url: route('tax-variant.create.submit', this.selectedTaxeId),
         data: formData,
-      })
+      });
 
       if (response.value && response.value.data) {
         Toast.success('Création faite avec succès.');
@@ -78,12 +78,12 @@ export const useTaxeStore = defineStore('taxes', {
     },
 
     // Update
-    async updateTaxeVariant (formData: TaxeVariants, showUpdateModal: Ref<boolean>) {
+    async updateTaxeVariant(formData: TaxeVariants, showUpdateModal: Ref<boolean>) {
       await request({
         method: 'PUT',
         url: route('tax-variant.update', this.selectedTaxeVariant.id),
         data: formData,
-      })
+      });
 
       if (response.value && response.value.data) {
         Toast.success('Modification faite avec succès.');
@@ -99,5 +99,5 @@ export const useTaxeStore = defineStore('taxes', {
     setSelectedTaxeVariants(data: TaxeVariants) {
       this.selectedTaxeVariant = data;
     },
-  }
-})
+  },
+});
