@@ -126,6 +126,16 @@ export default [
               }
             },
             {
+              path: 'articles/compatibilite',
+              name: 'articleCompatiblity',
+              component: () => import('@/src/pages/articles/compatibility/ListCompatibility.vue'),
+              meta: {
+                  middleware: [
+                      auth
+                  ]
+              }
+            },
+            {
                 path: 'articles/categorie',
                 name: 'articleCategories',
                 component: () => import('@/src/pages/articles/category/ListCategory.vue'),

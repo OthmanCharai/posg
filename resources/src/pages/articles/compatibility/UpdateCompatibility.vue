@@ -1,23 +1,23 @@
 <script setup lang="ts">
 import {clearError, getErrorMessage, isError} from "@/src/utils/error-handler";
-import {useArticleCategoryStore} from "@stores/articleCategory.store";
-import type {ArticleCategory} from "@common/types/global/articleCategory";
+import { useArticleCompatibilityStore } from "@stores/compatibility.store";
+import type { ArticleCompatibility } from "@common/types/compatibility";
 
 const showUpdateModal = inject('showUpdateModal') as Ref<boolean>;
-const store = useArticleCategoryStore();
+const store = useArticleCompatibilityStore();
 
-const data = ref<ArticleCategory>({
-  name: store.currentCategory.name,
+const data = ref<ArticleCompatibility>({
+  name: store.currentCompatibility.name,
 });
 
 // Submit data
 const handleSubmission = async () => {
-  await store.update(store.currentCategory, data.value, showUpdateModal);
+  await store.update(store.currentCompatibility, data.value, showUpdateModal);
 };
 </script>
 
 <template>
-  <ModalWrapper title="Edité votre category" v-model:open="showUpdateModal" @submit="handleSubmission" width="450px">
+  <ModalWrapper title="Edité votre compatibilié" v-model:open="showUpdateModal" @submit="handleSubmission" width="450px">
     <section class="grid grid-cols-1 gap-4 border-t pt-4 pb-1">
       <div class="grid gap-4">
         <a-form-item

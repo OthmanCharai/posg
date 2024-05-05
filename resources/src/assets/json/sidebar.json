@@ -102,6 +102,12 @@
             "customSubmenuTwo": false
           },
           {
+            "menuValue": "Compatibilité",
+            "route": "/articles/compatibilite",
+            "active_link" : "/articles/compatibilite",
+            "customSubmenuTwo": false
+          },
+          {
             "menuValue": "Catégorie",
             "route": "/articles/categorie",
             "active_link" : "/articles/categorie",
