@@ -4,6 +4,17 @@ import { extractPaginatorObject } from '@utils/pagination';
 import type { PaginationMetadata } from '@common/types/global/pagination';
 import type { ArticleInfo } from '@common/types/articles';
 import { Toast } from '@utils/toast';
+import { useArticleCompatibilityStore } from "@stores/compatibility.store";
+import { useArticleCategoryStore } from "@stores/articleCategory.store";
+import { useBrandStore } from "@stores/brand.store";
+import { useSupplierStore } from "@stores/supplier.store";
+import type { SelectProps } from 'ant-design-vue/es/vc-select/Select';
+
+// Use stores
+const storeCompatibility = useArticleCompatibilityStore();
+const storeCategory = useArticleCategoryStore();
+const storeBrand = useBrandStore();
+const storeSupplier = useSupplierStore();
 
 const { request, response, loading } = useAxios();
 
@@ -12,6 +23,10 @@ export const useArticlesStore = defineStore('articles', {
     articlesData: [] as ArticleInfo[],
     selectedArticle: {} as ArticleInfo,
     pagination: {} as PaginationMetadata,
+    compatibilityList: [] as SelectProps['options'],
+    articleCategoryList: [] as SelectProps['options'],
+    brandList: [] as SelectProps['options'],
+    supplierList: [] as SelectProps['options'],
     loading: loading,
     getResponse: false,
   }),
@@ -29,7 +44,43 @@ export const useArticlesStore = defineStore('articles', {
       }
     },
 
-    async create(formData: FormData) {
+    async getCompatibilityList() {
+      await storeCompatibility.get();
+
+      this.compatibilityList = storeCompatibility.compatibilities.map(compatibility => ({
+        label: compatibility.name,
+        value: compatibility.id
+      }));
+    },
+
+    async getArticleCategoryList() {
+      await storeCategory.get();
+
+      this.articleCategoryList = storeCategory.categories.map(category => ({
+        label: category.name,
+        value: category.id
+      }));
+    },
+
+    async getBrandList() {
+      await storeBrand.get();
+
+      this.brandList = storeBrand.brands.map(brand => ({
+        label: brand.name,
+        value: brand.id
+      }));
+    },
+
+    async getSupplierList() {
+      await storeSupplier.get();
+
+      this.supplierList = storeSupplier.suppliers.map(supplier => ({
+        label: supplier.company_name,
+        value: supplier.id
+      }));
+    },
+
+    async create(formData: ArticleInfo) {
       await request({
         method: 'POST',
         url: route('articles.create.submit'),
@@ -44,7 +95,7 @@ export const useArticlesStore = defineStore('articles', {
       }
     },
 
-    async update(formData: FormData) {
+    async update(formData: ArticleInfo) {
       await request({
         method: 'POST',
         url: route('articles.update', this.selectedArticle.id),
