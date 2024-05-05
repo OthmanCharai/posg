@@ -1,5 +1,4 @@
 <script setup lang="ts">
-  import { SelectProps } from 'ant-design-vue/es/vc-select/Select';
   import { useAxios } from '@utils/axios-helper';
   import { clearError, getErrorMessage, isError } from '@/src/utils/error-handler';
   import { Toast } from '@utils/toast';

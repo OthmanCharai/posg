@@ -16,12 +16,22 @@
   "rules": {
     "vue/attribute-hyphenation": "off",
     "vue/attributes-order": "off",
+    "vue/multi-word-component-names": "off",
     "prefer-const": "off",
     "vue/no-v-html": "off",
+    "semi": ["warn", "always"],
+    "@typescript-eslint/no-explicit-any": "off",
+    "quotes": ["warn", "single"],
+    "object-curly-spacing": ["warn", "always"],
+    "indent": ["warn", 2],
+    "vue/script-indent": ["warn", 2, {
+      "baseIndent": 1,
+      "switchCase": 1
+    }],
     "@typescript-eslint/consistent-type-imports": ["error", {
       "prefer": "type-imports"
     }],
-    "vue/max-attributes-per-line": ["error", {
+    "vue/max-attributes-per-line": ["warn", {
       "singleline": {
         "max": 2
       },
@@ -29,5 +39,13 @@
         "max": 1
       }
     }]
-  }
+  },
+  "overrides": [
+    {
+      "files": ["*.vue"],
+      "rules": {
+        "indent": "off"  // Turn off the default indent rule for .vue files to prevent conflict
+      }
+    }
+  ]
 }

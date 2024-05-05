@@ -3,7 +3,7 @@ import type { Company } from '../common/types/global/company';
 import { route, useAxios } from '@utils/axios-helper';
 import { Toast } from '@utils/toast';
 
-const { request, response, loading } = useAxios();
+const { request, response } = useAxios();
 
 export const useCompanyStore = defineStore('company', {
   state: () => ({

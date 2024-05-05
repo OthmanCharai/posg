@@ -21,7 +21,7 @@ router.beforeEach((to, from, next) => {
     next,
     auth,
   };
-  // @ts-ignore: ignore error middleware is array not object
+  // @ts-expect-error: ignore error middleware is array not object
   return middleware[0]({
     ...context,
   });
