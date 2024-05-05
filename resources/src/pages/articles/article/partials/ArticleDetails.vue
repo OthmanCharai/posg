@@ -4,6 +4,7 @@ import type { SelectProps } from 'ant-design-vue/es/vc-select/Select';
 import { dropDownFilter } from '@/src/composables/filters';
 import type { UploadProps } from 'ant-design-vue';
 import { BarcodeOutlined } from '@ant-design/icons-vue';
+import type { ArticleInfo } from '@common/types/articles';
 
 // dropdown inputs data
 const supplierList = ref<SelectProps['options']>([]);
@@ -13,8 +14,8 @@ const articleCategoryList = ref<SelectProps['options']>([]);
 // compatibilites
 const compatibilites = [];
 
-const data = ref({
-  code_bare:'',
+const data = ref<ArticleInfo>({
+  code_bare: '',
   supplier_id: '',
   name: '',
   emplacement: '',
