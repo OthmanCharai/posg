@@ -10,12 +10,8 @@ const supplierList = ref<SelectProps['options']>([]);
 const brandList = ref<SelectProps['options']>([]);
 const articleCategoryList = ref<SelectProps['options']>([]);
 
-// upload image
-const fileList = ref<UploadProps['fileList']>([]);
-
-const stopAntdvDefaultRequest = () => {
-  return false; // This stops the upload request of antdv
-}
+// compatibilites
+const compatibilites = [];
 
 const data = ref({
   code_bare:'',
@@ -33,10 +29,42 @@ const data = ref({
   description: '',
   compatibilities: []
 })
+
+// upload image
+const fileList = ref<UploadProps['fileList']>([]);
+
+const stopAntdvDefaultRequest = () => {
+  return false; // This stops the upload request of antdv
+}
+
+const changeImage = () => {
+  if (fileList.value && fileList.value.length > 0) {
+    return data.value.image = fileList.value[0].originFileObj;
+  }
+}
+
+const removeImage = () => {
+  if (data.value.image) {
+    data.value.image = '';
+    return true;
+  }
+}
+
+onMounted(() => {
+  if(data.value.image && fileList.value && fileList.value.length === 0) {
+    const image: UploadProps['fileList'][number] = {
+      uid: 'index-1',
+      status: 'done',
+      thumbUrl: data.value.image as string,
+    };
+
+    fileList.value.push(image);
+  }
+})
 </script>
 
 <template>
-  <a-form layout="vertical">
+  <a-form layout="vertical" class="mb-5">
     <a-card title="Informations general" style="width: 100%">
       <div class="grid grid-cols-2 gap-4">
         <a-form-item
@@ -187,8 +215,11 @@ const data = ref({
               name="image"
               list-type="picture-card"
               class="upload-list-inline"
-              :before-upload="stopAntdvDefaultRequest"
               accept="image/png, image/jpeg"
+              :before-upload="stopAntdvDefaultRequest"
+              @remove="removeImage"
+              @change="changeImage"
+              :maxCount="1"
             >
               <div v-if="fileList && fileList.length < 1">
                 <plus-outlined></plus-outlined>
@@ -208,7 +239,34 @@ const data = ref({
     </a-card>
     <br>
     <a-card title="Compatibilities" style="width: 100%">
+      <template #extra>
+        <a-button type="default">
+          <vue-feather :size="16" type="plus"></vue-feather>
+        </a-button>
+      </template>
+
+      <a-form-item
+        :validate-status="isError('compatibilities')"
+        :help="getErrorMessage('compatibilities')"
+      >
+        <a-select
+          v-model:value="data.compatibilities"
+          show-search
+          style="width: 100%"
+          mode="multiple"
+          :max-tag-count="10"
+          :options="compatibilites"
+          :filter-option="dropDownFilter"
+          @change="clearError('compatibilities')"
+        ></a-select>
+      </a-form-item>
     </a-card>
+    <div class="flex justify-end mt-5">
+      <a-button htmlType="submit" type="primary">
+        <vue-feather :size="16" type="save"></vue-feather>
+        <span>Enregister</span>
+      </a-button>
+    </div>
   </a-form>
 </template>
 
