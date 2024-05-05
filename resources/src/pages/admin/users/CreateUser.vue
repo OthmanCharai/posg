@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { Users } from '@common/types/users';
-import { SelectProps } from 'ant-design-vue/es/vc-select/Select';
+import type { SelectProps } from 'ant-design-vue/es/vc-select/Select';
 import { useUserStore } from '@/src/stores/users.store';
 import { dropDownFilter } from '@/src/composables/filters';
 import { clearError, getErrorMessage, isError } from "@/src/utils/error-handler";
