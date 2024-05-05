@@ -1,44 +1,12 @@
 <script setup lang="ts">
 import { clearError, getErrorMessage, isError} from "@/src/utils/error-handler";
-import type { SelectProps } from 'ant-design-vue/es/vc-select/Select';
 import { dropDownFilter } from '@/src/composables/filters';
 import type { UploadProps } from 'ant-design-vue';
-import { BarcodeOutlined } from '@ant-design/icons-vue';
+import { BarcodeOutlined, PlusOutlined } from '@ant-design/icons-vue';
 import type { ArticleInfo } from '@common/types/articles';
-import { useArticleCompatibilityStore } from "@stores/compatibility.store";
-import { useArticleCategoryStore } from "@stores/articleCategory.store";
-import { useBrandStore } from "@stores/brand.store";
-import { useSupplierStore } from "@stores/supplier.store";
+import { useArticlesStore } from "@stores/articles.store";
 
-// Use stores
-const storeCompatibility = useArticleCompatibilityStore();
-const storeCategory = useArticleCategoryStore();
-const storeBrand = useBrandStore();
-const storeSupplier = useSupplierStore();
-
-// dropdown inputs data
-const compatibilityList = ref<SelectProps['options']>([]);
-const articleCategoryList = ref<SelectProps['options']>([]);
-const brandList = ref<SelectProps['options']>([]);
-const supplierList = ref<SelectProps['options']>([]);
-
-// map storeData
-compatibilityList.value = storeCompatibility.compatibilities.map(compatibility => ({
-  label: compatibility.name,
-  value: compatibility.id
-}));
-articleCategoryList.value = storeCategory.categories.map(category => ({
-  label: category.name,
-  value: category.id
-}));
-brandList.value = storeBrand.brands.map(brand => ({
-  label: brand.name,
-  value: brand.id
-}));
-supplierList.value = storeSupplier.suppliers.map(supplier => ({
-  label: supplier.company_name,
-  value: supplier.id
-}));
+const store = useArticlesStore();
 
 const data = ref<ArticleInfo>({
   code_bare: '',
@@ -56,6 +24,11 @@ const data = ref<ArticleInfo>({
   description: '',
   compatibilities: []
 })
+
+// Submit data
+const handleSubmission = async () => {
+  await store.create(data.value);
+};
 
 // upload image
 const fileList = ref<UploadProps['fileList']>([]);
@@ -78,11 +51,10 @@ const removeImage = () => {
 }
 
 onMounted(async() => {
-  await storeCompatibility.get();
-  await storeCategory.get();
-  await storeBrand.get();
-  await storeSupplier.get();
-
+  await store.getCompatibilityList();
+  await store.getArticleCategoryList();
+  await store.getBrandList();
+  await store.getSupplierList();
 
   if(data.value.image && fileList.value && fileList.value.length === 0) {
     const image: UploadProps['fileList'][number] = {
@@ -97,7 +69,7 @@ onMounted(async() => {
 </script>
 
 <template>
-  <a-form layout="vertical" class="mb-5">
+  <a-form layout="vertical" class="mb-5" @submit.prevent="handleSubmission">
     <a-card title="Informations general" style="width: 100%">
       <div class="grid grid-cols-2 gap-4">
         <a-form-item
@@ -124,7 +96,7 @@ onMounted(async() => {
             v-model:value="data.supplier_id"
             show-search
             style="width: 100%;"
-            :options="supplierList"
+            :options="store.supplierList"
             :filter-option="dropDownFilter"
             @change="clearError('supplier_id')"
           ></a-select>
@@ -216,7 +188,7 @@ onMounted(async() => {
             v-model:value="data.brand_id"
             show-search
             style="width: 100%;"
-            :options="brandList"
+            :options="store.brandList"
             :filter-option="dropDownFilter"
             @change="clearError('brand_id')"
           ></a-select>
@@ -230,7 +202,7 @@ onMounted(async() => {
             v-model:value="data.article_category_id"
             show-search
             style="width: 100%;"
-            :options="articleCategoryList"
+            :options="store.articleCategoryList"
             :filter-option="dropDownFilter"
             @change="clearError('article_category_id')"
           ></a-select>
@@ -296,7 +268,7 @@ onMounted(async() => {
           style="width: 100%"
           mode="multiple"
           :max-tag-count="10"
-          :options="compatibilityList"
+          :options="store.compatibilityList"
           :filter-option="dropDownFilter"
           @change="clearError('compatibilities')"
         ></a-select>
