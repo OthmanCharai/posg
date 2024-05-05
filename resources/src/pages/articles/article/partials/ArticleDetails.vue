@@ -5,14 +5,40 @@ import { dropDownFilter } from '@/src/composables/filters';
 import type { UploadProps } from 'ant-design-vue';
 import { BarcodeOutlined } from '@ant-design/icons-vue';
 import type { ArticleInfo } from '@common/types/articles';
+import { useArticleCompatibilityStore } from "@stores/compatibility.store";
+import { useArticleCategoryStore } from "@stores/articleCategory.store";
+import { useBrandStore } from "@stores/brand.store";
+import { useSupplierStore } from "@stores/supplier.store";
+
+// Use stores
+const storeCompatibility = useArticleCompatibilityStore();
+const storeCategory = useArticleCategoryStore();
+const storeBrand = useBrandStore();
+const storeSupplier = useSupplierStore();
 
 // dropdown inputs data
-const supplierList = ref<SelectProps['options']>([]);
-const brandList = ref<SelectProps['options']>([]);
+const compatibilityList = ref<SelectProps['options']>([]);
 const articleCategoryList = ref<SelectProps['options']>([]);
+const brandList = ref<SelectProps['options']>([]);
+const supplierList = ref<SelectProps['options']>([]);
 
-// compatibilites
-const compatibilites = [];
+// map storeData
+compatibilityList.value = storeCompatibility.compatibilities.map(compatibility => ({
+  label: compatibility.name,
+  value: compatibility.id
+}));
+articleCategoryList.value = storeCategory.categories.map(category => ({
+  label: category.name,
+  value: category.id
+}));
+brandList.value = storeBrand.brands.map(brand => ({
+  label: brand.name,
+  value: brand.id
+}));
+supplierList.value = storeSupplier.suppliers.map(supplier => ({
+  label: supplier.company_name,
+  value: supplier.id
+}));
 
 const data = ref<ArticleInfo>({
   code_bare: '',
@@ -51,7 +77,13 @@ const removeImage = () => {
   }
 }
 
-onMounted(() => {
+onMounted(async() => {
+  await storeCompatibility.get();
+  await storeCategory.get();
+  await storeBrand.get();
+  await storeSupplier.get();
+
+
   if(data.value.image && fileList.value && fileList.value.length === 0) {
     const image: UploadProps['fileList'][number] = {
       uid: 'index-1',
@@ -264,7 +296,7 @@ onMounted(() => {
           style="width: 100%"
           mode="multiple"
           :max-tag-count="10"
-          :options="compatibilites"
+          :options="compatibilityList"
           :filter-option="dropDownFilter"
           @change="clearError('compatibilities')"
         ></a-select>

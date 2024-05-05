@@ -103,8 +103,8 @@ onMounted(async () => {
   <!-- <DeleteAlert
       v-if="store.getResponse && showDeleteModal"
       v-model:toggle="showDeleteModal"
-      model="users"
-      :id="store.selectedUser.id"
-      :update-data="() => store.getUsersList(store.pagination.current_page)"
+      model="articles"
+      :id="store.selectedArticle.id"
+      :update-data="() => store.getList(store.pagination.current_page)"
   /> -->
 </template>
