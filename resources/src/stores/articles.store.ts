@@ -32,9 +32,9 @@ export const useArticlesStore = defineStore('articles', {
         method: 'GET',
         url: route('articles.index', `page=${page}`)
       });
-      if (response.value && response.value?.data) {
-        this.articlesData = response.value?.data.users.data;
-        this.pagination = extractPaginatorObject(response.value?.data.users);
+      if (response.value && response.value.data) {
+        this.articlesData = response.value.data.users.data;
+        this.pagination = extractPaginatorObject(response.value.data.users);
         this.getResponse = true;
       }
     },
@@ -72,11 +72,11 @@ export const useArticlesStore = defineStore('articles', {
         url: route('articles.create.data'),
         method: 'GET'
       });
-      if (response.value && response.value?.data) {
-        this.getArticleCategoryList(response.value?.data.article_categories);
-        this.getSupplierList(response.value?.data.suppliers);
-        this.getBrandList(response.value?.data.brands);
-        this.getCompatibilityList(response.value?.data.compatibilities);
+      if (response.value && response.value.data) {
+        this.getArticleCategoryList(response.value.data.article_categories);
+        this.getSupplierList(response.value.data.suppliers);
+        this.getBrandList(response.value.data.brands);
+        this.getCompatibilityList(response.value.data.compatibilities);
       }
     },
 
