@@ -123,9 +123,11 @@ onMounted(() => {
           :validate-status="isError('purchase_price')"
           :help="getErrorMessage('purchase_price')"
         >
-          <a-input
-            type="text"
+          <a-input-number
+            type="number"
+            :controls="false"
             addonBefore="XAF"
+            style="width: 100%"
             v-model:value="data.purchase_price"
             @change="clearError('purchase_price')"
           />
@@ -135,8 +137,10 @@ onMounted(() => {
           :validate-status="isError('wholesale_price')"
           :help="getErrorMessage('wholesale_price')"
         >
-          <a-input
-            type="text"
+          <a-input-number
+            type="number"
+            :controls="false"
+            style="width: 100%"
             addonBefore="XAF"
             v-model:value="data.wholesale_price"
             @change="clearError('wholesale_price')"
@@ -147,8 +151,10 @@ onMounted(() => {
           :validate-status="isError('retail_price')"
           :help="getErrorMessage('retail_price')"
         >
-          <a-input
-            type="text"
+          <a-input-number
+            type="number"
+            :controls="false"
+            style="width: 100%"
             addonBefore="XAF"
             v-model:value="data.retail_price"
             @change="clearError('retail_price')"
@@ -159,8 +165,10 @@ onMounted(() => {
           :validate-status="isError('last_sale_price')"
           :help="getErrorMessage('last_sale_price')"
         >
-          <a-input
-            type="text"
+          <a-input-number
+            type="number"
+            :controls="false"
+            style="width: 100%"
             addonBefore="XAF"
             v-model:value="data.last_sale_price"
             @change="clearError('last_sale_price')"
