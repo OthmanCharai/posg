@@ -19,8 +19,8 @@ export const useAuthStore = defineStore('auth', {
         });
 
         if(response.value && response.value.data) {
-          this.$state.authenticated = true;
-          this.$state.user = deepClone(response.value.data);
+          this.authenticated = true;
+          this.user = deepClone(response.value.data);
         }
       }
     }
