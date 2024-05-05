@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
-import { PaginationMetadata } from '@common/types/global/pagination';
-import { BankAccount } from '@common/types/global/bankAccount';
+import type { PaginationMetadata } from '@common/types/global/pagination';
+import type { BankAccount } from '@common/types/global/bankAccount';
 import { route, useAxios } from '@utils/axios-helper';
 import { extractPaginatorObject } from '@utils/pagination';
 

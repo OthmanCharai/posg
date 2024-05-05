@@ -55,7 +55,9 @@
     @submit="handleSubmission"
     width="800px"
   >
-    <a-divider class="!text-xl">Données du role</a-divider>
+    <a-divider class="!text-xl">
+      Données du role
+    </a-divider>
     <section class="grid grid-cols-2 gap-4">
       <div class="grid gap-4">
         <a-form-item :validate-status="isError('name')" :help="getErrorMessage('name')">
@@ -79,7 +81,9 @@
     </section>
     <div class="grid grid-cols-1 gap-4">
       <section class="middle-section">
-        <a-divider class="!text-xl">Permissions</a-divider>
+        <a-divider class="!text-xl">
+          Permissions
+        </a-divider>
         <a-form-item
           :validate-status="isError('permissions')"
           :help="getErrorMessage('permissions')"
@@ -94,8 +98,7 @@
             :options="store.permissions"
             :filter-option="dropDownFilter"
             @change="checkIfSuper"
-          >
-          </a-select>
+          />
         </a-form-item>
       </section>
     </div>

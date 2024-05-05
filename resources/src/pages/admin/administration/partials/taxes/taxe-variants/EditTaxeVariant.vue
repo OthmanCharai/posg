@@ -43,17 +43,16 @@
           @change="clearError('value')"
           :controls="false"
           style="width: 100%"
-        >
-        </a-input-number>
+        />
       </a-form-item>
     </section>
     <div class="flex justify-center">
       <a-radio-group v-model:value="data.type" button-style="solid">
         <a-radio-button :value="0">
-          <vue-feather type="percent" class="mt-1"></vue-feather>
+          <vue-feather type="percent" class="mt-1" />
         </a-radio-button>
         <a-radio-button :value="1">
-          <vue-feather type="dollar-sign" class="mt-1"></vue-feather>
+          <vue-feather type="dollar-sign" class="mt-1" />
         </a-radio-button>
       </a-radio-group>
     </div>

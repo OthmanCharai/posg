@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { Permissions, Roles } from '@common/types/global/roles';
+import type { Permissions, Roles } from '@common/types/global/roles';
 import type { PaginationMetadata } from '@common/types/global/pagination';
 import { route, useAxios } from '@utils/axios-helper';
 import { extractPaginatorObject } from '@utils/pagination';

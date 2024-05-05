@@ -7,9 +7,17 @@
     <!-- Search input -->
     <div class="search-set">
       <div class="search-input">
-        <input type="text" placeholder="Search" class="dark-input" />
+        <input
+          type="text"
+          placeholder="Search"
+          class="dark-input"
+        >
         <a href="javascript:void(0);" class="btn btn-searchset">
-          <vue-feather type="search" size="16" class="mr-[6px] mt-[7px]"></vue-feather>
+          <vue-feather
+            type="search"
+            size="16"
+            class="mr-[6px] mt-[7px]"
+          />
         </a>
       </div>
     </div>

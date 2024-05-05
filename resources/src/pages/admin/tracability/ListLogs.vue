@@ -30,7 +30,7 @@
   ]);
 </script>
 <template>
-  <PageHeader title="Logs"> </PageHeader>
+  <PageHeader title="Logs" />
 
   <div class="card table-list-card">
     <Filter />
@@ -42,8 +42,7 @@
         :total="store.pagination.total"
         :fetched-data="store.get"
         :loading="store.loading"
-      >
-      </DataTable>
+      />
     </div>
   </div>
 </template>

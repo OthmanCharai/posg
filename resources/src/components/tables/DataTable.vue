@@ -5,8 +5,8 @@
     columns: Array<object>;
     data: Array<object>;
     fetchedData: Function;
-    currentPage?: Number;
-    total?: Number;
+    currentPage?: number;
+    total?: number;
     loading?: boolean;
   }>();
 
@@ -32,9 +32,9 @@
       <template
         v-for="(slotName, index) in Object.keys($slots)"
         :key="index"
-        v-slot:[slotName]="slotProps"
+        #[slotName]="slotProps"
       >
-        <slot :name="slotName" v-bind="slotProps"></slot>
+        <slot :name="slotName" v-bind="slotProps" />
       </template>
     </a-table>
   </div>

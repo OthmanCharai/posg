@@ -1,4 +1,4 @@
-import { Users } from '@common/types/users';
+import type { Users } from '@common/types/users';
 
 export interface AuditLog {
   id: number;

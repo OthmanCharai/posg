@@ -40,7 +40,7 @@
         <div class="container">
           <div class="login-content user-login">
             <div class="login-logo">
-              <img src="@/src/assets/img/logo/logo-login.png" alt="logo" />
+              <img src="@/src/assets/img/logo/logo-login.png" alt="logo">
             </div>
             <a-form layout="vertical" @submit="onSubmit">
               <div class="login-userset">
@@ -63,7 +63,11 @@
                       @change="clearError('email')"
                     >
                       <template #suffix>
-                        <vue-feather type="mail" stroke="#8c8c8c" size="16"></vue-feather>
+                        <vue-feather
+                          type="mail"
+                          stroke="#8c8c8c"
+                          size="16"
+                        />
                       </template>
                     </a-input>
                   </a-form-item>
@@ -82,9 +86,12 @@
                   </a-form-item>
                 </div>
                 <div class="form-login flex justify-between">
-                  <a-checkbox class="max-w-max" v-model:checked="checked"
-                    >Se souvenir de moi</a-checkbox
+                  <a-checkbox
+                    class="max-w-max"
+                    v-model:checked="checked"
                   >
+                    Se souvenir de moi
+                  </a-checkbox>
                   <div class="">
                     <router-link class="forgot-link" to="/forgot-password-3">
                       Mot de passe oublié ?
@@ -92,8 +99,14 @@
                   </div>
                 </div>
                 <div>
-                  <a-button size="large" type="primary" htmlType="submit">
-                    <template v-if="loading" #icon><LoadingOutlined /></template>
+                  <a-button
+                    size="large"
+                    type="primary"
+                    htmlType="submit"
+                  >
+                    <template v-if="loading" #icon>
+                      <LoadingOutlined />
+                    </template>
                     <span v-if="loading === false"> Se connecter</span>
                   </a-button>
                 </div>

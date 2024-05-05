@@ -54,7 +54,7 @@
 <template>
   <PageHeader title="Marque">
     <a-button type="primary" @click="showCreateModal = true">
-      <vue-feather :size="16" type="plus-circle"></vue-feather>
+      <vue-feather :size="16" type="plus-circle" />
       <span>Ajouter</span>
     </a-button>
   </PageHeader>
@@ -76,15 +76,15 @@
               :src="record.path"
               :alt="record.name"
               class="w-[100px] h-[70px] object-cover rounded-md"
-            />
+            >
           </template>
           <template v-if="column.key === 'action'">
             <td class="action-table-data">
               <button class="action-button edit" @click="editBrand(record)">
-                <vue-feather type="edit"></vue-feather>
+                <vue-feather type="edit" />
               </button>
               <button class="action-button delete" @click="deleteBrand(record)">
-                <vue-feather type="trash-2"></vue-feather>
+                <vue-feather type="trash-2" />
               </button>
             </td>
           </template>

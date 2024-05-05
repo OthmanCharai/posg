@@ -30,14 +30,14 @@
     :width="width"
   >
     <form @submit.prevent="$emit('submit')">
-      <slot></slot>
+      <slot />
       <div class="mt-3 pt-3 flex justify-end gap-3 border-t">
         <a-button htmlType="submit" type="primary">
-          <vue-feather :size="16" type="save"></vue-feather>
+          <vue-feather :size="16" type="save" />
           <span>Enregister</span>
         </a-button>
         <a-button @click="internalOpen = false">
-          <vue-feather :size="16" type="x-octagon"></vue-feather>
+          <vue-feather :size="16" type="x-octagon" />
           <span>Annuler</span>
         </a-button>
       </div>

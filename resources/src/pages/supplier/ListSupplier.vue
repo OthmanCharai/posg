@@ -66,7 +66,7 @@
 <template>
   <PageHeader title="Fournisseurs">
     <a-button type="primary" @click="showCreateModal = true">
-      <vue-feather :size="16" type="plus-circle"></vue-feather>
+      <vue-feather :size="16" type="plus-circle" />
       <span>Ajouter</span>
     </a-button>
   </PageHeader>
@@ -86,10 +86,10 @@
           <template v-if="column.key === 'action'">
             <td class="action-table-data">
               <button class="action-button edit" @click="editSupplier(record)">
-                <vue-feather type="edit"></vue-feather>
+                <vue-feather type="edit" />
               </button>
               <button class="action-button delete" @click="deleteSupplier(record)">
-                <vue-feather type="trash-2"></vue-feather>
+                <vue-feather type="trash-2" />
               </button>
             </td>
           </template>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
   import { clearError, getErrorMessage, isError } from '@/src/utils/error-handler';
-  import { Depot } from '@common/types/global/depot';
+  import type { Depot } from '@common/types/global/depot';
   import { useDepotStore } from '@stores/depot.store';
 
   const store = useDepotStore();

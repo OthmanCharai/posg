@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-  import { Company } from '@/src/common/types/global/company';
+  import type { Company } from '@/src/common/types/global/company';
   import { clearError, getErrorMessage, isError } from '@/src/utils/error-handler';
   import type { UploadProps } from 'ant-design-vue';
   import { useCompanyStore } from '@/src/stores/company.store';
@@ -107,13 +107,15 @@
             accept="image/png, image/jpeg"
           >
             <div v-if="fileList && fileList.length < 1">
-              <plus-outlined></plus-outlined>
-              <div class="ant-upload-text">Upload</div>
+              <plus-outlined />
+              <div class="ant-upload-text">
+                Upload
+              </div>
             </div>
           </a-upload>
         </div>
       </a-card>
-      <br />
+      <br>
       <a-card title="Generale Informations" style="width: 100%">
         <div class="grid md:grid-cols-2 gap-5">
           <a-form-item :validate-status="isError('name')" :help="getErrorMessage('name')">
@@ -159,7 +161,7 @@
           </a-form-item>
         </div>
       </a-card>
-      <br />
+      <br>
       <a-card title="Capital et autres Informations" style="width: 100%">
         <div class="grid md:grid-cols-2 gap-5">
           <a-form-item
@@ -246,7 +248,7 @@
       </a-card>
       <div class="my-5 flex justify-end">
         <a-button htmlType="submit" type="primary">
-          <vue-feather :size="16" type="save"></vue-feather>
+          <vue-feather :size="16" type="save" />
           <span v-if="store.company.id">Modifier</span>
           <span v-else>Enregister</span>
         </a-button>

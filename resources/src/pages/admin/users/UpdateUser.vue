@@ -1,6 +1,6 @@
 <script setup lang="ts">
   import type { Users } from '@common/types/users';
-  import { SelectProps } from 'ant-design-vue/es/vc-select/Select';
+  import type { SelectProps } from 'ant-design-vue/es/vc-select/Select';
   import { useUserStore } from '@/src/stores/users.store';
   import { dropDownFilter } from '@/src/composables/filters';
   import { clearError, getErrorMessage, isError } from '@/src/utils/error-handler';
@@ -87,7 +87,9 @@
     @submit="handleSubmission"
     width="800px"
   >
-    <a-divider class="!text-xl">Données personnelles</a-divider>
+    <a-divider class="!text-xl">
+      Données personnelles
+    </a-divider>
     <section class="grid grid-cols-2 gap-4">
       <div class="grid gap-4">
         <a-form-item :validate-status="isError('email')" :help="getErrorMessage('email')">
@@ -138,13 +140,19 @@
           />
         </a-form-item>
         <a-form-item>
-          <a-input type="number" addonBefore="Tel" v-model:value="data.phone_number" />
+          <a-input
+            type="number"
+            addonBefore="Tel"
+            v-model:value="data.phone_number"
+          />
         </a-form-item>
       </div>
     </section>
     <div class="grid grid-cols-2 gap-4">
       <section class="middle-section">
-        <a-divider class="!text-xl">Roles</a-divider>
+        <a-divider class="!text-xl">
+          Roles
+        </a-divider>
         <a-form-item
           :validate-status="isError('role_id')"
           :help="getErrorMessage('role_id')"
@@ -157,11 +165,13 @@
             :options="rolesList"
             :filter-option="dropDownFilter"
             @change="clearError('role_id')"
-          ></a-select>
+          />
         </a-form-item>
       </section>
       <section class="last-section">
-        <a-divider class="!text-xl">Image</a-divider>
+        <a-divider class="!text-xl">
+          Image
+        </a-divider>
         <div class="flex justify-center">
           <a-upload
             v-model:file-list="fileList"
@@ -175,8 +185,10 @@
             :maxCount="1"
           >
             <div v-if="fileList && fileList.length < 1">
-              <plus-outlined></plus-outlined>
-              <div class="ant-upload-text">Upload</div>
+              <plus-outlined />
+              <div class="ant-upload-text">
+                Upload
+              </div>
             </div>
           </a-upload>
         </div>

@@ -30,7 +30,9 @@
     @submit="handleSubmission"
     width="800px"
   >
-    <a-divider class="!text-xl">Informations de contact</a-divider>
+    <a-divider class="!text-xl">
+      Informations de contact
+    </a-divider>
     <section class="grid grid-cols-2 gap-4">
       <div class="grid gap-4">
         <a-form-item :validate-status="isError('email')" :help="getErrorMessage('email')">
@@ -71,13 +73,19 @@
           />
         </a-form-item>
         <a-form-item>
-          <a-input type="number" addonBefore="Tel" v-model:value="data.phone_number" />
+          <a-input
+            type="number"
+            addonBefore="Tel"
+            v-model:value="data.phone_number"
+          />
         </a-form-item>
       </div>
     </section>
     <div class="grid grid-cols-1 gap-4">
       <section class="middle-section">
-        <a-divider class="!text-xl">Details</a-divider>
+        <a-divider class="!text-xl">
+          Details
+        </a-divider>
         <div class="grid gap-4">
           <a-form-item
             :validate-status="isError('company_name')"
@@ -93,7 +101,11 @@
             :validate-status="isError('vat_number')"
             :help="getErrorMessage('vat_number')"
           >
-            <a-input type="text" addonBefore="TVA" v-model:value="data.vat_number" />
+            <a-input
+              type="text"
+              addonBefore="TVA"
+              v-model:value="data.vat_number"
+            />
           </a-form-item>
 
           <a-form-item

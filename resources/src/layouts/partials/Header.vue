@@ -99,16 +99,20 @@
     <!-- Logo -->
     <div class="header-left active">
       <router-link to="/dashboard" class="logo logo-normal">
-        <img :src="logo" alt="logo" />
+        <img :src="logo" alt="logo">
       </router-link>
       <router-link to="/dashboard" class="logo logo-white">
-        <img :src="logo" alt="logo" />
+        <img :src="logo" alt="logo">
       </router-link>
       <router-link to="/dashboard" class="logo-small">
-        <img :src="logo" alt="logo" />
+        <img :src="logo" alt="logo">
       </router-link>
-      <a id="toggle_btn" href="javascript:void(0);" @click="toggleSidebar">
-        <vue-feather type="chevrons-left"></vue-feather>
+      <a
+        id="toggle_btn"
+        href="javascript:void(0);"
+        @click="toggleSidebar"
+      >
+        <vue-feather type="chevrons-left" />
       </a>
     </div>
     <!-- /Logo -->
@@ -120,9 +124,9 @@
       @click="toggleSidebar1"
     >
       <span class="bar-icon">
-        <span></span>
-        <span></span>
-        <span></span>
+        <span />
+        <span />
+        <span />
       </span>
     </a>
 
@@ -130,8 +134,12 @@
     <ul class="flex user-menu">
       <!-- maximize screen -->
       <li class="nav-item nav-item-box">
-        <a href="javascript:void(0);" id="btnFullscreen" @click="initFullScreen">
-          <vue-feather type="maximize"></vue-feather>
+        <a
+          href="javascript:void(0);"
+          id="btnFullscreen"
+          @click="initFullScreen"
+        >
+          <vue-feather type="maximize" />
         </a>
       </li>
       <!-- maximize screen -->
@@ -142,7 +150,7 @@
           <a-badge :count="2" @click.prevent>
             <a-avatar shape="square">
               <template #icon>
-                <vue-feather type="bell" stroke="#67748e"></vue-feather>
+                <vue-feather type="bell" stroke="#67748e" />
               </template>
             </a-avatar>
           </a-badge>
@@ -158,7 +166,7 @@
                     <router-link to="/activities">
                       <div class="media flex">
                         <span class="avatar flex-shrink-0">
-                          <img :src="profilThumbnail" />
+                          <img :src="profilThumbnail">
                         </span>
                         <div class="media-body flex-grow">
                           <p class="noti-details">
@@ -175,7 +183,9 @@
                 </ul>
               </div>
               <div class="topnav-dropdown-footer">
-                <router-link to="/activities">Voir toutes les notifications</router-link>
+                <router-link to="/activities">
+                  Voir toutes les notifications
+                </router-link>
               </div>
             </div>
           </template>
@@ -189,7 +199,11 @@
           <a class="dropdown-toggle nav-link userset" @click.prevent>
             <span class="user-info">
               <span class="user-letter">
-                <img :src="profilThumbnail" alt="profil" class="img-fluid" />
+                <img
+                  :src="profilThumbnail"
+                  alt="profil"
+                  class="img-fluid"
+                >
               </span>
               <span class="user-detail">
                 <span class="user-name">John Smilga</span>
@@ -202,26 +216,30 @@
               <div class="profilename">
                 <div class="profileset">
                   <span class="user-img">
-                    <img :src="profilThumbnail" alt="profil" />
-                    <span class="status online"></span>
+                    <img :src="profilThumbnail" alt="profil">
+                    <span class="status online" />
                   </span>
                   <div class="profilesets">
                     <h6>John Smilga</h6>
                     <h5>Super Admin</h5>
                   </div>
                 </div>
-                <hr class="m-0" />
+                <hr class="m-0">
                 <router-link class="dropdown-item" to="/pages/profile">
-                  <vue-feather class="me-2" type="user"></vue-feather>
+                  <vue-feather class="me-2" type="user" />
                   Mon profil
                 </router-link>
                 <router-link class="dropdown-item" to="/settings/general-settings">
-                  <vue-feather class="me-2" type="settings"></vue-feather>
+                  <vue-feather class="me-2" type="settings" />
                   Paramètres
                 </router-link>
-                <hr class="m-0" />
+                <hr class="m-0">
                 <router-link class="dropdown-item logout pb-0" to="/">
-                  <vue-feather class="me-2" type="log-out" stroke="red"></vue-feather>
+                  <vue-feather
+                    class="me-2"
+                    type="log-out"
+                    stroke="red"
+                  />
                   Déconnexion
                 </router-link>
               </div>
@@ -237,14 +255,21 @@
     <div class="dropdown mobile-user-menu">
       <a-dropdown :trigger="['click']">
         <a class="nav-link dropdown-toggle" @click.prevent>
-          <i class="fa fa-ellipsis-v"></i>
+          <i class="fa fa-ellipsis-v" />
         </a>
         <template #overlay>
-          <router-link class="dropdown-item" to="/pages/profile">Mon profil</router-link>
-          <router-link class="dropdown-item" to="/settings/general-settings"
-            >Paramètres</router-link
+          <router-link class="dropdown-item" to="/pages/profile">
+            Mon profil
+          </router-link>
+          <router-link
+            class="dropdown-item"
+            to="/settings/general-settings"
           >
-          <router-link class="dropdown-item" to="/">Déconnexion</router-link>
+            Paramètres
+          </router-link>
+          <router-link class="dropdown-item" to="/">
+            Déconnexion
+          </router-link>
         </template>
       </a-dropdown>
     </div>

@@ -8,7 +8,7 @@
       <template #extra>
         <router-link to="/dashboard" class="w-full">
           <a-button type="primary" class="w-full">
-            <vue-feather :size="16" type="arrow-left"></vue-feather>
+            <vue-feather :size="16" type="arrow-left" />
             <span>Retour à l'accueil</span>
           </a-button>
         </router-link>

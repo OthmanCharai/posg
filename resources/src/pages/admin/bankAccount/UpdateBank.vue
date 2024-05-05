@@ -4,7 +4,7 @@
   import { clearError, getErrorMessage, isError } from '@/src/utils/error-handler';
   import { Toast } from '@utils/toast';
   import { useBankAccountStore } from '@stores/bankAccount.store';
-  import { BankAccount } from '@common/types/global/bankAccount';
+  import type { BankAccount } from '@common/types/global/bankAccount';
 
   const store = useBankAccountStore();
   const { response, loading } = useAxios();
@@ -36,7 +36,9 @@
     @submit="handleSubmission"
     width="800px"
   >
-    <a-divider class="!text-xl">Données du Banque</a-divider>
+    <a-divider class="!text-xl">
+      Données du Banque
+    </a-divider>
     <section class="grid grid-cols-2 gap-4">
       <div class="grid gap-4">
         <a-form-item

@@ -1,8 +1,8 @@
 import { defineStore } from 'pinia';
-import { AuditLog } from '@common/types/global/log';
+import type { AuditLog } from '@common/types/global/log';
 import { useAxios } from '@utils/axios-helper';
 import { extractPaginatorObject } from '@utils/pagination';
-import { PaginationMetadata } from '@common/types/global/pagination';
+import type { PaginationMetadata } from '@common/types/global/pagination';
 
 const { request, response, loading } = useAxios();
 export const useLogStore = defineStore('logs', {

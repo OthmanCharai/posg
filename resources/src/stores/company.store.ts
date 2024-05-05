@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { Company } from '../common/types/global/company';
+import type { Company } from '../common/types/global/company';
 import { route, useAxios } from '@utils/axios-helper';
 import { Toast } from '@utils/toast';
 

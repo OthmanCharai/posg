@@ -1,7 +1,7 @@
 <script setup lang="ts">
   import { clearError, getErrorMessage, isError } from '@/src/utils/error-handler';
   import { useArticleCategoryStore } from '@stores/articleCategory.store';
-  import { ArticleCategory } from '@common/types/global/articleCategory';
+  import type { ArticleCategory } from '@common/types/global/articleCategory';
 
   const store = useArticleCategoryStore();
   const showCreateModal = inject('showCreateModal') as Ref<boolean>;

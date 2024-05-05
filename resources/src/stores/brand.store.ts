@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
-import { Brand } from '@common/types/global/brand';
-import { PaginationMetadata } from '@common/types/global/pagination';
+import type { Brand } from '@common/types/global/brand';
+import type { PaginationMetadata } from '@common/types/global/pagination';
 import { route, useAxios } from '@utils/axios-helper';
 import { extractPaginatorObject } from '@utils/pagination';
 import { Toast } from '@utils/toast';

@@ -1,5 +1,5 @@
 import type { NavigationGuardNext } from 'vue-router';
-import { useAuthStore } from '@/src/stores/auth.store';
+import type { useAuthStore } from '@/src/stores/auth.store';
 
 interface GuestFunctionParams {
   next: NavigationGuardNext;

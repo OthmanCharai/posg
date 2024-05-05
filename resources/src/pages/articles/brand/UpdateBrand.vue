@@ -2,7 +2,7 @@
   import { clearError, getErrorMessage, isError } from '@/src/utils/error-handler';
   import type { UploadProps } from 'ant-design-vue';
   import { useBrandStore } from '@stores/brand.store';
-  import { Brand } from '@common/types/global/brand';
+  import type { Brand } from '@common/types/global/brand';
   import { PlusOutlined } from '@ant-design/icons-vue';
 
   const store = useBrandStore();
@@ -69,7 +69,9 @@
     @submit="handleSubmission"
     width="800px"
   >
-    <a-divider class="!text-xl">Données</a-divider>
+    <a-divider class="!text-xl">
+      Données
+    </a-divider>
     <section class="grid grid-cols-2 gap-4">
       <div class="grid gap-4">
         <a-form-item :validate-status="isError('name')" :help="getErrorMessage('name')">
@@ -106,12 +108,16 @@
             :maxCount="1"
           >
             <div v-if="fileList && fileList.length < 1">
-              <plus-outlined></plus-outlined>
-              <div class="ant-upload-text">Upload</div>
+              <plus-outlined />
+              <div class="ant-upload-text">
+                Upload
+              </div>
             </div>
           </a-upload>
         </div>
-        <a-divider class="!text-xl">Image</a-divider>
+        <a-divider class="!text-xl">
+          Image
+        </a-divider>
       </section>
     </section>
   </ModalWrapper>

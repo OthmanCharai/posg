@@ -23,7 +23,11 @@
 <template>
   <CustomAntdStyle />
   <div class="main-wrapper">
-    <Loader v-if="isLoading" :is-active="true" :has-overlay="false" />
+    <Loader
+      v-if="isLoading"
+      :is-active="true"
+      :has-overlay="false"
+    />
     <router-view v-if="!isLoading" />
   </div>
 </template>

@@ -24,5 +24,5 @@
       </PerfectScrollbar>
     </div>
   </div>
-  <collapsed-sidebar></collapsed-sidebar>
+  <collapsed-sidebar />
 </template>

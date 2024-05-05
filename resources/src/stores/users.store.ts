@@ -2,8 +2,8 @@ import { defineStore } from 'pinia';
 import { useAxios, route } from '@utils/axios-helper';
 import { extractPaginatorObject } from '@utils/pagination';
 import type { PaginationMetadata } from '@common/types/global/pagination';
-import { Users } from '@common/types/users';
-import { Roles } from '@common/types/global/roles';
+import type { Users } from '@common/types/users';
+import type { Roles } from '@common/types/global/roles';
 import { Toast } from '@utils/toast';
 
 const { request, response, loading } = useAxios();

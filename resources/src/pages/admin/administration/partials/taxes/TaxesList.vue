@@ -85,7 +85,7 @@
   <section class="mb-10">
     <div class="mb-10 flex justify-end">
       <a-button type="primary" @click="showCreateTaxeModal = true">
-        <vue-feather :size="16" type="plus-circle"></vue-feather>
+        <vue-feather :size="16" type="plus-circle" />
         <span>Ajouter</span>
       </a-button>
     </div>
@@ -100,9 +100,14 @@
             <h3 class="text-base font-semibold leading-7 text-gray-900">
               {{ item.name }}
             </h3>
-            <a-button type="default" size="middle" class="!p-1" @click="editTaxe(item)">
+            <a-button
+              type="default"
+              size="middle"
+              class="!p-1"
+              @click="editTaxe(item)"
+            >
               <template #icon>
-                <vue-feather type="edit" class="w-4"></vue-feather>
+                <vue-feather type="edit" class="w-4" />
               </template>
             </a-button>
           </div>
@@ -114,7 +119,7 @@
             @click="deleteTaxe(item)"
           >
             <template #icon>
-              <vue-feather type="x" class="w-4"></vue-feather>
+              <vue-feather type="x" class="w-4" />
             </template>
           </a-button>
         </div>
@@ -136,13 +141,13 @@
                 <template v-if="column.key === 'action'">
                   <td class="action-table-data">
                     <button class="action-button edit" @click="editTaxeVariant(record)">
-                      <vue-feather type="edit"></vue-feather>
+                      <vue-feather type="edit" />
                     </button>
                     <button
                       class="action-button delete"
                       @click="deleteTaxeVariant(record)"
                     >
-                      <vue-feather type="trash-2"></vue-feather>
+                      <vue-feather type="trash-2" />
                     </button>
                   </td>
                 </template>
@@ -151,7 +156,7 @@
           </div>
           <div>
             <a-button type="default" @click="createTaxeVariant(item.id)">
-              <vue-feather :size="16" type="plus"></vue-feather>
+              <vue-feather :size="16" type="plus" />
               <span>{{ `Nouveau ${item.name}` }}</span>
             </a-button>
           </div>

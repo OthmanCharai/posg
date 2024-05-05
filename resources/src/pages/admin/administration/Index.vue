@@ -17,15 +17,27 @@
     :destroyInactiveTabPane="true"
     :animated="true"
   >
-    <a-tab-pane key="1" tab="Information Société" :forceRender="true">
+    <a-tab-pane
+      key="1"
+      tab="Information Société"
+      :forceRender="true"
+    >
       <span v-if="activeKey === '1'">
         <CompanyProfile />
       </span>
     </a-tab-pane>
-    <a-tab-pane key="2" tab="Gestion de banques" :forceRender="true">
+    <a-tab-pane
+      key="2"
+      tab="Gestion de banques"
+      :forceRender="true"
+    >
       <span v-if="activeKey === '2'"> <BankAccountList /> </span>
     </a-tab-pane>
-    <a-tab-pane key="3" tab="Gestion des taxes" :forceRender="true">
+    <a-tab-pane
+      key="3"
+      tab="Gestion des taxes"
+      :forceRender="true"
+    >
       <Taxes v-if="activeKey === '3'" />
     </a-tab-pane>
   </a-tabs>

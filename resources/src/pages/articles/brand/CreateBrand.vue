@@ -44,7 +44,9 @@
     @submit="handleSubmission"
     width="800px"
   >
-    <a-divider class="!text-xl">Données</a-divider>
+    <a-divider class="!text-xl">
+      Données
+    </a-divider>
     <section class="grid grid-cols-2 gap-4">
       <div class="grid gap-4">
         <a-form-item :validate-status="isError('name')" :help="getErrorMessage('name')">
@@ -78,12 +80,16 @@
             accept="image/png, image/jpeg"
           >
             <div v-if="fileList && fileList.length < 1">
-              <plus-outlined></plus-outlined>
-              <div class="ant-upload-text">Upload</div>
+              <plus-outlined />
+              <div class="ant-upload-text">
+                Upload
+              </div>
             </div>
           </a-upload>
         </div>
-        <a-divider class="!text-xl">Image</a-divider>
+        <a-divider class="!text-xl">
+          Image
+        </a-divider>
       </section>
     </section>
   </ModalWrapper>

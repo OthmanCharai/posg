@@ -43,13 +43,15 @@
   <ul>
     <template v-for="item in sideBarData" :key="item.title">
       <li class="submenu-open">
-        <h6 class="submenu-hdr">{{ item.title }}</h6>
+        <h6 class="submenu-hdr">
+          {{ item.title }}
+        </h6>
         <ul>
           <template v-for="menu in item.menu" :key="menu.menuValue">
             <li v-if="!menu.hasSubRoute" :class="{ active: $route.path === menu.route }">
               <router-link v-if="menu.route" :to="menu.route">
-                <vue-feather v-if="menu.icon" :type="menu.icon"></vue-feather>
-                <div v-else v-html="menu.customIcon"></div>
+                <vue-feather v-if="menu.icon" :type="menu.icon" />
+                <div v-else v-html="menu.customIcon" />
                 <span>{{ menu.menuValue }} </span>
               </router-link>
             </li>
@@ -62,9 +64,9 @@
                 }"
                 @click="expandSubMenus(menu)"
               >
-                <vue-feather :type="menu.icon"></vue-feather>
+                <vue-feather :type="menu.icon" />
                 <span>{{ menu.menuValue }}</span>
-                <span class="menu-arrow"></span>
+                <span class="menu-arrow" />
               </a>
               <ul :class="{ block: menu.showSubRoute, '!hidden': !menu.showSubRoute }">
                 <template v-for="subMenu in menu.subMenus" :key="subMenu.id">
@@ -89,9 +91,8 @@
                   active: route_array[1] === menu.active_link,
                 }"
               >
-                <vue-feather :type="menu.icon"></vue-feather
-                ><span>{{ menu.menuValue }}</span>
-                <span class="menu-arrow"></span>
+                <vue-feather :type="menu.icon" /><span>{{ menu.menuValue }}</span>
+                <span class="menu-arrow" />
               </a>
               <ul
                 :class="{
@@ -101,9 +102,11 @@
               >
                 <li v-for="subMenus in menu.subMenus" :key="subMenus.menuValue">
                   <template v-if="!subMenus.customSubmenuTwo">
-                    <router-link :to="subMenus.route">{{
-                      subMenus.menuValue
-                    }}</router-link>
+                    <router-link :to="subMenus.route">
+                      {{
+                        subMenus.menuValue
+                      }}
+                    </router-link>
                   </template>
                   <template v-else-if="subMenus.customSubmenuTwo">
                     <li class="submenu submenu-two">
@@ -113,7 +116,7 @@
                         :class="{ subdrop: openSubmenuOneItem === subMenus }"
                       >
                         {{ subMenus.menuValue }}
-                        <span class="menu-arrow inside-submenu"></span>
+                        <span class="menu-arrow inside-submenu" />
                       </a>
                       <ul
                         :class="{
@@ -125,9 +128,11 @@
                           v-for="subMenuTwo in subMenus.subMenusTwo"
                           :key="subMenuTwo.menuValue"
                         >
-                          <router-link :to="subMenuTwo.route">{{
-                            subMenuTwo.menuValue
-                          }}</router-link>
+                          <router-link :to="subMenuTwo.route">
+                            {{
+                              subMenuTwo.menuValue
+                            }}
+                          </router-link>
                         </li>
                       </ul>
                     </li>
