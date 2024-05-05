@@ -1,11 +1,11 @@
-import { defineStore } from "pinia";
-import type { ArticleCompatibility } from "@common/types/compatibility";
-import type { PaginationMetadata } from "@common/types/global/pagination";
-import { route, useAxios } from "@utils/axios-helper";
-import { extractPaginatorObject } from "@utils/pagination";
-import { Toast } from "@utils/toast";
+import {defineStore} from "pinia";
+import type {ArticleCompatibility} from "@common/types/compatibility";
+import type {PaginationMetadata} from "@common/types/global/pagination";
+import {route, useAxios} from "@utils/axios-helper";
+import {extractPaginatorObject} from "@utils/pagination";
+import {Toast} from "@utils/toast";
 
-const { request, response, loading } = useAxios();
+const {request, response, loading} = useAxios();
 
 export const useArticleCompatibilityStore = defineStore('compatibilities', {
     state: () => ({

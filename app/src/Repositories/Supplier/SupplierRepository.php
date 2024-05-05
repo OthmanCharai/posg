@@ -2,6 +2,7 @@
 
 namespace App\src\Repositories\Supplier;
 
+use App\src\Entities\TypedCollections\SupplierCollection;
 use App\src\Models\Supplier\Supplier;
 use App\src\Repositories\BaseRepository;
 use YouCanShop\QueryOption\QueryOption;
@@ -32,6 +33,11 @@ class SupplierRepository extends BaseRepository
             'page',
             $queryOption->getPage()
         );
+    }
+
+    public function get(): SupplierCollection
+    {
+        return SupplierCollection::make($this->getQueryBuilder()->get());
     }
 
     protected function getQueryOptionCriterias(): array

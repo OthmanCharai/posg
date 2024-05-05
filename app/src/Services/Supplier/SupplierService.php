@@ -2,6 +2,7 @@
 
 namespace App\src\Services\Supplier;
 
+use App\src\Entities\TypedCollections\SupplierCollection;
 use App\src\Models\Supplier\Supplier;
 use App\src\Repositories\Supplier\SupplierRepository;
 use Illuminate\Database\Eloquent\Model;
@@ -39,5 +40,10 @@ class SupplierService implements SupplierServiceInterface
     public function getPaginated(QueryOption $queryOption): LengthAwarePaginator
     {
         return $this->supplierRepository->getPaginated($queryOption);
+    }
+
+    public function get(): SupplierCollection
+    {
+        return $this->supplierRepository->get();
     }
 }

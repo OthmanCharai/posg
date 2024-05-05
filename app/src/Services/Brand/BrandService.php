@@ -5,6 +5,7 @@ namespace App\src\Services\Brand;
 use App\src\Domain\Media\Exceptions\FileDeleteFromS3FailedException;
 use App\src\Domain\Media\Exceptions\FileUploadToS3FailedException;
 use App\src\Domain\Media\MediaService;
+use App\src\Entities\TypedCollections\BrandCollection;
 use App\src\Models\Brands\Brand;
 use App\src\Repositories\Brand\BrandRepository;
 use Illuminate\Database\Eloquent\Model;
@@ -69,5 +70,10 @@ class BrandService implements BrandServiceInterface
     public function getPaginated(QueryOption $queryOption): LengthAwarePaginator
     {
         return $this->brandRepository->getPaginated($queryOption);
+    }
+
+    public function get(): BrandCollection
+    {
+        return $this->brandRepository->get();
     }
 }

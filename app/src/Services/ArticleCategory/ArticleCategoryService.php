@@ -2,6 +2,7 @@
 
 namespace App\src\Services\ArticleCategory;
 
+use App\src\Entities\TypedCollections\ArticleCategoryCollection;
 use App\src\Models\ArticleCategory\ArticleCategory;
 use App\src\Repositories\ArticleCategory\ArticleCategoryRepository;
 use Illuminate\Database\Eloquent\Model;
@@ -39,5 +40,10 @@ class ArticleCategoryService implements ArticleCategoryServiceInterface
     public function delete(Model|ArticleCategory $model, string $columnName = 'id'): bool
     {
         return $this->articleCategoryRepository->delete($model->getId());
+    }
+
+    public function get(): ArticleCategoryCollection
+    {
+        return $this->articleCategoryRepository->get();
     }
 }

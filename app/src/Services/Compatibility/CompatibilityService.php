@@ -2,9 +2,9 @@
 
 namespace App\src\Services\Compatibility;
 
+use App\src\Entities\TypedCollections\CompatibilityCollection;
 use App\src\Models\Compatibility\Compatibility;
 use App\src\Repositories\Compatibility\CompatibilityRepository;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 readonly class CompatibilityService implements CompatibilityServiceInterface
@@ -35,7 +35,7 @@ readonly class CompatibilityService implements CompatibilityServiceInterface
         return $this->compatibilityRepository->delete($model->getId());
     }
 
-    public function get(): Collection
+    public function get(): CompatibilityCollection
     {
         return $this->compatibilityRepository->get();
     }
