@@ -1,28 +1,32 @@
 import type { FormError } from '@common/types/global/form-errors';
-import { Toast } from "@/src/utils/toast";
+import { Toast } from '@/src/utils/toast';
 
 const errors = reactive<FormError>({});
 
 const initializeErrors = (): void => {
   for (const key in errors) {
-      delete errors[key];
+    delete errors[key];
   }
 };
 
 export const processErrors = (error: any, errorMessage: Ref<string>): void => {
   initializeErrors(); // Reset errors
-  if(error.response.data.errors) {
+  if (error.response.data.errors) {
     for (const key in error.response.data.errors) {
       errors[key] = error.response.data.errors[key];
     }
   }
 
-  if(error.response.data.message) {
+  if (error.response.data.message) {
     errorMessage.value = error.response.data.message;
     Toast.error(error.response.data.message);
   }
 
-  if(error.response.status === 401 || error.response.status === 403 || error.response.status === 419) {
+  if (
+    error.response.status === 401 ||
+    error.response.status === 403 ||
+    error.response.status === 419
+  ) {
     return;
   } else {
     Toast.error('Une erreur est survenue !');
@@ -34,7 +38,7 @@ export const processErrors = (error: any, errorMessage: Ref<string>): void => {
  */
 export const getErrorMessage = (field: string): string | '' => {
   if (errors[field] && errors[field].length > 0) {
-      return errors[field][0];
+    return errors[field][0];
   }
   return ''; // return an empty string if no errors
 };
@@ -44,7 +48,7 @@ export const getErrorMessage = (field: string): string | '' => {
  * @param field - field name
  */
 export const hasError = (field: string): boolean => {
-    return Boolean(errors[field]);
+  return Boolean(errors[field]);
 };
 
 /**
@@ -55,15 +59,14 @@ export const isError = (field: string): string => {
   return Boolean(errors[field]) ? 'error' : '';
 };
 
-
 /**
  * Clear error from field
  * @param field - field name
  */
 export const clearError = (field: string): void => {
-    if (errors[field]) {
-        delete errors[field];
-    }
+  if (errors[field]) {
+    delete errors[field];
+  }
 };
 
 /**
@@ -84,4 +87,4 @@ export const addError = (field: string, message: string) => {
   } else {
     errors[field] = [message];
   }
-}
+};

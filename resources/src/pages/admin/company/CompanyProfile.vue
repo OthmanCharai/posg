@@ -1,100 +1,94 @@
 <script lang="ts" setup>
-import { Company } from "@/src/common/types/global/company";
-import {
-  clearError,
-  getErrorMessage,
-  isError,
-} from "@/src/utils/error-handler";
-import type { UploadProps } from "ant-design-vue";
-import { useCompanyStore } from "@/src/stores/company.store";
-import { PlusOutlined } from '@ant-design/icons-vue';
+  import type { Company } from '@/src/common/types/global/company';
+  import { clearError, getErrorMessage, isError } from '@/src/utils/error-handler';
+  import type { UploadProps } from 'ant-design-vue';
+  import { useCompanyStore } from '@/src/stores/company.store';
+  import { PlusOutlined } from '@ant-design/icons-vue';
 
-const store = useCompanyStore();
+  const store = useCompanyStore();
 
-const data = ref<Company>({
-  name: "",
-  phone: "",
-  email: "",
-  website: "",
-  address: "",
-  capital: 0,
-  num_rc: "",
-  num_nif: "",
-  num_statistique: "",
-  num_bgfi: "",
-  num_ugb: "",
-  return_policy: "",
-  path: "",
-});
-
-onMounted(async () => {
-  await store.get();
-  data.value = {
-    name: store.company.name,
-    phone: store.company.phone,
-    email: store.company.email,
-    website: store.company.website,
-    address: store.company.address,
-    capital: store.company.capital,
-    num_rc: store.company.num_rc,
-    num_nif: store.company.num_nif,
-    num_statistique: store.company.num_statistique,
-    num_bgfi: store.company.num_bgfi,
-    num_ugb: store.company.num_ugb,
-    return_policy: store.company.return_policy,
-    path: store.company.path,
-  };
-  await nextTick();
-
-  if(data.value.path && fileList.value && fileList.value.length === 0) {
-    const image: UploadProps['fileList'][number] = {
-      uid: 'index-1',
-      status: 'done',
-      thumbUrl: data.value.path as string,
-    };
-
-    fileList.value.push(image);
-  }
-
-});
-
-const changeImage = () => {
-  if (fileList.value && fileList.value.length > 0) {
-    return data.value.path = fileList.value[0].originFileObj;
-  }
-}
-
-const removeImage = () => {
-  if (data.value.path) {
-    data.value.path = '';
-    return true;
-  }
-}
-
-
-// upload image
-const fileList = ref<UploadProps["fileList"]>([]);
-
-const stopAntdvDefaultRequest = () => {
-  return false;
-};
-
-const submitForm = async () => {
-  if (fileList.value && fileList.value?.length > 0) {
-    data.value.path = fileList.value[0].originFileObj;
-  }
-
-  const formData = new FormData();
-
-  Object.entries(data.value).forEach(([key, value]) => {
-    formData.append(key, value ?? "");
+  const data = ref<Company>({
+    name: '',
+    phone: '',
+    email: '',
+    website: '',
+    address: '',
+    capital: 0,
+    num_rc: '',
+    num_nif: '',
+    num_statistique: '',
+    num_bgfi: '',
+    num_ugb: '',
+    return_policy: '',
+    path: '',
   });
-  if (store.company.id) {
-    await store.update(store.company, formData);
-  } else {
-    await store.create(formData);
-  }
-};
+
+  onMounted(async () => {
+    await store.get();
+    data.value = {
+      name: store.company.name,
+      phone: store.company.phone,
+      email: store.company.email,
+      website: store.company.website,
+      address: store.company.address,
+      capital: store.company.capital,
+      num_rc: store.company.num_rc,
+      num_nif: store.company.num_nif,
+      num_statistique: store.company.num_statistique,
+      num_bgfi: store.company.num_bgfi,
+      num_ugb: store.company.num_ugb,
+      return_policy: store.company.return_policy,
+      path: store.company.path,
+    };
+    await nextTick();
+
+    if (data.value.path && fileList.value && fileList.value.length === 0) {
+      const image: UploadProps['fileList'][number] = {
+        uid: 'index-1',
+        status: 'done',
+        thumbUrl: data.value.path as string,
+      };
+
+      fileList.value.push(image);
+    }
+  });
+
+  const changeImage = () => {
+    if (fileList.value && fileList.value.length > 0) {
+      return (data.value.path = fileList.value[0].originFileObj);
+    }
+  };
+
+  const removeImage = () => {
+    if (data.value.path) {
+      data.value.path = '';
+      return true;
+    }
+  };
+
+  // upload image
+  const fileList = ref<UploadProps['fileList']>([]);
+
+  const stopAntdvDefaultRequest = () => {
+    return false;
+  };
+
+  const submitForm = async () => {
+    if (fileList.value && fileList.value?.length > 0) {
+      data.value.path = fileList.value[0].originFileObj;
+    }
+
+    const formData = new FormData();
+
+    Object.entries(data.value).forEach(([key, value]) => {
+      formData.append(key, value ?? '');
+    });
+    if (store.company.id) {
+      await store.update(store.company, formData);
+    } else {
+      await store.create(formData);
+    }
+  };
 </script>
 <template>
   <div class="settings-page-wrap">
@@ -113,8 +107,10 @@ const submitForm = async () => {
             accept="image/png, image/jpeg"
           >
             <div v-if="fileList && fileList.length < 1">
-              <plus-outlined></plus-outlined>
-              <div class="ant-upload-text">Upload</div>
+              <plus-outlined />
+              <div class="ant-upload-text">
+                Upload
+              </div>
             </div>
           </a-upload>
         </div>
@@ -122,10 +118,7 @@ const submitForm = async () => {
       <br>
       <a-card title="Generale Informations" style="width: 100%">
         <div class="grid md:grid-cols-2 gap-5">
-          <a-form-item
-            :validate-status="isError('name')"
-            :help="getErrorMessage('name')"
-          >
+          <a-form-item :validate-status="isError('name')" :help="getErrorMessage('name')">
             <a-input
               type="text"
               addonBefore="Nom Societe"
@@ -255,7 +248,7 @@ const submitForm = async () => {
       </a-card>
       <div class="my-5 flex justify-end">
         <a-button htmlType="submit" type="primary">
-          <vue-feather :size="16" type="save"></vue-feather>
+          <vue-feather :size="16" type="save" />
           <span v-if="store.company.id">Modifier</span>
           <span v-else>Enregister</span>
         </a-button>
@@ -265,12 +258,12 @@ const submitForm = async () => {
 </template>
 
 <style scoped>
-.upload-list-inline :deep(.ant-upload-list-item-actions) {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.upload-list-inline :deep(.ant-upload-list-item-actions a) {
-  display: none !important;
-}
+  .upload-list-inline :deep(.ant-upload-list-item-actions) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .upload-list-inline :deep(.ant-upload-list-item-actions a) {
+    display: none !important;
+  }
 </style>

@@ -1,0 +1,33 @@
+{
+  "parser": "vue-eslint-parser",
+  "parserOptions": {
+    "parser": "@typescript-eslint/parser",
+    "extraFileExtensions": [".vue"],
+    "project": "./tsconfig.json"
+  },
+  "plugins": [
+    "@typescript-eslint",
+    "vue"
+  ],
+  "extends": [
+    "plugin:vue/vue3-recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "rules": {
+    "vue/attribute-hyphenation": "off",
+    "vue/attributes-order": "off",
+    "prefer-const": "off",
+    "vue/no-v-html": "off",
+    "@typescript-eslint/consistent-type-imports": ["error", {
+      "prefer": "type-imports"
+    }],
+    "vue/max-attributes-per-line": ["error", {
+      "singleline": {
+        "max": 2
+      },
+      "multiline": {
+        "max": 1
+      }
+    }]
+  }
+}

@@ -1,4 +1,4 @@
-import { SweetAlertResult } from 'sweetalert2';
+import type { SweetAlertResult } from 'sweetalert2';
 
 export interface SweetAlertToasts {
   success: (title: string) => Promise<SweetAlertResult<any>>;

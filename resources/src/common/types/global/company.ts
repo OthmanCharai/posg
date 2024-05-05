@@ -5,7 +5,7 @@ export interface Company {
   email: string;
   website: string;
   address: string;
-  capital: number|null;
+  capital: number | null;
   num_rc: string;
   num_nif: string;
   num_statistique: string;

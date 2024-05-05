@@ -3,9 +3,7 @@
 </script>
 
 <template>
-  <a-config-provider
-    :theme="customStyle"
-  >
+  <a-config-provider :theme="customStyle">
     <a-app />
   </a-config-provider>
 </template>

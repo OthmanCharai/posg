@@ -7,22 +7,22 @@ const { request, response } = useAxios();
 export const useAuthStore = defineStore('auth', {
   state: () => ({
     authenticated: false,
-    user: {}
+    user: {},
   }),
 
   actions: {
     async getUser() {
-      if(this.authenticated === false) {
+      if (this.authenticated === false) {
         await request({
           method: 'GET',
-          url: route('auth.me')
+          url: route('auth.me'),
         });
 
-        if(response.value && response.value.data) {
+        if (response.value && response.value.data) {
           this.$state.authenticated = true;
           this.$state.user = deepClone(response.value.data);
         }
       }
-    }
-  }
-})
+    },
+  },
+});
