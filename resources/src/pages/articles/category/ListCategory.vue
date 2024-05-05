@@ -2,7 +2,7 @@
 import {lengthSorter} from '@/src/composables/table-sorters';
 import UpdateCategory from './UpdateCategory.vue';
 import {useArticleCategoryStore} from "@stores/articleCategory.store";
-import {ArticleCategory} from "@common/types/global/articleCategory";
+import type {ArticleCategory} from "@common/types/global/articleCategory";
 import CreateCategory from "@pages/articles/category/CreateCategory.vue";
 
 const store = useArticleCategoryStore();

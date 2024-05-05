@@ -1,6 +1,6 @@
 import {defineStore} from "pinia";
-import {Supplier} from "@common/types/global/supplier";
-import {PaginationMetadata} from "@common/types/global/pagination";
+import type {Supplier} from "@common/types/global/supplier";
+import type {PaginationMetadata} from "@common/types/global/pagination";
 import {route, useAxios} from '@utils/axios-helper';
 import {extractPaginatorObject} from "@utils/pagination";
 import {Toast} from "@utils/toast";
@@ -34,7 +34,7 @@ export const useSupplierStore = defineStore('supplier', {
                 data: data
             });
             if (response.value && response.value?.data) {
-                await Toast.success('Votre Fournisseurs a été ajouter avec succès.');
+                Toast.success('Votre Fournisseurs a été ajouter avec succès.');
                 showCreateModal.value = false;
                 await this.get();
             }
@@ -46,7 +46,7 @@ export const useSupplierStore = defineStore('supplier', {
                 data: data
             });
             if (response.value && response.value?.data) {
-                await Toast.success('Votre Fournisseurs a été modifier avec succès.');
+                Toast.success('Votre Fournisseurs a été modifier avec succès.');
                 showUpdateModal.value = false;
                 await this.get();
             }
@@ -57,7 +57,7 @@ export const useSupplierStore = defineStore('supplier', {
                 method: 'delete'
             });
             if (response.value) {
-                await Toast.success('Votre Fournisseurs a été supprimer avec succès.');
+                Toast.success('Votre Fournisseurs a été supprimer avec succès.');
                 await this.get();
             }
         },
