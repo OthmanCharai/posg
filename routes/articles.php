@@ -3,6 +3,7 @@
 
 use App\Http\Controllers\Article\CreateArticleController;
 use App\Http\Controllers\Article\DeleteArticleController;
+use App\Http\Controllers\Article\GetCreateArticleDataController;
 use App\Http\Controllers\Article\ListArticleController;
 use App\Http\Controllers\Article\ShowArticleController;
 use App\Http\Controllers\Article\UpdateArticleController;
@@ -16,8 +17,11 @@ Route::prefix('articles')
         Route::get('/', ListArticleController::class)
             ->name('index');
 
-        Route::post('/create', CreateArticleController::class)
-            ->name('create.submit');
+        Route::get('/create/data', GetCreateArticleDataController::class)
+            ->name('create.data');
+
+        Route::post('/store', CreateArticleController::class)
+            ->name('create');
 
         Route::get('/{article}', ShowArticleController::class)
             ->name('show');
