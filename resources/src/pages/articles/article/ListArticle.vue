@@ -1,8 +1,11 @@
 <script setup lang="ts">
+  import type { ArticleInfo } from '@/src/common/types/articles';
   import { lengthSorter } from '@/src/composables/table-sorters';
   import { useArticlesStore } from '@stores/articles.store';
+  import { useRouter } from 'vue-router';
 
   const store = useArticlesStore();
+  const router = useRouter();
   const columns = computed(() => [
     {
       title: 'Image',
@@ -47,18 +50,24 @@
     },
   ]);
 
-  // Edit user
-  // const editUser = (record) => {
-  //   store.setSelectedUserData(record);
-  //   showUpdateModal.value = true;
-  // }
+  // Edit article
+  const editArticle = (record: ArticleInfo) => {
+    if(!record) {
+      return;
+    }
+    store.setSelectedArticle(record);
+    router.push({ name: 'articlePanel' });
+  };
 
-  // Delete user
-  // const showDeleteModal = ref<boolean>(false);
-  // const deleteUser = (record: Users) => {
-  //   store.setSelectedUserData(record);
-  //   showDeleteModal.value = true;
-  // }
+  // Delete article
+  const showDeleteModal = ref<boolean>(false);
+  const deleteArticle = (record: ArticleInfo) => {
+    if(!record) {
+      return;
+    }
+    store.setSelectedArticle(record);
+    showDeleteModal.value = true;
+  };
 
   onMounted(async () => {
     await store.get();
@@ -97,12 +106,10 @@
 
           <template v-if="column.key === 'action'">
             <td class="action-table-data">
-              <router-link :to="{ name: 'articlePanel' }">
-                <button class="action-button edit">
-                  <vue-feather type="edit" />
-                </button>
-              </router-link>
-              <button class="action-button delete">
+              <button class="action-button edit" @click="editArticle(record)">
+                <vue-feather type="edit" />
+              </button>
+              <button class="action-button delete" @click="deleteArticle(record)">
                 <vue-feather type="trash-2" />
               </button>
             </td>
@@ -111,11 +118,11 @@
       </DataTable>
     </div>
   </div>
-  <!-- <DeleteAlert
-      v-if="store.getResponse && showDeleteModal"
-      v-model:toggle="showDeleteModal"
-      model="articles"
-      :id="store.selectedArticle.id"
-      :update-data="() => store.getList(store.pagination.current_page)"
-  /> -->
+  <DeleteAlert
+    v-if="store.getResponse && showDeleteModal"
+    v-model:toggle="showDeleteModal"
+    model="articles"
+    :id="store.selectedArticle.id"
+    :update-data="() => store.get(store.pagination.current_page)"
+  />
 </template>

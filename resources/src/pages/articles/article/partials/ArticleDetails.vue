@@ -9,20 +9,20 @@
   const store = useArticlesStore();
 
   const data = ref<ArticleInfo>({
-    code_bare: '',
-    supplier_id: '',
-    name: '',
-    emplacement: '',
-    purchase_price: '',
-    wholesale_price: '',
-    retail_price: '',
-    last_sale_price: '',
-    stock_type: 0,
-    brand_id: '',
-    article_category_id: '',
-    image: '',
-    description: '',
-    compatibilities: []
+    code_bare: store.selectedArticle.code_bare || '',
+    supplier_id: store.selectedArticle.supplier_id || '',
+    name: store.selectedArticle.name || '',
+    emplacement: store.selectedArticle.emplacement || '',
+    purchase_price: store.selectedArticle.purchase_price || '',
+    wholesale_price: store.selectedArticle.wholesale_price || '',
+    retail_price: store.selectedArticle.retail_price || '',
+    last_sale_price: store.selectedArticle.last_sale_price || '',
+    stock_type: store.selectedArticle.stock_type || 0,
+    brand_id: store.selectedArticle.brand_id || '',
+    article_category_id: store.selectedArticle.article_category_id || '',
+    image: store.selectedArticle.image || '',
+    description: store.selectedArticle.description || '',
+    compatibilities: store.selectedArticle.compatibilities || []
   });
 
   // Submit data
@@ -208,78 +208,68 @@
             @change="clearError('article_category_id')"
           />
         </a-form-item>
-        <div class="grid gap-4">
-          <a-form-item
-            label="Type de stock"
-            :validate-status="isError('stock_type')"
-            :help="getErrorMessage('stock_type')"
+        <a-form-item
+          label="Type de stock"
+          :validate-status="isError('stock_type')"
+          :help="getErrorMessage('stock_type')"
+        >
+          <a-radio-group v-model:value="data.stock_type">
+            <a-radio :value="0">
+              Stock/Magasines
+            </a-radio>
+            <a-radio :value="1">
+              Non-stocké
+            </a-radio>
+          </a-radio-group>
+        </a-form-item>
+        <a-form-item
+          label="Compatibilities"
+          :validate-status="isError('compatibilities')"
+          :help="getErrorMessage('compatibilities')"
+        >
+          <a-select
+            v-model:value="data.compatibilities"
+            show-search
+            style="width: 100%"
+            mode="multiple"
+            :max-tag-count="10"
+            :options="store.compatibilityList"
+            :filter-option="dropDownFilter"
+            @change="clearError('compatibilities')"
+          />
+        </a-form-item>
+        <a-form-item
+          label="Image"
+          :validate-status="isError('image')"
+          :help="getErrorMessage('image')"
+        >
+          <a-upload
+            v-model:file-list="fileList"
+            name="image"
+            list-type="picture-card"
+            class="upload-list-inline"
+            accept="image/png, image/jpeg"
+            :before-upload="stopAntdvDefaultRequest"
+            @remove="removeImage"
+            @change="changeImage"
+            :maxCount="1"
           >
-            <a-radio-group v-model:value="data.stock_type">
-              <a-radio :value="0">
-                Stock/Magasines
-              </a-radio>
-              <a-radio :value="1">
-                Non-stocké
-              </a-radio>
-            </a-radio-group>
-          </a-form-item>
-          <a-form-item
-            label="Image"
-            :validate-status="isError('image')"
-            :help="getErrorMessage('image')"
-          >
-            <a-upload
-              v-model:file-list="fileList"
-              name="image"
-              list-type="picture-card"
-              class="upload-list-inline"
-              accept="image/png, image/jpeg"
-              :before-upload="stopAntdvDefaultRequest"
-              @remove="removeImage"
-              @change="changeImage"
-              :maxCount="1"
-            >
-              <div v-if="fileList && fileList.length < 1">
-                <plus-outlined />
-                <div class="ant-upload-text">
-                  Upload
-                </div>
+            <div v-if="fileList && fileList.length < 1">
+              <plus-outlined />
+              <div class="ant-upload-text">
+                Upload
               </div>
-            </a-upload>
-          </a-form-item>
-        </div>
+            </div>
+          </a-upload>
+        </a-form-item>
         <a-form-item
           label="Description"
           :validate-status="isError('description')"
           :help="getErrorMessage('description')"
         >
-          <a-textarea class="h-[180px!important]" v-model:value="data.description" />
+          <a-textarea class="h-[100px!important]" v-model:value="data.description" />
         </a-form-item>
       </div>
-    </a-card>
-    <br>
-    <a-card title="Compatibilities" style="width: 100%">
-      <template #extra>
-        <a-button type="default">
-          <vue-feather :size="16" type="plus" />
-        </a-button>
-      </template>
-
-      <a-form-item
-        :validate-status="isError('compatibilities')"
-        :help="getErrorMessage('compatibilities')"
-      >
-        <a-select
-          v-model:value="data.compatibilities"
-          show-search
-          style="width: 100%"
-          mode="multiple"
-          :max-tag-count="10"
-          :options="store.compatibilityList"
-          :filter-option="dropDownFilter"
-          @change="clearError('compatibilities')"
-        />
-      </a-form-item>
     </a-card>
     <div class="flex justify-end mt-5">
       <a-button htmlType="submit" type="primary">

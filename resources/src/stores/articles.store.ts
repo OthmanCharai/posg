@@ -91,6 +91,17 @@ export const useArticlesStore = defineStore('articles', {
 
       if (response.value && response.value.data) {
         Toast.success('Votre article a été crée avec succès.');
+        console.log(response.value.data.article);
+        const responseData = response.value.data.article;
+        this.selectedArticle = {
+          ...responseData,
+          supplier_id: responseData.supplier.id,
+          article_category_id: responseData.category.id,
+          brand_id: responseData.brand.id,
+          compatibilities: responseData.compatibilities.map((compatibility: ArticleCompatibility) => ({
+            value: compatibility.id
+          })),
+        };
       }
     },
 
