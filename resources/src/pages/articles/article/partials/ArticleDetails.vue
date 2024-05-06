@@ -72,7 +72,7 @@
     @submit.prevent="handleSubmission"
   >
     <a-card title="Informations general" style="width: 100%">
-      <div class="grid grid-cols-2 gap-4">
+      <div class="grid lg:grid-cols-2 gap-4">
         <a-form-item
           label="UPC/EAN/ISBN"
           :validate-status="isError('code_bare')"

@@ -1,42 +1,45 @@
 <script setup lang="ts">
   import { lengthSorter } from '@/src/composables/table-sorters';
+  import { useArticlesStore } from '@stores/articles.store';
 
-  // const store = ;
+  const store = useArticlesStore();
   const columns = computed(() => [
     {
+      title: 'Image',
+      dataIndex: 'image',
+    },
+    {
       title: 'Code Bare',
-      dataIndex: 'first_name',
-      sorter: lengthSorter('first_name'),
+      dataIndex: 'code_bare',
+      sorter: lengthSorter('code_bare'),
     },
     {
       title: 'Nom Article',
-      dataIndex: 'last_name',
-      sorter: lengthSorter('last_name'),
+      dataIndex: 'name',
+      sorter: lengthSorter('name'),
     },
     {
       title: 'Emplacement Article',
-      dataIndex: 'email',
-      sorter: lengthSorter('email'),
+      dataIndex: 'emplacement',
+      sorter: lengthSorter('emplacement'),
     },
     {
       title: 'Prix Gros',
-      dataIndex: 'email',
-      sorter: lengthSorter('email'),
+      dataIndex: 'wholesale_price',
+      sorter: lengthSorter('wholesale_price'),
     },
     {
       title: 'Prix Détail',
-      dataIndex: 'email',
-      sorter: lengthSorter('email'),
+      dataIndex: 'retail_price',
+      sorter: lengthSorter('retail_price'),
     },
     {
       title: 'Dérnier Prix De vente',
-      dataIndex: 'email',
-      sorter: lengthSorter('email'),
+      dataIndex: 'last_sale_price',
+      sorter: lengthSorter('last_sale_price'),
     },
     {
       title: 'Quantité Disponible',
-      dataIndex: 'email',
-      sorter: lengthSorter('email'),
     },
     {
       title: 'Actions',
@@ -58,7 +61,7 @@
   // }
 
   onMounted(async () => {
-  // await store.getUsersList();
+    await store.get();
   });
 </script>
 
@@ -77,13 +80,21 @@
     <div class="card-body">
       <DataTable
         :columns="columns"
-        :data="[]"
-        :current-page="1"
-        :total="10"
-        :fetched-data="() => []"
-        :loading="false"
+        :data="store.articlesData"
+        :current-page="store.pagination.current_page"
+        :total="store.pagination.total"
+        :fetched-data="() => store.get()"
+        :loading="store.loading"
       >
         <template #bodyCell="{column, record}">
+          <template v-if="column.dataIndex === 'image'">
+            <img
+              :src="record.image"
+              alt="Image de l'article"
+              class="w-[100px] h-[70px] object-cover rounded-md"
+            >
+          </template>
+
           <template v-if="column.key === 'action'">
             <td class="action-table-data">
               <router-link :to="{ name: 'articlePanel' }">

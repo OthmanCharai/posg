@@ -22,6 +22,7 @@ class ArticleTransformer
     {
         $mediaService = make(MediaService::class);
         $data = [
+            Article::BARCODE_COLUMN         => $article->getBarcode(),
             Article::NAME_COLUMN            => $article->getName(),
             Article::ID_COLUMN              => $article->getId(),
             Article::DESCRIPTION_COLUMN     => $article->getDescription(),

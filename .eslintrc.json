@@ -42,7 +42,7 @@
   },
   "overrides": [
     {
-      "files": ["*.vue"],
+      "files": ["*.js", "*.ts", "*.vue"],
       "rules": {
         "indent": "off"  // Turn off the default indent rule for .vue files to prevent conflict
       }
