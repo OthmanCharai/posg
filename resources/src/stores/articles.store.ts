@@ -94,9 +94,6 @@ export const useArticlesStore = defineStore('articles', {
         const responseData = response.value.data.article;
         this.selectedArticle = {
           ...responseData,
-          supplier_id: responseData.supplier.id,
-          article_category_id: responseData.category.id,
-          brand_id: responseData.brand.id,
           compatibilities: responseData.compatibilities.map((compatibility: ArticleCompatibility) => compatibility.id)
         };
       }
@@ -120,9 +117,6 @@ export const useArticlesStore = defineStore('articles', {
         const responseData = response.value.data.article;
         this.selectedArticle = {
           ...responseData,
-          supplier_id: responseData.supplier.id,
-          article_category_id: responseData.category.id,
-          brand_id: responseData.brand.id,
           compatibilities: responseData.compatibilities.map((compatibility: ArticleCompatibility) => compatibility.id)
         };
       }

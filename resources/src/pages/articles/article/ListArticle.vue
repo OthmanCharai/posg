@@ -3,7 +3,6 @@
   import { lengthSorter, numericSorter } from '@/src/composables/table-sorters';
   import { useArticlesStore } from '@stores/articles.store';
   import { useRouter } from 'vue-router';
-  import type { ArticleCompatibility } from '@common/types/compatibility';
 
   const store = useArticlesStore();
   const router = useRouter();
