@@ -55,6 +55,8 @@
     if(!record) {
       return;
     }
+
+    console.log(record);
     store.setSelectedArticle(record);
     router.push({ name: 'articlePanel' });
   };

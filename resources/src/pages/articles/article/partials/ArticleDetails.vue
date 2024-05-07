@@ -71,7 +71,7 @@
     class="mb-5"
     @submit.prevent="handleSubmission"
   >
-    <a-card title="Informations general" style="width: 100%">
+    <a-card style="width: 100%">
       <div class="grid lg:grid-cols-2 gap-4">
         <a-form-item
           label="UPC/EAN/ISBN"

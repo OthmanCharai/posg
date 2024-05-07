@@ -1,11 +1,14 @@
 <script setup lang="ts">
   import ArticleDetails from './partials/ArticleDetails.vue';
+  import { useArticlesStore } from '@stores/articles.store';
+
+  const store = useArticlesStore();
 
   const activeKey = ref('1');
 </script>
 
 <template>
-  <PageHeader title="Article Crud">
+  <PageHeader :title="store.selectedArticle.id ? 'Modifier l\'article' : 'Nouveau article'">
     <router-link :to="{ name: 'articles' }">
       <a-button type="primary">
         <vue-feather :size="16" type="arrow-left" />
