@@ -13,7 +13,7 @@ export interface ArticleInfo {
   article_category_id: string,
   image: File | string | null | undefined,
   description: string,
-  compatibilities: string[],
+  compatibilities: ArticleCompatibility[],
 }
 
 export interface ArticleStock {
@@ -22,5 +22,6 @@ export interface ArticleStock {
 }
 
 export interface ArticleCompatibility {
+  id?: string,
   name: string,
 }

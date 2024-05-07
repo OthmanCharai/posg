@@ -3,6 +3,7 @@
   import { lengthSorter } from '@/src/composables/table-sorters';
   import { useArticlesStore } from '@stores/articles.store';
   import { useRouter } from 'vue-router';
+  import type { ArticleCompatibility } from '@common/types/compatibility';
 
   const store = useArticlesStore();
   const router = useRouter();
@@ -61,9 +62,13 @@
     if(!record) {
       return;
     }
-
-    console.log(record);
-    store.setSelectedArticle(record);
+    const recordData = {
+      ...record,
+      compatibilities: record.compatibilities.map((compatibility: ArticleCompatibility) => ({
+        value: compatibility.id
+      })),
+    };
+    store.setSelectedArticle(recordData);
     router.push({ name: 'articlePanel' });
   };
 

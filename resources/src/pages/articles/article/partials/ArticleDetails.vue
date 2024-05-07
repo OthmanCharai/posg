@@ -27,7 +27,11 @@
 
   // Submit data
   const handleSubmission = async () => {
-    await store.create(data.value);
+    if(store.selectedArticle.id) {
+      await store.update(data.value);
+    } else {
+      await store.create(data.value);
+    }
   };
 
   // upload image
@@ -228,7 +232,7 @@
           :help="getErrorMessage('compatibilities')"
         >
           <a-select
-            v-model:value="data.compatibilities"
+            v-model:value="(data.compatibilities as [])"
             show-search
             style="width: 100%"
             mode="multiple"
