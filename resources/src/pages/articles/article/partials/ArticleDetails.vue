@@ -25,15 +25,6 @@
     compatibilities: store.selectedArticle.compatibilities || []
   });
 
-  // Submit data
-  const handleSubmission = async () => {
-    if(store.selectedArticle.id) {
-      await store.update(data.value);
-    } else {
-      await store.create(data.value);
-    }
-  };
-
   // upload image
   const fileList = ref<UploadProps['fileList']>([]);
 
@@ -51,6 +42,41 @@
     if (data.value.image) {
       data.value.image = '';
       return true;
+    }
+  };
+
+  // Submit data
+  const handleSubmission = async () => {
+    if (fileList.value && fileList.value?.length > 0) {
+      data.value.image = fileList.value[0].originFileObj;
+    }
+
+    const formData = new FormData();
+
+    data.value.compatibilities.forEach((compatibility) => {
+      formData.append('compatibilities[]', compatibility as any);
+    });
+
+    if(store.selectedArticle.id) {
+      Object.entries(data.value).forEach(([key, value]) => {
+        if (key === 'image' && typeof value === 'string') {
+          return;
+        } else if (key === 'compatibilities') {
+          return;
+        } else {
+          formData.append(key, value ?? '' as any);
+        }
+      });
+      await store.update(formData);
+    } else {
+      Object.entries(data.value).forEach(([key, value]) => {
+        if(key === 'compatibilities') {
+          return;
+        } else {
+          formData.append(key, value ?? '' as any);
+        }
+      });
+      await store.create(formData);
     }
   };
 

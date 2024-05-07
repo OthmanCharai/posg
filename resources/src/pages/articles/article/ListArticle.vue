@@ -64,11 +64,9 @@
     }
     const recordData = {
       ...record,
-      compatibilities: record.compatibilities.map((compatibility: ArticleCompatibility) => ({
-        value: compatibility.id
-      })),
+      compatibilities: record.compatibilities.map(compatibility => compatibility.id)
     };
-    store.setSelectedArticle(recordData);
+    store.setSelectedArticle(recordData as any);
     router.push({ name: 'articlePanel' });
   };
 
@@ -103,7 +101,7 @@
         :data="store.articlesData"
         :current-page="store.pagination.current_page"
         :total="store.pagination.total"
-        :fetched-data="() => store.get()"
+        :fetched-data="store.get"
         :loading="store.loading"
       >
         <template #bodyCell="{column, record}">
