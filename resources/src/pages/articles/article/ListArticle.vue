@@ -1,6 +1,6 @@
 <script setup lang="ts">
   import type { ArticleInfo } from '@/src/common/types/articles';
-  import { lengthSorter } from '@/src/composables/table-sorters';
+  import { lengthSorter, numericSorter } from '@/src/composables/table-sorters';
   import { useArticlesStore } from '@stores/articles.store';
   import { useRouter } from 'vue-router';
   import type { ArticleCompatibility } from '@common/types/compatibility';
@@ -30,17 +30,17 @@
     {
       title: 'Prix Gros',
       dataIndex: 'wholesale_price',
-      sorter: lengthSorter('wholesale_price'),
+      sorter: numericSorter('wholesale_price'),
     },
     {
       title: 'Prix Détail',
       dataIndex: 'retail_price',
-      sorter: lengthSorter('retail_price'),
+      sorter: numericSorter('retail_price'),
     },
     {
       title: 'Dérnier Prix De vente',
       dataIndex: 'last_sale_price',
-      sorter: lengthSorter('last_sale_price'),
+      sorter: numericSorter('last_sale_price'),
     },
     {
       title: 'Quantité Disponible',
@@ -113,6 +113,18 @@
               alt="Image de l'article"
               class="w-[100px] h-[70px] object-cover rounded-md"
             >
+          </template>
+
+          <template v-if="column.dataIndex === 'wholesale_price'">
+            {{ record.wholesale_price + ' ' + 'XAF' }}
+          </template>
+
+          <template v-if="column.dataIndex === 'retail_price'">
+            {{ record.retail_price + ' ' + 'XAF' }}
+          </template>
+
+          <template v-if="column.dataIndex === 'last_sale_price'">
+            {{ record.last_sale_price + ' ' + 'XAF' }}
           </template>
 
           <template v-if="column.key === 'action'">
