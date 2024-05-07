@@ -50,6 +50,12 @@
     },
   ]);
 
+  // Create article
+  const createArticle = () => {
+    store.selectedArticle = {} as ArticleInfo;
+    router.push({ name: 'articlePanel' });
+  };
+
   // Edit article
   const editArticle = (record: ArticleInfo) => {
     if(!record) {
@@ -78,12 +84,10 @@
 
 <template>
   <PageHeader title="Articles">
-    <router-link :to="{ name: 'articlePanel' }">
-      <a-button type="primary">
-        <vue-feather :size="16" type="plus-circle" />
-        <span>Nouveau article</span>
-      </a-button>
-    </router-link>
+    <a-button type="primary" @click="createArticle()">
+      <vue-feather :size="16" type="plus-circle" />
+      <span>Nouveau article</span>
+    </a-button>
   </PageHeader>
 
   <div class="card table-list-card">

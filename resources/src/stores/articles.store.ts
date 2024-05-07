@@ -91,7 +91,6 @@ export const useArticlesStore = defineStore('articles', {
 
       if (response.value && response.value.data) {
         Toast.success('Votre article a été crée avec succès.');
-        console.log(response.value.data.article);
         const responseData = response.value.data.article;
         this.selectedArticle = {
           ...responseData,

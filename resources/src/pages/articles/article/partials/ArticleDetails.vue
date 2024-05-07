@@ -273,8 +273,14 @@
     </a-card>
     <div class="flex justify-end mt-5">
       <a-button htmlType="submit" type="primary">
-        <vue-feather :size="16" type="save" />
-        <span>Enregister</span>
+        <div v-if="store.selectedArticle.id" class="flex gap-2 items-center">
+          <vue-feather :size="16" type="edit" />
+          <span>Modifié</span>
+        </div>
+        <div v-else class="flex gap-2 items-center">
+          <vue-feather :size="16" type="save" />
+          <span>Enregister</span>
+        </div>
       </a-button>
     </div>
   </a-form>
