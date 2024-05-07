@@ -86,7 +86,7 @@ class Article extends UuidModel
         return $this->getAttribute(self::BRAND_ID_COLUMN);
     }
 
-    public function getCategory(): string
+    public function getCategoryId(): string
     {
         return $this->getAttribute(self::CATEGORY_ID_COLUMN);
     }
