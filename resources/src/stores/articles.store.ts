@@ -8,7 +8,7 @@ import type { SelectProps } from 'ant-design-vue/es/vc-select/Select';
 import type { ArticleCategory } from '@common/types/global/articleCategory';
 import type { Brand } from '@common/types/global/brand';
 import type { Supplier } from '@common/types/global/supplier';
-import type { ArticleCompatibility } from '@common/types/compatibility';
+import type { ArticleCompatibility } from '@common/types/articles';
 
 const { request, response, loading } = useAxios();
 

@@ -3,7 +3,7 @@
   import CreateCompatibility from './CreateCompatibility.vue';
   import UpdateCompatibility from './UpdateCompatibility.vue';
   import { useArticleCompatibilityStore } from '@stores/compatibility.store';
-  import type { ArticleCompatibility } from '@common/types/compatibility';
+  import type { ArticleCompatibility } from '@common/types/articles';
 
   const store = useArticleCompatibilityStore();
   const columns = computed(() => [

@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import type { ArticleCompatibility } from '@common/types/compatibility';
+import type { ArticleCompatibility } from '@common/types/articles';
 import type { PaginationMetadata } from '@common/types/global/pagination';
 import { route, useAxios } from '@utils/axios-helper';
 import { extractPaginatorObject } from '@utils/pagination';

@@ -1,9 +1,9 @@
 <script setup lang="ts">
   import ArticleDetails from './partials/ArticleDetails.vue';
+  import ArticleIsoList from './partials/article-iso/ArticleIsoList.vue';
   import { useArticlesStore } from '@stores/articles.store';
 
   const store = useArticlesStore();
-
   const activeKey = ref('1');
 </script>
 
@@ -30,23 +30,21 @@
       tab="Information de l'article"
       :forceRender="true"
     >
-      <span v-if="activeKey === '1'">
-        <ArticleDetails />
-      </span>
+      <ArticleDetails v-if="activeKey === '1'" />
     </a-tab-pane>
     <a-tab-pane
       key="2"
       tab="ISO"
       :forceRender="true"
+      v-if="store.selectedArticle.id"
     >
-      <span v-if="activeKey === '2'">
-        content 2
-      </span>
+      <ArticleIsoList v-if="activeKey === '2'" />
     </a-tab-pane>
     <a-tab-pane
       key="3"
       tab="Stock"
       :forceRender="true"
+      v-if="store.selectedArticle.id"
     >
       <span v-if="activeKey === '3'">
         content 3
@@ -56,6 +54,7 @@
       key="4"
       tab="Historique des ventes"
       :forceRender="true"
+      v-if="store.selectedArticle.id"
     >
       <span v-if="activeKey === '4'">
         content 4

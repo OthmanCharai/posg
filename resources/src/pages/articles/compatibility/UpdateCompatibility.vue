@@ -1,7 +1,7 @@
 <script setup lang="ts">
   import { clearError, getErrorMessage, isError } from '@/src/utils/error-handler';
   import { useArticleCompatibilityStore } from '@stores/compatibility.store';
-  import type { ArticleCompatibility } from '@common/types/compatibility';
+  import type { ArticleCompatibility } from '@common/types/articles';
 
   const showUpdateModal = inject('showUpdateModal') as Ref<boolean>;
   const store = useArticleCompatibilityStore();
