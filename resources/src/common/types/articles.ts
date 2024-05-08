@@ -14,7 +14,8 @@ export interface ArticleInfo {
   image: File | string | null | undefined,
   description: string,
   compatibilities: ArticleCompatibility[],
-  article_iso: ArticleIso[]
+  article_iso: ArticleIso[],
+  depots: ArticleDepots[]
 }
 
 export interface ArticleStock {
@@ -31,4 +32,10 @@ export interface ArticleIso {
   id?: string,
   article_id?: string,
   value: string,
+}
+
+export interface ArticleDepots {
+  id?: string,
+  article_id?: string,
+  quantity: string,
 }

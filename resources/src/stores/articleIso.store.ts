@@ -22,7 +22,7 @@ export const useArticleIsoStore = defineStore('articleIso', {
         data: data
       });
       if (response.value) {
-        Toast.success('Votre Iso a été crée avec succès.');
+        Toast.success('Votre ISO a été crée avec succès.');
         showCreateModal.value = false;
         await store.get();
       }
@@ -35,7 +35,7 @@ export const useArticleIsoStore = defineStore('articleIso', {
         data: data
       });
       if (response.value) {
-        Toast.success('Votre Iso a été mis à jour avec succès.');
+        Toast.success('Votre ISO a été mis à jour avec succès.');
         showUpdateModal.value = false;
       }
     },

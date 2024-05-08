@@ -1,6 +1,7 @@
 <script setup lang="ts">
   import ArticleDetails from './partials/ArticleDetails.vue';
   import ArticleIsoList from './partials/article-iso/ArticleIsoList.vue';
+  import ArticleDepotsList from './partials/article-depots/ArticleDepotsList.vue';
   import { useArticlesStore } from '@stores/articles.store';
 
   const store = useArticlesStore();
@@ -42,13 +43,11 @@
     </a-tab-pane>
     <a-tab-pane
       key="3"
-      tab="Stock"
+      tab="Dépots"
       :forceRender="true"
       v-if="store.selectedArticle.id"
     >
-      <span v-if="activeKey === '3'">
-        content 3
-      </span>
+      <ArticleDepotsList v-if="activeKey === '3'" />
     </a-tab-pane>
     <a-tab-pane
       key="4"
@@ -57,7 +56,7 @@
       v-if="store.selectedArticle.id"
     >
       <span v-if="activeKey === '4'">
-        content 4
+        Not yet available
       </span>
     </a-tab-pane>
   </a-tabs>
