@@ -36,6 +36,6 @@ export interface ArticleIso {
 
 export interface ArticleDepots {
   id?: string,
-  article_id?: string,
+  depot_id?: string,
   quantity: string,
 }

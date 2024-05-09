@@ -122,6 +122,16 @@ export const useArticlesStore = defineStore('articles', {
       }
     },
 
+    async getById(article: ArticleInfo){
+      await request({
+          method:'GET',
+          url: route('article.show',article.id)
+      });
+      if(response.value && response.value?.data){
+          this.selectedArticle=response.value.data.article
+      }
+    },
+
     setSelectedArticle(data: ArticleInfo) {
       this.selectedArticle = data;
     },

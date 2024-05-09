@@ -39,6 +39,18 @@ export const useArticleDepotStore = defineStore('articleDepots', {
         showUpdateModal.value = false;
       }
     },
+    async get(page:number){
+      await request({
+        url: route('depots.get'),
+        method: 'GET'
+      });
+
+      if(response.value && response.value?.data){
+          this.depotsData=response.value?.data.
+      }
+
+    },
+
     setCurrentArticleDepot(data: ArticleDepots, index: number) {
       this.currentIndex = index;
       this.currentArticleDepot = data;
