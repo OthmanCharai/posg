@@ -10,7 +10,12 @@
   const articlesStore = useArticlesStore();
   const columns = computed(() => [
     {
-      title: 'Dépot',
+      title: 'Nome',
+      dataIndex: 'name',
+      sorter: lengthSorter('name'),
+    },
+    {
+      title: 'Address',
       dataIndex: 'address',
       sorter: lengthSorter('address'),
     },
@@ -86,7 +91,7 @@
     v-if="showDeleteModal"
     v-model:toggle="showDeleteModal"
     model="article-depots"
-    :id="articlesStore.selectedArticle.id"
+    :id="storeDepot.currentArticleDepot.id"
     :update-data="() => []"
   />
 </template>

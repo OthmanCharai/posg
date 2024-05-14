@@ -8,7 +8,7 @@
   const store = useDepotStore();
   const columns = computed(() => [
     {
-      title: 'Nom',
+      title: 'Nome',
       dataIndex: 'name',
       sorter: lengthSorter('name'),
     },

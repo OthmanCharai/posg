@@ -27,7 +27,7 @@ export const useArticleDepotStore = defineStore('Depot', {
       }
     },
 
-    async update(data: Depot, selectedArticle: ArticleInfo, showUpdateModal: Ref<boolean>) {
+    async update(data: Depot, selectedArticle: Depot, showUpdateModal: Ref<boolean>) {
       await request({
         url: route('article-depots.update', selectedArticle.id),
         method: 'PUT',
@@ -40,8 +40,8 @@ export const useArticleDepotStore = defineStore('Depot', {
     },
 
     setCurrentArticleDepot(data: Depot, index: number) {
-      this.currentIndex = index;
       this.currentArticleDepot = data;
+      this.currentIndex = index;
     },
 
     // get Dépots dropdownList

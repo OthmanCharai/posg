@@ -25,7 +25,7 @@ export const useArticleIsoStore = defineStore('articleIso', {
       }
     },
 
-    async update(data: ArticleIso, selectedArticle: ArticleInfo, showUpdateModal: Ref<boolean>) {
+    async update(data: ArticleIso, selectedArticle: ArticleIso, showUpdateModal: Ref<boolean>) {
       await request({
         url: route('article-iso.update', selectedArticle.id),
         method: 'PUT',

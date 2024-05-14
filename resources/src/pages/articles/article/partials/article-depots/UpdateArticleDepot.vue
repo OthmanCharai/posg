@@ -10,19 +10,19 @@
   const showUpdateModal = inject('showUpdateModal') as Ref<boolean>;
 
   const data = ref<Depot>({
-    depot_id: storeArticle.selectedArticle.depots.depot_id,
-    quantity: storeArticle.selectedArticle.depots.quantity,
+    depot_id: store.currentArticleDepot.id,
+    quantity: store.currentArticleDepot.quantity,
   });
 
   // Submit data
   const handleSubmission = async () => {
-    await store.update(data.value, storeArticle.selectedArticle, showUpdateModal);
+    await store.update(data.value, store.currentArticleDepot, showUpdateModal);
   };
 </script>
 
 <template>
   <ModalWrapper
-    title="Nouveau dépot"
+    title="Edité votre dépot"
     v-model:open="showUpdateModal"
     @submit="handleSubmission"
     width="450px"

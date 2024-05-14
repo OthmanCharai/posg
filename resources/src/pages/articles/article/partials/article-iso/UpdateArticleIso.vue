@@ -1,12 +1,10 @@
 <script setup lang="ts">
   import { clearError, getErrorMessage, isError } from '@/src/utils/error-handler';
   import { useArticleIsoStore } from '@stores/articleIso.store';
-  import { useArticlesStore } from '@stores/articles.store';
   import type { ArticleIso } from '@common/types/articles';
 
   const showUpdateModal = inject('showUpdateModal') as Ref<boolean>;
   const storeIso = useArticleIsoStore();
-  const storeArticle = useArticlesStore();
 
   const data = ref<ArticleIso>({
     value: storeIso.currentArticleIso.value,
@@ -14,7 +12,7 @@
 
   // Submit data
   const handleSubmission = async () => {
-    await storeIso.update(data.value, storeArticle.selectedArticle, showUpdateModal);
+    await storeIso.update(data.value, storeIso.currentArticleIso, showUpdateModal);
   };
 </script>
 

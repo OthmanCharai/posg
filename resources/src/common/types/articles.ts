@@ -15,8 +15,8 @@ export interface ArticleInfo {
   image: File | string | null | undefined,
   description: string,
   compatibilities: ArticleCompatibility[],
-  depots: Depot[],
-
+  depots?: Depot[],
+  article_iso?: ArticleIso[],
 }
 
 export interface ArticleCompatibility {

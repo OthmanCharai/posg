@@ -90,7 +90,7 @@
     v-if="showDeleteModal"
     v-model:toggle="showDeleteModal"
     model="article-iso"
-    :id="articlesStore.selectedArticle.id"
+    :id="storeIso.currentArticleIso.id"
     :update-data="() => []"
   />
 </template>
