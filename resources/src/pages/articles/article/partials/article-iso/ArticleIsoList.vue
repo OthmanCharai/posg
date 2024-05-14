@@ -10,7 +10,7 @@
   const articlesStore = useArticlesStore();
   const columns = computed(() => [
     {
-      title: 'Nom',
+      title: 'Nome',
       dataIndex: 'name',
       sorter: lengthSorter('name'),
     },
@@ -63,8 +63,8 @@
         :loading="storeIso.loading"
       >
         <template #bodyCell="{column, record, index}">
-          <template v-if="column.key === 'name'">
-            {{ 'ISO' + ' ' + index }}
+          <template v-if="column.dataIndex === 'name'">
+            {{ 'ISO' + ' ' + (index + 1) }}
           </template>
 
           <template v-if="column.key === 'action'">

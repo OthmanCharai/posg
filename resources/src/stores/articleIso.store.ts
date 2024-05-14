@@ -2,9 +2,7 @@ import { defineStore } from 'pinia';
 import type { ArticleInfo, ArticleIso } from '@common/types/articles';
 import { route, useAxios } from '@utils/axios-helper';
 import { Toast } from '@utils/toast';
-import { useArticlesStore } from './articles.store';
 
-const store = useArticlesStore();
 const { request, response, loading } = useAxios();
 
 export const useArticleIsoStore = defineStore('articleIso', {
@@ -24,7 +22,6 @@ export const useArticleIsoStore = defineStore('articleIso', {
       if (response.value) {
         Toast.success('Votre ISO a été crée avec succès.');
         showCreateModal.value = false;
-        await store.get();
       }
     },
 

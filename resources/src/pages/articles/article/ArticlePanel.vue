@@ -6,6 +6,12 @@
 
   const store = useArticlesStore();
   const activeKey = ref('1');
+
+  onMounted(() => {
+    if(store.selectedArticle.id) {
+      store.getArticleById(store.selectedArticle.id);
+    }
+  });
 </script>
 
 <template>
