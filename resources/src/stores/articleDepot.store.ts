@@ -1,21 +1,21 @@
 import { defineStore } from 'pinia';
-import type { ArticleInfo, ArticleDepots } from '@common/types/articles';
+import type { ArticleInfo } from '@common/types/articles';
 import { route, useAxios } from '@utils/axios-helper';
+import type { Depot } from '@common/types/global/depot';
 import { Toast } from '@utils/toast';
-import { useArticlesStore } from './articles.store';
 
-const store = useArticlesStore();
 const { request, response, loading } = useAxios();
 
-export const useArticleDepotStore = defineStore('articleDepots', {
+export const useArticleDepotStore = defineStore('Depot', {
   state: () => ({
-    depotsData: [] as ArticleDepots[],
-    currentArticleDepot: {} as ArticleDepots,
+    depotsData: [] as Depot[],
+    currentArticleDepot: {} as Depot,
     currentIndex: null as null | number,
+    depots: [] as Depot[],
     loading: loading,
   }),
   actions: {
-    async create(data: ArticleDepots, selectedArticle: ArticleInfo, showCreateModal: Ref<boolean>) {
+    async create(data: Depot, selectedArticle: ArticleInfo, showCreateModal: Ref<boolean>) {
       await request({
         url: route('article-depots.create', selectedArticle.id),
         method: 'POST',
@@ -24,11 +24,10 @@ export const useArticleDepotStore = defineStore('articleDepots', {
       if (response.value) {
         Toast.success('Votre dépot a été crée avec succès.');
         showCreateModal.value = false;
-        await store.get();
       }
     },
 
-    async update(data: ArticleDepots, selectedArticle: ArticleInfo, showUpdateModal: Ref<boolean>) {
+    async update(data: Depot, selectedArticle: ArticleInfo, showUpdateModal: Ref<boolean>) {
       await request({
         url: route('article-depots.update', selectedArticle.id),
         method: 'PUT',
@@ -39,21 +38,23 @@ export const useArticleDepotStore = defineStore('articleDepots', {
         showUpdateModal.value = false;
       }
     },
-    async get(page:number){
-      await request({
-        url: route('depots.get'),
-        method: 'GET'
-      });
 
-      if(response.value && response.value?.data){
-          this.depotsData=response.value?.data.
-      }
-
-    },
-
-    setCurrentArticleDepot(data: ArticleDepots, index: number) {
+    setCurrentArticleDepot(data: Depot, index: number) {
       this.currentIndex = index;
       this.currentArticleDepot = data;
-    }
+    },
+
+    // get Dépots dropdownList
+    async get() {
+      await request({
+        url: route('depots.index'),
+        method: 'GET',
+      });
+
+      if (response.value && response.value.data) {
+        this.depots = response.value.data.depot.data;
+        console.log(this.depots);
+      }
+    },
   }
 });

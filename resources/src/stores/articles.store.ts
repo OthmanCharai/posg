@@ -8,6 +8,7 @@ import type { SelectProps } from 'ant-design-vue/es/vc-select/Select';
 import type { ArticleCategory } from '@common/types/global/articleCategory';
 import type { Brand } from '@common/types/global/brand';
 import type { Supplier } from '@common/types/global/supplier';
+import type { Depot } from '@common/types/global/depot';
 import type { ArticleCompatibility } from '@common/types/articles';
 
 const { request, response, loading } = useAxios();
@@ -21,6 +22,7 @@ export const useArticlesStore = defineStore('articles', {
     articleCategoryList: [] as SelectProps['options'],
     brandList: [] as SelectProps['options'],
     supplierList: [] as SelectProps['options'],
+    depots: [] as SelectProps['options'],
     loading: loading,
     getResponse: false,
   }),
@@ -66,6 +68,13 @@ export const useArticlesStore = defineStore('articles', {
       }));
     },
 
+    getDepots(depots: Depot[]) {
+      this.depots = depots.map(depot => ({
+        label: depot.address,
+        value: depot.id
+      }));
+    },
+
     async getCreationData() {
       await request({
         url: route('articles.create.data'),
@@ -76,6 +85,7 @@ export const useArticlesStore = defineStore('articles', {
         this.getSupplierList(response.value.data.suppliers);
         this.getBrandList(response.value.data.brands);
         this.getCompatibilityList(response.value.data.compatibilities);
+        this.getDepots(response.value.data.depots);
       }
     },
 
@@ -122,13 +132,13 @@ export const useArticlesStore = defineStore('articles', {
       }
     },
 
-    async getById(article: ArticleInfo){
+    async getArticleById(articleId: string) {
       await request({
-          method:'GET',
-          url: route('article.show',article.id)
+        method: 'GET',
+        url: route('articles.show', articleId)
       });
-      if(response.value && response.value?.data){
-          this.selectedArticle=response.value.data.article
+      if (response.value && response.value.data) {
+        this.selectedArticle = response.value.data.article;
       }
     },
 

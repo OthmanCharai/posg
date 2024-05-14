@@ -1,3 +1,4 @@
+import type { Depot } from '@common/types/global/depot';
 export interface ArticleInfo {
   id?: string,
   code_bare: string,
@@ -14,13 +15,8 @@ export interface ArticleInfo {
   image: File | string | null | undefined,
   description: string,
   compatibilities: ArticleCompatibility[],
-  article_iso?: ArticleIso[],
-  depots?: ArticleDepots[]
-}
+  depots: Depot[],
 
-export interface ArticleStock {
-  depot_id: string,
-  quantity: string,
 }
 
 export interface ArticleCompatibility {
@@ -32,10 +28,4 @@ export interface ArticleIso {
   id?: string,
   article_id?: string,
   value: string,
-}
-
-export interface ArticleDepots {
-  id?: string,
-  depot_id?: string,
-  quantity: string,
 }
