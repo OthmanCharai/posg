@@ -22,6 +22,7 @@ class ArticleTransformer
     {
         $mediaService = make(MediaService::class);
         $data = [
+            Article::BARCODE_COLUMN         => $article->getBarcode(),
             Article::NAME_COLUMN            => $article->getName(),
             Article::ID_COLUMN              => $article->getId(),
             Article::DESCRIPTION_COLUMN     => $article->getDescription(),
@@ -33,6 +34,10 @@ class ArticleTransformer
             Article::RETAIL_PRICE_COLUMN    => $article->getRetailPrice()->getAmount(),
             Article::LAST_SALE_PRICE_COLUMN => $article->getLastSalePrice()->getAmount(),
             'currency'                      => Article::CURRENCY_VALUE,
+            Article::SUPPLIER_ID_COLUMN     => $article->getSupplierId(),
+            Article::BRAND_ID_COLUMN        => $article->getBrandId(),
+            Article::CATEGORY_ID_COLUMN     => $article->getCategoryId(),
+            'compatibilities'               => $article->getCompatibilities()->toArray(),
         ];
 
         if ($article->relationLoaded(Article::RELATIONS[ArticleCategory::class])) {

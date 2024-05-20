@@ -19,7 +19,7 @@ export const useSupplierStore = defineStore('supplier', {
     async get(page: number = 1) {
       await request({
         url: route('suppliers.index', `page=${page}`),
-        method: 'GET',
+        method: 'GET'
       });
       if (response.value && response.value?.data) {
         this.suppliers = response.value?.data.suppliers.data;
@@ -27,26 +27,26 @@ export const useSupplierStore = defineStore('supplier', {
         this.getResponse = true;
       }
     },
-    async create(data: any, showCreateModal: Ref<boolean>) {
+    async create(data: Supplier, showCreateModal: Ref<boolean>) {
       await request({
         url: route('suppliers.create'),
         method: 'POST',
-        data: data,
+        data: data
       });
       if (response.value && response.value?.data) {
-        await Toast.success('Votre Fournisseurs a été ajouter avec succès.');
+        Toast.success('Votre Fournisseurs a été ajouter avec succès.');
         showCreateModal.value = false;
         await this.get();
       }
     },
-    async update(supplier: Supplier, data: any, showUpdateModal: Ref<boolean>) {
+    async update(supplier: Supplier, data: Supplier, showUpdateModal: Ref<boolean>) {
       await request({
         url: route('supplier.update', supplier.id),
         method: 'PUT',
-        data: data,
+        data: data
       });
       if (response.value && response.value?.data) {
-        await Toast.success('Votre Fournisseurs a été modifier avec succès.');
+        Toast.success('Votre Fournisseurs a été modifier avec succès.');
         showUpdateModal.value = false;
         await this.get();
       }
@@ -54,15 +54,15 @@ export const useSupplierStore = defineStore('supplier', {
     async delete(supplier: Supplier) {
       await request({
         url: route('supplier.delete', supplier.id),
-        method: 'delete',
+        method: 'delete'
       });
       if (response.value) {
-        await Toast.success('Votre Fournisseurs a été supprimer avec succès.');
+        Toast.success('Votre Fournisseurs a été supprimer avec succès.');
         await this.get();
       }
     },
     setCurrentSupplier(supplier: Supplier) {
       this.currentSupplier = supplier;
-    },
-  },
+    }
+  }
 });

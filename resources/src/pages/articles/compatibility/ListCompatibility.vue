@@ -1,22 +1,16 @@
 <script setup lang="ts">
   import { lengthSorter } from '@/src/composables/table-sorters';
-  import { useDepotStore } from '@stores/depot.store';
-  import type { Depot } from '@common/types/global/depot';
-  import CreateDepot from '@pages/articles/depot/CreateDepot.vue';
-  import UpdateDepot from '@pages/articles/depot/UpdateDepot.vue';
+  import CreateCompatibility from './CreateCompatibility.vue';
+  import UpdateCompatibility from './UpdateCompatibility.vue';
+  import { useArticleCompatibilityStore } from '@stores/compatibility.store';
+  import type { ArticleCompatibility } from '@common/types/articles';
 
-  const store = useDepotStore();
+  const store = useArticleCompatibilityStore();
   const columns = computed(() => [
     {
-      title: 'Nome',
+      title: 'Nom',
       dataIndex: 'name',
       sorter: lengthSorter('name'),
-    },
-
-    {
-      title: 'Address',
-      dataIndex: 'address',
-      sorter: lengthSorter('address'),
     },
     {
       title: 'Action',
@@ -30,16 +24,16 @@
   const showUpdateModal = ref(false);
   provide('showUpdateModal', showUpdateModal);
 
-  // Edit user
-  const editDepot = (record: Depot) => {
-    store.setCurrentDepot(record);
+  // Edit compatibility
+  const editCompatibility = (record: ArticleCompatibility) => {
+    store.setCurrentCompatibility(record);
     showUpdateModal.value = true;
   };
 
-  // Delete user
+  // Delete compatibility
   const showDeleteModal = ref<boolean>(false);
-  const deleteDepot = (record: Depot) => {
-    store.setCurrentDepot(record);
+  const deleteCompatibility = (record: ArticleCompatibility) => {
+    store.setCurrentCompatibility(record);
     showDeleteModal.value = true;
   };
 
@@ -49,7 +43,7 @@
 </script>
 
 <template>
-  <PageHeader title="Depot">
+  <PageHeader title="Compatibilité">
     <a-button type="primary" @click="showCreateModal = true">
       <vue-feather :size="16" type="plus-circle" />
       <span>Ajouter</span>
@@ -61,19 +55,19 @@
     <div class="card-body">
       <DataTable
         :columns="columns"
-        :data="store.depots"
+        :data="store.compatibilities"
         :current-page="store.pagination.current_page"
         :total="store.pagination.total"
         :fetched-data="store.get"
         :loading="store.loading"
       >
-        <template #bodyCell="{ column, record }">
+        <template #bodyCell="{column, record}">
           <template v-if="column.key === 'action'">
             <td class="action-table-data">
-              <button class="action-button edit" @click="editDepot(record)">
+              <button class="action-button edit" @click="editCompatibility(record)">
                 <vue-feather type="edit" />
               </button>
-              <button class="action-button delete" @click="deleteDepot(record)">
+              <button class="action-button delete" @click="deleteCompatibility(record)">
                 <vue-feather type="trash-2" />
               </button>
             </td>
@@ -82,16 +76,16 @@
       </DataTable>
     </div>
   </div>
-  <!-- Create depot modal -->
-  <CreateDepot v-if="store.getResponse && showCreateModal" />
-  <!-- Update depot modal -->
-  <UpdateDepot v-if="store.getResponse && showUpdateModal" />
-  <!-- Delete user Alert -->
+  <!-- Create modal -->
+  <CreateCompatibility v-if="store.getResponse && showCreateModal" />
+  <!-- Update modal -->
+  <UpdateCompatibility v-if="store.getResponse && showUpdateModal" />
+  <!-- Delte Alert -->
   <DeleteAlert
     v-if="store.getResponse && showDeleteModal"
     v-model:toggle="showDeleteModal"
-    model="depots"
-    :id="store.currentDepot.id"
+    model="compatibilities"
+    :id="store.currentCompatibility.id"
     :update-data="() => store.get(store.pagination.current_page)"
   />
 </template>

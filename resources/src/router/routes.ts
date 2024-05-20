@@ -46,39 +46,49 @@ export default [
         name: 'Dashboard',
         component: () => import('@pages/admin/Dashboard.vue'),
         meta: {
-          middleware: [auth],
-        },
+          middleware: [
+            auth
+          ]
+        }
       },
       {
         path: '/utilisateurs',
         name: 'Users',
         component: () => import('@/src/pages/admin/users/UsersList.vue'),
         meta: {
-          middleware: [auth],
-        },
+          middleware: [
+            auth
+          ]
+        }
       },
       {
         path: '/roles',
         name: 'Roles',
         component: () => import('@/src/pages/admin/roles/RoleList.vue'),
         meta: {
-          middleware: [auth],
-        },
+          middleware: [
+            auth
+          ]
+        }
       },
       {
         path: '/administrations',
         name: 'Administration',
         component: () => import('@/src/pages/admin/administration/Index.vue'),
         meta: {
-          middleware: [auth],
-        },
+          middleware: [
+            auth
+          ]
+        }
       },
       {
         path: '/traçabilité',
         name: 'traçabilité',
         component: () => import('@/src/pages/admin/tracability/ListLogs.vue'),
         meta: {
-          middleware: [auth],
+          middleware: [
+            auth
+          ]
         },
       },
       {
@@ -86,34 +96,72 @@ export default [
         name: 'fournisseurs',
         component: () => import('@/src/pages/supplier/ListSupplier.vue'),
         meta: {
-          middleware: [auth],
+          middleware: [
+            auth
+          ]
+        }
+      },
+      {
+        path: 'articles',
+        name: 'articles',
+        component: () => import('@/src/pages/articles/article/ListArticle.vue'),
+        meta: {
+          middleware: [
+            auth
+          ]
         },
+      },
+      {
+        path: 'articles/article-panneau',
+        name: 'articlePanel',
+        component: () => import('@/src/pages/articles/article/ArticlePanel.vue'),
+        meta: {
+          middleware: [
+            auth
+          ]
+        }
+      },
+      {
+        path: 'articles/compatibilite',
+        name: 'articleCompatiblity',
+        component: () => import('@/src/pages/articles/compatibility/ListCompatibility.vue'),
+        meta: {
+          middleware: [
+            auth
+          ]
+        }
       },
       {
         path: 'articles/categorie',
         name: 'articleCategories',
         component: () => import('@/src/pages/articles/category/ListCategory.vue'),
         meta: {
-          middleware: [auth],
-        },
+          middleware: [
+            auth
+          ]
+        }
       },
       {
         path: 'articles/depots',
         name: 'depots',
         component: () => import('@/src/pages/articles/depot/ListDepot.vue'),
         meta: {
-          middleware: [auth],
-        },
+          middleware: [
+            auth
+          ]
+        }
       },
       {
         path: 'articles/marques',
         name: 'marque',
         component: () => import('@/src/pages/articles/brand/ListBrand.vue'),
         meta: {
-          middleware: [auth],
-        },
+          middleware: [
+            auth
+          ]
+        }
       },
-    ],
+    ]
   },
 
   // --------  404 page --------- //

@@ -2,6 +2,7 @@
 
 namespace App\src\Repositories\Compatibility;
 
+use App\src\Entities\TypedCollections\CompatibilityCollection;
 use App\src\Models\Compatibility\Compatibility;
 use App\src\Repositories\BaseRepository;
 
@@ -15,8 +16,8 @@ class CompatibilityRepository extends BaseRepository
         return Compatibility::class;
     }
 
-    public function get(): \Illuminate\Database\Eloquent\Collection|array
+    public function get(): CompatibilityCollection
     {
-        return $this->getQueryBuilder()->get();
+        return CompatibilityCollection::make($this->getQueryBuilder()->get());
     }
 }

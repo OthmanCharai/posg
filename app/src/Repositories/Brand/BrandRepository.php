@@ -2,6 +2,7 @@
 
 namespace App\src\Repositories\Brand;
 
+use App\src\Entities\TypedCollections\BrandCollection;
 use App\src\Models\Brands\Brand;
 use App\src\Repositories\BaseRepository;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -38,6 +39,11 @@ class BrandRepository extends BaseRepository
             'page',
             $queryOption->getPage()
         );
+    }
+
+    public function get(): BrandCollection
+    {
+        return BrandCollection::make($this->getQueryBuilder()->get());
     }
 
     protected function getQueryOptionCriterias(): array

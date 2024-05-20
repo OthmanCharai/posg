@@ -1,5 +1,6 @@
 export interface Depot {
   id?: string;
-  name: string;
-  address: string;
+  depot_id?: string;
+  address?: string;
+  quantity?: string;
 }
