@@ -36,6 +36,7 @@ export const useArticleIsoStore = defineStore('articleIso', {
         showUpdateModal.value = false;
       }
     },
+
     setCurrentArticleIso(data: ArticleIso, index: number) {
       this.currentIndex = index;
       this.currentArticleIso = data;

@@ -4,7 +4,7 @@
   import { useArticlesStore } from '@stores/articles.store';
   import type { ArticleIso } from '@common/types/articles';
 
-  const store = useArticleIsoStore();
+  const storeIso = useArticleIsoStore();
   const storeArticle = useArticlesStore();
   const showCreateModal = inject('showCreateModal') as Ref<boolean>;
 
@@ -14,7 +14,7 @@
 
   // Submit data
   const handleSubmission = async () => {
-    await store.create(data.value, storeArticle.selectedArticle, showCreateModal);
+    await storeIso.create(data.value, storeArticle.selectedArticle, showCreateModal);
   };
 </script>
 
@@ -41,5 +41,5 @@
       </div>
     </section>
   </ModalWrapper>
-  <Loader :is-active="store.loading" />
+  <Loader :is-active="storeIso.loading" />
 </template>

@@ -143,7 +143,11 @@ export const useArticlesStore = defineStore('articles', {
     },
 
     setSelectedArticle(data: ArticleInfo) {
-      this.selectedArticle = data;
+      const responseData = data;
+      this.selectedArticle = {
+        ...responseData,
+        compatibilities: responseData.compatibilities.map((compatibility: ArticleCompatibility) => compatibility.id)
+      };
     },
   }
 });
