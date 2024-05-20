@@ -57,11 +57,11 @@
   };
 
   // Edit article
-  const editArticle = (id: string) => {
+  const editArticle = async (id: string) => {
     if(!id) {
       return;
     }
-    store.getArticleById(id);
+    await store.getArticleById(id);
     router.push({ name: 'articlePanel' });
   };
 
