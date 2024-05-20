@@ -3,7 +3,9 @@ import type { ArticleInfo } from '@common/types/articles';
 import { route, useAxios } from '@utils/axios-helper';
 import type { Depot } from '@common/types/global/depot';
 import { Toast } from '@utils/toast';
+import { useArticlesStore } from './articles.store';
 
+const articleStore = useArticlesStore();
 const { request, response, loading } = useAxios();
 
 export const useArticleDepotStore = defineStore('Depot', {
@@ -23,6 +25,7 @@ export const useArticleDepotStore = defineStore('Depot', {
       });
       if (response.value) {
         Toast.success('Votre dépot a été crée avec succès.');
+        await articleStore.getArticleById(articleStore.articleId);
         showCreateModal.value = false;
       }
     },
@@ -35,6 +38,7 @@ export const useArticleDepotStore = defineStore('Depot', {
       });
       if (response.value) {
         Toast.success('Votre dépot a été mis à jour avec succès.');
+        await articleStore.getArticleById(articleStore.articleId);
         showUpdateModal.value = false;
       }
     },
@@ -53,7 +57,6 @@ export const useArticleDepotStore = defineStore('Depot', {
 
       if (response.value && response.value.data) {
         this.depots = response.value.data.depot.data;
-        console.log(this.depots);
       }
     },
   }

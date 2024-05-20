@@ -62,6 +62,7 @@
       return;
     }
     await store.getArticleById(id);
+    store.articleId = id;
     router.push({ name: 'articlePanel' });
   };
 

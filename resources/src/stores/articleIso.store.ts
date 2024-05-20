@@ -2,14 +2,15 @@ import { defineStore } from 'pinia';
 import type { ArticleInfo, ArticleIso } from '@common/types/articles';
 import { route, useAxios } from '@utils/axios-helper';
 import { Toast } from '@utils/toast';
+import { useArticlesStore } from './articles.store';
 
+const articleStore = useArticlesStore();
 const { request, response, loading } = useAxios();
 
 export const useArticleIsoStore = defineStore('articleIso', {
   state: () => ({
     isoData: [] as ArticleIso[],
     currentArticleIso: {} as ArticleIso,
-    currentIndex: null as null | number,
     loading: loading,
   }),
   actions: {
@@ -21,6 +22,7 @@ export const useArticleIsoStore = defineStore('articleIso', {
       });
       if (response.value) {
         Toast.success('Votre ISO a été crée avec succès.');
+        await articleStore.getArticleById(articleStore.articleId);
         showCreateModal.value = false;
       }
     },
@@ -33,12 +35,12 @@ export const useArticleIsoStore = defineStore('articleIso', {
       });
       if (response.value) {
         Toast.success('Votre ISO a été mis à jour avec succès.');
+        await articleStore.getArticleById(articleStore.articleId);
         showUpdateModal.value = false;
       }
     },
 
-    setCurrentArticleIso(data: ArticleIso, index: number) {
-      this.currentIndex = index;
+    setCurrentArticleIso(data: ArticleIso) {
       this.currentArticleIso = data;
     }
   }

@@ -7,7 +7,7 @@
   import { useArticlesStore } from '@stores/articles.store';
 
   const storeIso = useArticleIsoStore();
-  const articlesStore = useArticlesStore();
+  const articleStore = useArticlesStore();
   const columns = computed(() => [
     {
       title: 'Nome',
@@ -32,15 +32,15 @@
   provide('showUpdateModal', showUpdateModal);
 
   // Edit ArticleIso
-  const editArticleIso = (record: ArticleIso, index: number) => {
-    storeIso.setCurrentArticleIso(record, index);
+  const editArticleIso = (record: ArticleIso) => {
+    storeIso.setCurrentArticleIso(record);
     showUpdateModal.value = true;
   };
 
   // Delete ArticleIso
   const showDeleteModal = ref<boolean>(false);
-  const deleteArticleIso = (record: ArticleIso, index: number) => {
-    storeIso.setCurrentArticleIso(record, index);
+  const deleteArticleIso = (record: ArticleIso) => {
+    storeIso.setCurrentArticleIso(record);
     showDeleteModal.value = true;
   };
 </script>
@@ -58,7 +58,7 @@
     <div class="card-body">
       <DataTable
         :columns="columns"
-        :data="articlesStore.selectedArticle.article_iso"
+        :data="articleStore.selectedArticle.article_iso ?? []"
         :fetched-data="() => []"
         :loading="storeIso.loading"
       >
@@ -69,10 +69,10 @@
 
           <template v-if="column.key === 'action'">
             <td class="action-table-data">
-              <button class="action-button edit" @click="editArticleIso(record, index)">
+              <button class="action-button edit" @click="editArticleIso(record)">
                 <vue-feather type="edit" />
               </button>
-              <button class="action-button delete" @click="deleteArticleIso(record, index)">
+              <button class="action-button delete" @click="deleteArticleIso(record)">
                 <vue-feather type="trash-2" />
               </button>
             </td>
@@ -91,6 +91,6 @@
     v-model:toggle="showDeleteModal"
     model="article-iso"
     :id="storeIso.currentArticleIso.id"
-    :update-data="() => []"
+    :update-data="() => articleStore.getArticleById(articleStore.articleId)"
   />
 </template>

@@ -7,7 +7,7 @@
   import { useArticlesStore } from '@stores/articles.store';
 
   const storeDepot = useArticleDepotStore();
-  const articlesStore = useArticlesStore();
+  const articleStore = useArticlesStore();
   const columns = computed(() => [
     {
       title: 'Nome',
@@ -63,7 +63,7 @@
     <div class="card-body">
       <DataTable
         :columns="columns"
-        :data="articlesStore.selectedArticle.depots"
+        :data="articleStore.selectedArticle.depots ?? []"
         :fetched-data="() => []"
         :loading="storeDepot.loading"
       >
@@ -92,6 +92,6 @@
     v-model:toggle="showDeleteModal"
     model="article-depots"
     :id="storeDepot.currentArticleDepot.id"
-    :update-data="() => []"
+    :update-data="() => articleStore.getArticleById(articleStore.articleId)"
   />
 </template>
