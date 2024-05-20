@@ -15,6 +15,7 @@ class DepotTransformer
     public static function transform(Depot $depot): array
     {
         return [
+            Depot::NAME_COLUMN            => $depot->getName(),
             Depot::ADDRESS_COLUMN         => $depot->getAddress(),
             Depot::ID_COLUMN              => $depot->getRelationValue('pivot')?->getAttribute(
                 ArticleDepot::ID_COLUMN

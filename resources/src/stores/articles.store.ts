@@ -72,7 +72,7 @@ export const useArticlesStore = defineStore('articles', {
     getDepots(depots: Depot[]) {
       this.depots = depots.map(depot => ({
         label: depot.address,
-        value: depot.id
+        value: depot.depot_id
       }));
     },
 
