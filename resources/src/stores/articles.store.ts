@@ -23,6 +23,7 @@ export const useArticlesStore = defineStore('articles', {
     brandList: [] as SelectProps['options'],
     supplierList: [] as SelectProps['options'],
     depots: [] as SelectProps['options'],
+    articleId: '' as string,
     loading: loading,
     getResponse: false,
   }),
@@ -138,16 +139,12 @@ export const useArticlesStore = defineStore('articles', {
         url: route('articles.show', articleId)
       });
       if (response.value && response.value.data) {
-        this.selectedArticle = response.value.data.article;
+        const responseData = response.value.data.article;
+        this.selectedArticle = {
+          ...responseData,
+          compatibilities: responseData.compatibilities.map((compatibility: ArticleCompatibility) => compatibility.id)
+        };
       }
-    },
-
-    setSelectedArticle(data: ArticleInfo) {
-      const responseData = data;
-      this.selectedArticle = {
-        ...responseData,
-        compatibilities: responseData.compatibilities.map((compatibility: ArticleCompatibility) => compatibility.id)
-      };
     },
   }
 });

@@ -57,25 +57,21 @@
   };
 
   // Edit article
-  const editArticle = (record: ArticleInfo) => {
-    if(!record) {
+  const editArticle = (id: string) => {
+    if(!id) {
       return;
     }
-    const recordData = {
-      ...record,
-      compatibilities: record.compatibilities.map(compatibility => compatibility.id)
-    };
-    store.setSelectedArticle(recordData as any);
+    store.getArticleById(id);
     router.push({ name: 'articlePanel' });
   };
 
   // Delete article
   const showDeleteModal = ref<boolean>(false);
-  const deleteArticle = (record: ArticleInfo) => {
-    if(!record) {
+  const deleteArticle = (id: string) => {
+    if(!id) {
       return;
     }
-    store.setSelectedArticle(record);
+    store.articleId = id;
     showDeleteModal.value = true;
   };
 
@@ -126,10 +122,10 @@
 
           <template v-if="column.key === 'action'">
             <td class="action-table-data">
-              <button class="action-button edit" @click="editArticle(record)">
+              <button class="action-button edit" @click="editArticle(record.id)">
                 <vue-feather type="edit" />
               </button>
-              <button class="action-button delete" @click="deleteArticle(record)">
+              <button class="action-button delete" @click="deleteArticle(record.id)">
                 <vue-feather type="trash-2" />
               </button>
             </td>
@@ -142,7 +138,7 @@
     v-if="store.getResponse && showDeleteModal"
     v-model:toggle="showDeleteModal"
     model="articles"
-    :id="store.selectedArticle.id"
+    :id="store.articleId"
     :update-data="() => store.get(store.pagination.current_page)"
   />
 </template>
