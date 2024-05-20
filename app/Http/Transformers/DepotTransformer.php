@@ -16,7 +16,10 @@ class DepotTransformer
     {
         return [
             Depot::ADDRESS_COLUMN         => $depot->getAddress(),
-            Depot::ID_COLUMN              => $depot->getId(),
+            Depot::ID_COLUMN              => $depot->getRelationValue('pivot')?->getAttribute(
+                ArticleDepot::ID_COLUMN
+            ),
+            ArticleDepot::DEPOT_ID_COLUMN => $depot->getId(),
             ArticleDepot::QUANTITY_COLUMN => $depot->getRelationValue('pivot')?->getAttribute(
                 ArticleDepot::QUANTITY_COLUMN
             ),

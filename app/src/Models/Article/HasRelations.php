@@ -56,7 +56,7 @@ trait HasRelations
 
     public function depots(): BelongsToMany
     {
-        return $this->belongsToMany(Depot::class, 'article_depots')->withPivot('quantity');
+        return $this->belongsToMany(Depot::class, 'article_depots')->withPivot('quantity', 'id');
     }
 
     public function getDepots(): Collection

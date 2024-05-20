@@ -10,7 +10,7 @@
   const showUpdateModal = inject('showUpdateModal') as Ref<boolean>;
 
   const data = ref<Depot>({
-    depot_id: store.currentArticleDepot.id,
+    depot_id: store.currentArticleDepot.depot_id,
     quantity: store.currentArticleDepot.quantity,
   });
 
