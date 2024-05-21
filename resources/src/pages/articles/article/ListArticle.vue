@@ -57,13 +57,12 @@
   };
 
   // Edit article
-  const editArticle = async (id: string) => {
-    if(!id) {
+  const editArticle = async (articleId: string) => {
+    if(!articleId) {
       return;
     }
-    await store.getArticleById(id);
-    store.articleId = id;
-    router.push({ name: 'articlePanel' });
+    store.articleId = articleId;
+    router.push({ name: 'articlePanel', params: { id: articleId }  });
   };
 
   // Delete article

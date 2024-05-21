@@ -6,6 +6,23 @@
 
   const store = useArticlesStore();
   const activeKey = ref('1');
+
+  function extractArticleId() {
+    const pathname = window.location.pathname;
+    const segments = pathname.split('/');
+    const articleId = segments.find(segment => segment.startsWith('art_'));
+
+    // Check if an article ID was found and return it
+    return articleId || null;
+  };
+
+  const articleId = extractArticleId();
+
+  onBeforeMount(async() => {
+    if (articleId) {
+      await store.getArticleById(articleId);
+    }
+  });
 </script>
 
 <template>
@@ -31,7 +48,8 @@
       tab="Information de l'article"
       :forceRender="true"
     >
-      <ArticleDetails v-if="activeKey === '1'" />
+      <ArticleDetails v-if="articleId && store.selectedArticle.id && activeKey === '1'" />
+      <ArticleDetails v-else-if="activeKey === '1'" />
     </a-tab-pane>
     <a-tab-pane
       key="2"
