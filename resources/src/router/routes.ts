@@ -112,7 +112,7 @@ export default [
         },
       },
       {
-        path: 'articles/article-panneau',
+        path: 'articles/article-panneau/:id?',
         name: 'articlePanel',
         component: () => import('@/src/pages/articles/article/ArticlePanel.vue'),
         meta: {
