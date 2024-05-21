@@ -1,5 +1,7 @@
 import guest from './middleware/guest';
 import auth from './middleware/auth';
+import { useArticlesStore } from '@stores/articles.store';
+import type { NavigationGuardNext, RouteLocationNormalized } from 'vue-router';
 
 export default [
   // -------- Guest user ---------- //
@@ -115,6 +117,26 @@ export default [
         path: 'articles/article-panneau/:id?',
         name: 'articlePanel',
         component: () => import('@/src/pages/articles/article/ArticlePanel.vue'),
+        beforeEnter: async (
+          to: RouteLocationNormalized,
+          from: RouteLocationNormalized,
+          next: NavigationGuardNext
+        ) => {
+          const store = useArticlesStore();
+          const articleId = to.params.id as string;
+
+          if (articleId) {
+            await store.getArticleById(articleId);
+
+            if (!store.articleExist) {
+              next({ name: 'NotFound' });
+            }
+
+            next();
+          } else {
+            next();
+          }
+        },
         meta: {
           middleware: [
             auth
