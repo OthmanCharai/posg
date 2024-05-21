@@ -125,7 +125,7 @@ export const useArticlesStore = defineStore('articles', {
 
       if (response.value && response.value.data) {
         Toast.success('Votre compte a été mis à jour avec succès.');
-        const responseData = response.value.data.article;
+        const responseData = response.value.data;
         this.selectedArticle = {
           ...responseData,
           compatibilities: responseData.compatibilities.map((compatibility: ArticleCompatibility) => compatibility.id)
