@@ -20,7 +20,8 @@
 
   onBeforeMount(async() => {
     if (articleId) {
-      await store.getArticleById(articleId);
+      store.articleId = articleId;
+      await store.getArticleById(store.articleId);
     }
 
     await store.getCreationData();
