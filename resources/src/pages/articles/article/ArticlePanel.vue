@@ -22,6 +22,8 @@
     if (articleId) {
       await store.getArticleById(articleId);
     }
+
+    await store.getCreationData();
   });
 </script>
 

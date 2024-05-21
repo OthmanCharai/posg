@@ -81,8 +81,6 @@
   };
 
   onMounted(async () => {
-    await store.getCreationData();
-
     if (data.value.image && fileList.value && fileList.value.length === 0) {
       const image: UploadProps['fileList'][number] = {
         uid: 'index-1',
