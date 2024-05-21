@@ -10,5 +10,6 @@ const app = createApp(App);
 app.component(VueFeather.name, VueFeather);
 
 app.use(VueSweetalert2);
+app.use(router);
 app.use(createPinia());
-app.use(router).mount('#app');
+app.mount('#app');

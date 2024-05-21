@@ -10,6 +10,7 @@ import type { Brand } from '@common/types/global/brand';
 import type { Supplier } from '@common/types/global/supplier';
 import type { Depot } from '@common/types/global/depot';
 import type { ArticleCompatibility } from '@common/types/articles';
+import { router } from '@/src/router/index';
 
 const { request, response, loading } = useAxios();
 
@@ -107,6 +108,8 @@ export const useArticlesStore = defineStore('articles', {
           ...responseData,
           compatibilities: responseData.compatibilities.map((compatibility: ArticleCompatibility) => compatibility.id)
         };
+
+        router.push({ name: 'articlePanel', params: { id: this.selectedArticle.id } });
       }
     },
 
