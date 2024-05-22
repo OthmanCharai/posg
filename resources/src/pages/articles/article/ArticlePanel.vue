@@ -3,27 +3,14 @@
   import ArticleIsoList from './partials/article-iso/ArticleIsoList.vue';
   import ArticleDepotsList from './partials/article-depots/ArticleDepotsList.vue';
   import { useArticlesStore } from '@stores/articles.store';
+  import { useRoute } from 'vue-router';
 
   const store = useArticlesStore();
   const activeKey = ref('1');
-
-  function extractArticleId() {
-    const pathname = window.location.pathname;
-    const segments = pathname.split('/');
-    const articleId = segments.find(segment => segment.startsWith('art_'));
-
-    // Check if an article ID was found and return it
-    return articleId || null;
-  };
-
-  const articleId = extractArticleId();
+  const route = useRoute();
+  const articleId = route.params.id as string;
 
   onBeforeMount(async() => {
-    if (articleId) {
-      store.articleId = articleId;
-      await store.getArticleById(store.articleId);
-    }
-
     await store.getCreationData();
   });
 </script>

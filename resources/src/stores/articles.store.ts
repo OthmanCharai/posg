@@ -27,6 +27,7 @@ export const useArticlesStore = defineStore('articles', {
     articleId: '' as string,
     loading: loading,
     getResponse: false,
+    articleExist: true,
   }),
 
   actions: {
@@ -147,6 +148,10 @@ export const useArticlesStore = defineStore('articles', {
           ...responseData,
           compatibilities: responseData.compatibilities.map((compatibility: ArticleCompatibility) => compatibility.id)
         };
+        this.articleExist = true;
+      } else {
+        Toast.error('Article introuvable');
+        this.articleExist = false;
       }
     },
   }
