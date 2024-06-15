@@ -11,7 +11,7 @@
       required: true,
     },
     id: {
-      type: String,
+      type: [String, Number],
       default: '',
     },
     model: {

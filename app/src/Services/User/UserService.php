@@ -5,6 +5,7 @@ namespace App\src\Services\User;
 use App\src\Domain\Media\Exceptions\FileDeleteFromS3FailedException;
 use App\src\Domain\Media\Exceptions\FileUploadToS3FailedException;
 use App\src\Domain\Media\MediaService;
+use App\src\Entities\TypedCollections\UserCollection;
 use App\src\Models\User\User;
 use App\src\Repositories\User\UserRepository;
 use Illuminate\Database\Eloquent\Model;
@@ -93,5 +94,10 @@ readonly class UserService implements UserServiceInterface
     {
         /* @var User/null */
         return $this->userRepository->find($email, User::EMAIL_COLUMN);
+    }
+
+    public function get(): UserCollection
+    {
+        return $this->userRepository->get();
     }
 }
