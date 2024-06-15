@@ -32,6 +32,10 @@
       title: 'Temps',
       dataIndex: 'humanize_datetime',
     },
+    {
+      title: 'Action',
+      key: 'action',
+    },
   ]);
   const showCreateModal = ref(false);
   provide('showCreateModal', showCreateModal);
@@ -70,7 +74,20 @@
         :total="store.pagination.total"
         :fetched-data="store.get"
         :loading="store.loading"
-      />
+      >
+        <template #bodyCell="{ column, record }">
+          <template v-if="column.key === 'action'">
+            <td class="action-table-data">
+              <button class="action-button edit" @click="editLog(record)">
+                <vue-feather type="edit" />
+              </button>
+              <button class="action-button delete" @click="deleteLog(record)">
+                <vue-feather type="trash-2" />
+              </button>
+            </td>
+          </template>
+        </template>
+      </DataTable>
     </div>
   </div>
   <!-- Create role modal -->
@@ -81,7 +98,7 @@
   <DeleteAlert
       v-if="store.getResponse && showDeleteModal"
       v-model:toggle="showDeleteModal"
-      model="roles"
+      model="logs"
       :id="store.currentLog.id"
       :update-data="() => store.get(store.pagination.current_page)"
   />

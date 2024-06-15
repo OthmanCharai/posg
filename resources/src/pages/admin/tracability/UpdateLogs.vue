@@ -6,24 +6,24 @@ import {AuditLog, CreateAuditLog} from "@common/types/global/log";
 
 
 const store = useLogStore();
-const showCreateModal = inject('showCreateModal') as Ref<boolean>;
+const showCreateModal = inject('showUpdateModal') as Ref<boolean>;
 
 const data = ref<CreateAuditLog>({
-  user_id: '',
-  table_name: '',
-  log_type: '',
+  user_id: store.currentLog.user_id,
+  table_name: store.currentLog.table_name,
+  log_type: store.currentLog.log_type,
 });
 
 // Submit data
 const handleSubmission = async () => {
-  await store.create(data.value, showCreateModal);
+  await store.update(store.currentLog,data.value, showCreateModal);
 };
 
 </script>
 
 <template>
   <ModalWrapper
-      title="Nouveau role"
+      title="Modifier Utilisateur Activité"
       v-model:open="showCreateModal"
       @submit="handleSubmission"
       width="800px"
@@ -39,7 +39,6 @@ const handleSubmission = async () => {
               show-search
               style="width: 100%"
               placeholder="Utilisateur"
-              mode="multiple"
               :max-tag-count="10"
               :options="store.users"
               :filter-option="dropDownFilter"
@@ -56,7 +55,6 @@ const handleSubmission = async () => {
               show-search
               style="width: 100%"
               placeholder="Ressource"
-              mode="multiple"
               :max-tag-count="10"
               :options="store.tables"
               :filter-option="dropDownFilter"
@@ -73,7 +71,6 @@ const handleSubmission = async () => {
               show-search
               style="width: 100%"
               placeholder="Type d'action"
-              mode="multiple"
               :max-tag-count="10"
               :options="store.log_types"
               :filter-option="dropDownFilter"

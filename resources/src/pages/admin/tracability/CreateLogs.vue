@@ -23,7 +23,7 @@ const handleSubmission = async () => {
 
 <template>
   <ModalWrapper
-      title="Nouveau role"
+      title="Nouvel Utilisateur Activité"
       v-model:open="showCreateModal"
       @submit="handleSubmission"
       width="800px"
@@ -39,7 +39,6 @@ const handleSubmission = async () => {
               show-search
               style="width: 100%"
               placeholder="Utilisateur"
-              mode="multiple"
               :max-tag-count="10"
               :options="store.users"
               :filter-option="dropDownFilter"
@@ -56,7 +55,6 @@ const handleSubmission = async () => {
               show-search
               style="width: 100%"
               placeholder="Ressource"
-              mode="multiple"
               :max-tag-count="10"
               :options="store.tables"
               :filter-option="dropDownFilter"
@@ -73,7 +71,6 @@ const handleSubmission = async () => {
               show-search
               style="width: 100%"
               placeholder="Type d'action"
-              mode="multiple"
               :max-tag-count="10"
               :options="store.log_types"
               :filter-option="dropDownFilter"

@@ -5,6 +5,7 @@ import { extractPaginatorObject } from '@utils/pagination';
 import type { PaginationMetadata } from '@common/types/global/pagination';
 import {Toast} from "@utils/toast";
 import {Users} from "@common/types/users";
+import {SelectProps} from "ant-design-vue/es/vc-select/Select";
 
 const { request, response, loading } = useAxios();
 export const useLogStore = defineStore('logs', {
@@ -14,9 +15,22 @@ export const useLogStore = defineStore('logs', {
     getResponse: false,
     loading: loading,
     currentLog: {} as AuditLog,
-    users: [] as Users[],
+    users:[] as SelectProps['options'],
     tables:[] as string[],
-    log_types:['ajouter','modifier','supprimer']
+    log_types:[
+        {
+            'value':'create',
+            'label':'ajouter'
+        },
+        {
+            'value':'update',
+            'label':'modifier'
+        },
+        {
+            'value':'delete',
+            'label':'supprimer'
+        }
+    ]
   }),
 
   actions: {
@@ -35,7 +49,7 @@ export const useLogStore = defineStore('logs', {
 
     async create(data:any,showCreateModal: Ref<boolean>){
       await request({
-        url: route('logs.create'),
+        url: route('logs.store'),
           method: 'POST',
           data: data
       });
@@ -73,8 +87,17 @@ export const useLogStore = defineStore('logs', {
             'method':'GET'
         });
         if (response.value) {
-            this.users=response.value?.data.users;
-            this.tables=response.value?.data.tables;
+            this.users=response.value?.data?.users.map((user:Users) => ({
+                value: user.id,
+                label: user.first_name+' '+user.last_name
+            }));
+            this.tables=response.value?.data?.tables.map((table: { Tables_in_laravel: any; }) => {
+                const tableName = table.Tables_in_laravel;
+                return {
+                    value: tableName,
+                    label: tableName.replace(/[^a-zA-Z0-9]/g, ' ')
+                };
+            });
         }
     },
 

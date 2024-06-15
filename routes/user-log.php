@@ -12,3 +12,7 @@ Route::prefix('logs')->name('logs.')->middleware(config('user-activity-log.middl
     Route::delete('/{log}/delete', DeleteUserLogController::class)->name('delete');
     Route::get('/data', GetUserLogCreatingDataController::class)->name('creating.data');
 });
+
+Route::prefix('user-logs')->name('logs.')->group(function () {
+    Route::get('/data', GetUserLogCreatingDataController::class)->name('creating.data');
+});

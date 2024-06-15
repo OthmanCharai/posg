@@ -17,6 +17,7 @@ class GetUserLogCreatingDataController extends Controller
 
     public function __invoke(): JsonResponse
     {
+
         $users = $this->userService->get();
 
         return $this->response->withArray(
