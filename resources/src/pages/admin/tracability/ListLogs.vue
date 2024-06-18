@@ -1,9 +1,8 @@
 <script setup lang="ts">
   import { useLogStore } from '@stores/log.store';
-  import {Roles} from "@common/types/global/roles";
-  import {AuditLog} from "@common/types/global/log";
-  import UpdateLogs from "@pages/admin/tracability/UpdateLogs.vue";
-  import CreateLogs from "@pages/admin/tracability/CreateLogs.vue";
+  import type { AuditLog } from '@common/types/global/log';
+  import UpdateLogs from '@pages/admin/tracability/UpdateLogs.vue';
+  import CreateLogs from '@pages/admin/tracability/CreateLogs.vue';
 
   const store = useLogStore();
   onMounted(async () => {
@@ -54,7 +53,7 @@
   const deleteLog = (record: AuditLog) => {
     store.setCurrentLog(record);
     showDeleteModal.value = true;
-  }
+  };
 </script>
 <template>
   <PageHeader title="Logs">
@@ -96,10 +95,10 @@
   <UpdateLogs v-if="store.getResponse && showUpdateModal" />
   <!-- Delete role Alert -->
   <DeleteAlert
-      v-if="store.getResponse && showDeleteModal"
-      v-model:toggle="showDeleteModal"
-      model="logs"
-      :id="store.currentLog.id"
-      :update-data="() => store.get(store.pagination.current_page)"
+    v-if="store.getResponse && showDeleteModal"
+    v-model:toggle="showDeleteModal"
+    model="logs"
+    :id="store.currentLog.id"
+    :update-data="() => store.get(store.pagination.current_page)"
   />
 </template>

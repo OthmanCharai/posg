@@ -26,8 +26,8 @@ interface Data {
 }
 
 export interface CreateAuditLog {
-    id?: number;
-    user_id: string;
-    table_name: string;
-    log_type: string|'create' | 'update' | 'delete';
+  id?: number;
+  user_id: string | null;
+  table_name: string | null;
+  log_type: 'create' | 'update' | 'delete' | null;
 }
