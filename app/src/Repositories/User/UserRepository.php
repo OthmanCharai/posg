@@ -2,6 +2,7 @@
 
 namespace App\src\Repositories\User;
 
+use App\src\Entities\TypedCollections\UserCollection;
 use App\src\Models\AdminRole\AdminRole;
 use App\src\Models\User\User;
 use App\src\Repositories\BaseRepository;
@@ -35,6 +36,13 @@ class UserRepository extends BaseRepository
             '*',
             'page',
             $queryOption->getPage()
+        );
+    }
+
+    public function get(): UserCollection
+    {
+        return UserCollection::make(
+            $this->getQueryBuilder()->get()
         );
     }
 

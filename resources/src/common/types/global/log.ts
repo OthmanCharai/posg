@@ -24,3 +24,10 @@ interface Data {
   created_at: string;
   updated_at: string;
 }
+
+export interface CreateAuditLog {
+  id?: number;
+  user_id: string | null;
+  table_name: string | null;
+  log_type: 'create' | 'update' | 'delete' | null;
+}

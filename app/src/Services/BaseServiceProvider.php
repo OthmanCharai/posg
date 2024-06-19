@@ -16,6 +16,7 @@ use App\src\Services\Supplier\SupplierServiceProvider;
 use App\src\Services\Tax\TaxServiceProvider;
 use App\src\Services\TaxVariant\TaxVariantServiceProvider;
 use App\src\Services\User\UserServiceProvider;
+use App\src\Services\UserLog\UserLogServiceProvider;
 use Illuminate\Support\ServiceProvider;
 
 class BaseServiceProvider extends ServiceProvider
@@ -35,7 +36,8 @@ class BaseServiceProvider extends ServiceProvider
         CompanyServiceProvider::class,
         ArticleIsoServiceProvider::class,
         ArticleDepotServiceProvider::class,
-        CompatibilityServiceProvider::class
+        CompatibilityServiceProvider::class,
+        UserLogServiceProvider::class,
     ];
 
     public function register(): void
